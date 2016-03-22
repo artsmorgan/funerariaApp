@@ -1,0 +1,258 @@
+---
+login: Oturum aç
+email: E-posta
+password: Parola
+forgot_your_password: Şifrenizi mi unuttunuz
+reset_password: Şifre sıfırlamak
+return_to_login_page: Sayfayı Girişi Dönüş
+admin_dashboard: Yönetici Paneli
+dashboard: Dashboard
+contacts: İletişim
+customers: Müşteriler
+suppliers: Tedarikçiler
+financial_accounts: Finansal Hesaplar
+create_new_account: Yeni hesap oluştur
+account_list: Hesap Listesi
+inventory: Envanter
+products: Ürünler
+services: Hizmetler
+product_/_service_categories: Ürün / Hizmet Kategorileri
+purchases: Alımlar
+new_purchase: Yeni Alım
+purchase_history: Satın alma geçmişi
+sales: Satış
+new_sale: Yeni Satış
+sales_history: Satış Tarihi
+incomes_/_expenses: Gelirleri / Giderleri
+incomes: Gelirler
+expenses: Giderler
+income_/_expense_categories: Gelir / Gider Kategorileri
+reporting: Raporlama
+account_statements: Hesap Raporları
+income_report: Gelir Raporu
+expense_report: Gider raporu
+income_expense_comparison: Gelir Gider Karşılaştırma
+notes: Notlar
+admins: Yöneticiler
+settings: Ayarlar
+system_settings: Sistem ayarları
+email_settings: E-posta Ayarları
+language_settings: Dil ayarları
+vat_settings: Vat Ayarları
+account: Hesap
+Bookkeeping: Defter tutma
+log_out: Çıkış Yap
+sale_code: Satış Kodu
+purchase_code: Satınalma Kodu
+income: Gelir
+last_30_days: Son 30 Gün
+expense: Gider
+income_expense_calendar: Gelir Gider Takvim
+sale: Satış
+purchase: Satınalma
+manage_customers: Müşteriler yönetin
+add_new_contact: Yeni Kişi Ekle
+name: Isim
+company_name: Şirket Adı
+phone: Telefon
+type: Tip
+options: Seçenekler
+customer: Müşteri
+actions: Eylemler
+edit: Düzenleme
+view_details: Ayrıntıları görüntüle
+delete: Silmek
+manage_suppliers: Tedarikçi yönetin
+supplier: Tedarikçi
+add_contact: Kişi ekle
+contact_type: İletişim Tipi
+first_name: İsim
+last_name: Soyadı
+mobile: Seyyar
+website: Web Sitesi
+skype_id: Skype kullanıcı adı
+address: Adres
+country: Ülke
+city: Şehir
+state: Eyalet
+zip_code: Posta kodu
+bank_account: Banka hesabı
+submit: Gönder
+edit_contact: Düzenleme İletişim
+update: Güncelleştirme
+customer_details: Müşteri detayları
+home: Ev
+details: Detaylar
+summary: Özet
+code: Kod
+creation_date: Oluşturma tarihi
+amount: Miktar
+view_sale_invoice: Görünüm Satış Faturası
+to: Karşı
+subject: Tabi
+message: Mesaj
+send_email: Eposta yolla
+supplier_details: Tedarikçi Detayları
+view_purchase_invoice: Görünüm Satınalma Faturası
+add_account: Hesap eklemek
+account_type: hesap tipi
+bank: Banka
+cash: Nakit
+other: Diğer
+account_title: Hesap Adı
+account_number: Hesap numarası
+starting_balance: Başlangıç ​​Bakiyesi
+manage_accounts: Hesapları Yönet
+current_balance: Cari Denge
+view_ledger: Görünüm Ledger
+edit_account: Hesabı Düzenle
+ledger: Defteri kebir
+date: Tarih
+title: Başlık
+credit: Kredi
+debit: Zimmet
+total_credit: Toplam Kredi
+total_debit: Toplam Borç
+balance: Denge
+print: Yazdır
+manage_products: Ürünler yönetin
+add_new_product: Yeni Ürün Ekle
+category: Kategori
+price: Fiyat
+add_product: Ürün Ekle
+product_name: Ürün adı
+product_category: ürün kategorisi
+unit_price: Birim fiyat
+edit_product: Düzenleme Ürün
+manage_services: Hizmetler yönet
+add_new_service: Yeni Hizmet Ekle
+add_service: Hizmet Ekle
+service_name: hizmet adı
+service_category: Servis Kategorisi
+edit_service: Düzenleme Hizmeti
+manage_product_/_service_categories: Ürün / Hizmet Kategorileri yönet
+add_new_category: Yeni Kategori Ekle
+category_name: Kategori adı
+add_category: Kategori Ekle
+edit_category: Kategori Düzenle
+add_new_purchase: Yeni Satınalma ekle
+basic_information: Temel Bilgiler
+due_date: Bitiş tarihi
+add_product_/_service: Ürün / Hizmet Ekle
+add_a_product_/_service: A Ürün / Hizmet Ekle
+product_code: Ürün Kodu
+quantity: Nicelik
+total: Toplam
+payment_information: ödeme bilgileri
+sub_total: Alt Toplam
+VAT: DKV
+select_VAT: Seçin KDV
+no_VAT: KDV
+discount_amount: İndirim tutarı
+grand_total: Genel Toplam
+financial_account: Finans Hesabı
+select_an_account: Hesap seçin
+bank_accounts: Banka hesabı
+cash_accounts: Nakit Hesapları
+other_accounts: Diğer Hesaplar
+create_new_purchase: Yeni Satınalma Oluştur
+manage_purchases: Satın yönetin
+edit_purchase: Düzenleme Satınalma
+update_purchase: Güncelleme Satınalma
+purchase_invoice_details: Fatura Bilgileri Satınalma
+purchase_invoice: Satınalma faturası
+from: Gönderen
+purchase_items: Satınalma Kalemleri
+vat: Fıçı
+discount: İndirim
+email_invoice: E-posta Fatura
+invoice: Fatura
+invoice_emailed_successfuly: Fatura Emailed başarıyla
+add_new_sale: Yeni Sale ekle
+create_new_sale: Yeni Sale Oluştur
+manage_sales: Satış yönetin
+edit_sale: Düzenleme Satış
+update_sale: Güncelleme Satış
+sale_invoice_details: Fatura Bilgileri Sale
+sale_invoice: Satış Faturası
+sale_items: Satış Öğeler
+manage_incomes: Gelirleri yönetin
+add_new_income: Yeni Gelir ekle
+description: Açıklama
+income_/_expense_category: Gelir / Gider Kategori
+add_income: Gelir ekle
+edit_income: Düzenleme Gelir
+manage_expenses: Giderleri yönetin
+add_new_expense: Yeni Gider ekle
+add_expense: Gider ekle
+edit_expense: Düzenleme Gider
+manage_income_/_expense_categories: Gelir / Gider Kategoriler yönetin
+manage_account_statements: Hesap İfadeleri yönetin
+all_accounts: Tüm Hesaplar
+transaction: Işlem
+all_transactions: Tüm İşlemler
+from_date: İtibaren
+to_date: Bugüne kadar
+filter: Filtre
+total_income: Toplam gelir
+income_bar: Gelir Bar
+current_financial_year_starts_from: Cari Mali Yıl Gönderen Başlıyor
+january: Ocak
+edit_financial_year_settings: Düzenleme Mali Yılı Ayarlarını
+income_percentage: Gelir Yüzde
+total_expense: Toplam Gider
+expense_bar: Gider Bar
+expense_percentage: Gider Yüzde
+income_expense_comparison_report: Gelir Gider Raporu Karşılaştırma
+income_expense_percentage: Gelir Gider Yüzde
+manage_notes: Notlar yönetin
+create_note: Not oluştur
+untitled: Başlıksız
+save_note: Kaydet Not
+delete_note: Not sil
+admin_list: Yönetici Listesi
+add_new_admin: Yeni Yönetici Ekle
+add_admin: Yönetici ekle
+system_title: Sistem Başlığı
+system_email: Sistem E-posta
+text_align: Metin Hizala
+language: Dil
+system_currency: Sistem Para
+show_price_as: Icin arayabilirsiniz As
+financial_year_start: Mali Yıl Başlangıç
+from_january: Ocak
+from_july: Temmuz-
+save: Kaydet
+upload_logo: Yükleme Logosu
+upload: Yükleme
+email_template_settings: E-posta Şablon Ayarları
+new_admin_account_opening: Yeni Yönetici Hesabı Açılışı
+password_reset_confirmation: Parola Sıfırlama Onayı
+email_subject: E-posta konu
+email_body: E-posta Vücut
+save_template: Şablonu Kaydet
+manage_language: Dil yönetin
+language_list: Dil Listesi
+add_phrase: Cümle ekle
+add_language: Dil ekle
+option: Seçenek
+edit_phrase: Düzenleme Cümle
+write_language_file: Dil Dosyası yaz
+delete_language: Dil Sil
+phrase: İfade
+value_required: Değer Gerekli
+update_phrase: Güncelleme Cümle
+manage_vat_settings: Vat Ayarlarını Yönet
+add_new_vat: Yeni Vat ekle
+vat_name: Vat Adı
+percentage: Yüzde
+add_vat: Vat ekle
+edit_vat: Düzenleme Vat
+manage_profile: Profilinizi Yönetin
+edit_profile: Profili Düzenle
+update_profile: Profili güncelle
+change_password: Şifre değiştir
+current_password: Şimdiki Şifre
+new_password: Yeni Şifre
+confirm_new_password: Yeni şifreyi onayla
+update_password: Güncelleme Şifre

@@ -1,0 +1,258 @@
+---
+login: S'identifier
+email: Email
+password: Mot de passe
+forgot_your_password: Mot de passe oublié
+reset_password: Nouveau mot de passe
+return_to_login_page: Return to Login page
+admin_dashboard: Administrateur Dashboard
+dashboard: Tableau de bord
+contacts: Contacts
+customers: Les clients
+suppliers: Fournisseurs
+financial_accounts: Comptes financiers
+create_new_account: Créer un nouveau compte
+account_list: Liste des comptes
+inventory: Inventaire
+products: Produits
+services: Services
+product_/_service_categories: Produit / Service de Catégories
+purchases: Achats
+new_purchase: Nouvel achat
+purchase_history: Historique d'achat
+sales: Ventes
+new_sale: Nouveautés
+sales_history: Histoire des ventes
+incomes_/_expenses: Revenus / dépenses
+incomes: Revenus
+expenses: Dépenses
+income_/_expense_categories: Revenus / Dépenses Catégories
+reporting: Compte-rendu
+account_statements: Relevés de compte
+income_report: Rapport sur le revenu
+expense_report: Rapport de dépenses
+income_expense_comparison: Comparaison des Charges Produits
+notes: Remarques
+admins: Admins
+settings: Paramètres
+system_settings: Les paramètres du système
+email_settings: Paramètres de messagerie
+language_settings: Paramètres de langue
+vat_settings: Paramètres de cuve
+account: Compte
+Bookkeeping: Comptabilité
+log_out: Se déconnecter
+sale_code: Vente code
+purchase_code: Code d'Achat
+income: Revenu
+last_30_days: 30 derniers jours
+expense: Frais
+income_expense_calendar: Charges Produits Calendrier
+sale: vendre
+purchase: Achat
+manage_customers: Gérer clients
+add_new_contact: Ajouter un nouveau contact
+name: prénom
+company_name: Nom de la compagnie
+phone: Téléphone
+type: Type
+options: Options
+customer: Client
+actions: actes
+edit: modifier
+view_details: Voir les détails
+delete: Effacer
+manage_suppliers: Gérer Fournisseurs
+supplier: Fournisseur
+add_contact: Ajouter contact
+contact_type: type de contact
+first_name: Prénom
+last_name: Nom de famille
+mobile: Mobile
+website: Site Internet
+skype_id: Skype
+address: Adresse
+country: Pays
+city: Ville
+state: Etat
+zip_code: Code postal
+bank_account: Compte bancaire
+submit: Proposer
+edit_contact: Modifier le contact
+update: Mettre à jour
+customer_details: Détails du client
+home: Accueil
+details: Détails
+summary: Récapitulatif
+code: Code
+creation_date: Date de création
+amount: Montant
+view_sale_invoice: Voir Vente facture
+to: À
+subject: Assujettir
+message: Message
+send_email: Envoyer un email
+supplier_details: Fournisseur Détails
+view_purchase_invoice: Voir la facture d'achat
+add_account: Ajouter un compte
+account_type: Type de compte
+bank: Banque
+cash: Argent comptant
+other: Autre
+account_title: Compte Titre
+account_number: Numéro de compte
+starting_balance: Solde de départ
+manage_accounts: Gérer les comptes
+current_balance: Solde actuel
+view_ledger: Voir Ledger
+edit_account: Modifier le compte
+ledger: Grand livre
+date: date
+title: Titre
+credit: Crédit
+debit: Débit
+total_credit: Crédit total
+total_debit: Débit total
+balance: Équilibre
+print: Imprimer
+manage_products: Gérer Produits
+add_new_product: Ajouter un nouveau produit
+category: Catégorie
+price: Prix
+add_product: Ajouter un produit
+product_name: Nom du produit
+product_category: catégorie de produit
+unit_price: Prix ​​unitaire
+edit_product: Modifier produit
+manage_services: Gérer les services
+add_new_service: Ajouter un nouveau service
+add_service: Ajouter un service
+service_name: Nom du service
+service_category: Catégorie de service
+edit_service: Modifier un service
+manage_product_/_service_categories: Gérer / Catégories de services produit
+add_new_category: Ajouter une nouvelle catégorie
+category_name: Nom de catégorie
+add_category: Ajouter Catégorie
+edit_category: Modifier une catégorie
+add_new_purchase: Ajouter une nouvelle Achat
+basic_information: Informations de base
+due_date: Date d'échéance
+add_product_/_service: Ajouter Produit / Service
+add_a_product_/_service: Ajouter un produit / service
+product_code: Code produit
+quantity: Quantité
+total: Le total
+payment_information: Information de Paiement
+sub_total: Total
+VAT: T.V.A.
+select_VAT: Sélectionnez la TVA
+no_VAT: Pas de TVA
+discount_amount: Montant de la remise
+grand_total: somme finale
+financial_account: Compte financier
+select_an_account: Sélectionnez un compte
+bank_accounts: Comptes bancaires
+cash_accounts: Comptes de trésorerie
+other_accounts: Autres comptes
+create_new_purchase: Créer un nouveau Achat
+manage_purchases: Gérer achats
+edit_purchase: Modifier Achat
+update_purchase: Mise à jour Achat
+purchase_invoice_details: Achetez Détails de la facture
+purchase_invoice: Facture d'achat
+from: De
+purchase_items: Achat Articles
+vat: T.V.A
+discount: Remise
+email_invoice: Email facture
+invoice: Facture d'achat
+invoice_emailed_successfuly: Facture Envoyé avec succès
+add_new_sale: Ajouter un nouveau Vente
+create_new_sale: Créer un nouveau Vente
+manage_sales: Gérer ventes
+edit_sale: Modifier Vente
+update_sale: Mise à jour de Vente
+sale_invoice_details: Vente Détails de la facture
+sale_invoice: Vente facture
+sale_items: Vendre des articles
+manage_incomes: Gérer revenus
+add_new_income: Ajouter un nouveau revenu
+description: Description
+income_/_expense_category: Produits / charges Catégorie
+add_income: Ajouter revenu
+edit_income: Modifier le revenu
+manage_expenses: Gérer les dépenses
+add_new_expense: Ajouter nouvelle dépense
+add_expense: Ajouter Expense
+edit_expense: Modifier Expense
+manage_income_/_expense_categories: Gérer Produits / charges Catégories
+manage_account_statements: Gérer relevés de compte
+all_accounts: Tous les comptes
+transaction: Transaction
+all_transactions: toutes transactions
+from_date: Partir de la date
+to_date: À ce jour
+filter: Filtre
+total_income: Revenu total
+income_bar: Bar de revenu
+current_financial_year_starts_from: EXERCICE EN COURS commence à partir de
+january: janvier
+edit_financial_year_settings: Modifier les paramètres Exercice
+income_percentage: Pourcentage du revenu
+total_expense: Total Expense
+expense_bar: Dépenses Bar
+expense_percentage: Dépenses Pourcentage
+income_expense_comparison_report: Dépenses de revenu Rapport de comparaison
+income_expense_percentage: Dépenses de revenu Pourcentage
+manage_notes: Gérer des notes
+create_note: Créer Remarque
+untitled: Sans titre
+save_note: Enregistrer la note
+delete_note: Supprimer Note
+admin_list: Liste Admin
+add_new_admin: Ajouter nouvel admin
+add_admin: Ajouter admin
+system_title: Système titre
+system_email: Système Email
+text_align: Text Align
+language: Langue
+system_currency: Système devise
+show_price_as: Voir les prix que
+financial_year_start: Année financière Démarrer
+from_january: De Janvier
+from_july: De Juillet
+save: Conserver
+upload_logo: Upload Logo
+upload: Télécharger
+email_template_settings: Paramètres Email Template
+new_admin_account_opening: Nouvelle ouverture de compte Administrateur
+password_reset_confirmation: Password Reset Confirmation
+email_subject: Sujet du courriel
+email_body: Email du corps
+save_template: Enregistrer le modèle
+manage_language: Gérer Langue
+language_list: Liste de Langue
+add_phrase: Ajouter Phrase
+add_language: Ajouter une langue
+option: Option
+edit_phrase: Modifier Phrase
+write_language_file: Ecrire fichier Langue
+delete_language: Supprimer Langue
+phrase: Phrase
+value_required: Valeur Obligatoire
+update_phrase: Mise à jour Phrase
+manage_vat_settings: Gérer les paramètres Vat
+add_new_vat: Ajouter un nouveau Vat
+vat_name: Vat Nom
+percentage: Pourcentage
+add_vat: Ajouter Vat
+edit_vat: Modifier Vat
+manage_profile: Gérer le profil
+edit_profile: Modifier le profil
+update_profile: Mettre à jour le profil
+change_password: Changer le mot de passe
+current_password: Mot de passe actuel
+new_password: nouveau mot de passe
+confirm_new_password: Confirmer le nouveau mot de passe
+update_password: Mise à jour Mot de passe

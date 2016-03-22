@@ -1,0 +1,258 @@
+---
+login: Login
+email: Email
+password: Password
+forgot_your_password: Forgot Your Password
+reset_password: Reset Password
+return_to_login_page: Return To Login Page
+admin_dashboard: Admin Dashboard
+dashboard: Dashboard
+contacts: Contacts
+customers: Customers
+suppliers: Suppliers
+financial_accounts: Financial Accounts
+create_new_account: Create New Account
+account_list: Account List
+inventory: Inventory
+products: Products
+services: Services
+product_/_service_categories: Product / Service Categories
+purchases: Purchases
+new_purchase: New Purchase
+purchase_history: Purchase History
+sales: Sales
+new_sale: New Sale
+sales_history: Sales History
+incomes_/_expenses: Incomes / Expenses
+incomes: Incomes
+expenses: Expenses
+income_/_expense_categories: Income / Expense Categories
+reporting: Reporting
+account_statements: Account Statements
+income_report: Income Report
+expense_report: Expense Report
+income_expense_comparison: Income Expense Comparison
+notes: Notes
+admins: Admins
+settings: Settings
+system_settings: System Settings
+email_settings: Email Settings
+language_settings: Language Settings
+vat_settings: Vat Settings
+account: Account
+Bookkeeping: Bookkeeping
+log_out: Log Out
+sale_code: Sale Code
+purchase_code: Purchase Code
+income: Income
+last_30_days: Last 30 Days
+expense: Expense
+income_expense_calendar: Income Expense Calendar
+sale: Sale
+purchase: Purchase
+manage_customers: Manage Customers
+add_new_contact: Add New Contact
+name: Name
+company_name: Company Name
+phone: Phone
+type: Type
+options: Options
+customer: Customer
+actions: Actions
+edit: Edit
+view_details: View Details
+delete: Delete
+manage_suppliers: Manage Suppliers
+supplier: Supplier
+add_contact: Add Contact
+contact_type: Contact Type
+first_name: First Name
+last_name: Last Name
+mobile: Mobile
+website: Website
+skype_id: Skype Id
+address: Address
+country: Country
+city: City
+state: State
+zip_code: Zip Code
+bank_account: Bank Account
+submit: Submit
+edit_contact: Edit Contact
+update: Update
+customer_details: Customer Details
+home: Home
+details: Details
+summary: Summary
+code: Code
+creation_date: Creation Date
+amount: Amount
+view_sale_invoice: View Sale Invoice
+to: To
+subject: Subject
+message: Message
+send_email: Send Email
+supplier_details: Supplier Details
+view_purchase_invoice: View Purchase Invoice
+add_account: Add Account
+account_type: Account Type
+bank: Bank
+cash: Cash
+other: Other
+account_title: Account Title
+account_number: Account Number
+starting_balance: Starting Balance
+manage_accounts: Manage Accounts
+current_balance: Current Balance
+view_ledger: View Ledger
+edit_account: Edit Account
+ledger: Ledger
+date: Date
+title: Title
+credit: Credit
+debit: Debit
+total_credit: Total Credit
+total_debit: Total Debit
+balance: Balance
+print: Print
+manage_products: Manage Products
+add_new_product: Add New Product
+category: Category
+price: Price
+add_product: Add Product
+product_name: Product Name
+product_category: Product Category
+unit_price: Unit Price
+edit_product: Edit Product
+manage_services: Manage Services
+add_new_service: Add New Service
+add_service: Add Service
+service_name: Service Name
+service_category: Service Category
+edit_service: Edit Service
+manage_product_/_service_categories: Manage Product / Service Categories
+add_new_category: Add New Category
+category_name: Category Name
+add_category: Add Category
+edit_category: Edit Category
+add_new_purchase: Add New Purchase
+basic_information: Basic Information
+due_date: Due Date
+add_product_/_service: Add Product / Service
+add_a_product_/_service: Add A Product / Service
+product_code: Product Code
+quantity: Quantity
+total: Total
+payment_information: Payment Information
+sub_total: Sub Total
+VAT: VAT
+select_VAT: Select VAT
+no_VAT: No VAT
+discount_amount: Discount Amount
+grand_total: Grand Total
+financial_account: Financial Account
+select_an_account: Select An Account
+bank_accounts: Bank Accounts
+cash_accounts: Cash Accounts
+other_accounts: Other Accounts
+create_new_purchase: Create New Purchase
+manage_purchases: Manage Purchases
+edit_purchase: Edit Purchase
+update_purchase: Update Purchase
+purchase_invoice_details: Purchase Invoice Details
+purchase_invoice: Purchase Invoice
+from: From
+purchase_items: Purchase Items
+vat: Vat
+discount: Discount
+email_invoice: Email Invoice
+invoice: Invoice
+invoice_emailed_successfuly: Invoice Emailed Successfuly
+add_new_sale: Add New Sale
+create_new_sale: Create New Sale
+manage_sales: Manage Sales
+edit_sale: Edit Sale
+update_sale: Update Sale
+sale_invoice_details: Sale Invoice Details
+sale_invoice: Sale Invoice
+sale_items: Sale Items
+manage_incomes: Manage Incomes
+add_new_income: Add New Income
+description: Description
+income_/_expense_category: Income / Expense Category
+add_income: Add Income
+edit_income: Edit Income
+manage_expenses: Manage Expenses
+add_new_expense: Add New Expense
+add_expense: Add Expense
+edit_expense: Edit Expense
+manage_income_/_expense_categories: Manage Income / Expense Categories
+manage_account_statements: Manage Account Statements
+all_accounts: All Accounts
+transaction: Transaction
+all_transactions: All Transactions
+from_date: From Date
+to_date: To Date
+filter: Filter
+total_income: Total Income
+income_bar: Income Bar
+current_financial_year_starts_from: Current Financial Year Starts From
+january: January
+edit_financial_year_settings: Edit Financial Year Settings
+income_percentage: Income Percentage
+total_expense: Total Expense
+expense_bar: Expense Bar
+expense_percentage: Expense Percentage
+income_expense_comparison_report: Income Expense Comparison Report
+income_expense_percentage: Income Expense Percentage
+manage_notes: Manage Notes
+create_note: Create Note
+untitled: Untitled
+save_note: Save Note
+delete_note: Delete Note
+admin_list: Admin List
+add_new_admin: Add New Admin
+add_admin: Add Admin
+system_title: System Title
+system_email: System Email
+text_align: Text Align
+language: Language
+system_currency: System Currency
+show_price_as: Show Price As
+financial_year_start: Financial Year Start
+from_january: From January
+from_july: From July
+save: Save
+upload_logo: Upload Logo
+upload: Upload
+email_template_settings: Email Template Settings
+new_admin_account_opening: New Admin Account Opening
+password_reset_confirmation: Password Reset Confirmation
+email_subject: Email Subject
+email_body: Email Body
+save_template: Save Template
+manage_language: Manage Language
+language_list: Language List
+add_phrase: Add Phrase
+add_language: Add Language
+option: Option
+edit_phrase: Edit Phrase
+write_language_file: Write Language File
+delete_language: Delete Language
+phrase: Phrase
+value_required: Value Required
+update_phrase: Update Phrase
+manage_vat_settings: Manage Vat Settings
+add_new_vat: Add New Vat
+vat_name: Vat Name
+percentage: Percentage
+add_vat: Add Vat
+edit_vat: Edit Vat
+manage_profile: Manage Profile
+edit_profile: Edit Profile
+update_profile: Update Profile
+change_password: Change Password
+current_password: Current Password
+new_password: New Password
+confirm_new_password: Confirm New Password
+update_password: Update Password

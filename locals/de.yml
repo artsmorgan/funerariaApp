@@ -1,0 +1,258 @@
+---
+login: Anmeldung
+email: Email
+password: Passwort
+forgot_your_password: Haben Sie Ihr Passwort vergessen
+reset_password: Passwort zurücksetzen
+return_to_login_page: Zurück zur Anmeldeseite Seite
+admin_dashboard: Admin-Dashboard
+dashboard: Armaturenbrett
+contacts: Impressum
+customers: Kunden,
+suppliers: Lieferanten
+financial_accounts: Finanzierungsrechnung
+create_new_account: Neuen Account erstellen
+account_list: Kontoliste
+inventory: Inventar
+products: Produkte
+services: Dienstleistungen
+product_/_service_categories: Produkte / Service Kategorien
+purchases: Einkäufe
+new_purchase: Neuanschaffung
+purchase_history: Kaufhistorie
+sales: Der Umsatz
+new_sale: Neuheiten Aktionen
+sales_history: Vertrieb Geschichte
+incomes_/_expenses: Einkommen / Ausgaben
+incomes: Einkommen
+expenses: Kosten
+income_/_expense_categories: Erträge / Aufwendungen Kategorien
+reporting: Berichterstattung
+account_statements: Kontoauszüge
+income_report: Einkommensbericht
+expense_report: Spesenabrechnung
+income_expense_comparison: Income Kostenvergleich
+notes: Hinweise
+admins: Admins
+settings: Einstellungen
+system_settings: Systemeinstellungen
+email_settings: E-Mail-Einstellungen
+language_settings: Spracheinstellungen
+vat_settings: MwSt-Einstellungen
+account: Konto
+Bookkeeping: Buchhaltung
+log_out: Abmelden
+sale_code: Sale-Code
+purchase_code: Kauf-Code
+income: Einkommen
+last_30_days: Letzte 30 Tage
+expense: Kostenaufwand
+income_expense_calendar: Income Expense Calendar
+sale: Verkauf
+purchase: Kauf
+manage_customers: Kunden verwalten
+add_new_contact: Neuen Kontakt hinzufügen
+name: Name
+company_name: Name der Firma
+phone: Telefon
+type: Art
+options: Optionen
+customer: Kunde
+actions: Aktionen
+edit: Bearbeiten
+view_details: Details anzeigen
+delete: Löschen
+manage_suppliers: Lieferanten verwalten
+supplier: Lieferant
+add_contact: Kontakt hinzufügen
+contact_type: Kontakttyp
+first_name: Vorname
+last_name: Familienname, Nachname
+mobile: Mobile
+website: Webseite
+skype_id: Skype Kennzeichnung
+address: Adresse
+country: Land
+city: Stadt
+state: Bundesland
+zip_code: PLZ
+bank_account: Bank Konto
+submit: einreichen
+edit_contact: Kontakt bearbeiten
+update: Aktualisieren
+customer_details: Kundendetails
+home: Zuhause
+details: Einzelheiten
+summary: Zusammenfassung
+code: Code
+creation_date: Erstellungsdatum
+amount: Menge
+view_sale_invoice: Ansicht Verkauf Rechnung
+to: Zu
+subject: Gegenstand
+message: Nachricht
+send_email: E-Mail senden
+supplier_details: Supplier Details
+view_purchase_invoice: Ankaufsrechnung
+add_account: Konto hinzufügen
+account_type: Account
+bank: Bank
+cash: Kasse
+other: Andere
+account_title: Konto Titel
+account_number: Accountnummer
+starting_balance: Startguthaben
+manage_accounts: Konten verwalten
+current_balance: Aktueller Kontostand
+view_ledger: Ansicht Ledger
+edit_account: Account bearbeiten
+ledger: Hauptbuch
+date: Datum
+title: Titel
+credit: Kredit
+debit: Debit
+total_credit: Gesamt-Credit
+total_debit: Gesamtbank
+balance: Balance
+print: Drucken
+manage_products: Produkte verwalten
+add_new_product: Neues Produkt hinzufügen
+category: Kategorie
+price: Preis
+add_product: Produkt hinzufügen
+product_name: Produktname
+product_category: Produktkategorie
+unit_price: Einzelpreis
+edit_product: Produkt bearbeiten
+manage_services: Dienstleistungen verwalten
+add_new_service: Neuen Service hinzufügen
+add_service: Dienst hinzufügen
+service_name: Dienstname
+service_category: Service-Kategorie
+edit_service: Dienst bearbeiten
+manage_product_/_service_categories: Verwalten Produkte / Service Kategorien
+add_new_category: Neue Kategorie hinzufügen
+category_name: Name der Kategorie
+add_category: Kategorie hinzufügen
+edit_category: Kategorie bearbeiten
+add_new_purchase: In New Kauf
+basic_information: Grundinformation
+due_date: Geburtstermin
+add_product_/_service: Fügen Sie Produkte / Service
+add_a_product_/_service: Fügen Sie Produkt / Dienstleistung
+product_code: Produktcode
+quantity: Menge
+total: Gesamt
+payment_information: Zahlungsinformationen
+sub_total: Zwischensumme
+VAT: Mehrwertsteuer
+select_VAT: Wählen MwSt
+no_VAT: Keine MwSt
+discount_amount: Rabattbetrag
+grand_total: Endsumme
+financial_account: Bankkonto
+select_an_account: Wählen Sie ein Konto
+bank_accounts: Bankkonten
+cash_accounts: Geldkonten
+other_accounts: Weitere Konten
+create_new_purchase: Neu erstellen Kauf
+manage_purchases: Käufe verwalten
+edit_purchase: Kauf bearbeiten
+update_purchase: Update Kauf
+purchase_invoice_details: Erwerben Rechnungsdetails
+purchase_invoice: Kaufrechnung
+from: Von
+purchase_items: Kaufgegenstände
+vat: Bütte
+discount: Rabatt
+email_invoice: E-Mail-Rechnung
+invoice: Rechnung
+invoice_emailed_successfuly: Rechnungs Emailed Erfolgreicher
+add_new_sale: In New Sale
+create_new_sale: Neues Sale
+manage_sales: Verkäufe verwalten
+edit_sale: Verkauf Bearbeiten
+update_sale: Update Verkauf
+sale_invoice_details: Verkauf Rechnungsdetails
+sale_invoice: Verkauf Rechnung
+sale_items: Sale Items
+manage_incomes: Die Einkommen verwalten
+add_new_income: In New Income
+description: Beschreibung
+income_/_expense_category: Erträge / Aufwendungen Kategorie
+add_income: In Income
+edit_income: Bearbeiten Income
+manage_expenses: Ausgaben verwalten
+add_new_expense: In New Expense
+add_expense: Expense hinzufügen
+edit_expense: Expense bearbeiten
+manage_income_/_expense_categories: Verwalten Erträge / Aufwendungen Kategorien
+manage_account_statements: Verwalten Kontoauszüge
+all_accounts: Alle Accounts
+transaction: Transaktion
+all_transactions: Alle Transaktionen
+from_date: Ab Datum
+to_date: Miteinander ausgehen
+filter: Filter
+total_income: Gesamteinkommen
+income_bar: Income Bar
+current_financial_year_starts_from: Laufende Geschäftsjahr geht von
+january: Januar
+edit_financial_year_settings: Bearbeiten Geschäftsjahr Einstellungen
+income_percentage: 'Gewinn- und Verlustprozent'
+total_expense: Gesamtausgaben
+expense_bar: Expense Bar
+expense_percentage: Expense Prozent
+income_expense_comparison_report: Income Expense Vergleichsbericht
+income_expense_percentage: Income Expense Prozent
+manage_notes: Notizen verwalten
+create_note: Erstellen Hinweis
+untitled: Ohne Titel
+save_note: Notiz speichern
+delete_note: Hinweis Löschen
+admin_list: Admin Liste
+add_new_admin: In New Admin
+add_admin: In Admin
+system_title: System Titel
+system_email: E-Mail-System
+text_align: Text Align
+language: Sprache
+system_currency: Systemwährung
+show_price_as: Fragen Sie den Preis als
+financial_year_start: Geschäftsjahr starten
+from_january: Von Januar
+from_july: Von Juli
+save: sparen
+upload_logo: Logo hochladen
+upload: Hochladen
+email_template_settings: E-Mail-Template-Einstellungen
+new_admin_account_opening: New Admin Kontoeröffnung
+password_reset_confirmation: Password Reset Confirmation
+email_subject: E-Mail Betreff
+email_body: Email Körper
+save_template: Vorlage speichern
+manage_language: Sprache verwalten
+language_list: Sprachenliste
+add_phrase: Phrase hinzufügen
+add_language: Sprache hinzufügen
+option: Option
+edit_phrase: Phrase bearbeiten
+write_language_file: Schreiben Sprache Datei
+delete_language: Sprache löschen
+phrase: Phrase
+value_required: Wert Erforderlich
+update_phrase: Update-Satz
+manage_vat_settings: MwSt-Einstellungen verwalten
+add_new_vat: In New Vat
+vat_name: Vat Namen
+percentage: Prozentsatz
+add_vat: Vat hinzufügen
+edit_vat: Vat bearbeiten
+manage_profile: Profil verwalten
+edit_profile: Profil bearbeiten
+update_profile: Profil aktualisieren
+change_password: Kennwort ändern
+current_password: Aktuelles Passwort
+new_password: Neues Kennwort
+confirm_new_password: Bestätige neues Passwort
+update_password: Passwort aktualisieren

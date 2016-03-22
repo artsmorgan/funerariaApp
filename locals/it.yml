@@ -1,0 +1,258 @@
+---
+login: Accesso
+email: E-mail
+password: Parola d'ordine
+forgot_your_password: Hai dimenticato la password
+reset_password: Resettare la password
+return_to_login_page: Ritorna al login pagina
+admin_dashboard: Admin Dashboard
+dashboard: Cruscotto
+contacts: Contatti
+customers: Clienti
+suppliers: Fornitori
+financial_accounts: Conti finanziari
+create_new_account: Crea un nuovo account
+account_list: Account List
+inventory: Inventario
+products: Prodotti
+services: Servizi
+product_/_service_categories: Prodotto / Servizio Categorie
+purchases: Acquisti
+new_purchase: Nuovo Acquisto
+purchase_history: Cronologia degli acquisti
+sales: I saldi
+new_sale: Nuova vendita
+sales_history: Storia Vendite
+incomes_/_expenses: Redditi / Spese
+incomes: Redditi
+expenses: Spese
+income_/_expense_categories: Proventi / oneri categorie
+reporting: Segnalazione
+account_statements: Estratti conto
+income_report: Reddito Relazione
+expense_report: Expense Report
+income_expense_comparison: Proventi Oneri Confronto
+notes: Gli appunti
+admins: Amministratori
+settings: Impostazioni
+system_settings: Impostazioni di sistema
+email_settings: Impostazioni e-mail
+language_settings: Impostazioni della lingua
+vat_settings: Impostazioni Iva
+account: Conto
+Bookkeeping: Contabilità
+log_out: Disconnettersi
+sale_code: Vendita Codice
+purchase_code: Codice di acquisto
+income: Reddito
+last_30_days: Ultimi 30 giorni
+expense: Spese
+income_expense_calendar: Proventi Oneri Calendario
+sale: Vendita
+purchase: Acquisto
+manage_customers: Gestire i clienti
+add_new_contact: Aggiungi nuovo contatto
+name: Nome
+company_name: Nome della ditta
+phone: Telefono
+type: Tipo
+options: Opzioni
+customer: Cliente
+actions: Azioni
+edit: Modifica
+view_details: Guarda i dettagli
+delete: Cancellare
+manage_suppliers: Gestire Fornitori
+supplier: Fornitore
+add_contact: Aggiungi contatto
+contact_type: Tipo di contatto
+first_name: Nome
+last_name: Cognome
+mobile: Mobile
+website: Sito web
+skype_id: Identificativo di Skype
+address: Indirizzo
+country: Nazione
+city: Città
+state: Stato
+zip_code: Cap
+bank_account: Conto bancario
+submit: Presentare
+edit_contact: Modifica il contatto
+update: Aggiornare
+customer_details: Dettagli cliente
+home: Casa
+details: Dettagli
+summary: Sommario
+code: Codice
+creation_date: Data di creazione
+amount: Importo
+view_sale_invoice: Vendita fattura
+to: A
+subject: Soggetto
+message: Messaggio
+send_email: Invia una email
+supplier_details: Fornitore Dettagli
+view_purchase_invoice: Visualizza Acquisto Fattura
+add_account: Aggiungi account
+account_type: Tipo di account
+bank: Banca
+cash: Contanti
+other: Altro
+account_title: Conto Titolo
+account_number: Numero di conto
+starting_balance: Saldo iniziale
+manage_accounts: Gestisci account
+current_balance: Bilancio corrente
+view_ledger: Vista Ledger
+edit_account: Modifica account
+ledger: Libro mastro
+date: Data
+title: Titolo
+credit: Credito
+debit: Addebito
+total_credit: Crediti
+total_debit: Debito totale
+balance: Bilancio
+print: Stampare
+manage_products: Gestione Prodotti
+add_new_product: Aggiungi nuovo prodotto
+category: Categoria
+price: Prezzo
+add_product: Aggiungi prodotto
+product_name: nome del prodotto
+product_category: Categoria del prodotto
+unit_price: Prezzo unitario
+edit_product: Modifica del prodotto
+manage_services: Gestione servizi
+add_new_service: Aggiungi nuovo servizio
+add_service: Aggiungi servizio
+service_name: Nome del servizio
+service_category: Servizio Categoria
+edit_service: Modifica servizio
+manage_product_/_service_categories: Gestire prodotto / servizio Categorie
+add_new_category: Aggiungi Nuova Categoria
+category_name: Nome della categoria
+add_category: Aggiungi categoria
+edit_category: Modifica categoria
+add_new_purchase: Aggiungi nuovo acquisto
+basic_information: Informazioni di base
+due_date: Scadenza
+add_product_/_service: Aggiungi Prodotto / Servizio
+add_a_product_/_service: Aggiungere un prodotto / servizio
+product_code: Codice di produzione
+quantity: Quantità
+total: Totale
+payment_information: Informazioni sul pagamento
+sub_total: Sub totale
+VAT: I.V.A.
+select_VAT: Seleziona IVA
+no_VAT: No IVA
+discount_amount: Totale sconto
+grand_total: Somma totale
+financial_account: Conto finanziario
+select_an_account: Selezionare un account
+bank_accounts: Conto in banca
+cash_accounts: Conti di cassa
+other_accounts: Altri account
+create_new_purchase: Crea nuovo acquisto
+manage_purchases: Gestire Acquisti
+edit_purchase: Modifica Acquisto
+update_purchase: Aggiornamento Acquisto
+purchase_invoice_details: Acquista Dettagli fattura
+purchase_invoice: Acquisto Fattura
+from: Da parte di
+purchase_items: Acquisto di oggetti
+vat: I.V.A
+discount: Sconto
+email_invoice: Email Fattura
+invoice: Fattura
+invoice_emailed_successfuly: Fattura Inviato con successo
+add_new_sale: Aggiungi nuovo Vendita
+create_new_sale: Crea nuovo Vendita
+manage_sales: Gestire le vendite
+edit_sale: Modifica Vendita
+update_sale: Aggiornamento Vendita
+sale_invoice_details: Vendita Dettagli fattura
+sale_invoice: Vendita Fattura
+sale_items: Articoli in saldo
+manage_incomes: Gestire redditi
+add_new_income: Aggiungi nuovo reddito
+description: Descrizione
+income_/_expense_category: Proventi / Oneri Categoria
+add_income: Aggiungere reddito
+edit_income: Modifica reddito
+manage_expenses: Gestire le spese
+add_new_expense: Aggiungi nuovo Expense
+add_expense: Aggiungere Expense
+edit_expense: Modifica Expense
+manage_income_/_expense_categories: Gestire proventi / oneri categorie
+manage_account_statements: Gestire Estratti conto
+all_accounts: Tutti gli account
+transaction: Transazione
+all_transactions: Tutte le transazioni
+from_date: Dalla Data
+to_date: Ad oggi
+filter: Filtro
+total_income: Reddito totale
+income_bar: Reddito Bar
+current_financial_year_starts_from: Attuale Esercizio Prezzi da
+january: gennaio
+edit_financial_year_settings: Modifica impostazioni Esercizio
+income_percentage: Reddito Percentuale
+total_expense: Total Expense
+expense_bar: Expense Bar
+expense_percentage: Percentuale spese
+income_expense_comparison_report: Proventi Oneri report di confronto
+income_expense_percentage: Proventi Oneri Percentuale
+manage_notes: Gestisci note
+create_note: Crea nota
+untitled: Senza titolo
+save_note: Salva Nota
+delete_note: Elimina Nota
+admin_list: Lista Admin
+add_new_admin: Aggiungi nuovo amministratore
+add_admin: Aggiungere Admin
+system_title: Titolo di sistema
+system_email: Email sistema
+text_align: Allinea il testo
+language: Lingua
+system_currency: Sistema di valuta
+show_price_as: Chiedi il prezzo Come
+financial_year_start: Esercizio Inizio
+from_january: Da gennaio
+from_july: Dal luglio
+save: Salvare
+upload_logo: Upload Logo
+upload: Caricare
+email_template_settings: Impostazioni e-mail dei modelli
+new_admin_account_opening: Nuova apertura Amministratore account
+password_reset_confirmation: Password Reset Conferma
+email_subject: Oggetto dell'email
+email_body: Email Corpo
+save_template: Salva modello
+manage_language: Gestire Lingua
+language_list: Elenco lingue
+add_phrase: Aggiungere Frase
+add_language: Aggiungi lingua
+option: Opzione
+edit_phrase: Modifica Frase
+write_language_file: Scrivi file Lingua
+delete_language: Eliminare Lingua
+phrase: Frase
+value_required: Valore Obbligatorio
+update_phrase: Aggiornamento Frase
+manage_vat_settings: Gestisci impostazioni Iva
+add_new_vat: Aggiungi nuovo Iva
+vat_name: Iva Nome
+percentage: Percentuale
+add_vat: Aggiungere Iva
+edit_vat: Modifica Iva
+manage_profile: Gestisci profilo
+edit_profile: Modifica Profilo
+update_profile: Aggiorna il profilo
+change_password: Cambiare la password
+current_password: Password attuale
+new_password: nuova password
+confirm_new_password: Conferma la nuova password
+update_password: Aggiorna password

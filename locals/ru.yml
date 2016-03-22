@@ -1,0 +1,258 @@
+---
+login: Авторизоваться
+email: Эл. адрес
+password: пароль
+forgot_your_password: Забыли пароль
+reset_password: Сброс пароля
+return_to_login_page: Вернуться на страницу входа
+admin_dashboard: Админ Панель
+dashboard: Панель приборов
+contacts: Контакты
+customers: Клиенты
+suppliers: Поставщики
+financial_accounts: Финансовая отчетность
+create_new_account: Создать новый аккаунт
+account_list: Список аккаунт
+inventory: Инвентаризация
+products: Продукты
+services: Сервисы
+product_/_service_categories: Товар / услуга Категории
+purchases: Покупки
+new_purchase: Новый Покупка
+purchase_history: История покупки
+sales: Продажи
+new_sale: Новое Распродажа
+sales_history: История продаж
+incomes_/_expenses: Доходы / расходы
+incomes: Доходов
+expenses: Затраты
+income_/_expense_categories: Доходы / расходы Категории
+reporting: Составление отчетов
+account_statements: Выписки
+income_report: Доходы Сообщить
+expense_report: Отчет о затратах
+income_expense_comparison: Сравнение на прибыль
+notes: Заметки
+admins: Администраторы
+settings: Настройки
+system_settings: Настройки системы
+email_settings: Настройки электронной почты
+language_settings: Языковые настройки
+vat_settings: Настройки Vat
+account: Счет
+Bookkeeping: Бухгалтерия
+log_out: Выйти
+sale_code: Продажа Код
+purchase_code: Покупка код
+income: Доход
+last_30_days: Последние 30 дней
+expense: Расходы
+income_expense_calendar: Прибыль Календарь
+sale: Продажа
+purchase: Покупка
+manage_customers: Управление клиентами
+add_new_contact: Добавить новый контакт
+name: имя
+company_name: название компании
+phone: Телефон
+type: Тип
+options: Опции
+customer: Клиент
+actions: Меры
+edit: редактировать
+view_details: Посмотреть детали
+delete: Удалить
+manage_suppliers: Управление Поставщики
+supplier: Поставщик
+add_contact: Добавить контакт
+contact_type: Тип контакта
+first_name: Имя
+last_name: Фамилия
+mobile: Мобильный
+website: Веб-сайт
+skype_id: Skype ID
+address: Адрес
+country: Страна
+city: город
+state: состояние
+zip_code: Почтовый Индекс
+bank_account: Банковский счет
+submit: Отправить
+edit_contact: Изменить контакт
+update: Обновить
+customer_details: Реквизиты клиента
+home: Главная
+details: Детали
+summary: Резюме
+code: Код
+creation_date: Дата создания
+amount: Количество
+view_sale_invoice: Посмотреть продажа Счет
+to: Для
+subject: Предмет
+message: Сообщение
+send_email: Отправить на e-mail
+supplier_details: Поставщик Подробности
+view_purchase_invoice: Посмотреть накладная
+add_account: Добавить аккаунт
+account_type: тип аккаунта
+bank: Банка
+cash: Денежные средства
+other: Другие
+account_title: Счет Название
+account_number: Номер аккаунта
+starting_balance: Начиная Баланс
+manage_accounts: Управление учетными записями
+current_balance: Текущий баланс
+view_ledger: Посмотреть Леджер
+edit_account: Редактировать аккаунт
+ledger: Бухгалтерская книга
+date: Дата
+title: заглавие
+credit: Кредит
+debit: Дебет
+total_credit: Всего Кредитная
+total_debit: Всего Дебет
+balance: Баланс
+print: Распечатать
+manage_products: Управление продуктами
+add_new_product: Добавить новый продукт
+category: Категория
+price: Цена
+add_product: Добавить продукт
+product_name: наименование товара
+product_category: категория продукта
+unit_price: Цена за единицу
+edit_product: Редактировать товаров
+manage_services: Управление службами
+add_new_service: Добавить новый сервис
+add_service: Добавить службу
+service_name: наименование услуги
+service_category: Категория сервиса
+edit_service: Редактировать служба
+manage_product_/_service_categories: Управление продукт / услуга Категории
+add_new_category: Добавить новую категорию
+category_name: Категория Имя
+add_category: Добавить категорию
+edit_category: Редактировать Категория
+add_new_purchase: Добавить новое приобретение
+basic_information: Основная информация
+due_date: Срок
+add_product_/_service: Добавить товар / услуга
+add_a_product_/_service: Добавить товар / услугу
+product_code: Код продукта
+quantity: Количество
+total: Всего
+payment_information: Платежная информация
+sub_total: Промежуточный итог
+VAT: НДС
+select_VAT: Выберите НДС
+no_VAT: Нет НДС
+discount_amount: Сумма скидки
+grand_total: Общая сумма
+financial_account: Финансовый счет
+select_an_account: Выберите учетную запись
+bank_accounts: Банковские счета
+cash_accounts: Денежные счета
+other_accounts: Другие счета
+create_new_purchase: Создать новое приобретение
+manage_purchases: Управление Закупки
+edit_purchase: Редактировать Покупка
+update_purchase: Обновление Покупка
+purchase_invoice_details: Покупка счете-фактуре
+purchase_invoice: Счет заказа
+from: Из
+purchase_items: Покупка товары
+vat: НДС
+discount: Скидка
+email_invoice: E-mail счет-фактура
+invoice: Выставленный счет
+invoice_emailed_successfuly: Счета по электронной почте успешно
+add_new_sale: Добавить Продажа
+create_new_sale: Создать Продажа
+manage_sales: Управление продаж
+edit_sale: Редактировать Продажа
+update_sale: Обновление Продажа
+sale_invoice_details: Продажа счете-фактуре
+sale_invoice: Продажа Счет
+sale_items: Продажа предметов
+manage_incomes: Управление Доходы
+add_new_income: Добавить Новые поступления
+description: Описание
+income_/_expense_category: Доходы / расходы Категория
+add_income: Добавить положение
+edit_income: Редактировать прибыль
+manage_expenses: Управление расходы
+add_new_expense: Добавить Расход
+add_expense: Добавить Расход
+edit_expense: Редактировать расходов
+manage_income_/_expense_categories: Управление доходы / расходы Категории
+manage_account_statements: Управление выписки со счета
+all_accounts: Все счета
+transaction: Сделка
+all_transactions: Все транзакции
+from_date: С даты
+to_date: Встретиться
+filter: Фильтр
+total_income: Общая прибыль
+income_bar: Доходы Бар
+current_financial_year_starts_from: Текущий финансовый год начинается с
+january: Января
+edit_financial_year_settings: Изменить настройки финансового года
+income_percentage: Доход в процентах
+total_expense: Всего расходов
+expense_bar: Расходы Бар
+expense_percentage: Расходы в процентах
+income_expense_comparison_report: Прибыль Сравнение Сообщить
+income_expense_percentage: Расходы в процентах доходов
+manage_notes: Управление Примечания
+create_note: Создать Примечание
+untitled: Без названия
+save_note: Сохранить Примечание
+delete_note: Удалить Примечание
+admin_list: Список Админ
+add_new_admin: Добавить Администратор
+add_admin: Добавить Администратор
+system_title: Система Название
+system_email: Система E-mail
+text_align: Text Align
+language: Язык
+system_currency: Система валют
+show_price_as: Показать цену как
+financial_year_start: Финансовый год Начало
+from_january: С января
+from_july: С июля
+save: Сохранить
+upload_logo: Загрузить логотип
+upload: Загрузить
+email_template_settings: Настройки электронной почты шаблона
+new_admin_account_opening: Новый Админ Открытие счета
+password_reset_confirmation: Сброс пароля Подтверждение
+email_subject: Тема письма
+email_body: E-mail тела
+save_template: Сохранить шаблон
+manage_language: Управление Язык
+language_list: Список языков
+add_phrase: Добавить фразу
+add_language: Добавить язык
+option: Вариант
+edit_phrase: Редактировать Фраза
+write_language_file: Написать языковой файл
+delete_language: Удалить Язык
+phrase: Фраза
+value_required: Значение Обязательно
+update_phrase: Обновление Фраза
+manage_vat_settings: Управление настройками Vat
+add_new_vat: Добавить Vat
+vat_name: НДС Имя
+percentage: Процент
+add_vat: Добавить Vat
+edit_vat: Редактировать НДС
+manage_profile: Управление профиля
+edit_profile: Редактировать профиль
+update_profile: Обновить профиль
+change_password: Изменить пароль
+current_password: текущий пароль
+new_password: новый пароль
+confirm_new_password: Подтвердите новый пароль
+update_password: Обновление Пароль

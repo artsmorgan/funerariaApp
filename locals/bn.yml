@@ -1,0 +1,258 @@
+---
+login: লগইন
+email: ইমেইল
+password: পাসওয়ার্ড
+forgot_your_password: আপনি কি পাসওয়ার্ড ভুলে গেছেন
+reset_password: পাসওয়ার্ড রিসেট করুন
+return_to_login_page: পাতা লগইন আসতে
+admin_dashboard: অ্যাডমিন ড্যাশবোর্ড
+dashboard: ড্যাশবোর্ড
+contacts: যোগাযোগ
+customers: গ্রাহকরা
+suppliers: সরবরাহকারী
+financial_accounts: আর্থিক হিসাব
+create_new_account: নতুন অ্যাকাউন্ট তৈরি করুন
+account_list: অ্যাকাউন্টের তালিকা
+inventory: জায়
+products: পণ্য
+services: সেবা
+product_/_service_categories: পণ্য / সেবা বিভাগ
+purchases: কেনাকাটা
+new_purchase: নতুন ক্রয়
+purchase_history: ক্রয় ইতিহাস
+sales: সেলস
+new_sale: নতুন বিক্রয়
+sales_history: সেলস ইতিহাস
+incomes_/_expenses: আয়ের / খরচ
+incomes: আয়
+expenses: খরচ
+income_/_expense_categories: আয় / ব্যয় বিভাগ
+reporting: রিপোর্টিং
+account_statements: অ্যাকাউন্ট বিবৃতি
+income_report: রিপোর্ট আয়
+expense_report: ব্যয় রিপোর্ট
+income_expense_comparison: আয় ব্যয় তুলনা
+notes: নোট
+admins: প্রশাসকদের
+settings: সেটিংস
+system_settings: পদ্ধতি নির্ধারণ
+email_settings: ইমেইল সেটিংস
+language_settings: ভাষা ব্যাবস্থা
+vat_settings: ভ্যাট সেটিংস
+account: হিসাব
+Bookkeeping: হিসাবরক্ষণ
+log_out: ত্যাগ করুন
+sale_code: বিক্রয় কোড
+purchase_code: ক্রয় কোড
+income: আয়
+last_30_days: সর্বশেষ 30 দিন
+expense: ব্যয়
+income_expense_calendar: আয় ব্যয় ক্যালেন্ডার
+sale: বিক্রয়
+purchase: ক্রয়
+manage_customers: গ্রাহকদের পরিচালনা
+add_new_contact: নতুন যোগ করুন
+name: নাম
+company_name: কোমপানির নাম
+phone: ফোন
+type: শ্রেণী
+options: বিকল্প
+customer: ক্রেতা
+actions: পদক্ষেপ
+edit: সম্পাদন করা
+view_details: বিস্তারিত দেখা
+delete: মুছে
+manage_suppliers: সরবরাহকারী পরিচালনা
+supplier: সরবরাহকারী
+add_contact: পরিচিতি যোগ করুন
+contact_type: যোগাযোগ ধরন
+first_name: প্রথম নাম
+last_name: শেষ নাম
+mobile: মোবাইল
+website: ওয়েবসাইট
+skype_id: স্কাইপ আইডি
+address: ঠিকানা
+country: দেশ
+city: শহর
+state: রাষ্ট্র
+zip_code: ZIP কোড
+bank_account: ব্যাংক হিসাব
+submit: জমা দিন
+edit_contact: সম্পাদনা করুন
+update: আপডেট
+customer_details: কাস্টমার বিস্তারিত
+home: বাড়ি
+details: বিবরণ
+summary: সংক্ষিপ্ত
+code: কোড
+creation_date: তৈরির তারিখ
+amount: পরিমাণ
+view_sale_invoice: দেখুন বিক্রয় চালান
+to: থেকে
+subject: বিষয়
+message: বার্তা
+send_email: বার্তা পাঠাও
+supplier_details: সরবরাহকারী
+view_purchase_invoice: দেখুন ক্রয় চালান
+add_account: হিসাব যোগ করা
+account_type: হিসাবের ধরণ
+bank: ব্যাংক
+cash: নগদ
+other: অন্যান্য
+account_title: অ্যাকাউন্ট শিরোনাম
+account_number: হিসাব নাম্বার
+starting_balance: শুরু ভারসাম্য
+manage_accounts: অ্যাকাউন্ট পরিচালনা
+current_balance: বর্তমান জমাখরচ
+view_ledger: দেখুন লেজার
+edit_account: সম্পাদনা অ্যাকাউন্ট
+ledger: খতিয়ান
+date: তারিখ
+title: খেতাব
+credit: জমা
+debit: ডেবিট
+total_credit: মোট ক্রেডিট
+total_debit: খরচের অঙ্ক
+balance: ভারসাম্য
+print: ছাপা
+manage_products: পণ্য পরিচালনা
+add_new_product: নতুন পণ্য যোগ করুন
+category: শ্রেণী
+price: মূল্য
+add_product: পণ্য যোগ করুন
+product_name: পণ্যের নাম
+product_category: পণ্য তালিকা
+unit_price: একক মূল্য
+edit_product: সম্পাদনা
+manage_services: সার্ভিস পরিচালনা
+add_new_service: নতুন পরিষেবা যোগ
+add_service: পরিষেবা করো
+service_name: কাজের নাম
+service_category: সার্ভিস ক্যাটাগরি
+edit_service: সম্পাদনা পরিষেবা
+manage_product_/_service_categories: প্রোডাক্ট / সার্ভিস বিভাগ গালাগাল
+add_new_category: নতুন বিভাগ যোগ
+category_name: নামের তালিকা
+add_category: বিষয়শ্রেণী যোগ
+edit_category: সম্পাদনা বিভাগ
+add_new_purchase: নতুন ক্রয় করো
+basic_information: মৌলিক তথ্য
+due_date: নির্দিষ্ট তারিখ
+add_product_/_service: প্রোডাক্ট / সার্ভিস যোগ
+add_a_product_/_service: একটি প্রোডাক্ট / সার্ভিস যোগ
+product_code: প্রোডাক্ট কোড
+quantity: পরিমাণ
+total: মোট
+payment_information: পেমেন্ট তথ্য
+sub_total: উপ মোট
+VAT: ভ্যাট
+select_VAT: নির্বাচন ভ্যাট
+no_VAT: কোন ভ্যাট
+discount_amount: হ্রাসকৃত মুল্য
+grand_total: সর্বমোট
+financial_account: আর্থিক বিবরণ
+select_an_account: একটি একাউন্ট নির্বাচন করুন
+bank_accounts: ব্যাংক হিসাব
+cash_accounts: নগদ হিসাব
+other_accounts: অন্যান্য অ্যাকাউন্ট
+create_new_purchase: নতুন ক্রয় তৈরি
+manage_purchases: ক্রয় সেকেন্ড
+edit_purchase: সম্পাদনা ক্রয়
+update_purchase: আপডেটের জন্য ক্রয়
+purchase_invoice_details: চালান বিবরণ ক্রয়
+purchase_invoice: ক্রয় চালান
+from: থেকে
+purchase_items: ক্রয় আইটেম
+vat: ভাঁটি
+discount: ডিসকাউন্ট
+email_invoice: ইমেইল চালান
+invoice: চালান
+invoice_emailed_successfuly: চালান ইমেল Successfuly
+add_new_sale: নতুন বিক্রয় যোগ
+create_new_sale: নতুন বিক্রয় তৈরি
+manage_sales: সেলস পরিচালনা
+edit_sale: সম্পাদনা বিক্রয়
+update_sale: আপডেট বিক্রয়
+sale_invoice_details: চালান বিবরণ বিক্রয়
+sale_invoice: বিক্রয় চালান
+sale_items: বিক্রয় আইটেম
+manage_incomes: আয় গালাগাল প্রতিবেদন
+add_new_income: গেম আয় যুক্ত করুন
+description: বিবরণ
+income_/_expense_category: আয় / ব্যয় বিভাগ
+add_income: আয় করো
+edit_income: সম্পাদনা আয়
+manage_expenses: খরচ পরিচালনা
+add_new_expense: নতুন ব্যয় করো
+add_expense: ব্যয় করো
+edit_expense: সম্পাদনা ব্যয়
+manage_income_/_expense_categories: আয় / ব্যয় বিভাগ পরিচালনা
+manage_account_statements: অ্যাকাউন্ট বিবৃতি পরিচালনা
+all_accounts: সমস্ত অ্যাকাউন্ট
+transaction: লেনদেন
+all_transactions: সকল লেনদেন
+from_date: তারিখ থেকে
+to_date: এখন পর্যন্ত
+filter: ফিল্টার
+total_income: মোট আয়
+income_bar: আয় বার
+current_financial_year_starts_from: চলতি অর্থবছরে থেকে শুরু
+january: জানুয়ারী
+edit_financial_year_settings: সম্পাদনা অর্থবছরে সেটিংস
+income_percentage: আয় শতকরা
+total_expense: মোট ব্যয়
+expense_bar: ব্যয় বার
+expense_percentage: ব্যয় শতকরা
+income_expense_comparison_report: আয় ব্যয় তুলনা প্রতিবেদন
+income_expense_percentage: আয় ব্যয় শতকরা
+manage_notes: নোট পরিচালনা
+create_note: নোট তৈরি
+untitled: শিরোনামহীন
+save_note: নোট সংরক্ষণ করুন
+delete_note: নোট মুছে
+admin_list: অ্যাডমিন তালিকা
+add_new_admin: নতুন অ্যাডমিন যোগ
+add_admin: অ্যাডমিন যোগ
+system_title: সিস্টেম শিরোনাম
+system_email: সিস্টেম ইমেইল
+text_align: টেক্সট সারিবদ্ধ
+language: ভাষা
+system_currency: সিস্টেম মুদ্রা
+show_price_as: দেখান মূল্য হিসাবে
+financial_year_start: আর্থিক বছরের শুরু
+from_january: জানুয়ারি থেকে
+from_july: জুলাই থেকে
+save: সংরক্ষণ
+upload_logo: আপলোড লোগো
+upload: আপলোড
+email_template_settings: ইমেইল টেমপ্লেট সেটিংস
+new_admin_account_opening: নতুন অ্যাডমিন অ্যাকাউন্ট খোলা
+password_reset_confirmation: পাসওয়ার্ড রিসেট নিশ্চিতকরণ
+email_subject: ইমেইল বিষয়
+email_body: ইমেলের
+save_template: Save Template এ
+manage_language: ভাষা পরিচালনা
+language_list: নতুন ভাষাটি তালিকায় আগে
+add_phrase: শব্দবন্ধ যোগ
+add_language: নতুন ভাষা যোগ করা
+option: পছন্দ
+edit_phrase: সম্পাদনা শব্দবন্ধ
+write_language_file: ভাষা ফাইল লিখুন
+delete_language: ভাষা মুছে
+phrase: শব্দবন্ধ
+value_required: মূল্য প্রয়োজন
+update_phrase: আপডেট শব্দবন্ধ
+manage_vat_settings: ভ্যাট সেটিংস পরিচালনা করুন
+add_new_vat: নতুন ভ্যাট যোগ
+vat_name: ভ্যাট নাম
+percentage: শতকরা হার
+add_vat: ভ্যাট যোগ
+edit_vat: সম্পাদনা জালা
+manage_profile: অমিমাংসীত সংস্করণ লগ
+edit_profile: জীবন বৃত্তান্ত সম্পাদনা
+update_profile: প্রফাইল হালনাগাদ
+change_password: পাসওয়ার্ড পরিবর্তন করুন
+current_password: বর্তমান পাসওয়ার্ড
+new_password: নতুন পাসওয়ার্ড
+confirm_new_password: নিশ্চিত কর নতুন গোপননম্বর
+update_password: আপডেট পাসওয়ার্ড

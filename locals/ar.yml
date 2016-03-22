@@ -1,0 +1,258 @@
+---
+login: تسجيل الدخول
+email: البريد الإلكتروني
+password: الرمز السري
+forgot_your_password: نسيت رقمك السري
+reset_password: اعادة تعيين كلمة السر
+return_to_login_page: العودة إلى صفحة تسجيل الدخول
+admin_dashboard: المشرف لوحة
+dashboard: لوحة أجهزة القياس
+contacts: جهات الاتصال
+customers: الزبائن
+suppliers: الموردين
+financial_accounts: الحسابات المالية
+create_new_account: إنشاء حساب جديد
+account_list: قائمة الحساب
+inventory: المخزون
+products: المنتجات
+services: الخدمات
+product_/_service_categories: المنتج / الخدمة الفئات
+purchases: مشتريات
+new_purchase: شراء الجديد
+purchase_history: تاريخ شراء
+sales: مبيعات
+new_sale: بيع جديدة
+sales_history: مبيعات التاريخ
+incomes_/_expenses: الدخل / المصروفات
+incomes: دخل
+expenses: مصاريف
+income_/_expense_categories: الدخل / المصاريف الفئات
+reporting: التقارير
+account_statements: كشوف الحساب
+income_report: تقرير الدخل
+expense_report: تقرير حساب
+income_expense_comparison: نفقات الدخل مقارنة
+notes: ملاحظات
+admins: مدراء
+settings: إعدادات
+system_settings: اعدادات النظام
+email_settings: إعدادات البريد الإلكتروني
+language_settings: اعدادات اللغة
+vat_settings: إعدادات ضريبة القيمة المضافة
+account: حساب
+Bookkeeping: مسك دفاتر
+log_out: تسجيل خروج
+sale_code: بيع مدونة
+purchase_code: كود شراء
+income: دخل
+last_30_days: اخر 30 يوم
+expense: مصروف
+income_expense_calendar: نفقات دخل التقويم
+sale: تخفيض السعر
+purchase: شراء
+manage_customers: إدارة العملاء
+add_new_contact: إضافة جهة اتصال جديدة
+name: اسم
+company_name: اسم الشركة
+phone: الهاتف
+type: اكتب
+options: خيارات
+customer: زبون
+actions: تطبيقات
+edit: تحرير
+view_details: عرض تفاصيل
+delete: حذف
+manage_suppliers: إدارة الموردين
+supplier: المورد
+add_contact: إضافة جهة اتصال
+contact_type: نوع الاتصال
+first_name: الاسم الأول
+last_name: الاسم الاخير
+mobile: التليفون المحمول
+website: موقع الكتروني
+skype_id: هوية السكايب
+address: العنوان
+country: بلد
+city: المدينة
+state: حالة
+zip_code: الرمز البريدي
+bank_account: حساب البنك
+submit: عرض
+edit_contact: تحرير الاتصال
+update: تحديث
+customer_details: تفاصيل العميل
+home: الصفحة الرئيسية
+details: تفاصيل
+summary: ملخص
+code: رمز
+creation_date: تاريخ الإنشاء
+amount: كمية
+view_sale_invoice: مشاهدة فاتورة بيع
+to: إلى
+subject: الموضوع
+message: الرسالة
+send_email: إرسال البريد الإلكتروني
+supplier_details: تفاصيل المورد
+view_purchase_invoice: عرض شراء فاتورة
+add_account: إضافة حساب
+account_type: نوع الحساب
+bank: بنك
+cash: السيولة النقدية
+other: الآخر
+account_title: عنوان حساب
+account_number: رقم الحساب
+starting_balance: الرصيد الافتتاحي
+manage_accounts: إدارة الحسابات
+current_balance: الرصيد الحالي
+view_ledger: عرض ليدجر
+edit_account: تحرير الحساب
+ledger: ليدجر
+date: التاريخ
+title: العنوان
+credit: ائتمان
+debit: مدين
+total_credit: إجمالي الائتمان
+total_debit: إجمالي الخصم
+balance: الرصيد
+print: طباعة
+manage_products: إدارة المنتجات
+add_new_product: إضافة منتج جديد
+category: فئة
+price: السعر
+add_product: إضافة منتج
+product_name: اسم المنتج
+product_category: فئة المنتج
+unit_price: سعر الوحدة
+edit_product: تحرير المنتج
+manage_services: إدارة الخدمات
+add_new_service: إضافة خدمة جديدة
+add_service: إضافة خدمة
+service_name: اسم الخدمة
+service_category: خدمة الفئة
+edit_service: تحرير الخدمات
+manage_product_/_service_categories: إدارة المنتج / الخدمة الفئات
+add_new_category: إضافة فئة جديدة
+category_name: اسم التصنيف
+add_category: إضافة فئة
+edit_category: تحرير الفئة
+add_new_purchase: إضافة شراء الجديد
+basic_information: معلومات اساسية
+due_date: التاريخ المقرر
+add_product_/_service: إضافة منتج / خدمة
+add_a_product_/_service: إضافة منتج / خدمة
+product_code: رمز المنتج
+quantity: كمية
+total: الإجمالي الكلي
+payment_information: معلومات الدفع
+sub_total: جنوب إجمالي
+VAT: ضريبة
+select_VAT: اختر VAT
+no_VAT: لا ضريبة القيمة المضافة
+discount_amount: مقدار الخصم
+grand_total: المجموع الإجمالي
+financial_account: حساب مالي
+select_an_account: حدد حسابا
+bank_accounts: حسابات بنكية
+cash_accounts: الحسابات النقدية
+other_accounts: حسابات أخرى
+create_new_purchase: إنشاء شراء الجديد
+manage_purchases: إدارة المشتريات
+edit_purchase: تحرير شراء
+update_purchase: تحديث الشراء
+purchase_invoice_details: شراء تفاصيل الفاتورة
+purchase_invoice: شراء فاتورة
+from: من عند
+purchase_items: شراء الأصناف
+vat: ضريبة القيمة المضافة
+discount: تخفيض السعر
+email_invoice: البريد الإلكتروني الفاتورة
+invoice: فاتورة
+invoice_emailed_successfuly: فاتورة بالبريد الالكتروني بنجاح
+add_new_sale: إضافة بيع الجديد
+create_new_sale: إنشاء بيع الجديد
+manage_sales: إدارة المبيعات
+edit_sale: تحرير بيع
+update_sale: تحديث بيع
+sale_invoice_details: بيع تفاصيل الفاتورة
+sale_invoice: بيع الفاتورة
+sale_items: بيع الأدوات
+manage_incomes: إدارة الدخل
+add_new_income: إضافة الدخل الجديد
+description: الوصف
+income_/_expense_category: الدخل / المصاريف الفئة
+add_income: إضافة الدخل
+edit_income: تحرير الدخل
+manage_expenses: إدارة النفقات
+add_new_expense: إضافة حساب جديد
+add_expense: إضافة حساب
+edit_expense: تحرير المصاريف
+manage_income_/_expense_categories: إدارة الدخل / المصاريف الفئات
+manage_account_statements: إدارة كشوف الحساب
+all_accounts: جميع الحسابات
+transaction: صفقة
+all_transactions: كل الحركات المالية
+from_date: من التاريخ
+to_date: حتى تاريخه
+filter: فلتر
+total_income: إجمالي الدخل
+income_bar: بار الدخل
+current_financial_year_starts_from: التيار السنة المالية تبدأ من
+january: كانون الثاني
+edit_financial_year_settings: تعديل الإعدادات السنة المالية
+income_percentage: نسبة الدخل
+total_expense: مجموع النفقات
+expense_bar: حساب بار
+expense_percentage: حساب النسبة المئوية
+income_expense_comparison_report: نفقات الدخل مقارنة تقرير
+income_expense_percentage: نفقات دخل النسبة المئوية
+manage_notes: إدارة الملاحظات
+create_note: إنشاء ملاحظة
+untitled: بدون عنوان
+save_note: حفظ ملاحظة
+delete_note: حذف ملاحظة
+admin_list: قائمة المشرف
+add_new_admin: إضافة جديد الادارية
+add_admin: إضافة الادارية
+system_title: نظام العنوان
+system_email: نظام البريد الإلكتروني
+text_align: محاذاة النص
+language: لغة
+system_currency: نظام العملات
+show_price_as: عرض الأسعار و
+financial_year_start: بداية السنة المالية
+from_january: خلال الفترة من يناير
+from_july: من يوليو
+save: حفظ
+upload_logo: تحميل الشعار
+upload: الرفع
+email_template_settings: إعدادات قالب البريد الإلكتروني
+new_admin_account_opening: جديد الادارة فتح الحساب
+password_reset_confirmation: إعادة تعيين كلمة المرور تأكيد
+email_subject: موضوع البريد الإلكتروني
+email_body: البريد الإلكتروني الجسم
+save_template: حفظ القالب
+manage_language: إدارة اللغة
+language_list: قائمة لغة
+add_phrase: إضافة العبارة
+add_language: إضافة اللغة
+option: خيار
+edit_phrase: تحرير العبارة
+write_language_file: إرسال ملف اللغة
+delete_language: حذف اللغة
+phrase: العبارة
+value_required: القيمة المطلوبة
+update_phrase: تحديث العبارة
+manage_vat_settings: إدارة إعدادات ضريبة القيمة المضافة
+add_new_vat: إضافة ضريبة القيمة المضافة الجديدة
+vat_name: اسم ضريبة القيمة المضافة
+percentage: نسبة مئوية
+add_vat: إضافة ضريبة القيمة المضافة
+edit_vat: تحرير ضريبة القيمة المضافة
+manage_profile: إدارة الملف
+edit_profile: تعديل الملف الشخصي
+update_profile: تحديث الملف
+change_password: تغيير كلمة السر
+current_password: كلمة السر الحالية
+new_password: كلمة سر جديدة
+confirm_new_password: تأكيد كلمة السر الجديدة
+update_password: تحديث كلمة المرور
