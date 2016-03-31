@@ -526,7 +526,7 @@ if ( ! function_exists('lang_key'))
                 }
             }
 
-            $CI->load->library('yaml');
+            $CI->load->library('Yaml');
             $lang =  $CI->yaml->parse_file('./locals/'.$file_name);
 
             if(count($lang)>0)
