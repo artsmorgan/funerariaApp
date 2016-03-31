@@ -204,7 +204,7 @@ class Admin extends CI_Controller {
             $lang_array[$row['phrase']] = $row[$lang]; // add each user id to the array
         }
         
-        $this->load->library('yaml');
+        $this->load->library('Yaml');
 	$yaml = $this->yaml->dump($lang_array);
 
 	$this->load->helper('file');
