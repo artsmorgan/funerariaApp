@@ -205,7 +205,7 @@ class Admin extends CI_Controller {
         }
         
         $this->load->library('yaml');
-	$yaml = $this->yaml->dump($lang_array);
+	    $yaml = $this->yaml->dump($lang_array);
 
 	$this->load->helper('file');
 	$file_name = $lang.'.yml';

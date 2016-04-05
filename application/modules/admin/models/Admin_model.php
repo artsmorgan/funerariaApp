@@ -76,6 +76,7 @@ class Admin_model extends CI_Model
         $data['first_name'] = $this->input->post('first_name');
         $data['last_name']  = $this->input->post('last_name');
         $data['email']      = $this->input->post('email');
+        $data['role']      = $this->input->post('role');
         $data['password']   = sha1($this->input->post('password'));
 
         $this->db->insert('user', $data);

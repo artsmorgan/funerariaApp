@@ -19,6 +19,7 @@ if(empty($admins)) { ?>
                 <th>#</th>
                 <th><?php echo lang_key('name'); ?></th>
                 <th><?php echo lang_key('email'); ?></th>
+                <th>Role</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@ if(empty($admins)) { ?>
                     <td><?php echo $count++ ?></td>
                     <td><?php echo $row['first_name'] . ' ' . $row['last_name'] ; ?></td>
                     <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row['role']; ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

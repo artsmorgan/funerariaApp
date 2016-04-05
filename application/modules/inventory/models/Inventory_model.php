@@ -35,6 +35,7 @@ class Inventory_model extends CI_Model
         $data['name']                   = $this->input->post('name');
         $data['product_category_id']    = $this->input->post('product_category_id');
         $data['price']                  = $this->input->post('price');
+        $data['quantity']               = $this->input->post('quantity');
         $data['notes']                  = $this->input->post('notes');
 
         $this->db->insert('product', $data);
@@ -45,6 +46,7 @@ class Inventory_model extends CI_Model
         $data['product_category_id']    = $this->input->post('product_category_id');
         $data['price']                  = $this->input->post('price');
         $data['notes']                  = $this->input->post('notes');
+        $data['quantity']               = $this->input->post('quantity');
 
         $this->db->where('product_id', $product_id);
         $this->db->update('product', $data);

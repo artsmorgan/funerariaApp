@@ -25,6 +25,7 @@ if(empty($products)){ ?>
                 <th>#</th>
                 <th><?php echo lang_key('code'); ?></th>
                 <th><?php echo lang_key('name'); ?></th>
+                <th>Cantidad</th>
                 <th><?php echo lang_key('category'); ?></th>
                 <th><?php echo lang_key('price'); ?></th>
                 <th><?php echo lang_key('options'); ?></th>
@@ -38,6 +39,7 @@ if(empty($products)){ ?>
                     <td><?php echo $count++ ?></td>
                     <td><?php echo $row['product_code']; ?></td>
                     <td><?php echo $row['name']; ?></td>
+                    <td><?php echo $row['quantity']; ?></td>
                     <td><?php echo get_db_field_by_id('product_category', 'name', $row['product_category_id']); ?></td>
                     <td><?php echo show_price($row['price']); ?></td>
                     <td>

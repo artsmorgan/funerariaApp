@@ -46,6 +46,18 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="field-1" class="col-sm-3 control-label">Role</label>
+
+                    <div class="col-sm-5">
+                        <select name="role">
+                            <option value="admin">Admin</option>
+                            <option value="web">Web Client</option>
+                            <option value="sales">Sales</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-5">
                         <button type="submit" class="btn btn-info" id="submit-button">
                             <?php echo lang_key('submit'); ?>

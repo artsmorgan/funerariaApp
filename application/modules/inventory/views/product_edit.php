@@ -58,6 +58,14 @@ foreach($edit_data as $row) { ?>
                     </div>
 
                     <div class="form-group">
+                        <label for="field-1" class="col-sm-3 control-label">Cantidad</label>
+
+                        <div class="col-sm-5">
+                            <input type="number" class="form-control" name="quantity" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="field-1" class="col-sm-3 control-label"><?php echo lang_key('notes'); ?></label>
 
                         <div class="col-sm-5">

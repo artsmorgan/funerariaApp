@@ -17,10 +17,10 @@ inventory: Inventario
 products: Productos
 services: Servicios
 product_/_service_categories: Producto / Servicio Categorías
-purchases: Las compras
+purchases: Módulo de compras
 new_purchase: Nueva compra
 purchase_history: Historial de compras
-sales: Ventas
+sales: Punto de Venta
 new_sale: Nueva venta
 sales_history: Historia Ventas
 incomes_/_expenses: Ingresos / Gastos
