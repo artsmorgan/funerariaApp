@@ -4160,8 +4160,8 @@ fieldset[disabled] .btn-green.active {
 }
 .btn-info {
   color: #ffffff;
-  background-color: #21a9e1;
-  border-color: #21a9e1;
+    background-color: #780139;
+    border-color: #e63c8d;
 }
 .btn-info:hover,
 .btn-info:focus,
@@ -6334,7 +6334,7 @@ hr + .mail-env {
   }
 }
 .login-page {
-  background: #303641;
+  background: #3e091e;
 }
 .login-page .login-content {
   position: relative;
@@ -6352,7 +6352,7 @@ hr + .mail-env {
 }
 .login-page .login-header {
   position: relative;
-  background: #373e4a;
+  background: #780139;
   padding: 100px 0;
   -moz-transition: all 550ms ease-in-out;
   -o-transition: all 550ms ease-in-out;
@@ -6378,7 +6378,7 @@ hr + .mail-env {
   height: 0px;
   border-style: solid;
   border-width: 13px 12.5px 0 12.5px;
-  border-color: #373e4a transparent transparent transparent;
+  border-color: #5a0024  transparent transparent transparent;
   bottom: -13px;
   -moz-transition: all 550ms ease-in-out;
   -o-transition: all 550ms ease-in-out;
@@ -6401,7 +6401,7 @@ hr + .mail-env {
   transition: all 550ms ease-in-out;
 }
 .login-page .login-form .form-group .input-group {
-  background: #373e4a;
+  background: #fff;
   border: 1px solid #373e4a;
   padding-top: 6px;
   padding-bottom: 6px;
@@ -6455,7 +6455,7 @@ hr + .mail-env {
   transform: scaleY(.56);
 }
 .login-page .login-form .form-group .input-group .form-control {
-  color: #ffffff;
+  color: #3e091e;
 }
 .login-page .login-form .form-group .input-group .form-control:focus {
   -moz-box-shadow: none;
@@ -6519,7 +6519,8 @@ hr + .mail-env {
   padding-bottom: 5px;
 }
 .login-page .login-form .form-group .btn-login {
-  border: 1px solid #454a54;
+     background: #5a0024;
+    border: 1px solid #651032;
   text-align: left;
   padding: 15px 20px;
   font-size: 14px;
@@ -6533,7 +6534,7 @@ hr + .mail-env {
 }
 .login-page .login-form .form-group .btn-login:hover,
 .login-page .login-form .form-group .btn-login:active {
-  background: #373e4a;
+  background: #630027;
 }
 .login-page .login-form .form-group .facebook-button,
 .login-page .login-form .form-group .twitter-button,
@@ -6763,6 +6764,7 @@ hr + .mail-env {
   -o-transition: all 550ms ease-in-out;
   -webkit-transition: all 550ms ease-in-out;
   transition: all 550ms ease-in-out;
+      /*background: #3e091e;*/
 }
 .login-page.login-form-fall .login-form .form-group {
   -moz-transition: all 550ms ease-in-out;

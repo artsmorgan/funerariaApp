@@ -2,7 +2,7 @@
 <?php echo form_open(site_url('inventory/sale/create'), array('class' => 'form-horizontal',
     'enctype' => 'multipart/form-data')); ?>
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-12 ">
                 <div class="panel panel-primary" data-collapsed="0">
                     <div class="panel-heading">
                         <div class="panel-title" >
@@ -117,7 +117,7 @@
 
 
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-12">
                 <div class="panel panel-primary" data-collapsed="0">
                     <div class="panel-heading">
                         <div class="panel-title" >
@@ -137,7 +137,7 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="field-1" class="col-sm-3 control-label"><?php echo lang_key('VAT'); ?></label>
+                            <label for="field-1" class="col-sm-3 control-label">Impuesto de Venta</label>
 
                             <div class="col-sm-9">
                                 <select name="vat_id" id="vat" class="selectboxit" required onchange="calculate_grand_total()">

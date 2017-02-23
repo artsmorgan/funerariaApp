@@ -15,6 +15,9 @@
 <?php
 $login_type = $this->session->userdata('login_type');
 
+
+
+
 if($login_type == 'store') {
     if($this->db->get_where('store_owner_settings', array('owner_id' => $this->session->userdata('user_id')))->num_rows() > 0)
         $skin_colour = $this->db->get_where('store_owner_settings', array('owner_id' => $this->session->userdata('user_id')))->row()->skin_colour;

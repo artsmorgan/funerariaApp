@@ -100,11 +100,11 @@
 
             </ul>
         </li>
-        
+       <?php if( $this->session->userdata('role') == 'web'){ ?>
         <li class="<?php if($page_name == 'product' || $page_name == 'product_category')
             echo 'opened active'; ?>">
             <a href="#">
-                <i class="entypo-database"></i>
+                <i class="entypo-database"></i> 
                 <span><?php echo lang_key('inventory'); ?></span>
             </a>
             <ul>
@@ -151,7 +151,7 @@
                 </li>
             </ul>
         </li>
-        
+        <?php } ?>
         <li class="<?php if($page_name == 'sale' || $page_name == 'sale_add'
             || $page_name == 'sale_edit' || $page_name == 'sale_invoice') echo 'opened active'; ?>">
             <a href="#">
@@ -174,7 +174,7 @@
                 </li>
             </ul>
         </li>
-
+        <?php if( $this->session->userdata('role') == 'web'){ ?>
         <li class="<?php if($page_name == 'income' || $page_name == 'expense'
             || $page_name == 'income_expense_category') echo 'opened active'; ?>">
             <a href="#">
@@ -291,7 +291,7 @@
                 </li>
             </ul>
         </li>
-
+<?php } ?>
         <!-- ACCOUNT -->
         <li class="<?php if ($page_name == 'manage_profile') echo 'active'; ?> ">
             <a href="<?php echo site_url('admin/manage_profile'); ?>">

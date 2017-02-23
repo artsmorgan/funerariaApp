@@ -148,6 +148,8 @@ class Auth extends CI_Controller {
         
         if ($query->num_rows() > 0) {
             $row = $query->row();
+
+
             
             if ($row->status == 2)
                 $ok = 2;
@@ -161,6 +163,7 @@ class Auth extends CI_Controller {
                 $this->session->set_userdata('user_email', $row->email);
                 $this->session->set_userdata('user_first_name', $row->first_name);
                 $this->session->set_userdata('user_last_name', $row->last_name);
+                $this->session->set_userdata('role', $row->role);
 
                 //Load item from settingss
                 $this->load->database();

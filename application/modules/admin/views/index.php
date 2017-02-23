@@ -39,7 +39,7 @@ $text_align         = $this->db->get_where('settings', array('type' => 'text_ali
 
         <?php include 'header.php';?>
 
-        <h3 style="color:#818da1; font-weight:200;">
+        <h3 style="color:#780139; font-weight:200;">
             <i class="entypo-right-circled"></i> 
             <?php echo $page_title; ?>
         </h3>
