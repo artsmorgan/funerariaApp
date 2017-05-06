@@ -30,7 +30,7 @@ $text_align         = $this->db->get_where('settings', array('type' => 'text_ali
 
 <body class="page-body  page-fade" data-url="http://neon.dev">
 
-<div class="page-container chat-visible <?php if($text_align == 'right-to-left') echo 'right-sidebar';?>"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+<div class="page-container sidebar-collapsed chat-visible <?php if($text_align == 'right-to-left') echo 'right-sidebar';?>"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 
     <?php echo $this->load->view('admin/navigation'); ?>
     
@@ -39,7 +39,7 @@ $text_align         = $this->db->get_where('settings', array('type' => 'text_ali
 
         <?php include 'header.php';?>
 
-        <h3 style="color:#780139; font-weight:200;">
+        <h3 style="color:#333; font-weight:200;">
             <i class="entypo-right-circled"></i> 
             <?php echo $page_title; ?>
         </h3>

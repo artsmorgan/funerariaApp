@@ -32,7 +32,7 @@ if(!empty($purchases))
 <div class="row">
     <div class="col-sm-3">
         <a href="<?php echo site_url('admin/admins'); ?>">
-            <div class="tile-stats tile-red">
+            <div class="tile-stats tile-black">
                 <div class="icon"><i class="entypo-user" style="padding-bottom: 25px;"></i></div>
                 <div class="num" data-start="0" data-end="<?php echo $this->db->get('user')->num_rows(); ?>"
                     data-duration="1500" data-delay="0">0</div>
@@ -43,7 +43,7 @@ if(!empty($purchases))
 
     <div class="col-sm-3">
         <a href="<?php echo site_url('contact/contacts/customer'); ?>">
-            <div class="tile-stats tile-green">
+            <div class="tile-stats tile-gold">
                 <div class="icon"><i class="entypo-users" style="padding-bottom: 25px;"></i></div>
                 <div class="num" data-start="0" data-end="<?php echo $this->db->get('contact')->num_rows(); ?>" 
                     data-duration="1500" data-delay="0">0</div>
@@ -54,7 +54,7 @@ if(!empty($purchases))
 
     <div class="col-sm-3">
         <a href="<?php echo site_url('inventory/products/product'); ?>">
-            <div class="tile-stats tile-aqua">
+            <div class="tile-stats tile-black">
                 <div class="icon"><i class="entypo-bag"></i></div>
                 <div class="num" data-start="0" data-end="<?php echo $this->db->get_where('product', array('type' => 'product'))->num_rows(); ?>" 
                     data-duration="1500" data-delay="0">0</div>
@@ -65,7 +65,7 @@ if(!empty($purchases))
 
     <div class="col-sm-3">
         <a href="<?php echo site_url('inventory/products/service'); ?>">
-            <div class="tile-stats tile-blue">
+            <div class="tile-stats tile-gold">
                 <div class="icon"><i class="fa fa-truck" style="padding-bottom: 40px;"></i></div>
                 <div class="num" data-start="0" data-end="<?php echo $this->db->get_where('product', array('type' => 'service'))->num_rows(); ?>" 
                     data-duration="1500" data-delay="0">0</div>
@@ -76,6 +76,52 @@ if(!empty($purchases))
 </div>
 
 <div class="row">
+    <div class="col-sm-3">
+        <a href="<?php echo site_url('admin/admins'); ?>">
+            <div class="tile-stats tile-gold">
+                <div class="icon"><i class="entypo-user" style="padding-bottom: 25px;"></i></div>
+                <div class="num" data-start="0" data-end="<?php echo $this->db->get('user')->num_rows(); ?>"
+                    data-duration="1500" data-delay="0">0</div>
+                <h3><?php echo lang_key('admins'); ?></h3>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-3">
+        <a href="<?php echo site_url('contact/contacts/customer'); ?>">
+            <div class="tile-stats tile-black">
+                <div class="icon"><i class="entypo-users" style="padding-bottom: 25px;"></i></div>
+                <div class="num" data-start="0" data-end="<?php echo $this->db->get('contact')->num_rows(); ?>" 
+                    data-duration="1500" data-delay="0">0</div>
+                <h3><?php echo lang_key('contacts'); ?></h3>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-3">
+        <a href="<?php echo site_url('inventory/products/product'); ?>">
+            <div class="tile-stats tile-gold">
+                <div class="icon"><i class="entypo-bag"></i></div>
+                <div class="num" data-start="0" data-end="<?php echo $this->db->get_where('product', array('type' => 'product'))->num_rows(); ?>" 
+                    data-duration="1500" data-delay="0">0</div>
+                <h3><?php echo lang_key('products'); ?></h3>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-3">
+        <a href="<?php echo site_url('inventory/products/service'); ?>">
+            <div class="tile-stats tile-black">
+                <div class="icon"><i class="fa fa-truck" style="padding-bottom: 40px;"></i></div>
+                <div class="num" data-start="0" data-end="<?php echo $this->db->get_where('product', array('type' => 'service'))->num_rows(); ?>" 
+                    data-duration="1500" data-delay="0">0</div>
+                <h3><?php echo lang_key('services'); ?></h3>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- <div class="row">
     
     <div class="col-sm-3">
         <a href="<?php echo site_url('inventory/purchase'); ?>">
@@ -151,11 +197,11 @@ if(!empty($purchases))
             </div>
         </a>
     </div>
-</div>
+</div> -->
 
 <br>
 
-<div class="row">
+<div class="row hidden">
     <div class="col-md-12 col-xs-12">    
         <div class="panel panel-primary " data-collapsed="0">
             <div class="panel-heading">

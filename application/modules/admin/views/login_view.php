@@ -51,14 +51,14 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
         <div class="login-content">
 
             <a href="<?php echo base_url(); ?>" class="logo">
-                <img src="<?php echo base_url(); ?>uploads/logo.png" width="120" alt="" />
+                <img src="<?php echo base_url(); ?>uploads/logo.png" width="240" alt="" />
             </a>
-            
+            <!-- 
             <p class="description">
-                <h2 style="color:#cacaca; font-weight:100;">
+                <h2 style="color:#f4f4f4; font-weight:100;">
                     <?php echo $system_title; ?>
                 </h2>
-            </p>
+            </p> -->
 
             <!-- progress bar indicator -->
             <div class="login-progressbar-indicator">

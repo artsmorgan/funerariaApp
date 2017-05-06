@@ -6334,7 +6334,7 @@ hr + .mail-env {
   }
 }
 .login-page {
-  background: #3e091e;
+  background: #373737;
 }
 .login-page .login-content {
   position: relative;
@@ -6352,8 +6352,8 @@ hr + .mail-env {
 }
 .login-page .login-header {
   position: relative;
-  background: #780139;
-  padding: 100px 0;
+  background: #f4f4f4;
+  padding: 70px 0;
   -moz-transition: all 550ms ease-in-out;
   -o-transition: all 550ms ease-in-out;
   -webkit-transition: all 550ms ease-in-out;
@@ -6378,7 +6378,7 @@ hr + .mail-env {
   height: 0px;
   border-style: solid;
   border-width: 13px 12.5px 0 12.5px;
-  border-color: #5a0024  transparent transparent transparent;
+  border-color: #f4f4f4  transparent transparent transparent;
   bottom: -13px;
   -moz-transition: all 550ms ease-in-out;
   -o-transition: all 550ms ease-in-out;
@@ -6519,8 +6519,8 @@ hr + .mail-env {
   padding-bottom: 5px;
 }
 .login-page .login-form .form-group .btn-login {
-     background: #5a0024;
-    border: 1px solid #651032;
+     background: #000;
+    border: 1px solid #565053;
   text-align: left;
   padding: 15px 20px;
   font-size: 14px;
@@ -6534,7 +6534,7 @@ hr + .mail-env {
 }
 .login-page .login-form .form-group .btn-login:hover,
 .login-page .login-form .form-group .btn-login:active {
-  background: #630027;
+  background: #0e0e0e;
 }
 .login-page .login-form .form-group .facebook-button,
 .login-page .login-form .form-group .twitter-button,

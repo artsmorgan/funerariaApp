@@ -100,7 +100,7 @@
 
             </ul>
         </li>
-       <?php if( $this->session->userdata('role') == 'web'){ ?>
+       <?php if( $this->session->userdata('role') == 'admin'){ ?>
         <li class="<?php if($page_name == 'product' || $page_name == 'product_category')
             echo 'opened active'; ?>">
             <a href="#">
@@ -174,8 +174,8 @@
                 </li>
             </ul>
         </li>
-        <?php if( $this->session->userdata('role') == 'web'){ ?>
-        <li class="<?php if($page_name == 'income' || $page_name == 'expense'
+        <?php if( $this->session->userdata('role') == 'admin'){ ?>
+        <!-- <li class="<?php if($page_name == 'income' || $page_name == 'expense'
             || $page_name == 'income_expense_category') echo 'opened active'; ?>">
             <a href="#">
                 <i class="entypo-chart-line"></i>
@@ -201,7 +201,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> -->
         
         <li class="<?php if($page_name == 'account_statement' || $page_name == 'income_report'
             || $page_name == 'expense_report' || $page_name == 'income_expense_comparison') echo 'opened active'; ?>">

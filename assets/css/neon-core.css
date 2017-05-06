@@ -2936,7 +2936,7 @@ body {
 .page-container .sidebar-menu {
   display: table-cell;
   vertical-align: top;
-  background: #780139;
+  background: #373737;
   width: 280px;
   position: relative;
   z-index: 100;
@@ -3128,8 +3128,8 @@ body {
   top: -1px;
 }
 .page-container .sidebar-menu #main-menu li.active > a {
-  background-color: #9c004a;
-  color: #ffffff;
+  background-color: #c0b283;
+  color: #000;
 }
 .page-container .sidebar-menu #main-menu li.has-sub > a:before {
   position: relative;
@@ -3172,11 +3172,11 @@ body {
   border-bottom: 1px solid rgba(69, 74, 84, 0.4);
 }
 .page-container .sidebar-menu #main-menu li ul > li > a {
-  background-color: #480823;
+  background-color: #101010;
   padding-left: 40px;
 }
 .page-container .sidebar-menu #main-menu li ul > li > a:hover {
-  background-color: #63072e;
+  background-color: #000;
 }
 .page-container .sidebar-menu #main-menu li ul > li:last-child {
   border-bottom: 0;
@@ -6356,7 +6356,7 @@ textarea.dataTables_wrapper .dataTables_filter > label input {
   padding: 10px 12px;
   border: 1px solid #ebebeb;
   border-top: 0;
-  background: #5a0024;
+  background: #3a3335;
   height: 47px;
 }
 .dataTables_wrapper .dataTables_info:before,
@@ -7088,12 +7088,18 @@ textareatable .replace-inputs input {
 .tile-stats.tile-gray {
   background: #f5f5f5;
 }
+
 .tile-stats.tile-gray:hover {
   background: #e8e8e8;
 }
 .tile-stats.tile-gray .icon {
   color: rgba(0, 0, 0, 0.1);
 }
+
+.tile-stats.tile-gold {
+    background: #c0b283;
+}
+
 .tile-stats.tile-gray .num,
 .tile-stats.tile-gray h3,
 .tile-stats.tile-gray p {
@@ -9251,4 +9257,9 @@ body.page-fade-only-init > .page-container {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+/*custum style */
+.modal .modal-dialog {
+  width: 1024px;
 }
