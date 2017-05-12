@@ -7,7 +7,7 @@
 
 <?php
 $this->db->order_by('contact_id', 'desc');
-$contacts = $this->db->get_where('contact', array('type' => $contact_type))->result_array();
+$contacts = $this->db->get_where('contact')->result_array();
 if(empty($contacts)){ ?>
     <div class="alert alert-info">
         <?php

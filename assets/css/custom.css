@@ -7,3 +7,44 @@
 body {
 	
 }
+
+.form-horizontal.form-fun .control-label {
+    text-align: left;
+    margin-bottom: 6px;
+}
+
+.txt-right{
+    text-align: right;
+}
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: center;
+  display: inline-block;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+    width: 1.4em;
+    font-size: 2em;
+    font-family: Times;
+    cursor: pointer;
+    cursor: hand;
+}
+.rating:not(.block) > span:hover,
+.rating:not(.block) > span:hover ~ span,
+.rating > span.active,
+.rating > span.active ~ span{
+  color: transparent;
+}
+.rating:not(.block) > span:hover:before,
+.rating:not(.block) > span:hover ~ span:before,
+.rating > span.active:before,
+.rating > span.active ~ span:before{
+   content: "\2605";
+   position: absolute;
+   left: 0; 
+   color: gold;
+   width: 100%;
+}

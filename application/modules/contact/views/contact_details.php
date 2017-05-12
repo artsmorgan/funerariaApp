@@ -29,7 +29,7 @@ if($contact_type == 'customer') {
                     <span class="hidden-xs"><?php echo lang_key('summary');?></span>
                 </a>
             </li>
-            <li>
+            <!--<li>
                 <a href="#invoice" data-toggle="tab">
                     <span class="visible-xs"><i class="entypo-user"></i></span>
                     <span class="hidden-xs">
@@ -40,7 +40,7 @@ if($contact_type == 'customer') {
                             echo lang_key('purchase_history'); ?>
                     </span>
                 </a>
-            </li>
+            </li>-->
             <li class="<?php if($active_tab == 'email') echo 'active'; ?>">
                 <a href="#email" data-toggle="tab">
                     <span class="visible-xs"><i class="entypo-home"></i></span>
@@ -60,103 +60,232 @@ if($contact_type == 'customer') {
                         <section class="profile-info-tabs">
                             
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <b style="font-size: 20px; color: #333333;">
-                                        <?php echo $row['first_name'] . ' ' . $row['last_name']; ?></b>
+                                <div class="col-md-12">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('first_name'); ?></label>
+                                                        <div class="col-sm-12">
+                                                            <input type="text" class="form-control" name="first_name" disabled value="<?php echo $row['first_name']; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('last_name'); ?></label>
+                                                        <div class="col-sm-12">
+                                                            <input type="text" class="form-control" name="last_name" disabled  value="<?php echo $row['last_name']; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('identification_card'); ?></label>
+                                                        <div class="col-sm-12">
+                                                            <input type="text" class="form-control col-sm-12" name="id_card" disabled value="<?php echo $row['id_card']; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('email'); ?></label>
+                                                        <div class="col-sm-12">
+                                                            <input type="email" class="form-control" name="email" disabled value="<?php echo $row['email']; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                            </div>
+                                            <!-- first row -->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('address'); ?></label>
+                                                        <div class="col-sm-4">
+                                                            <select class="selectboxit" id="provincias" name="province" disabled>
+                                                                <option value="">Provincia</option>
+                                                                <?php echo '<option value="' . $row['province'] . '" selected >' . $row['province'] . '</option>'; ?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-sm-4" id="lvl-container-2">
+                                                                <select class="selectboxit selectaux" id="cantones" name="canton" disabled>
+                                                                    <option value="">Cantón</option>
+                                                                    <?php echo '<option value="' . $row['canton'] . '" selected >' . $row['canton'] . '</option>'; ?>
+                                                                </select>
+                                                        </div>
+                                                        <div class="col-sm-4" id="lvl-container-3">
+                                                            <select class="selectboxit" id="distritos" name="district" disabled>
+                                                                <option value="">Distrito</option>
+                                                                <?php echo '<option value="' . $row['district'] . '" selected >' . $row['district'] . '</option>'; ?>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('phone'); ?></label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" name="phone" disabled value="<?php echo $row['phone']; ?>" />
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" name="phone2" disabled value="<?php echo $row['phone2']; ?>" />
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" name="phone3" disabled value="<?php echo $row['phone3']; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                            </div>
+                                            <!-- second row -->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('other_signs'); ?></label>
+                                                        <div class="col-sm-12">
+                                                            <textarea name="address" disabled class="form-control" rows="5"><?php echo $row['address']; ?></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
+                                                                <div class="col-sm-12">
+                                                                    <select name="agent" disabled class="selectboxit" >
+                                                                        <option value="2">uno</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <!-- form-group -->
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('route'); ?></label>
+                                                                <div class="col-sm-12">
+                                                                    <input type="number" name="route" disabled class="form-control" value="<?php echo $row['route']; ?>" >
+                                                                </div>
+                                                            </div>
+                                                            <!-- form-group -->
+                                                        </div>
+                                                    </div>
+                                                    <!-- inner row -->
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('amount'); ?></label>
+                                                                <div class="col-sm-12">
+                                                                    <input type="number" name="amount" disabled class="form-control" value="<?php echo $row['amount']; ?>">
+                                                                </div>
+                                                            </div>
+                                                            <!-- form-group -->
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('balance_'); ?></label>
+                                                                <div class="col-sm-12">
+                                                                    <input type="number" name="balance" disabled class="form-control" value="<?php echo $row['balance']; ?>">
+                                                                </div>
+                                                            </div>
+                                                            <!-- form-group -->
+                                                        </div>
+                                                    </div>
+                                                    <!-- inner row -->
+                                                </div>
+                                                <!-- col -->
+                                            </div>
+                                            <!-- third row -->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('localization'); ?></label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" name="localization1" disabled value="<?php echo $row['localization1']; ?>" />
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" name="localization2" disabled value="<?php echo $row['localization2']; ?>" />
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" name="localization3" disabled value="<?php echo $row['localization3']; ?>"  />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('fee'); ?></label>
+                                                        <div class="col-sm-12">
+                                                            <input type="number" class="form-control" name="fee" disabled  value="<?php echo $row['fee']; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('month_payment'); ?></label>
+                                                        <div class="col-sm-12">
+                                                            <select  class="selectboxit" name="month_payment" disabled >
+                                                                <?php echo '<option value="' . $row['month_payment'] . '" selected >' . $row['month_payment'] . '</option>'; ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                            </div>
+                                            <!-- fourth row -->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('incorporation_date'); ?></label>
+                                                        <div class="col-sm-12">
+                                                            <input type="text" name="incorporation_date" disabled class="form-control datepicker" value="<?php echo $row['incorporation_date']; ?>" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('category'); ?></label>
+                                                        <div class="col-sm-12">
+                                                            <div class="rating block">
+                                                                <?php 
+                                                                    $starts = 5;
+                                                                    $rating = $starts - $row['category'];
+                                                                ?>
+
+                                                                <?php for( $i = 0; $i < $starts; $i++ ): ?>
+                                                                    <?php echo '<span ' . ( $i ==  $rating ? 'class="active"' : '' ) . ' >☆</span>' ?>
+                                                                <?php endfor; ?>
+                                                            </div>
+                                                            <input type="hidden" class="form-control col-sm-12" name="category" disabled  value="<?php echo $row['category']; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('advance_payment'); ?></label>
+                                                        <div class="col-sm-12">
+                                                            <input type="number" class="form-control" name="advance_payment" disabled value="<?php echo $row['advance_payment']; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                            </div>
+                                            <!-- fith row -->
+                                        </div>
+                                        <!--panel-body-->
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <br>
-                                    <table class="table table-bordered">
-
-                                        <?php if ($row['company_name'] != ''): ?>
-                                            <tr>
-                                                <td><?php echo lang_key('company_name'); ?></td>
-                                                <td><b><?php echo $row['company_name']; ?></b></td>
-                                            </tr>
-                                        <?php endif; ?>
-
-                                        <?php if ($row['email'] != ''): ?>
-                                            <tr>
-                                                <td><?php echo lang_key('email'); ?></td>
-                                                <td><b><?php echo $row['email']; ?></b></td>
-                                            </tr>
-                                        <?php endif; ?>
-
-                                        <?php if ($row['phone'] != ''): ?>
-                                            <tr>
-                                                <td><?php echo lang_key('phone'); ?></td>
-                                                <td><b><?php echo $row['phone']; ?></b></td>
-                                            </tr>
-                                        <?php endif; ?>
-
-                                        <?php if ($row['mobile'] != ''): ?>
-                                            <tr>
-                                                <td><?php echo lang_key('mobile'); ?></td>
-                                                <td><b><?php echo $row['mobile']; ?></b></td>
-                                            </tr>
-                                        <?php endif; ?>
-
-                                        <?php if ($row['website'] != ''): ?>
-                                            <tr>
-                                                <td><?php echo lang_key('website'); ?></td>
-                                                <td><b><?php echo $row['website']; ?></b></td>
-                                            </tr>
-                                        <?php endif; ?>
-
-                                        <?php if ($row['skype_id'] != ''): ?>
-                                            <tr>
-                                                <td><?php echo lang_key('skype_id'); ?></td>
-                                                <td><b><?php echo $row['skype_id']; ?></b></td>
-                                            </tr>
-                                        <?php endif; ?>
-
-                                        <?php if ($row['address'] != ''): ?>
-                                            <tr>
-                                                <td><?php echo lang_key('address'); ?></td>
-                                                <td><b><?php echo $row['address']; ?></b></td>
-                                            </tr>
-                                        <?php endif; ?>
-
-                                        <?php if ($row['country'] != ''): ?>
-                                            <tr>
-                                                <td><?php echo lang_key('country'); ?></td>
-                                                <td><b><?php echo $row['country']; ?></b></td>
-                                            </tr>
-                                        <?php endif; ?>
-
-                                        <?php if ($row['city'] != ''): ?>
-                                            <tr>
-                                                <td><?php echo lang_key('city'); ?></td>
-                                                <td><b><?php echo $row['city']; ?></b></td>
-                                            </tr>
-                                        <?php endif; ?>
-
-                                        <?php if ($row['state'] != ''): ?>
-                                            <tr>
-                                                <td><?php echo lang_key('state'); ?></td>
-                                                <td><b><?php echo $row['state']; ?></b></td>
-                                            </tr>
-                                        <?php endif; ?>
-
-                                        <?php if ($row['zip_code'] != ''): ?>
-                                            <tr>
-                                                <td><?php echo lang_key('zip_code'); ?></td>
-                                                <td><b><?php echo $row['zip_code']; ?></b></td>
-                                            </tr>
-                                        <?php endif; ?>
-
-                                        <?php if ($row['bank_account'] != ''): ?>
-                                            <tr>
-                                                <td><?php echo lang_key('bank_account'); ?></td>
-                                                <td><b><?php echo $row['bank_account']; ?></b></td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    </table>
-                                </div>
-                            </div>		
+                            	
                         </section>
                         
                     </div>
@@ -220,7 +349,7 @@ if($contact_type == 'customer') {
                             <label for="field-1" class="col-sm-3 control-label"><?php echo lang_key('to'); ?></label>
 
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" name="email" readonly
+                                <input type="text" class="form-control" name="email" disabled readonly
                                     value="<?php echo get_db_field_by_id('contact', 'email', $contact_id) ?>" />
                             </div>
                         </div>
@@ -229,7 +358,7 @@ if($contact_type == 'customer') {
                             <label for="field-1" class="col-sm-3 control-label"><?php echo lang_key('subject'); ?></label>
 
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" name="subject" required />
+                                <input type="text" class="form-control" name="subject" disabled required />
                             </div>
                         </div>
 
@@ -237,12 +366,12 @@ if($contact_type == 'customer') {
                             <label for="field-1" class="col-sm-3 control-label"><?php echo lang_key('message'); ?></label>
 
                             <div class="col-sm-9">
-                                <textarea class="form-control email_template_editors" rows="10" name="message"
+                                <textarea class="form-control email_template_editors" rows="10" name="message" disabled
                                     data-stylesheet-url="<?php echo base_url(); ?>assets/css/wysihtml5-color.css" required></textarea>
                             </div>
                         </div>
                         
-                        <input type="hidden" name="contact_id" value="<?php echo $contact_id; ?>" />
+                        <input type="hidden" name="contact_id" disabled value="<?php echo $contact_id; ?>" />
 
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-5">
