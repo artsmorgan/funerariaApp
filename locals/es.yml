@@ -262,10 +262,45 @@ bill_account: Cuentas por cobrar
 identification_card: Cédula
 other_signs: Otras señas
 agent: Agente
-route: ruta
+route: Ruta
 balance_: Saldo
 localization: Localización
 fee: Cuota
 month_payment: Mes al cobro
 incorporation_date: Fecha Inclusión
 advance_payment: Prima
+add_service: Añadir servicio
+death_document: Acta de defunción
+seller: Vendedor
+deceased: Fallecido
+age: Edad
+contractor: Contratante
+relationship: Parentesco
+payment_method: Forma de pago
+contract_id: N° contrato
+coffin: Cofre 
+bill: Factura
+veiling_room: Sala de velación
+transfers: Traslados
+forgetfulness: Esquelas
+pathology: Patología
+flowers: Flores
+cremation: Cremación
+morgue: Morgue
+veiling_site: Lugar de velación
+driver: Chofer
+float: Carroza
+hour: hora
+vault_coffin: Bodega cofre
+transfer_equipment: Equipo traslado
+candlestick: Candelero
+reel: Carretil
+curtain: Cortinero
+observations: Observaciones
+arrangements: Arreglos
+pedestal: Pedestal
+lectern: Atril
+carpet: Alfombra
+church: Iglesia
+cemetery: Cementerio
+decoration: Decora
