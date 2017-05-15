@@ -41,7 +41,7 @@ $text_align         = $this->db->get_where('settings', array('type' => 'text_ali
 
         <h3 style="color:#333; font-weight:200;">
             <i class="entypo-right-circled"></i> 
-            <?php echo $page_title; ?>
+            <?php echo $page_title . ( isset( $page_type ) ? ' ' . $page_type : '' ); ?>
         </h3>
         
         <?php //$this->load->view('../test'); ?>

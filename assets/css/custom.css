@@ -50,16 +50,22 @@ body {
 }
 
 
-form.services h3{
+.services h3{
     text-align: center;
     margin: 40px 0 20px;
 }
 
-form.services h3:first-child{
+.services h3:first-child{
     margin-top: 0;
 }
 
 
 form.services .row:nth-child(even){
     background-color: #eee;
+}
+
+@media screen and (min-width: 768px){
+    .modal-dialog.modal-sm {
+        width: 400px!important;
+    }
 }

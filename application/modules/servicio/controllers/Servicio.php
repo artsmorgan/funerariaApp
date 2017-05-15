@@ -22,7 +22,7 @@ class Servicio extends CI_Controller {
             redirect(site_url('admin/auth'));
         }
 
-        //$this->load->model('contact_model');
+        $this->load->model('servicio_model');
         //$this->load->model('admin/email_model');
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
     }
@@ -34,20 +34,46 @@ class Servicio extends CI_Controller {
 
         switch($param1){
             case 'create':
+                $service_type = $this->input->post('type');
+                $this->servicio_model->create_servicio();
+                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly'));
+                redirect(site_url('servicio/servicios/' . $service_type));
             break;
-            
+        
             case 'update':
+                $service_type = $this->input->post('type');
+                $this->servicio_model->update_servicio($param2);
+                $this->session->set_flashdata('flash_message', lang_key('data_updated_successfuly'));
+                redirect(site_url('servicio/servicios/' . $service_type));
             break;
 
             case 'delete':
+                $this->servicio_model->delete_servicio($param2);
+                $this->session->set_flashdata('flash_message', lang_key('data_deleted_successfuly'));
+                redirect(site_url('servicio/servicios/' . $param3));
             break;
+
+            default:
+                $page_data['service_type'] = $page_data['page_type'] = $param1;
+                $page_data['module_type']   = 'servicio';
+                $page_data['page_name']     = 'servicio';
+                $page_data['page_title'] = 'Servicios';
+
+                $this->load->view('admin/index', $page_data);
+
         }
+    }
 
-        $page_data['service_type'] = $param1;
+    function service_details($param1 = '', $param2 = 'summary')
+    {
+        $page_data['service_id']    = $param1;
+        $service_type               = get_db_field_by_id('service', 'type', $param1);
+        $page_data['page_type']     = $service_type;
+        $page_data['active_tab']    = $param2;
         $page_data['module_type']   = 'servicio';
-        $page_data['page_name']     = 'servicio';
-        $page_data['page_title'] = 'Servicios';
-
+        $page_data['page_name']     = 'servicio_detalles';
+        $page_data['page_title']    = "Servicio detalles";
+        
         $this->load->view('admin/index', $page_data);
     }
 }

@@ -270,6 +270,7 @@ month_payment: Mes al cobro
 incorporation_date: Fecha Inclusión
 advance_payment: Prima
 add_service: Añadir servicio
+edit_service: Editar servicio
 death_document: Acta de defunción
 seller: Vendedor
 deceased: Fallecido
@@ -290,11 +291,11 @@ morgue: Morgue
 veiling_site: Lugar de velación
 driver: Chofer
 float: Carroza
-hour: hora
+hour: Hora
 vault_coffin: Bodega cofre
 transfer_equipment: Equipo traslado
 candlestick: Candelero
-reel: Carretil
+pushcart: Carretilla
 curtain: Cortinero
 observations: Observaciones
 arrangements: Arreglos
@@ -304,3 +305,5 @@ carpet: Alfombra
 church: Iglesia
 cemetery: Cementerio
 decoration: Decora
+technician: Técnico
+amount_: Monto
