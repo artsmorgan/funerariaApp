@@ -60,6 +60,36 @@
                 </li>
             </ul>
         </li>
+
+        <li class="<?php
+                    if( preg_match( "/^(?:servicio|servicio_detalles)$/i", $page_name ) )
+                        echo 'opened active';
+         ?>">
+            <a href="#">
+                <i class="entypo-clipboard"></i>
+                <span>Servicios</span>
+            </a>
+            <ul>
+                <li class="<?php if(  preg_match( "/^(?:servicio|servicio_detalles)$/i", $page_name ) && $page_type == 'funerarios' ) echo 'active'; ?>">
+                    <a href="<?php echo site_url('servicio/servicios/funerarios'); ?>">
+                        <i class="entypo-dot"></i>
+                        <span>Funerarios</span>
+                    </a>
+                </li>
+                <li class="<?php if(  preg_match( "/^(?:servicio|servicio_detalles)$/i", $page_name ) && $page_type == 'realizados' ) echo 'active'; ?>">
+                    <a href="<?php echo site_url('servicio/servicios/realizados'); ?>">
+                        <i class="entypo-dot"></i>
+                        <span>Realizados</span>
+                    </a>
+                </li>
+                <li class="<?php if(  preg_match( "/^(?:servicio|servicio_detalles)$/i", $page_name ) && $page_type == 'apartados' ) echo 'active'; ?>">
+                    <a href="<?php echo site_url('servicio/servicios/apartados'); ?>">
+                        <i class="entypo-dot"></i>
+                        <span>Apartados</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
         
         <li class="<?php
                     if($page_name == 'account' || $page_name == 'account_add' ||
