@@ -31,9 +31,9 @@ if(!empty($purchases))
 
 <div class="row">
     <div class="col-sm-3">
-        <a href="<?php echo site_url('admin/admins'); ?>">
-            <div class="tile-stats tile-black">
-                <div class="icon"><i class="entypo-user" style="padding-bottom: 25px;"></i></div>
+        <a href="<?php echo site_url('/admins/admins'); ?>">
+            <div class="tile-stats tile-white">
+                <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
                 <div class="num" data-start="0" data-end="<?php echo $this->db->get('user')->num_rows(); ?>"
                     data-duration="1500" data-delay="0">0</div>
                 <h3><?php echo lang_key('admins'); ?></h3>
@@ -42,9 +42,9 @@ if(!empty($purchases))
     </div>
 
     <div class="col-sm-3">
-        <a href="<?php echo site_url('contact/contacts/customer'); ?>">
-            <div class="tile-stats tile-gold">
-                <div class="icon"><i class="entypo-users" style="padding-bottom: 25px;"></i></div>
+        <a href="<?php echo site_url('/contact/contacts/customer'); ?>">
+            <div class="tile-stats tile-white">
+                <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
                 <div class="num" data-start="0" data-end="<?php echo $this->db->get('contact')->num_rows(); ?>" 
                     data-duration="1500" data-delay="0">0</div>
                 <h3><?php echo lang_key('contacts'); ?></h3>
@@ -54,10 +54,9 @@ if(!empty($purchases))
 
     <div class="col-sm-3">
         <a href="#">
-            <div class="tile-stats tile-black">
-                <div class="icon"><i class="entypo-bag"></i></div>
-                <div class="num" data-start="0" data-end="<?php echo $this->db->get_where('product', array('type' => 'product'))->num_rows(); ?>" 
-                    data-duration="1500" data-delay="0">0</div>
+            <div class="tile-stats tile-white">
+                <div class="icon"><i class="fa fa-chevron-circle-right"></i></div>
+                <div class="num" style="color:#fff">-</div>
                 <h3>Funecredit</h3>
             </div>
         </a>
@@ -65,10 +64,9 @@ if(!empty($purchases))
 
     <div class="col-sm-3">
         <a href="#">
-            <div class="tile-stats tile-gold">
-                <div class="icon"><i class="fa fa-truck" style="padding-bottom: 40px;"></i></div>
-                <div class="num" data-start="0" data-end="<?php echo $this->db->get_where('product', array('type' => 'service'))->num_rows(); ?>" 
-                    data-duration="1500" data-delay="0">0</div>
+            <div class="tile-stats tile-white">
+                <div class="icon"><i class="fa fa fa-chevron-circle-right" style="padding-bottom: 40px;"></i></div>
+                <div class="num" style="color:#fff">-</div>
                 <h3>Rutas</h3>
             </div>
         </a>
@@ -78,8 +76,8 @@ if(!empty($purchases))
 <div class="row">
     <div class="col-sm-3">
         <a href="<?php echo site_url('/servicio/servicios/funerarios'); ?>">
-            <div class="tile-stats tile-gold">
-                <div class="icon"><i class="entypo-user" style="padding-bottom: 25px;"></i></div>
+            <div class="tile-stats tile-white">
+                <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
                 <div class="num" data-start="0" data-end="<?php echo $this->db->get('user')->num_rows(); ?>"
                     data-duration="1500" data-delay="0">0</div>
                 <h3>Servicios funerarios</h3>
@@ -89,8 +87,8 @@ if(!empty($purchases))
 
     <div class="col-sm-3">
         <a href="<?php echo site_url('/servicio/servicios/realizados'); ?>">
-            <div class="tile-stats tile-black">
-                <div class="icon"><i class="entypo-users" style="padding-bottom: 25px;"></i></div>
+            <div class="tile-stats tile-white">
+                <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
                 <div class="num" data-start="0" data-end="<?php echo $this->db->get('contact')->num_rows(); ?>" 
                     data-duration="1500" data-delay="0">0</div>
                 <h3>Servicios Realizados</h3>
@@ -100,8 +98,8 @@ if(!empty($purchases))
 
     <div class="col-sm-3">
         <a href="<?php echo site_url('/servicio/servicios/apartados'); ?>">
-            <div class="tile-stats tile-gold">
-                <div class="icon"><i class="entypo-bag"></i></div>
+            <div class="tile-stats tile-white">
+                <div class="icon"><i class="fa fa-chevron-circle-right"></i></div>
                 <div class="num" data-start="0" data-end="<?php echo $this->db->get_where('product', array('type' => 'product'))->num_rows(); ?>" 
                     data-duration="1500" data-delay="0">0</div>
                 <h3>Apartados</h3>
@@ -111,15 +109,57 @@ if(!empty($purchases))
 
     <div class="col-sm-3">
         <a href="#">
-            <div class="tile-stats tile-black">
-                <div class="icon"><i class="fa fa-truck" style="padding-bottom: 40px;"></i></div>
-                <div class="num" data-start="0" data-end="<?php echo $this->db->get_where('product', array('type' => 'service'))->num_rows(); ?>" 
-                    data-duration="1500" data-delay="0">0</div>
+            <div class="tile-stats tile-white">
+                <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 40px;"></i></div>
+                <div class="num" style="color:#fff">-</div>
                 <h3>Impresion de recibos</h3>
             </div>
         </a>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-sm-3">
+        <a href="#">
+            <div class="tile-stats tile-white">
+                <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
+                <div class="num" style="color:#fff">-</div>
+                <h3>Aplicar Pagos</h3>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-3">
+        <a href="#">
+            <div class="tile-stats tile-white">
+                <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
+                <div class="num" style="color:#fff">-</div>
+                <h3>Sistema de Seguridad</h3>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-3">
+        <a href="#">
+            <div class="tile-stats tile-white">
+                <div class="icon"><i class="fa fa-chevron-circle-right"></i></div>
+                <div class="num" style="color:#fff">-</div>
+                <h3>Avisos</h3>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-3">
+        <a href="#">
+            <div class="tile-stats tile-white">
+                <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 40px;"></i></div>
+                <div class="num" style="color:#fff">-</div>
+                <h3>Reportes</h3>
+            </div>
+        </a>
+    </div>
+</div>
+
 
 <!-- <div class="row">
     

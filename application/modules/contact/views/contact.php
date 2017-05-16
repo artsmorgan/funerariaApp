@@ -24,10 +24,10 @@ if(empty($contacts)){ ?>
             <tr>
                 <th>#</th>
                 <th><?php echo lang_key('name'); ?></th>
-                <th><?php echo lang_key('company_name'); ?></th>
-                <th><?php echo lang_key('email'); ?></th>
+                <th>Cedula</th>
+                <th>Contrato</th>
                 <th><?php echo lang_key('phone'); ?></th>
-                <th><?php echo lang_key('type'); ?></th>
+                <!-- <th><?php echo lang_key('type'); ?></th> -->
                 <th><?php echo lang_key('options'); ?></th>
             </tr>
         </thead>
@@ -38,10 +38,11 @@ if(empty($contacts)){ ?>
                 <tr>
                     <td><?php echo $count++ ?></td>
                     <td><?php echo $row['first_name'] . ' ' . $row['last_name'] ; ?></td>
-                    <td><?php echo $row['company_name']; ?></td>
-                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row['id_card']; ?></td>
+                    <!-- <td><?php echo $row['email']; ?></td> -->
+                    <td>-</td>
+                    
                     <td><?php echo $row['phone']; ?></td>
-                    <td><?php echo lang_key($row['type']); ?></td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
