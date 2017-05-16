@@ -35,7 +35,7 @@
         <li class="<?php if($page_name == 'dashboard') echo 'active'; ?>">
             <a href="<?php echo site_url('admin'); ?>">
                 <i class="entypo-gauge"></i>
-                <span><?php echo lang_key('dashboard'); ?></span>
+                <span>Dashboard</span>
             </a>
         </li>
         
@@ -179,11 +179,11 @@
                        $page_name == 'ledger_view' || $page_name == 'ledgaccount_payser_view')
                         echo 'opened active';
          ?>">
-            <a href="#">
+            <a href="<?php echo site_url('impresion/impresiones/index'); ?>">
                 <i class="fa fa-print"></i>
                 <span>Impresiones</span>
             </a>
-            <ul>
+            <!-- <ul>
                 <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
                     <a href="#>">
                         <i class="entypo-tag"></i>
@@ -203,7 +203,7 @@
                     </a>
                 </li>
 
-            </ul>
+            </ul> -->
         </li>
        <?php if( $this->session->userdata('role') == 'admin'){ ?>
         <li class="<?php if($page_name == 'product' || $page_name == 'product_category')
