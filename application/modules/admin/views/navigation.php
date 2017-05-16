@@ -1,3 +1,4 @@
+
 <div class="sidebar-menu">
 
 
@@ -41,7 +42,7 @@
         <li class="<?php if($page_name == 'contact' || $page_name == 'contact_details') echo 'opened active'; ?>">
             <a href="#">
                 <i class="entypo-users"></i>
-                <span><?php echo lang_key('contacts'); ?></span>
+                <span>Clientes</span>
             </a>
             <ul>
                 <li class="<?php if($page_name == 'contact' && $contact_type == 'customer'
@@ -60,36 +61,6 @@
                 </li>
             </ul>
         </li>
-
-        <li class="<?php
-                    if( preg_match( "/^(?:servicio|servicio_detalles)$/i", $page_name ) )
-                        echo 'opened active';
-         ?>">
-            <a href="#">
-                <i class="entypo-clipboard"></i>
-                <span>Servicios</span>
-            </a>
-            <ul>
-                <li class="<?php if(  preg_match( "/^(?:servicio|servicio_detalles)$/i", $page_name ) && $page_type == 'funerarios' ) echo 'active'; ?>">
-                    <a href="<?php echo site_url('servicio/servicios/funerarios'); ?>">
-                        <i class="entypo-dot"></i>
-                        <span>Funerarios</span>
-                    </a>
-                </li>
-                <li class="<?php if(  preg_match( "/^(?:servicio|servicio_detalles)$/i", $page_name ) && $page_type == 'realizados' ) echo 'active'; ?>">
-                    <a href="<?php echo site_url('servicio/servicios/realizados'); ?>">
-                        <i class="entypo-dot"></i>
-                        <span>Realizados</span>
-                    </a>
-                </li>
-                <li class="<?php if(  preg_match( "/^(?:servicio|servicio_detalles)$/i", $page_name ) && $page_type == 'apartados' ) echo 'active'; ?>">
-                    <a href="<?php echo site_url('servicio/servicios/apartados'); ?>">
-                        <i class="entypo-dot"></i>
-                        <span>Apartados</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
         
         <li class="<?php
                     if($page_name == 'account' || $page_name == 'account_add' ||
@@ -100,10 +71,33 @@
          ?>">
             <a href="#">
                 <i class="entypo-briefcase"></i>
-                <span><?php echo lang_key('financial_accounts'); ?></span>
+                <span>Servicios</span>
             </a>
             <ul>
                 <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
+                    <a href="<?php echo site_url('/servicio/servicios/funerarios'); ?>">
+                        <i class="entypo-dot"></i>
+                        <span>Servicios Funerarios</span>
+                    </a>
+                </li>
+                <li class="<?php if($page_name == 'account_payments') echo 'active'; ?>">
+                    <a href="<?php echo site_url('servicio/servicios/realizados'); ?>">
+                        <i class="entypo-dot"></i>
+                        <span>Servicios Realizados</span>
+                    </a>
+                </li>
+                <li class="<?php if($page_name == 'account_add') echo 'active'; ?>">
+                    <a href="<?php echo site_url('servicio/servicios/apartados'); ?>">
+                        <i class="entypo-dot"></i>
+                        <span>Apartados</span>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- <ul>
+
+                <li c
+                lass="<?php if($page_name == 'account_pays') echo 'active'; ?>">
                     <a href="<?php echo site_url('account/account_pays'); ?>">
                         <i class="entypo-dot"></i>
                         <span><?php echo lang_key('pay_account'); ?></span>
@@ -125,6 +119,87 @@
                     <a href="<?php echo site_url('account/accounts'); ?>">
                         <i class="entypo-dot"></i>
                         <span><?php echo lang_key('account_list'); ?></span>
+                    </a>
+                </li>
+
+            </ul> -->
+        </li>
+        <li class="<?php
+                    if($page_name == 'account' || $page_name == 'account_add' ||
+                        $page_name == 'bill_account' ||
+                        $page_name == 'account_payments' ||
+                       $page_name == 'ledger_view' || $page_name == 'ledgaccount_payser_view')
+                        echo 'opened active';
+         ?>">
+            <a href="#">
+                <i class="entypo-tag"></i>
+                <span>Funecredit</span>
+            </a>
+            <ul>
+                <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
+                    <a href="#>">
+                        <i class="entypo-tag"></i>
+                        <span>Funecredit</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+         <li class="<?php
+                    if($page_name == 'account' || $page_name == 'account_add' ||
+                        $page_name == 'bill_account' ||
+                        $page_name == 'account_payments' ||
+                       $page_name == 'ledger_view' || $page_name == 'ledgaccount_payser_view')
+                        echo 'opened active';
+         ?>">
+            <a href="#">
+                <i class="fa fa-truck"></i>
+                <span>Rutas</span>
+            </a>
+            <ul>
+                <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
+                    <a href="#>">
+                        <i class="entypo-tag"></i>
+                        <span>Crear Rutas</span>
+                    </a>
+                </li>
+                <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
+                    <a href="#>">
+                        <i class="entypo-tag"></i>
+                        <span>Ver Rutas</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        <li class="<?php
+                    if($page_name == 'account' || $page_name == 'account_add' ||
+                        $page_name == 'bill_account' ||
+                        $page_name == 'account_payments' ||
+                       $page_name == 'ledger_view' || $page_name == 'ledgaccount_payser_view')
+                        echo 'opened active';
+         ?>">
+            <a href="#">
+                <i class="fa fa-print"></i>
+                <span>Impresiones</span>
+            </a>
+            <ul>
+                <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
+                    <a href="#>">
+                        <i class="entypo-tag"></i>
+                        <span>Crear recibo</span>
+                    </a>
+                </li>
+                <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
+                    <a href="#>">
+                        <i class="entypo-tag"></i>
+                        <span>Re imprimir recibo</span>
+                    </a>
+                </li>
+                <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
+                    <a href="#>">
+                        <i class="entypo-tag"></i>
+                        <span>Imprimir rutas</span>
                     </a>
                 </li>
 
@@ -182,7 +257,7 @@
             </ul>
         </li>
         <?php } ?>
-        <li class="<?php if($page_name == 'sale' || $page_name == 'sale_add'
+        <!-- <li class="<?php if($page_name == 'sale' || $page_name == 'sale_add'
             || $page_name == 'sale_edit' || $page_name == 'sale_invoice') echo 'opened active'; ?>">
             <a href="#">
                 <i class="entypo-basket"></i>
@@ -203,7 +278,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> -->
         <?php if( $this->session->userdata('role') == 'admin'){ ?>
         <!-- <li class="<?php if($page_name == 'income' || $page_name == 'expense'
             || $page_name == 'income_expense_category') echo 'opened active'; ?>">
@@ -330,5 +405,6 @@
             </a>
         </li>
     </ul>
+
 
 </div>

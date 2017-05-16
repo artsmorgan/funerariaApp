@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary" data-collapsed="0">
@@ -29,10 +30,10 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="field-1" class="col-sm-3 control-label"><?php echo lang_key('email'); ?></label>
+                    <label for="field-1" class="col-sm-3 control-label">Usuario</label>
 
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="email" onkeyup="check_email_validity(this.value)" required />
+                        <input type="text" class="form-control" name="email"  required />
                         <span id="email_validity_holder"></span>
                     </div>
                 </div>
@@ -94,4 +95,5 @@
             jQuery('#email_validity_holder').html('');
     }
     
+
 </script>
