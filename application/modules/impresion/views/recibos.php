@@ -127,7 +127,7 @@ foreach($rows as $row) : ?>
                                 <div class="form-group">
                                     <label for="field-1" class="col-xs-12 control-label"><?php echo lang_key('amount'); ?></label>
                                     <div class="col-xs-12">
-                                        <input type="number"  class="form-control" value="<?php echo $row['service_amount']; ?>">
+                                        <input type="text"  class="form-control format-currency" value="<?php echo $row['service_amount']; ?>">
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -136,7 +136,7 @@ foreach($rows as $row) : ?>
                                 <div class="form-group">
                                     <label for="field-1" class="col-xs-12 control-label"><?php echo lang_key('balance_'); ?></label>
                                     <div class="col-xs-12">
-                                        <input type="number"  class="form-control" value="<?php echo $row['service_balance']; ?>">
+                                        <input type="text"  class="form-control format-currency" value="<?php echo $row['service_balance']; ?>">
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -216,7 +216,7 @@ foreach($rows as $row) : ?>
                         <div class="form-group">
                             <label for="field-1" class="control-label col-xs-12"><?php echo lang_key('advance_payment'); ?></label>
                             <div class="col-xs-12">
-                                <input type="number" class="form-control"  value="<?php echo $row['advance_payment']; ?>" />
+                                <input type="text" class="form-control format-currency"  value="<?php echo $row['advance_payment']; ?>" />
                             </div>
                         </div>
                     </div>

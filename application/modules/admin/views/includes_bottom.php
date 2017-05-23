@@ -10,6 +10,7 @@
 
 <!-- Bottom Scripts -->
 <script src="<?php echo base_url();?>assets/js/gsap/main-gsap.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.formatCurrency-1.4.0.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>
 <script src="<?php echo base_url();?>assets/js/joinable.js"></script>

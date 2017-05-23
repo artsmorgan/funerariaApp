@@ -47,7 +47,7 @@ if(!empty($purchases))
                 <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
                 <div class="num" data-start="0" data-end="<?php echo $this->db->get('contact')->num_rows(); ?>" 
                     data-duration="1500" data-delay="0">0</div>
-                <h3><?php echo lang_key('contacts'); ?></h3>
+                <h3>Clientes</h3>
             </div>
         </a>
     </div>
@@ -78,7 +78,7 @@ if(!empty($purchases))
         <a href="<?php echo site_url('/servicio/servicios/funerarios'); ?>">
             <div class="tile-stats tile-white">
                 <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
-                <div class="num" data-start="0" data-end="<?php echo $this->db->get('user')->num_rows(); ?>"
+                <div class="num" data-start="0" data-end="<?php echo $this->db->get_where('service', array( 'type' => 'funerarios' ))->num_rows(); ?>"
                     data-duration="1500" data-delay="0">0</div>
                 <h3>Servicios funerarios</h3>
             </div>
@@ -89,7 +89,7 @@ if(!empty($purchases))
         <a href="<?php echo site_url('/servicio/servicios/realizados'); ?>">
             <div class="tile-stats tile-white">
                 <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
-                <div class="num" data-start="0" data-end="<?php echo $this->db->get('contact')->num_rows(); ?>" 
+                <div class="num" data-start="0" data-end="<?php echo $this->db->get_where('service', array( 'type' => 'realizados' ))->num_rows(); ?>" 
                     data-duration="1500" data-delay="0">0</div>
                 <h3>Servicios Realizados</h3>
             </div>
@@ -100,7 +100,7 @@ if(!empty($purchases))
         <a href="<?php echo site_url('/servicio/servicios/apartados'); ?>">
             <div class="tile-stats tile-white">
                 <div class="icon"><i class="fa fa-chevron-circle-right"></i></div>
-                <div class="num" data-start="0" data-end="<?php echo $this->db->get_where('product', array('type' => 'product'))->num_rows(); ?>" 
+                <div class="num" data-start="0" data-end="<?php echo $this->db->get_where('service', array( 'type' => 'apartados' ))->num_rows(); ?>" 
                     data-duration="1500" data-delay="0">0</div>
                 <h3>Apartados</h3>
             </div>
@@ -119,7 +119,7 @@ if(!empty($purchases))
 </div>
 
 <div class="row">
-    <div class="col-sm-3">
+    <!--<div class="col-sm-3">
         <a href="#">
             <div class="tile-stats tile-white">
                 <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
@@ -127,7 +127,7 @@ if(!empty($purchases))
                 <h3>Aplicar Pagos</h3>
             </div>
         </a>
-    </div>
+    </div>-->
 
     <div class="col-sm-3">
         <a href="#">
@@ -149,7 +149,7 @@ if(!empty($purchases))
         </a>
     </div>
 
-    <div class="col-sm-3">
+    <!--<div class="col-sm-3">
         <a href="#">
             <div class="tile-stats tile-white">
                 <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 40px;"></i></div>
@@ -157,7 +157,7 @@ if(!empty($purchases))
                 <h3>Reportes</h3>
             </div>
         </a>
-    </div>
+    </div>-->
 </div>
 
 

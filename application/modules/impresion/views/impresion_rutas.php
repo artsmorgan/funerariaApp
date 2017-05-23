@@ -81,7 +81,7 @@ if(empty($services)){ ?>
                             </button>
                             <ul class="dropdown-menu dropdown-default pull-right" role="menu">
                                 <li>
-                                    <a href="<?php echo site_url('servicio/servic_details/' . $row['service_id']); ?>">
+                                    <a href="<?php echo site_url('servicio/service_details/' . $row['service_id']); ?>">
                                         <i class="entypo-eye"></i>
                                         <?php echo lang_key('view_details');?>
                                     </a>
@@ -111,7 +111,7 @@ if(empty($services)){ ?>
             minimumResultsForSearch: -1
         });
 
-        var thisRoute = /#ruta:(\d+)/.exec(window.location.hash),
+        var thisRoute = /\?ruta=(\d+)/.exec(window.location.search),
             $routeSelect = $('#route');
 
 
@@ -143,12 +143,17 @@ if(empty($services)){ ?>
                 $print_container.html(response);
 
                 if( $print_container.find('.page_print').length ){
+                    $print_container.find('.format-currency').formatCurrency({
+                        symbol: '₡ '
+                    });
+                    
                     window.print();
                     $.ajax({
                         url: base_url + 'impresion/actualizar_fecha_impresion_ruta/' + route
                     }).
                     done(function(){
-                        window.location.href = window.location.href + '#ruta:' + route;
+                        var newLocaion = window.location.href.replace( window.location.search, '' );
+                        window.location.href = newLocaion + '?ruta=' + route;
                     });
                 }
                 else{
