@@ -29,16 +29,17 @@ class Impresion extends CI_Controller {
 
     function impresiones( $param1 = '', $param2 = '', $param3 = '' ){
         // echo $param1;
-        if( $param1 == NULL || !preg_match( "/^(?:index|impresiones|index|create|update|delete)$/i", $param1 ) ){
+        if( $param1 == NULL || !preg_match( "/^(?:index|impresiones|rutas|recibo-dinero|rutas-adelantados)$/i", $param1 ) ){
             redirect(site_url('admin'));
         }
 
         switch($param1){
-            case 'create':
-                $service_type = $this->input->post('type');
-                $this->servicio_model->create_servicio();
-                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly'));
-                redirect(site_url('servicio/servicios/' . $service_type));
+            case 'rutas':
+                $page_data['page_type'] = 'Impresión rutas';
+                $page_data['module_type']   = 'impresion';
+                $page_data['page_name']     = 'impresion_rutas';
+                $page_data['page_title'] = 'Impresión rutas';
+                $this->load->view('admin/index', $page_data);
             break;
         
             case 'update':
@@ -63,6 +64,26 @@ class Impresion extends CI_Controller {
                 $this->load->view('admin/index', $page_data);
 
         }
+    }
+
+    function recibos($param1 = '', $param2 = '', $param3 = ''){
+        $sql = "SELECT c.*, s.amount AS service_amount, s.balance AS service_balance, CONCAT(u.first_name, ' ', u.last_name) AS agent_name FROM bk_service AS s INNER JOIN bk_contact AS c ON c.contact_id = s.contact_id INNER JOIN bk_user AS u ON u.user_id = s.user_id ";
+        $page_data['sql_params'] = array();
+        $print = '';
+
+        switch($param1){
+            case 'ruta':
+                $page_data['sql_params'][] =  $param2;
+                $sql .= "WHERE c.route = ?";
+            break;
+        }
+
+        $page_data['sql'] = $sql;
+        $this->load->view('impresion/recibos', $page_data);
+    }
+
+    function actualizar_fecha_impresion_ruta($param){
+        $this->impresion_model->update_print_date_by_route($param);
     }
 
     function service_details($param1 = '', $param2 = 'summary')
