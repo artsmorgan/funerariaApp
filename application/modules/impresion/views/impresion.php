@@ -1,7 +1,7 @@
 <div>
 <div class="row">
     <div class="col-sm-3">
-        <a href="#">
+        <a href="<?php echo base_url() . 'index.php/impresion/impresiones/rutas'; ?>">
             <div class="tile-stats tile-white">
                 <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
                 <div class="num" style="color:#fff">-</div>

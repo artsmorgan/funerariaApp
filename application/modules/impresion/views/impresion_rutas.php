@@ -101,7 +101,8 @@ if(empty($services)){ ?>
 <!--  DATA TABLE EXPORT CONFIGURATIONS -->                      
 <script type="text/javascript">
     jQuery(document).ready(function($)
-    {
+    {   
+        var base_url = "<?php echo base_url() . 'index.php/';?>";
         var datatable = $("#table_export").dataTable({
             "sPaginationType"   : "bootstrap"
         });
@@ -136,7 +137,7 @@ if(empty($services)){ ?>
             if(!route) return;
 
             $.ajax({
-                url: '/funeraria/index.php/impresion/recibos/ruta/' + route
+                url: base_url + 'impresion/recibos/ruta/' + route
             }).
             done(function(response){
                 $print_container.html(response);
@@ -144,7 +145,7 @@ if(empty($services)){ ?>
                 if( $print_container.find('.page_print').length ){
                     window.print();
                     $.ajax({
-                        url: '/funeraria/index.php/impresion/actualizar_fecha_impresion_ruta/' + route
+                        url: base_url + 'impresion/actualizar_fecha_impresion_ruta/' + route
                     }).
                     done(function(){
                         window.location.href = window.location.href + '#ruta:' + route;
