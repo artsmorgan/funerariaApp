@@ -16,7 +16,7 @@ foreach($edit_data as $row) : ?>
                 <?php echo form_open(site_url('contact/contacts/update/'. $param3), array('class' => 'form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('first_name'); ?></label>
                             <div class="col-sm-12">
@@ -25,11 +25,20 @@ foreach($edit_data as $row) : ?>
                         </div>
                     </div>
                     <!-- col -->
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('last_name'); ?></label>
+                            <label for="field-1" class="control-label col-sm-12">Primer apellido</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" name="last_name"  value="<?php echo $row['last_name']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Segundo apellido</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" name="last_name2"  value="<?php echo $row['last_name2']; ?>" />
                             </div>
                         </div>
                     </div>
@@ -135,7 +144,45 @@ foreach($edit_data as $row) : ?>
                                 <div class="form-group">
                                     <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('route'); ?></label>
                                     <div class="col-sm-12">
-                                        <input type="number" name="route" class="form-control" value="<?php echo $row['route']; ?>" >
+                                        <select  class="selectboxit" name="month_payment" >
+                                            <?php 
+                                                $routes = array(
+                                                    '1',
+                                                    '2',
+                                                    '3',
+                                                    '4',
+                                                    '5',
+                                                    '6',
+                                                    '7',
+                                                    '8',
+                                                    '9',
+                                                    '10',
+                                                    '11',
+                                                    '12',
+                                                    '13',
+                                                    '14',
+                                                    '15',
+                                                    '16',
+                                                    '17',
+                                                    '18',
+                                                    '19',
+                                                    '20',
+                                                    '21',
+                                                    '22',
+                                                    '23',
+                                                    '24',
+                                                    '25',
+                                                    '26',
+                                                    '27',
+                                                    '28',
+                                                    '29',
+                                                    '30'
+                                                );
+                                            ?>
+                                            <?php foreach($routes as $route): ?>
+                                                <?php echo "<option value=\"$route\" " . ($route == $row['route'] ? 'selected' : ''  ) . ">$route</option>"; ?>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -145,9 +192,10 @@ foreach($edit_data as $row) : ?>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('amount'); ?></label>
+                                    <label for="field-1" class="col-sm-12 control-label">Monto del contrato</label>
                                     <div class="col-sm-12">
-                                        <input type="number" name="amount" class="form-control" value="<?php echo $row['amount']; ?>">
+                                        <input type="text" class="form-control format-currency" value="<?php echo $row['amount']; ?>">
+                                        <input type="hidden" name="amount" value="<?php echo $row['amount']; ?>">
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -156,7 +204,8 @@ foreach($edit_data as $row) : ?>
                                 <div class="form-group">
                                     <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('balance_'); ?></label>
                                     <div class="col-sm-12">
-                                        <input type="number" name="balance" class="form-control" value="<?php echo $row['balance']; ?>">
+                                        <input type="text" class="form-control format-currency" value="<?php echo $row['balance']; ?>">
+                                        <input type="hidden" name="balance" value="<?php echo $row['balance']; ?>">
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -172,13 +221,13 @@ foreach($edit_data as $row) : ?>
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('localization'); ?></label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="localization1" value="<?php echo $row['localization1']; ?>" />
+                                <input type="text" data-type="number" maxlength="2" class="form-control" name="localization1" value="<?php echo $row['localization1']; ?>" />
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="localization2" value="<?php echo $row['localization2']; ?>" />
+                                <input type="text" data-type="number" maxlength="3" class="form-control" name="localization2" value="<?php echo $row['localization2']; ?>" />
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="localization3" value="<?php echo $row['localization3']; ?>"  />
+                                <input type="text" data-type="number" maxlength="2" class="form-control" name="localization3" value="<?php echo $row['localization3']; ?>"  />
                             </div>
                         </div>
                     </div>
@@ -187,15 +236,16 @@ foreach($edit_data as $row) : ?>
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('fee'); ?></label>
                             <div class="col-sm-12">
-                                <input type="number" class="form-control" name="fee"  value="<?php echo $row['fee']; ?>" />
+                                <input type="text" class="form-control format-currency"  value="<?php echo $row['fee']; ?>" />
+                                <input type="hidden" name="fee" value="<?php echo $row['fee']; ?>">
                             </div>
                         </div>
                     </div>
                     <!-- col -->
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('month_payment'); ?></label>
-                            <div class="col-sm-12">
+                            <label for="field-1" class="control-label col-sm-12">Mes y año de cobro</label>
+                            <div class="col-sm-6">
                                 <select  class="selectboxit" name="month_payment" >
                                     <?php 
                                         $months = array(
@@ -217,6 +267,9 @@ foreach($edit_data as $row) : ?>
                                         <?php echo "<option value=\"$month\" " . ($month == $row['month_payment'] ? 'selected' : ''  ) . ">$month</option>"; ?>
                                     <?php endforeach; ?>
                                 </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" name="year_payment" value="<?php echo $row['year_payment']; ?>"  />
                             </div>
                         </div>
                     </div>
@@ -256,7 +309,8 @@ foreach($edit_data as $row) : ?>
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('advance_payment'); ?></label>
                             <div class="col-sm-12">
-                                <input type="number" class="form-control" name="advance_payment" value="<?php echo $row['advance_payment']; ?>" />
+                                <input type="text" class="form-control format-currency"  value="<?php echo $row['advance_payment']; ?>" />
+                                <input type="hidden" name="advance_payment" value="<?php echo $row['advance_payment']; ?>">
                             </div>
                         </div>
                     </div>
@@ -299,6 +353,12 @@ foreach($edit_data as $row) : ?>
             $('.rating .active').removeClass('active');
         });
 
+        $('[data-type=number]').on('keydown', function(e){
+            
+            var str = String.fromCharCode(e.which);
+
+            return
+
         $('.rating').on('mouseleave', function(){
             if($('.rating .active').length){
                 return;
@@ -319,6 +379,103 @@ foreach($edit_data as $row) : ?>
         $('.datepicker').datepicker({
             format: 'yyyy-mm-dd'
         });
+
+        $('.format-currency').formatCurrency({
+            symbol: '₡ '
+        });
+
+        $('.format-currency').on('keypress', function(e){
+            
+            var str = String.fromCharCode(e.which);
+
+            if( !/\d/.test(str) || str == '.'  ){
+                if( str == '.' ){
+                    var indexDot = $(this).val().indexOf(str);
+
+                    setCaretPosition($(this).get(0), indexDot + 1 );
+                
+                }
+                return false;
+            }
+        });
+
+        $('.format-currency').on('input', function(e){
+            var inputElem = $(this).get(0),
+                inputLength = inputElem.value.length, 
+                caretPos = doGetCaretPosition( inputElem ),
+                minLength = 6;
+
+            if( inputLength <  minLength){
+                inputLength = minLength;
+                caretPos += 2;
+            }
+
+            inputElem.value = inputElem.value.replace( /\.\d+/ , function(match){
+                return match.substr(0,3);
+            });
+
+            $(this).formatCurrency({
+                symbol: '₡ '
+            });
+
+            $(this).parent().find('[type=hidden]').val( $(this).asNumber() );
+
+            inputLength = inputElem.value.length - inputLength;
+            caretPos += inputLength;
+
+            if( caretPos > inputElem.value.indexOf('.') ){
+                caretPos++;
+            }
+
+            setCaretPosition(inputElem, caretPos );
+
+        });
+
+        function setCaretPosition(elem, caretPos) {
+            
+            if(elem.createTextRange) {
+                var range = elem.createTextRange();
+                range.move('character', caretPos);
+                range.select();
+            }
+            else {
+                if(elem.selectionStart) {
+                    elem.focus();
+                    elem.setSelectionRange(caretPos, caretPos);
+                }
+                else
+                    elem.focus();
+            }
+        }
+
+        function doGetCaretPosition (oField) {
+
+            // Initialize
+            var iCaretPos = 0;
+
+            // IE Support
+            if (document.selection) {
+
+                // Set focus on the element
+                oField.focus();
+
+                // To get cursor position, get empty selection range
+                var oSel = document.selection.createRange();
+
+                // Move selection start to 0 position
+                oSel.moveStart('character', -oField.value.length);
+
+                // The caret position is selection length
+                iCaretPos = oSel.text.length;
+            }
+
+            // Firefox support
+            else if (oField.selectionStart || oField.selectionStart == '0')
+                iCaretPos = oField.selectionStart;
+
+            // Return results
+            return iCaretPos;
+        }
 
 
         function bindEvents(){

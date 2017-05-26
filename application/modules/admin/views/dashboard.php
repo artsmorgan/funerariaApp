@@ -31,7 +31,7 @@ if(!empty($purchases))
 
 <div class="row">
     <div class="col-sm-3">
-        <a href="<?php echo site_url('/admins/admins'); ?>">
+        <a href="<?php echo site_url('/admin/admins'); ?>">
             <div class="tile-stats tile-white">
                 <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
                 <div class="num" data-start="0" data-end="<?php echo $this->db->get('user')->num_rows(); ?>"

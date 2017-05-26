@@ -185,9 +185,10 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                     <!-- col -->
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('amount_'); ?></label>
+                            <label for="field-1" class="col-sm-12 control-label">Monto del contrato</label>
                             <div class="col-sm-12">
-                                <input type="number" name="amount" class="form-control" value="<?php echo $row['amount']; ?>">
+                                <input type="text"  class="form-control format-currency" value="<?php echo $row['amount']; ?>">
+                                <input type="hidden" name="amount" value="<?php echo $row['amount']; ?>">
                             </div>
                         </div>
                     </div>
@@ -196,7 +197,8 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('balance_'); ?></label>
                             <div class="col-sm-12">
-                                <input type="number" name="balance" class="form-control" value="<?php echo $row['balance']; ?>">
+                                <input type="text"  class="form-control format-currency" value="<?php echo $row['balance']; ?>">
+                                <input type="hidden" name="balance" value="<?php echo $row['balance']; ?>">
                             </div>
                         </div>
                     </div>
@@ -952,6 +954,103 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
             $('#clienteModal').modal('hide');
 
         });
+
+        $('.format-currency').formatCurrency({
+            symbol: '₡ '
+        });
+
+        $('.format-currency').on('keypress', function(e){
+            
+            var str = String.fromCharCode(e.which);
+
+            if( !/\d/.test(str) || str == '.'  ){
+                if( str == '.' ){
+                    var indexDot = $(this).val().indexOf(str);
+
+                    setCaretPosition($(this).get(0), indexDot + 1 );
+                
+                }
+                return false;
+            }
+        });
+
+        $('.format-currency').on('input', function(e){
+            var inputElem = $(this).get(0),
+                inputLength = inputElem.value.length, 
+                caretPos = doGetCaretPosition( inputElem ),
+                minLength = 6;
+
+            if( inputLength <  minLength){
+                inputLength = minLength;
+                caretPos += 2;
+            }
+
+            inputElem.value = inputElem.value.replace( /\.\d+/ , function(match){
+                return match.substr(0,3);
+            });
+
+            $(this).formatCurrency({
+                symbol: '₡ '
+            });
+
+            $(this).parent().find('[type=hidden]').val( $(this).asNumber() );
+
+            inputLength = inputElem.value.length - inputLength;
+            caretPos += inputLength;
+
+            if( caretPos > inputElem.value.indexOf('.') ){
+                caretPos++;
+            }
+
+            setCaretPosition(inputElem, caretPos );
+
+        });
+
+        function setCaretPosition(elem, caretPos) {
+            
+            if(elem.createTextRange) {
+                var range = elem.createTextRange();
+                range.move('character', caretPos);
+                range.select();
+            }
+            else {
+                if(elem.selectionStart) {
+                    elem.focus();
+                    elem.setSelectionRange(caretPos, caretPos);
+                }
+                else
+                    elem.focus();
+            }
+        }
+
+        function doGetCaretPosition (oField) {
+
+            // Initialize
+            var iCaretPos = 0;
+
+            // IE Support
+            if (document.selection) {
+
+                // Set focus on the element
+                oField.focus();
+
+                // To get cursor position, get empty selection range
+                var oSel = document.selection.createRange();
+
+                // Move selection start to 0 position
+                oSel.moveStart('character', -oField.value.length);
+
+                // The caret position is selection length
+                iCaretPos = oSel.text.length;
+            }
+
+            // Firefox support
+            else if (oField.selectionStart || oField.selectionStart == '0')
+                iCaretPos = oField.selectionStart;
+
+            // Return results
+            return iCaretPos;
+        }
     })();
 </script>
 

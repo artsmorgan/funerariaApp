@@ -63,7 +63,7 @@ if($contact_type == 'customer') {
                                 <div class="col-md-12">
                                         <div class="panel-body">
                                             <div class="row">
-                                                <div class="col-md-3">
+                                                <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('first_name'); ?></label>
                                                         <div class="col-sm-12">
@@ -72,11 +72,20 @@ if($contact_type == 'customer') {
                                                     </div>
                                                 </div>
                                                 <!-- col -->
-                                                <div class="col-md-3">
+                                                <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('last_name'); ?></label>
+                                                        <label for="field-1" class="control-label col-sm-12">Primer apellido</label>
                                                         <div class="col-sm-12">
                                                             <input type="text" class="form-control" name="last_name" disabled  value="<?php echo $row['last_name']; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="control-label col-sm-12">Segundo apellido</label>
+                                                        <div class="col-sm-12">
+                                                            <input type="text" class="form-control" name="last_name2" disabled  value="<?php echo $row['last_name2']; ?>" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -181,9 +190,9 @@ if($contact_type == 'customer') {
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('amount'); ?></label>
+                                                                <label for="field-1" class="col-sm-12 control-label">Monto del contrato</label>
                                                                 <div class="col-sm-12">
-                                                                    <input type="number" name="amount" disabled class="form-control" value="<?php echo $row['amount']; ?>">
+                                                                    <input type="text" class="form-control format-currency" disabled value="<?php echo $row['amount']; ?>">
                                                                 </div>
                                                             </div>
                                                             <!-- form-group -->
@@ -192,7 +201,7 @@ if($contact_type == 'customer') {
                                                             <div class="form-group">
                                                                 <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('balance_'); ?></label>
                                                                 <div class="col-sm-12">
-                                                                    <input type="number" name="balance" disabled class="form-control" value="<?php echo $row['balance']; ?>">
+                                                                    <input type="text" name="balance" disabled class="form-control format-currency" value="<?php echo $row['balance']; ?>">
                                                                 </div>
                                                             </div>
                                                             <!-- form-group -->
@@ -223,7 +232,7 @@ if($contact_type == 'customer') {
                                                     <div class="form-group">
                                                         <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('fee'); ?></label>
                                                         <div class="col-sm-12">
-                                                            <input type="number" class="form-control" name="fee" disabled  value="<?php echo $row['fee']; ?>" />
+                                                            <input type="text" class="form-control format-currency" name="fee" disabled  value="<?php echo $row['fee']; ?>" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -231,10 +240,13 @@ if($contact_type == 'customer') {
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('month_payment'); ?></label>
-                                                        <div class="col-sm-12">
+                                                        <div class="col-sm-6">
                                                             <select  class="selectboxit" name="month_payment" disabled >
                                                                 <?php echo '<option value="' . $row['month_payment'] . '" selected >' . $row['month_payment'] . '</option>'; ?>
                                                             </select>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <input type="number" class="form-control" name="year_payment" disabled value="<?php echo $row['year_payment']; ?>"  />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -274,7 +286,7 @@ if($contact_type == 'customer') {
                                                     <div class="form-group">
                                                         <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('advance_payment'); ?></label>
                                                         <div class="col-sm-12">
-                                                            <input type="number" class="form-control" name="advance_payment" disabled value="<?php echo $row['advance_payment']; ?>" />
+                                                            <input type="text" class="form-control format-currency" name="advance_payment" disabled value="<?php echo $row['advance_payment']; ?>" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -401,6 +413,10 @@ if($contact_type == 'customer') {
 
         $(".dataTables_wrapper select").select2({
             minimumResultsForSearch: -1
+        });
+
+        $('.format-currency').formatCurrency({
+            symbol: '₡ '
         });
     });
 		

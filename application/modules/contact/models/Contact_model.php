@@ -13,6 +13,7 @@ class Contact_model extends CI_Model
     function create_contact() {
         $data['first_name']     = $this->input->post('first_name');
         $data['last_name']      = $this->input->post('last_name');
+        $data['last_name2']      = $this->input->post('last_name2');
         $data['email']          = $this->input->post('email');
         $data['id_card']          = $this->input->post('id_card');
         $data['province']          = $this->input->post('province');
@@ -32,6 +33,7 @@ class Contact_model extends CI_Model
         $data['fee']        = $this->input->post('fee');
         $data['incorporation_date'] = $this->input->post('incorporation_date');
         $data['month_payment']        = $this->input->post('month_payment');
+        $data['year_payment']        = $this->input->post('year_payment');
         $data['category']        = $this->input->post('category');
         $data['advance_payment']        = $this->input->post('advance_payment');
 
@@ -41,6 +43,7 @@ class Contact_model extends CI_Model
     function update_contact($contact_id  = '') {
         $data['first_name']     = $this->input->post('first_name');
         $data['last_name']      = $this->input->post('last_name');
+        $data['last_name2']      = $this->input->post('last_name2');
         $data['email']          = $this->input->post('email');
         $data['id_card']          = $this->input->post('id_card');
         $data['province']          = $this->input->post('province');
@@ -60,6 +63,7 @@ class Contact_model extends CI_Model
         $data['incorporation_date'] = $this->input->post('incorporation_date');
         $data['fee']        = $this->input->post('fee');
         $data['month_payment']        = $this->input->post('month_payment');
+        $data['year_payment']        = $this->input->post('year_payment');
         $data['category']        = $this->input->post('category');
         $data['advance_payment']        = $this->input->post('advance_payment');
 

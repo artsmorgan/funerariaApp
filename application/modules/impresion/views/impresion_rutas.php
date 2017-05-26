@@ -102,7 +102,7 @@ if(empty($services)){ ?>
 <script type="text/javascript">
     jQuery(document).ready(function($)
     {   
-        var base_url = "<?php echo base_url() . 'index.php/';?>";
+        var site_url = "<?php echo site_url() . '/';?>";
         var datatable = $("#table_export").dataTable({
             "sPaginationType"   : "bootstrap"
         });
@@ -137,7 +137,7 @@ if(empty($services)){ ?>
             if(!route) return;
 
             $.ajax({
-                url: base_url + 'impresion/recibos/ruta/' + route
+                url: site_url + 'impresion/recibos/ruta/' + route
             }).
             done(function(response){
                 $print_container.html(response);
@@ -149,7 +149,7 @@ if(empty($services)){ ?>
                     
                     window.print();
                     $.ajax({
-                        url: base_url + 'impresion/actualizar_fecha_impresion_ruta/' + route
+                        url: site_url + 'impresion/actualizar_fecha_impresion_ruta/' + route
                     }).
                     done(function(){
                         var newLocaion = window.location.href.replace( window.location.search, '' );

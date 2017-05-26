@@ -192,9 +192,9 @@ $row = $this->db->query( $sql, array( $service_id ) )->row_array();
                                                 <!-- col -->
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('amount_'); ?></label>
+                                                        <label for="field-1" class="col-sm-12 control-label">Monto del contrato</label>
                                                         <div class="col-sm-12">
-                                                            <input type="number" name="amount" class="form-control" disabled value="<?php echo $row['amount']; ?>">
+                                                            <input type="text" name="amount" class="form-control format-currency" disabled value="<?php echo $row['amount']; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -203,7 +203,7 @@ $row = $this->db->query( $sql, array( $service_id ) )->row_array();
                                                     <div class="form-group">
                                                         <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('balance_'); ?></label>
                                                         <div class="col-sm-12">
-                                                            <input type="number" name="balance" class="form-control" disabled value="<?php echo $row['balance']; ?>">
+                                                            <input type="text" name="balance" class="form-control format-currency" disabled value="<?php echo $row['balance']; ?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -612,6 +612,10 @@ $row = $this->db->query( $sql, array( $service_id ) )->row_array();
 
         $(".dataTables_wrapper select").select2({
             minimumResultsForSearch: -1
+        });
+
+        $('.format-currency').formatCurrency({
+            symbol: '₡ '
         });
     });
 		

@@ -37,7 +37,7 @@ if(empty($contacts)){ ?>
             foreach ($contacts as $row): ?>
                 <tr>
                     <td><?php echo $count++ ?></td>
-                    <td><?php echo $row['first_name'] . ' ' . $row['last_name'] ; ?></td>
+                    <td><?php echo $row['first_name'] . ' ' . $row['last_name'] . ' ' . $row['last_name2']; ?></td>
                     <td><?php echo $row['id_card']; ?></td>
                     <!-- <td><?php echo $row['email']; ?></td> -->
                     <td>-</td>

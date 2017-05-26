@@ -13,7 +13,7 @@
                 <?php echo form_open(site_url('contact/contacts/create'), array('class' => 'form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('first_name'); ?></label>
                             <div class="col-sm-12">
@@ -22,11 +22,20 @@
                         </div>
                     </div>
                     <!-- col -->
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('last_name'); ?></label>
+                            <label for="field-1" class="control-label col-sm-12">Primer apellido</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" name="last_name"  />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Segundo apellido</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" name="last_name2"  />
                             </div>
                         </div>
                     </div>
@@ -125,7 +134,40 @@
                                 <div class="form-group">
                                     <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('route'); ?></label>
                                     <div class="col-sm-12">
-                                        <input type="number" name="route" class="form-control" >
+                                        
+                                        <select class="selectboxit" name="route">
+                                            <option value="">Seleccione ruta</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                            <option value="18">18</option>
+                                            <option value="19">19</option>
+                                            <option value="20">20</option>
+                                            <option value="21">21</option>
+                                            <option value="22">22</option>
+                                            <option value="23">23</option>
+                                            <option value="24">24</option>
+                                            <option value="25">25</option>
+                                            <option value="26">26</option>
+                                            <option value="27">27</option>
+                                            <option value="28">28</option>
+                                            <option value="29">29</option>
+                                            <option value="30">30</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -135,9 +177,10 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('amount'); ?></label>
+                                    <label for="field-1" class="col-sm-12 control-label">Monto del contrato</label>
                                     <div class="col-sm-12">
-                                        <input type="number" name="amount" class="form-control">
+                                        <input type="text" class="form-control format-currency" value="">
+                                        <input type="hidden" name="amount" value="">
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -146,7 +189,8 @@
                                 <div class="form-group">
                                     <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('balance_'); ?></label>
                                     <div class="col-sm-12">
-                                        <input type="number" name="balance" class="form-control">
+                                        <input type="text" class="form-control format-currency" value="">
+                                        <input type="hidden" name="balance" value="">
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -162,13 +206,13 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('localization'); ?></label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="localization1"  />
+                                <input type="text" data-type="number" maxlength="2" class="form-control" name="localization1"  />
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="localization2"  />
+                                <input type="text" data-type="number" maxlength="3" class="form-control" name="localization2"  />
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="localization3"  />
+                                <input type="text" data-type="number" maxlength="2" class="form-control" name="localization3"  />
                             </div>
                         </div>
                     </div>
@@ -177,7 +221,8 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('fee'); ?></label>
                             <div class="col-sm-12">
-                                <input type="number" class="form-control" name="fee"  />
+                                <input type="text" class="form-control format-currency"  value="" />
+                                <input type="hidden" name="fee" value="">
                             </div>
                         </div>
                     </div>
@@ -185,7 +230,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('month_payment'); ?></label>
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                                 <select  class="selectboxit" name="month_payment" >
                                     <option value="Enero">Enero</option>
                                     <option value="Febrero">Febrero</option>
@@ -200,6 +245,9 @@
                                     <option value="Noviembre">Noviembre</option>
                                     <option value="Diciembre">Diciembre</option>
                                 </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" name="year_payment" value=""  />
                             </div>
                         </div>
                     </div>
@@ -232,7 +280,8 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('advance_payment'); ?></label>
                             <div class="col-sm-12">
-                                <input type="number" class="form-control" name="advance_payment"  />
+                                <input type="text" class="form-control format-currency"  value="" />
+                                <input type="hidden" name="advance_payment" value="">
                             </div>
                         </div>
                     </div>
@@ -271,6 +320,13 @@
 
             rating = current == -1 ? 0 : starsCount - current;
 
+        $('[data-type=number]').on('keydown', function(e){
+            
+            var str = String.fromCharCode(e.which);
+
+            return /\d/.test(str);
+        });
+
         $('.rating').on('mouseenter', function(){
             $('.rating .active').removeClass('active');
         });
@@ -295,6 +351,99 @@
         $('.datepicker').datepicker({
             format: 'yyyy-mm-dd'
         });
+
+        $('.format-currency').on('keypress', function(e){
+            
+            var str = String.fromCharCode(e.which);
+
+            if( !/\d/.test(str) || str == '.'  ){
+                if( str == '.' ){
+                    var indexDot = $(this).val().indexOf(str);
+
+                    setCaretPosition($(this).get(0), indexDot + 1 );
+                
+                }
+                return false;
+            }
+        });
+
+        $('.format-currency').on('input', function(e){
+            var inputElem = $(this).get(0),
+                inputLength = inputElem.value.length, 
+                caretPos = doGetCaretPosition( inputElem ),
+                minLength = 6;
+
+            if( inputLength <  minLength){
+                inputLength = minLength;
+                caretPos += 2;
+            }
+
+            inputElem.value = inputElem.value.replace( /\.\d+/ , function(match){
+                return match.substr(0,3);
+            });
+
+            $(this).formatCurrency({
+                symbol: '₡ '
+            });
+
+            $(this).parent().find('[type=hidden]').val( $(this).asNumber() );
+
+            inputLength = inputElem.value.length - inputLength;
+            caretPos += inputLength;
+
+            if( caretPos > inputElem.value.indexOf('.') ){
+                caretPos++;
+            }
+
+            setCaretPosition(inputElem, caretPos );
+
+        });
+
+        function setCaretPosition(elem, caretPos) {
+            
+            if(elem.createTextRange) {
+                var range = elem.createTextRange();
+                range.move('character', caretPos);
+                range.select();
+            }
+            else {
+                if(elem.selectionStart) {
+                    elem.focus();
+                    elem.setSelectionRange(caretPos, caretPos);
+                }
+                else
+                    elem.focus();
+            }
+        }
+
+        function doGetCaretPosition (oField) {
+
+            // Initialize
+            var iCaretPos = 0;
+
+            // IE Support
+            if (document.selection) {
+
+                // Set focus on the element
+                oField.focus();
+
+                // To get cursor position, get empty selection range
+                var oSel = document.selection.createRange();
+
+                // Move selection start to 0 position
+                oSel.moveStart('character', -oField.value.length);
+
+                // The caret position is selection length
+                iCaretPos = oSel.text.length;
+            }
+
+            // Firefox support
+            else if (oField.selectionStart || oField.selectionStart == '0')
+                iCaretPos = oField.selectionStart;
+
+            // Return results
+            return iCaretPos;
+        }
 
         function bindEvents(){
             var $provincias = $('#provincias')
