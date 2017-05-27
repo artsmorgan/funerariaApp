@@ -316,8 +316,7 @@
         }
 
         var starsCount = $('.rating span').length,
-            current = $('.rating .active').index();
-
+            current = $('.rating .active').index(),
             rating = current == -1 ? 0 : starsCount - current;
 
         $('[data-type=number]').on('keydown', function(e){

@@ -345,8 +345,7 @@ foreach($edit_data as $row) : ?>
         }
 
         var starsCount = $('.rating span').length,
-            current = $('.rating .active').index();
-
+            current = $('.rating .active').index(),
             rating = current == -1 ? 0 : starsCount - current;
 
         $('.rating').on('mouseenter', function(){
@@ -358,6 +357,7 @@ foreach($edit_data as $row) : ?>
             var str = String.fromCharCode(e.which);
 
             return
+        });
 
         $('.rating').on('mouseleave', function(){
             if($('.rating .active').length){
