@@ -91,6 +91,10 @@ form.services .row:nth-child(even){
         page-break-before: always;
     }
 
+    .modal{
+        display: none!important;
+    }
+
     .main-content > *, .sidebar-menu{
         display: none;
     }
