@@ -106,4 +106,24 @@ class Admin_model extends CI_Model
         $this->db->where('note_id', $note_id);
         $this->db->delete('note');
     }
+
+   function update_admin($user_id) {
+        
+        $password = sha1($this->input->post('first_name'));
+
+        $data['first_name'] = $this->input->post('first_name');
+        $data['last_name']  = $this->input->post('last_name');
+        $data['email']      = $this->input->post('email');
+        $data['password']   = $password;
+        $data['role']       = $this->input->post('role');
+
+        $this->db->where('user_id', $user_id);
+        $this->db->update('user', $data);
+    }
+
+   function delete_admin() {
+
+        $this->db->where('user_id', $this->input->post('user_id'));
+        $this->db->delete('user');
+    }
 }

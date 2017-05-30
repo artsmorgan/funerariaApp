@@ -257,6 +257,21 @@ class Admin extends CI_Controller {
             $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly'));
             redirect(site_url('admin/admins'));
         }
+
+        if ($param1 == 'edit') {
+
+            $this->admin_model->update_admin($param2);
+            $this->session->set_flashdata('flash_message', 'Usuario Actualizado con exito');
+            redirect(site_url('admin/admins'));
+        }
+
+        if ($param1 == 'delete') {
+            $this->admin_model->delete_admin();
+            $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly'));
+            //redirect(site_url('admin/admins'));
+            echo 'OK';
+            return;
+        }
         
         $page_data['page_name']     = 'admin';
         $page_data['page_title']    = lang_key('admin_list');

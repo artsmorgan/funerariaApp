@@ -17,20 +17,27 @@ if(empty($admins)) { ?>
         <thead>
             <tr>
                 <th>#</th>
-                <th><?php echo lang_key('name'); ?></th>
-                <th><?php echo lang_key('email'); ?></th>
-                <th>Role</th>
+                <th><?php echo lang_key('name'); ?> Completo</th>
+                <th>Usuario</th>
+                <th>Rol</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <?php
             $count = 1;
             foreach ($admins as $row): ?>
+                <?php $userId = $row['user_id']; ?>
                 <tr>
                     <td><?php echo $count++ ?></td>
                     <td><?php echo $row['first_name'] . ' ' . $row['last_name'] ; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['role']; ?></td>
+                    <td>
+                        <a href="#" class="btn btn-primary" 
+                            onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/admin/admin_edit?user='.$userId.' '); ?>')" >Editar</a>
+                        <a href="#" class="btn btn-danger delete" data-uid="<?php echo $userId ?>">Eliminar</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -50,6 +57,23 @@ if(empty($admins)) { ?>
         $(".dataTables_wrapper select").select2({
             minimumResultsForSearch: -1
         });
+
+
+        $('.delete').on('click', function(e){
+            var c = confirm("Esta seguro que desea eliminar este usuario?");
+            if(c){
+                var uid = $(this).data('uid');
+                // console.log('uid',uid);
+                // site_url('admin/admins/update_admin/'.$uid
+                <?php $url = site_url('admin/admins/delete/');  ?>
+                $.post( "<?php echo $url ?>/",{"user_id":uid}, function( data ) {
+                  if(data=="OK"){
+                   location.reload();
+                  }
+                });
+            }
+            
+        })
     });
 		
 </script>

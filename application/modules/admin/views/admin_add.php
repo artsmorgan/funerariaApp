@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary" data-collapsed="0">
@@ -52,8 +51,8 @@
                     <div class="col-sm-5">
                         <select name="role">
                             <option value="admin">Admin</option>
-                            <option value="web">Web Client</option>
-                            <option value="sales">Sales</option>
+                            <option value="web">General</option>
+                            <option value="sales">Agente de Ventas</option>
                         </select>
                     </div>
                 </div>

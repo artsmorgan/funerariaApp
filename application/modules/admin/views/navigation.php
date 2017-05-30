@@ -52,13 +52,13 @@
                         <span><?php echo lang_key('customers'); ?></span>
                     </a>
                 </li>
-                <li class="<?php if($page_name == 'contact' && $contact_type == 'supplier'
+                <!-- <li class="<?php if($page_name == 'contact' && $contact_type == 'supplier'
                     || $page_name == 'contact_details' && $contact_type == 'supplier') echo 'active'; ?>">
                     <a href="<?php echo site_url('contact/contacts/supplier'); ?>">
                         <i class="entypo-dot"></i>
                         <span><?php echo lang_key('suppliers'); ?></span>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </li>
         
@@ -206,7 +206,7 @@
             </ul> -->
         </li>
        <?php if( $this->session->userdata('role') == 'admin'){ ?>
-        <li class="<?php if($page_name == 'product' || $page_name == 'product_category')
+        <!-- <li class="<?php if($page_name == 'product' || $page_name == 'product_category')
             echo 'opened active'; ?>">
             <a href="#">
                 <i class="entypo-database"></i> 
@@ -255,7 +255,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> -->
         <?php } ?>
         <!-- <li class="<?php if($page_name == 'sale' || $page_name == 'sale_add'
             || $page_name == 'sale_edit' || $page_name == 'sale_invoice') echo 'opened active'; ?>">
@@ -308,7 +308,7 @@
             </ul>
         </li> -->
         
-        <li class="<?php if($page_name == 'account_statement' || $page_name == 'income_report'
+       <!--  <li class="<?php if($page_name == 'account_statement' || $page_name == 'income_report'
             || $page_name == 'expense_report' || $page_name == 'income_expense_comparison') echo 'opened active'; ?>">
             <a href="#">
                 <i class="entypo-chart-bar"></i>
@@ -346,7 +346,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> -->
         
         <li class="<?php if($page_name == 'note') echo 'active'; ?>">
             <a href="<?php echo site_url('admin/note'); ?>">
@@ -363,7 +363,7 @@
         </li>
         
         <!-- SETTINGS -->
-        <li class="<?php if ($page_name == 'email_settings' || $page_name == 'system_settings'
+        <!-- <li class="<?php if ($page_name == 'email_settings' || $page_name == 'system_settings'
             || $page_name == 'manage_language'|| $page_name == 'vat') echo 'opened active';?>">
             <a href="#">
                 <i class="entypo-tools"></i>
@@ -395,7 +395,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> -->
 <?php } ?>
         <!-- ACCOUNT -->
         <li class="<?php if ($page_name == 'manage_profile') echo 'active'; ?> ">

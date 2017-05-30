@@ -36,7 +36,7 @@ if(!empty($purchases))
                 <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
                 <div class="num" data-start="0" data-end="<?php echo $this->db->get('user')->num_rows(); ?>"
                     data-duration="1500" data-delay="0">0</div>
-                <h3><?php echo lang_key('admins'); ?></h3>
+                <h3>Sistema de seguridad</h3>
             </div>
         </a>
     </div>
@@ -128,7 +128,7 @@ if(!empty($purchases))
             </div>
         </a>
     </div>-->
-
+<!-- 
     <div class="col-sm-3">
         <a href="#">
             <div class="tile-stats tile-white">
@@ -138,7 +138,7 @@ if(!empty($purchases))
             </div>
         </a>
     </div>
-
+ -->
     <div class="col-sm-3">
         <a href="#">
             <div class="tile-stats tile-white">
@@ -149,7 +149,7 @@ if(!empty($purchases))
         </a>
     </div>
 
-    <!--<div class="col-sm-3">
+    <div class="col-sm-3">
         <a href="#">
             <div class="tile-stats tile-white">
                 <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 40px;"></i></div>
@@ -157,7 +157,7 @@ if(!empty($purchases))
                 <h3>Reportes</h3>
             </div>
         </a>
-    </div>-->
+    </div>
 </div>
 
 
