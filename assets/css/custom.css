@@ -81,6 +81,12 @@ form.services .row:nth-child(even){
         margin: 12mm 8mm 12mm 8mm;  
     } 
 
+    html,body{
+        height: 100%;
+        margin: 0px;
+        padding: 0;
+    }
+
     .page_print{
         page-break-before: always;
     }
@@ -105,5 +111,24 @@ form.services .row:nth-child(even){
     .rating > span{
       width: 1em;
       font-size: 1.8em;
+    }
+
+    .envelope{
+        position: relative;
+        height: 100%;
+        display: block;
+    }
+
+    .envelope .page_print{
+        position: absolute;
+        bottom: 0;
+        border-left: 1px solid #000;
+        padding-left: 10px;
+    }
+
+    .envelope span{
+        display: inline-block;
+        vertical-align: top;
+        padding-left: 4px;
     }
 }

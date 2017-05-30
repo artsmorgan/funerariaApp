@@ -1,7 +1,7 @@
 <div>
 <div class="row">
     <div class="col-sm-3">
-        <a href="<?php echo base_url() . 'index.php/impresion/impresiones/rutas'; ?>">
+        <a href="<?php echo site_url() . '/impresion/impresiones/rutas'; ?>">
             <div class="tile-stats tile-white">
                 <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
                 <div class="num" style="color:#fff">-</div>
@@ -42,7 +42,7 @@
 </div>
 <div class="row">
     <div class="col-sm-3">
-        <a href="#">
+        <a href="<?php echo site_url() . "/impresion/impresiones/sobres" ; ?>">
             <div class="tile-stats tile-white">
                 <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
                 <div class="num" style="color:#fff">-</div>
@@ -52,7 +52,7 @@
     </div>
 
     <div class="col-sm-3">
-        <a href="#">
+        <a href="<?php echo site_url() . '/impresion/impresiones/tarjetas-cobrador'; ?>">
             <div class="tile-stats tile-white">
                 <div class="icon"><i class="fa fa-chevron-circle-right" style="padding-bottom: 25px;"></i></div>
                 <div class="num" style="color:#fff">-</div>
@@ -62,7 +62,7 @@
     </div>
 
     <div class="col-sm-3">
-        <a href="#">
+        <a href="<?php echo site_url() . '/impresion/impresiones/tarjetas-posteo'; ?>">
             <div class="tile-stats tile-white">
                 <div class="icon"><i class="fa fa-chevron-circle-right"></i></div>
                 <div class="num" style="color:#fff">-</div>

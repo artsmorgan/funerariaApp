@@ -144,7 +144,7 @@ foreach($edit_data as $row) : ?>
                                 <div class="form-group">
                                     <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('route'); ?></label>
                                     <div class="col-sm-12">
-                                        <select  class="selectboxit" name="month_payment" >
+                                        <select  class="selectboxit" name="route" >
                                             <?php 
                                                 $routes = array(
                                                     '1',

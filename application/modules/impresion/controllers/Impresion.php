@@ -29,7 +29,7 @@ class Impresion extends CI_Controller {
 
     function impresiones( $param1 = '', $param2 = '', $param3 = '' ){
         // echo $param1;
-        if( $param1 == NULL || !preg_match( "/^(?:index|impresiones|rutas|recibo-dinero|rutas-adelantados)$/i", $param1 ) ){
+        if( $param1 == NULL || !preg_match( "/^(?:index|impresiones|rutas|recibo-dinero|rutas-adelantados|sobres|tarjetas-cobrador|tarjetas-posteo)$/i", $param1 ) ){
             redirect(site_url('admin'));
         }
 
@@ -42,17 +42,28 @@ class Impresion extends CI_Controller {
                 $this->load->view('admin/index', $page_data);
             break;
         
-            case 'update':
-                $service_type = $this->input->post('type');
-                $this->servicio_model->update_servicio($param2);
-                $this->session->set_flashdata('flash_message', lang_key('data_updated_successfuly'));
-                redirect(site_url('servicio/servicios/' . $service_type));
+            case 'sobres':
+                $page_data['page_type'] = 'Impresión sobres';
+                $page_data['module_type']   = 'impresion';
+                $page_data['page_name']     = 'impresion_sobres';
+                $page_data['page_title'] = 'Impresión sobres';
+                $this->load->view('admin/index', $page_data);
             break;
 
-            case 'delete':
-                $this->servicio_model->delete_servicio($param2);
-                $this->session->set_flashdata('flash_message', lang_key('data_deleted_successfuly'));
-                redirect(site_url('servicio/servicios/' . $param3));
+            case 'tarjetas-cobrador':
+                $page_data['page_type'] = 'Impresión tarjetas cobrador';
+                $page_data['module_type']   = 'impresion';
+                $page_data['page_name']     = 'impresion_tarjetas_cobrador';
+                $page_data['page_title'] = 'Impresión tarjetas cobrador';
+                $this->load->view('admin/index', $page_data);
+            break;
+
+            case 'tarjetas-posteo':
+                $page_data['page_type'] = 'Impresión tarjetas posteo';
+                $page_data['module_type']   = 'impresion';
+                $page_data['page_name']     = 'impresion_tarjetas_posteo';
+                $page_data['page_title'] = 'Impresión tarjetas posteo';
+                $this->load->view('admin/index', $page_data);
             break;
 
             default:

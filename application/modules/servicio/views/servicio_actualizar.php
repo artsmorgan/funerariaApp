@@ -1,7 +1,7 @@
 <?php 
 $sql = "SELECT s.*, 
 c.contact_id AS client_id, CONCAT( c.first_name, c.last_name) AS client_name, c.id_card AS client_id_card, c.email AS client_email, c.phone AS client_phone, c.phone2 AS client_phone2, c.phone3 AS client_phone3, 
-u.user_id AS seller_id, CONCAT( u.first_name, u.last_name ) AS seller_name
+u.user_id AS seller_id, CONCAT( u.first_name, ' ', u.last_name ) AS seller_name
 FROM bk_service AS s 
 INNER JOIN bk_contact AS c ON c.contact_id = s.contact_id 
 INNER JOIN bk_user AS u ON s.user_id = u.user_id 

@@ -14,7 +14,7 @@ $clientlist = $this->db->get_where('contact')->result_array();
 ?>
 
 <?php
-$sql = "SELECT s.service_id, CONCAT(c.first_name, c.last_name) AS name, c.id_card, s.contract_id FROM bk_service AS s INNER JOIN bk_contact AS c ON c.contact_id = s.contact_id WHERE s.type = ?";
+$sql = "SELECT s.service_id, CONCAT(c.first_name, ' ', c.last_name, ' ', c.last_name2) AS name, c.id_card, s.contract_id FROM bk_service AS s INNER JOIN bk_contact AS c ON c.contact_id = s.contact_id WHERE s.type = ?";
 $services = $this->db->query( $sql, array( $service_type ) )->result_array();
 
 if(empty($services)){ ?>
