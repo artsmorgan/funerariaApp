@@ -50,6 +50,14 @@ class Impresion extends CI_Controller {
                 $this->load->view('admin/index', $page_data);
             break;
 
+            case 'recibo-dinero':
+                $page_data['page_type'] = 'Impresión recibo dinero';
+                $page_data['module_type']   = 'impresion';
+                $page_data['page_name']     = 'impresion_recibo_dinero';
+                $page_data['page_title'] = 'Impresión recibo dinero';
+                $this->load->view('admin/index', $page_data);
+            break;
+
             case 'tarjetas-cobrador':
                 $page_data['page_type'] = 'Impresión tarjetas cobrador';
                 $page_data['module_type']   = 'impresion';
@@ -75,6 +83,10 @@ class Impresion extends CI_Controller {
                 $this->load->view('admin/index', $page_data);
 
         }
+    }
+
+    function recibo_dinero( $param1 = '' ){
+
     }
 
     function recibos($param1 = '', $param2 = '', $param3 = ''){
