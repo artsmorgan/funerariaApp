@@ -28,10 +28,12 @@ if(empty($services)){ ?>
     <table class="table table-bordered responsive datatable" id="table_export">
         <thead>
             <tr>
-                <th>#</th>
+                <th>#Id</th>
+                <th>Contrato</th>
                 <th>Nombre</th>
                 <th>Cédula</th>
-                <th>Contrato</th>
+                
+                <th>Historial de Pagos</th>
                 <th><?php echo lang_key('options'); ?></th>
             </tr>
         </thead>
@@ -41,9 +43,10 @@ if(empty($services)){ ?>
             foreach ($services as $row): ?>
                 <tr>
                     <td><?php echo $count++ ?></td>
+                    <td><?php echo $row['contract_id']; ?></td>
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['id_card']; ?></td>
-                    <td><?php echo $row['contract_id']; ?></td>
+                    <td> <a href="/servicios/pagos" class="btn btn-primary">Ver Pagos</a> </td>                    
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">

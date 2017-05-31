@@ -46,24 +46,25 @@ class Contact extends CI_Controller {
     // MANAGE CONTACTS
     function contacts($param1 = '', $param2 = '', $param3 = '')
     {
-        if ($param1 == 'create') {
+        //if ($param1 == 'create') {
             $contact_type = $this->input->post('type');
             $this->contact_model->create_contact();
             $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly'));
-            redirect(site_url('contact/contacts/' . $contact_type));
+            //redirect(site_url('contact/contacts/' . $contact_type));
+            redirect(site_url('contact/contacts/'));
         }
         
         if ($param1 == 'update') {
             $contact_type = $this->input->post('type');
             $this->contact_model->update_contact($param2);
             $this->session->set_flashdata('flash_message', lang_key('data_updated_successfuly'));
-            redirect(site_url('contact/contacts/' . $contact_type));
+            redirect(site_url('contact/contacts/'));
         }
         
         if ($param1 == 'delete') {
             $this->contact_model->delete_contact($param2);
             $this->session->set_flashdata('flash_message', lang_key('data_deleted_successfuly'));
-            redirect(site_url('contact/contacts/' . $param3));
+            redirect(site_url('contact/contacts/'));
         }
         
         $page_data['contact_type']  = $param1;
