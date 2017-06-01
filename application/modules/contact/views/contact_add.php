@@ -123,9 +123,8 @@
                                 <div class="form-group">
                                     <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
                                     <div class="col-sm-12">
-                                        <select name="agent" class="selectboxit" >
-                                            <option value="2">uno</option>
-                                        </select>
+                                        <input type="text" class="form-control" id="seller"   />
+                                        <input type="hidden" id="seller_id" name="seller_id"  />
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -314,6 +313,24 @@
         else{
            bindEvents();
         }
+
+        $('#seller').on('click input', function(){
+            showModal('#vendedoresModal');
+        });
+
+         $('.add-vendedor').off('click');
+
+        $('.add-vendedor').on('click', function(e){
+            e.preventDefault();
+            var name = $(this).data('username');
+            var id =  $(this).data('id');
+            
+            $('#seller').val(name);
+            $('#seller_id').val(id);
+
+            $('#vendedoresModal').modal('hide');
+
+        });
 
         var starsCount = $('.rating span').length,
             current = $('.rating .active').index(),

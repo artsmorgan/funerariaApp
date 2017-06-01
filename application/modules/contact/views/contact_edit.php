@@ -1,5 +1,6 @@
 <?php
-$edit_data = $this->db->get_where('contact', array('contact_id' => $param3))->result_array();
+$sql = "select c.*, CONCAT( u.first_name, ' ', u.last_name ) AS seller_name FROM bk_contact AS c LEFT JOIN bk_user AS u ON c.user_id = u.user_id WHERE c.contact_id = ?";
+$edit_data = $this->db->query( $sql, array( $param3 ) )->result_array();
 foreach($edit_data as $row) : ?>
 <div class="row">
     <div class="col-md-12">
@@ -133,9 +134,8 @@ foreach($edit_data as $row) : ?>
                                 <div class="form-group">
                                     <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
                                     <div class="col-sm-12">
-                                        <select name="agent" class="selectboxit" >
-                                            <option value="2">uno</option>
-                                        </select>
+                                        <input type="text" class="form-control" id="seller"  value="<?php echo $row['seller_name']; ?>" />
+                                        <input type="hidden" id="seller_id" name="seller_id" value="<?php echo $row['user_id']; ?>" />
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -343,6 +343,24 @@ foreach($edit_data as $row) : ?>
         else{
            bindEvents();
         }
+
+        $('#seller').on('click input', function(){
+            showModal('#vendedoresModal');
+        });
+
+         $('.add-vendedor').off('click');
+
+        $('.add-vendedor').on('click', function(e){
+            e.preventDefault();
+            var name = $(this).data('username');
+            var id =  $(this).data('id');
+            
+            $('#seller').val(name);
+            $('#seller_id').val(id);
+
+            $('#vendedoresModal').modal('hide');
+
+        });
 
         var starsCount = $('.rating span').length,
             current = $('.rating .active').index(),

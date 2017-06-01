@@ -23,7 +23,7 @@ class Contact_model extends CI_Model
         $data['phone2']          = $this->input->post('phone2');
         $data['phone3']          = $this->input->post('phone3');
         $data['address']        = $this->input->post('address');
-        $data['user_id']        = $this->input->post('agent');
+        $data['user_id']        = $this->input->post('seller_id');
         $data['route']        = $this->input->post('route');
         $data['amount']        = $this->input->post('amount');
         $data['balance']        = $this->input->post('balance');
@@ -53,7 +53,7 @@ class Contact_model extends CI_Model
         $data['phone2']          = $this->input->post('phone2');
         $data['phone3']          = $this->input->post('phone3');
         $data['address']        = $this->input->post('address');
-        $data['user_id']        = $this->input->post('agent');
+        $data['user_id']        = $this->input->post('seller_id');
         $data['route']        = $this->input->post('route');
         $data['amount']        = $this->input->post('amount');
         $data['balance']        = $this->input->post('balance');
