@@ -79,11 +79,29 @@ $row = $this->db->query( $sql, array( $service_id ) )->row_array();
                                             <!-- first row -->
 
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('deceased'); ?></label>
+                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('deceased'); ?> nombre</label>
                                                         <div class="col-sm-12">
-                                                            <input type="text" class="form-control" name="deceased_name" disabled value="<?php echo $row['deceased_name']; ?>" />
+                                                            <input type="text" disabled class="form-control" name="deceased_first_name" value="<?php echo $row['deceased_first_name']; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="control-label col-sm-12">Primer apellido</label>
+                                                        <div class="col-sm-12">
+                                                            <input type="text" disabled class="form-control" name="deceased_last_name1" value="<?php echo $row['deceased_last_name1']; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label for="field-1" class="control-label col-sm-12">Segundo apellido</label>
+                                                        <div class="col-sm-12">
+                                                            <input type="text" disabled class="form-control" name="deceased_last_name2" value="<?php echo $row['deceased_last_name2']; ?>" />
                                                         </div>
                                                     </div>
                                                 </div>

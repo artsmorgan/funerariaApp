@@ -62,11 +62,29 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                 <!-- first row -->
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-2">
                         <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('deceased'); ?></label>
+                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('deceased'); ?> nombre</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="deceased_name" value="<?php echo $row['deceased_name']; ?>" />
+                                <input type="text" class="form-control" name="deceased_first_name" value="<?php echo $row['deceased_first_name']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Primer apellido</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" name="deceased_last_name1" value="<?php echo $row['deceased_last_name1']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Segundo apellido</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" name="deceased_last_name2" value="<?php echo $row['deceased_last_name2']; ?>" />
                             </div>
                         </div>
                     </div>
@@ -144,7 +162,35 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('relationship'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control col-sm-12" name="relationship" value="<?php echo $row['relationship']; ?>" />
+                                <select class="selectboxit" name="relationship">
+                                    <option value="">Seleccione</option>
+                                    <?php 
+                                        $options = array(
+                                            'Padre',
+                                            'Madre',
+                                            'Hijo',
+                                            'Hija',
+                                            'Nieto',
+                                            'Nieta',
+                                            'Abuela',
+                                            'Abuelo',
+                                            'Tío',
+                                            'Tía',
+                                            'Sobrino',
+                                            'Sobrina',
+                                            'Suegra',
+                                            'Suegro',
+                                            'Yerno',
+                                            'Nuera',
+                                            'Cuñado',
+                                            'Amigo',
+                                            'Otro',);
+                                    ?>
+
+                                    <?php foreach($options as $opt): ?>
+                                        <?php echo "<option value=\"$opt\" " . ($opt == $row['relationship'] ? 'selected' : ''  ) . ">$opt</option>"; ?>
+                                    <?php endforeach; ?>
+                                </select> 
                             </div>
                         </div>
                     </div>

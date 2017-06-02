@@ -49,11 +49,29 @@
                 <!-- first row -->
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-2">
                         <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('deceased'); ?></label>
+                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('deceased'); ?> nombre</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="deceased_name"  />
+                                <input type="text" class="form-control" name="deceased_first_name"  />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Primer apellido</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" name="deceased_last_name1" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Segundo apellido</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" name="deceased_last_name2"  />
                             </div>
                         </div>
                     </div>
@@ -131,7 +149,28 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('relationship'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control col-sm-12" name="relationship"  />
+                                <select class="selectboxit" name="relationship">
+                                    <option value="">Seleccione</option>
+                                    <option value="Padre">Padre</option>
+                                    <option value="Madre">Madre</option>
+                                    <option value="Hijo">Hijo</option>
+                                    <option value="Hija">Hija</option>
+                                    <option value="Nieto">Nieto</option>
+                                    <option value="Nieta">Nieta</option>
+                                    <option value="Abuela">Abuela</option>
+                                    <option value="Abuelo">Abuelo</option>
+                                    <option value="Tío">Tío</option>
+                                    <option value="Tía">Tía</option>
+                                    <option value="Sobrino">Sobrino</option>
+                                    <option value="Sobrina">Sobrina</option>
+                                    <option value="Suegra">Suegra</option>
+                                    <option value="Suegro">Suegro</option>
+                                    <option value="Yerno">Yerno</option>
+                                    <option value="Nuera">Nuera</option>
+                                    <option value="Cuñado">Cuñado</option>
+                                    <option value="Amigo">Amigo</option>
+                                    <option value="Otro">Otro</option>
+                                </select> 
                             </div>
                         </div>
                     </div>

@@ -14,7 +14,9 @@ class Servicio_model extends CI_Model
         $data['type'] = $this->input->post('type');
         $data['death_date'] = $this->input->post('death_date');
         $data['death_document'] = $this->input->post('death_document');
-        $data['deceased_name'] = $this->input->post('deceased_name');
+        $data['deceased_first_name'] = $this->input->post('deceased_first_name');
+        $data['deceased_last_name1'] = $this->input->post('deceased_last_name1');
+        $data['deceased_last_name2'] = $this->input->post('deceased_last_name2');
         $data['deceased_id_card'] = $this->input->post('deceased_id_card');
         $data['deceased_age'] = $this->input->post('deceased_age');
         $data['contact_id'] = $this->input->post('client_id');
@@ -65,7 +67,9 @@ class Servicio_model extends CI_Model
         $data['type'] = $this->input->post('type');
         $data['death_date'] = $this->input->post('death_date');
         $data['death_document'] = $this->input->post('death_document');
-        $data['deceased_name'] = $this->input->post('deceased_name');
+        $data['deceased_first_name'] = $this->input->post('deceased_first_name');
+        $data['deceased_last_name1'] = $this->input->post('deceased_last_name1');
+        $data['deceased_last_name2'] = $this->input->post('deceased_last_name2');
         $data['deceased_id_card'] = $this->input->post('deceased_id_card');
         $data['deceased_age'] = $this->input->post('deceased_age');
         $data['contact_id'] = $this->input->post('client_id');
