@@ -19,7 +19,7 @@ class Servicio_model extends CI_Model
         $data['deceased_last_name2'] = $this->input->post('deceased_last_name2');
         $data['deceased_id_card'] = $this->input->post('deceased_id_card');
         $data['deceased_age'] = $this->input->post('deceased_age');
-        $data['contact_id'] = $this->input->post('client_id');
+        $data['contact_id'] = $this->input->post('client_id') ? $this->input->post('client_id') : NULL;
         $data['relationship'] = $this->input->post('relationship');
         $data['payment_method'] = $this->input->post('payment_method');
         $data['contract_id'] = $this->input->post('contract_id');
@@ -59,6 +59,14 @@ class Servicio_model extends CI_Model
         $data['decoration_driver'] = $this->input->post('decoration_driver');
         $data['service_observations'] = $this->input->post('service_observations');
         $data['user_id'] = $this->input->post('seller_id');
+        $data['client_first_name'] = $this->input->post('client_first_name');
+        $data['client_last_name1'] = $this->input->post('client_last_name1');
+        $data['client_last_name2'] = $this->input->post('client_last_name2');
+        $data['client_id_card'] = $this->input->post('client_id_card');
+        $data['client_email'] = $this->input->post('client_email');
+        $data['client_phone'] = $this->input->post('client_phone');
+        $data['client_phone2'] = $this->input->post('client_phone2');
+        $data['client_phone3'] = $this->input->post('client_phone3');
 
         $this->db->insert('service', $data);
     }
@@ -72,7 +80,7 @@ class Servicio_model extends CI_Model
         $data['deceased_last_name2'] = $this->input->post('deceased_last_name2');
         $data['deceased_id_card'] = $this->input->post('deceased_id_card');
         $data['deceased_age'] = $this->input->post('deceased_age');
-        $data['contact_id'] = $this->input->post('client_id');
+        $data['contact_id'] = $this->input->post('client_id') ? $this->input->post('client_id') : NULL;
         $data['relationship'] = $this->input->post('relationship');
         $data['payment_method'] = $this->input->post('payment_method');
         $data['contract_id'] = $this->input->post('contract_id');
@@ -112,6 +120,14 @@ class Servicio_model extends CI_Model
         $data['decoration_driver'] = $this->input->post('decoration_driver');
         $data['service_observations'] = $this->input->post('service_observations');
         $data['user_id'] = $this->input->post('seller_id');
+        $data['client_first_name'] = $this->input->post('client_first_name');
+        $data['client_last_name1'] = $this->input->post('client_last_name1');
+        $data['client_last_name2'] = $this->input->post('client_last_name2');
+        $data['client_id_card'] = $this->input->post('client_id_card');
+        $data['client_email'] = $this->input->post('client_email');
+        $data['client_phone'] = $this->input->post('client_phone');
+        $data['client_phone2'] = $this->input->post('client_phone2');
+        $data['client_phone3'] = $this->input->post('client_phone3');
 
         $this->db->where('service_id', $service_id);
         $this->db->update('service', $data);
