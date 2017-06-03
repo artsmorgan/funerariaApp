@@ -14,7 +14,7 @@ $clientlist = $this->db->get_where('contact')->result_array();
 ?>
 
 <?php
-$sql = "SELECT s.service_id, CONCAT(c.first_name, ' ', c.last_name, ' ', c.last_name2) AS name, c.id_card, s.contract_id FROM bk_service AS s INNER JOIN bk_contact AS c ON c.contact_id = s.contact_id WHERE s.type = ?";
+$sql = "SELECT s.service_id, CONCAT(s.client_first_name, ' ', s.client_last_name1, ' ', s.client_last_name2) AS name, s.client_id_card, s.contract_id FROM bk_service AS s WHERE s.type = ?";
 $services = $this->db->query( $sql, array( $service_type ) )->result_array();
 
 if(empty($services)){ ?>
@@ -45,7 +45,7 @@ if(empty($services)){ ?>
                     <td><?php echo $count++ ?></td>
                     <td><?php echo $row['contract_id']; ?></td>
                     <td><?php echo $row['name']; ?></td>
-                    <td><?php echo $row['id_card']; ?></td>
+                    <td><?php echo $row['client_id_card']; ?></td>
                     <td> <a href="/servicios/pagos" class="btn btn-primary">Ver Pagos</a> </td>                    
                     <td>
                         <div class="btn-group">
@@ -125,7 +125,9 @@ if(empty($services)){ ?>
                 <td>
                     <a href="#" class="add-client btn btn-primary" 
                                     data-id="<?php  echo $clientlist[$i]['contact_id']; ?>" 
-                                    data-name="<?php  echo $clientlist[$i]['first_name'].' '. $clientlist[$i]['last_name'];  ?>"
+                                    data-client_first_name="<?php  echo $clientlist[$i]['first_name']; ?>"
+                                    data-client_last_name1="<?php  echo $clientlist[$i]['last_name']; ?>"
+                                    data-client_last_name2="<?php  echo $clientlist[$i]['last_name2']; ?>"
                                     data-email="<?php  echo $clientlist[$i]['email'];  ?>"
                                     data-id_card="<?php  echo $clientlist[$i]['id_card'];  ?>"
                                     data-phone="<?php  echo $clientlist[$i]['phone'];  ?>"

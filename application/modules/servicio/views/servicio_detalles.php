@@ -1,9 +1,6 @@
 <?php 
-$sql = "SELECT s.*, 
-c.contact_id AS client_id, CONCAT( c.first_name, c.last_name) AS client_name, c.id_card AS client_id_card, c.email AS client_email, c.phone AS client_phone, c.phone2 AS client_phone2, c.phone3 AS client_phone3, 
-u.user_id AS seller_id, CONCAT( u.first_name, ' ', u.last_name ) AS seller_name
+$sql = "SELECT s.*, u.user_id AS seller_id, CONCAT( u.first_name, ' ', u.last_name ) AS seller_name
 FROM bk_service AS s 
-INNER JOIN bk_contact AS c ON c.contact_id = s.contact_id 
 INNER JOIN bk_user AS u ON s.user_id = u.user_id 
 WHERE s.service_id = ?";
 
@@ -128,27 +125,42 @@ $row = $this->db->query( $sql, array( $service_id ) )->row_array();
                                             <!-- seccond row -->
 
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-1">
                                                     <div class="form-group">
-                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('contractor'); ?></label>
+                                                        <label for="field-1" class="control-label col-sm-12">Registrado</label>
                                                         <div class="col-sm-12">
-                                                            <input type="text" class="form-control client" id="client_name" disabled value="<?php echo $row['client_name']; ?>" />
-                                                            <input type="hidden" id="client_id" name="client_id"  value="<?php echo $row['client_id']; ?>" />
+                                                            <input type="checkbox" disabled  class="form-control" id="client_registered"  <?php echo ( $row['contact_id'] ? 'checked' : '' ); ?>/>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <!-- col -->
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
+                                                    <div class="form-group client">
+                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('contractor'); ?></label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" disabled  class="form-control" name="client_first_name" id="client_first_name" placeholder="Nombre" value="<?php echo $row['client_first_name']; ?>" />
+                                                            
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" disabled  class="form-control" name="client_last_name1" id="client_last_name1" placeholder="Primer apellido" value="<?php echo $row['client_last_name1']; ?>" />
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" disabled  class="form-control" name="client_last_name2" id="client_last_name2" placeholder="Segundo apellido" value="<?php echo $row['client_last_name2']; ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- col -->
+                                                <div class="col-md-5">
+                                                    <div class="form-group client">
                                                         <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('phone'); ?></label>
                                                         <div class="col-sm-4">
-                                                            <input type="text" class="form-control client" id="client_phone" disabled value="<?php echo $row['client_phone']; ?>"  />
+                                                            <input type="text"  disabled class="form-control" name="client_phone" id="client_phone" value="<?php echo $row['client_phone']; ?>"   />
                                                         </div>
                                                         <div class="col-sm-4">
-                                                            <input type="text" class="form-control client" id="client_phone2" disabled value="<?php echo $row['client_phone2']; ?>"  />
+                                                            <input type="text"  disabled class="form-control" name="client_phone2" id="client_phone2"  value="<?php echo $row['client_phone2']; ?>" />
                                                         </div>
                                                         <div class="col-sm-4">
-                                                            <input type="text" class="form-control client" id="client_phone3"  disabled value="<?php echo $row['client_phone3']; ?>" />
+                                                            <input type="text" disabled  class="form-control" name="client_phone3" id="client_phone3"  value="<?php echo $row['client_phone3']; ?>" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -158,19 +170,19 @@ $row = $this->db->query( $sql, array( $service_id ) )->row_array();
 
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
+                                                    <div class="form-group client">
                                                         <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('email'); ?></label>
                                                         <div class="col-sm-12">
-                                                            <input type="email" class="form-control client" id="client_email"  disabled value="<?php echo $row['client_email']; ?>"/>
+                                                            <input type="email" disabled  class="form-control" name="client_email" id="client_email"  value="<?php echo $row['client_email']; ?>" />
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <!-- col -->
                                                 <div class="col-md-3">
-                                                    <div class="form-group">
+                                                    <div class="form-group client">
                                                         <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('identification_card'); ?></label>
                                                         <div class="col-sm-12">
-                                                            <input type="text" class="form-control client" id="client_id_card" disabled value="<?php echo $row['client_id_card']; ?>" />
+                                                            <input type="text"  disabled class="form-control" name="client_id_card" id="client_id_card"  value="<?php echo $row['client_id_card']; ?>" />
                                                         </div>
                                                     </div>
                                                 </div>

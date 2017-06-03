@@ -1,9 +1,6 @@
 <?php 
-$sql = "SELECT s.*, 
-c.contact_id AS client_id, CONCAT( c.first_name, c.last_name) AS client_name, c.id_card AS client_id_card, c.email AS client_email, c.phone AS client_phone, c.phone2 AS client_phone2, c.phone3 AS client_phone3, 
-u.user_id AS seller_id, CONCAT( u.first_name, ' ', u.last_name ) AS seller_name
+$sql = "SELECT s.*, u.user_id AS seller_id, CONCAT( u.first_name, ' ', u.last_name ) AS seller_name
 FROM bk_service AS s 
-INNER JOIN bk_contact AS c ON c.contact_id = s.contact_id 
 INNER JOIN bk_user AS u ON s.user_id = u.user_id 
 WHERE s.service_id = ?";
 
@@ -111,27 +108,42 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                 <!-- seccond row -->
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-1">
                         <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('contractor'); ?></label>
+                            <label for="field-1" class="control-label col-sm-12">Registrado</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control client" id="client_name" value="<?php echo $row['client_name']; ?>" />
-                                <input type="hidden" id="client_id" name="client_id" value="<?php echo $row['client_id']; ?>" />
+                                <input type="checkbox" class="form-control" id="client_registered"  <?php echo ( $row['contact_id'] ? 'checked' : '' ); ?>/>
                             </div>
                         </div>
                     </div>
                     <!-- col -->
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group client">
+                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('contractor'); ?></label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="client_first_name" id="client_first_name" placeholder="Nombre" value="<?php echo $row['client_first_name']; ?>" />
+                                <input type="hidden" id="client_id" name="client_id"  value="<?php echo $row['contact_id']; ?>"  />
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="client_last_name1" id="client_last_name1" placeholder="Primer apellido" value="<?php echo $row['client_last_name1']; ?>" />
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="client_last_name2" id="client_last_name2" placeholder="Segundo apellido" value="<?php echo $row['client_last_name2']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-5">
+                        <div class="form-group client">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('phone'); ?></label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control client" id="client_phone" value="<?php echo $row['client_phone']; ?>"  />
+                                <input type="text" class="form-control" name="client_phone" id="client_phone" value="<?php echo $row['client_phone']; ?>"   />
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control client" id="client_phone2" value="<?php echo $row['client_phone2']; ?>"  />
+                                <input type="text" class="form-control" name="client_phone2" id="client_phone2"  value="<?php echo $row['client_phone2']; ?>" />
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control client" id="client_phone3"  value="<?php echo $row['client_phone3']; ?>" />
+                                <input type="text" class="form-control" name="client_phone3" id="client_phone3"  value="<?php echo $row['client_phone3']; ?>" />
                             </div>
                         </div>
                     </div>
@@ -141,19 +153,19 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group client">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('email'); ?></label>
                             <div class="col-sm-12">
-                                <input type="email" class="form-control client" id="client_email"  value="<?php echo $row['client_email']; ?>"/>
+                                <input type="email" class="form-control" name="client_email" id="client_email"  value="<?php echo $row['client_email']; ?>" />
                             </div>
                         </div>
                     </div>
                     <!-- col -->
                     <div class="col-md-3">
-                        <div class="form-group">
+                        <div class="form-group client">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('identification_card'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control client" id="client_id_card" value="<?php echo $row['client_id_card']; ?>" />
+                                <input type="text" class="form-control" name="client_id_card" id="client_id_card"  value="<?php echo $row['client_id_card']; ?>" />
                             </div>
                         </div>
                     </div>
@@ -972,8 +984,26 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 
         });
 
+        if ( $('#client_registered').is(':checked') ){
+            $('.client input').addClass('on');
+        }
 
-        $('.client').on('click input', function(){
+        $('#client_registered').on('click', function(){
+            if( $(this).is(':checked') ){
+                $('.client input').addClass('on');
+            }
+            else{
+                $('.client input').removeClass('on');
+            }
+
+            $('.client input').val('');
+        });
+
+        $('.client').on('keypress', '.on', function(){
+            return false;
+        });
+
+        $('.client').on('click', '.on', function(){
             showModal('#clienteModal');
         });
 
@@ -981,7 +1011,9 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 
         $('.add-client').on('click', function(e){
             e.preventDefault();
-            var name = $(this).data('name');
+            var client_first_name = $(this).data('client_first_name');
+            var client_last_name1 = $(this).data('client_last_name1');
+            var client_last_name2 = $(this).data('client_last_name2');
             var id =  $(this).data('id');
             var id_card = $(this).data('id_card');
             var email = $(this).data('email');
@@ -990,7 +1022,9 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
             var phone3 = $(this).data('phone3');
             
             $('#client_id').val(id);
-            $('#client_name').val(name);
+            $('#client_first_name').val(client_first_name);
+            $('#client_last_name1').val(client_last_name1);
+            $('#client_last_name2').val(client_last_name2);
             $('#client_id_card').val(id_card);
             $('#client_email').val(email);
             $('#client_phone').val(phone);
