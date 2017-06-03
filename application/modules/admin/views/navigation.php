@@ -77,7 +77,19 @@
                 <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
                     <a href="<?php echo site_url('/servicio/servicios/funerarios'); ?>">
                         <i class="entypo-dot"></i>
-                        <span>Servicios Funerarios</span>
+                        <span>Contratos</span>
+                    </a>
+                </li>
+                 <li class="<?php if($page_name == 'account_add') echo 'active'; ?>">
+                    <a href="<?php echo site_url('servicio/servicios/apartados'); ?>">
+                        <i class="entypo-dot"></i>
+                        <span>Apartados</span>
+                    </a>
+                </li>
+                 <li class="<?php if($page_name == 'account_add') echo 'active'; ?>">
+                    <a href="<?php echo site_url('servicio/servicios/apartados'); ?>">
+                        <i class="entypo-dot"></i>
+                        <span>Funecredito</span>
                     </a>
                 </li>
                 <li class="<?php if($page_name == 'account_payments') echo 'active'; ?>">
@@ -86,12 +98,7 @@
                         <span>Servicios Realizados</span>
                     </a>
                 </li>
-                <li class="<?php if($page_name == 'account_add') echo 'active'; ?>">
-                    <a href="<?php echo site_url('servicio/servicios/apartados'); ?>">
-                        <i class="entypo-dot"></i>
-                        <span>Apartados</span>
-                    </a>
-                </li>
+               
 
             </ul>
             <!-- <ul>
@@ -124,7 +131,7 @@
 
             </ul> -->
         </li>
-        <li class="<?php
+        <!-- <li class="<?php
                     if($page_name == 'account' || $page_name == 'account_add' ||
                         $page_name == 'bill_account' ||
                         $page_name == 'account_payments' ||
@@ -144,7 +151,7 @@
                 </li>
 
             </ul>
-        </li>
+        </li> -->
          <li class="<?php
                     if($page_name == 'account' || $page_name == 'account_add' ||
                         $page_name == 'bill_account' ||

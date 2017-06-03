@@ -29,7 +29,7 @@ class Impresion extends CI_Controller {
 
     function impresiones( $param1 = '', $param2 = '', $param3 = '' ){
         // echo $param1;
-        if( $param1 == NULL || !preg_match( "/^(?:index|impresiones|rutas|recibo-dinero|rutas-adelantados|sobres|tarjetas-cobrador|tarjetas-posteo)$/i", $param1 ) ){
+        if( $param1 == NULL || !preg_match( "/^(?:index|impresiones|rutas|recibo-dinero|recibo-dinero-apartado|recibo-dinero-contrato|recibo-dinero-funecredito|rutas-adelantados|sobres|tarjetas-cobrador|tarjetas-posteo|aplicar|revertir|historial)$/i", $param1 ) ){
             redirect(site_url('admin'));
         }
 
@@ -58,6 +58,30 @@ class Impresion extends CI_Controller {
                 $this->load->view('admin/index', $page_data);
             break;
 
+             case 'recibo-dinero-apartado':
+                $page_data['page_type'] = 'Impresión recibo dinero Apartado';
+                $page_data['module_type']   = 'impresion';
+                $page_data['page_name']     = 'impresion_recibo_apartado';
+                $page_data['page_title'] = 'Impresión recibo dinero';
+                $this->load->view('admin/index', $page_data);
+            break;
+
+             case 'recibo-dinero-contrato':
+                $page_data['page_type'] = 'Impresión recibo dinero Contrato';
+                $page_data['module_type']   = 'impresion';
+                $page_data['page_name']     = 'impresion_recibo_contrato';
+                $page_data['page_title'] = 'Impresión recibo dinero';
+                $this->load->view('admin/index', $page_data);
+            break;
+
+             case 'recibo-dinero-funecredito':
+                $page_data['page_type'] = 'Impresión recibo dinero Funecredito';
+                $page_data['module_type']   = 'impresion';
+                $page_data['page_name']     = 'impresion_recibo_funecredito';
+                $page_data['page_title'] = 'Impresión recibo dinero';
+                $this->load->view('admin/index', $page_data);
+            break;
+
             case 'tarjetas-cobrador':
                 $page_data['page_type'] = 'Impresión tarjetas cobrador';
                 $page_data['module_type']   = 'impresion';
@@ -71,6 +95,30 @@ class Impresion extends CI_Controller {
                 $page_data['module_type']   = 'impresion';
                 $page_data['page_name']     = 'impresion_tarjetas_posteo';
                 $page_data['page_title'] = 'Impresión tarjetas posteo';
+                $this->load->view('admin/index', $page_data);
+            break;
+
+            case 'aplicar':
+                $page_data['page_type'] = 'Aplicar Pagos';
+                $page_data['module_type']   = 'impresion';
+                $page_data['page_name']     = 'impresion_aplicar_pago';
+                $page_data['page_title'] = 'Aplicar Pagos';
+                $this->load->view('admin/index', $page_data);
+            break;
+
+            case 'revertir':
+                $page_data['page_type'] = 'Revertir Pagos';
+                $page_data['module_type']   = 'impresion';
+                $page_data['page_name']     = 'impresion_revertir_pago';
+                $page_data['page_title'] = 'Revertir Pagos';
+                $this->load->view('admin/index', $page_data);
+            break;
+
+             case 'historial':
+                $page_data['page_type'] = 'Historial';
+                $page_data['module_type']   = 'impresion';
+                $page_data['page_name']     = 'impresion_historial';
+                $page_data['page_title'] = 'Historial';
                 $this->load->view('admin/index', $page_data);
             break;
 

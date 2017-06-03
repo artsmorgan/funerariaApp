@@ -165,90 +165,21 @@ if($contact_type == 'customer') {
                                                 <!-- col -->
                                                 <div class="col-md-6">
                                                     <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
-                                                                <div class="col-sm-12">
-                                                                    <select name="agent" disabled class="selectboxit" >
-                                                                        <option value="2">uno</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <!-- form-group -->
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('route'); ?></label>
-                                                                <div class="col-sm-12">
-                                                                    <input type="number" name="route" disabled class="form-control" value="<?php echo $row['route']; ?>" >
-                                                                </div>
-                                                            </div>
-                                                            <!-- form-group -->
-                                                        </div>
+                                                        <div class="col-md-12">
+                                                        <br><br>
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <th>Tipo de servicio</th>
+                                                                    <th>Contrato #</th>
+                                                                    <th>Monto Inicial</th>
+                                                                    <th>Saldo</th>
+                                                                    <th>Cuota</th>
+                                                                    <th></th>
+                                                                </thead>
+                                                            </table>
+                                                        </div>    
                                                     </div>
                                                     <!-- inner row -->
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="field-1" class="col-sm-12 control-label">Monto del contrato</label>
-                                                                <div class="col-sm-12">
-                                                                    <input type="text" class="form-control format-currency" disabled value="<?php echo $row['amount']; ?>">
-                                                                </div>
-                                                            </div>
-                                                            <!-- form-group -->
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('balance_'); ?></label>
-                                                                <div class="col-sm-12">
-                                                                    <input type="text" name="balance" disabled class="form-control format-currency" value="<?php echo $row['balance']; ?>">
-                                                                </div>
-                                                            </div>
-                                                            <!-- form-group -->
-                                                        </div>
-                                                    </div>
-                                                    <!-- inner row -->
-                                                </div>
-                                                <!-- col -->
-                                            </div>
-                                            <!-- third row -->
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('localization'); ?></label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" class="form-control" name="localization1" disabled value="<?php echo $row['localization1']; ?>" />
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" class="form-control" name="localization2" disabled value="<?php echo $row['localization2']; ?>" />
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" class="form-control" name="localization3" disabled value="<?php echo $row['localization3']; ?>"  />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- col -->
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('fee'); ?></label>
-                                                        <div class="col-sm-12">
-                                                            <input type="text" class="form-control format-currency" name="fee" disabled  value="<?php echo $row['fee']; ?>" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- col -->
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('month_payment'); ?></label>
-                                                        <div class="col-sm-6">
-                                                            <select  class="selectboxit" name="month_payment" disabled >
-                                                                <?php echo '<option value="' . $row['month_payment'] . '" selected >' . $row['month_payment'] . '</option>'; ?>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <input type="number" class="form-control" name="year_payment" disabled value="<?php echo $row['year_payment']; ?>"  />
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <!-- col -->
                                             </div>
@@ -282,14 +213,14 @@ if($contact_type == 'customer') {
                                                     </div>
                                                 </div>
                                                 <!-- col -->
-                                                <div class="col-md-3">
+                                                <!-- <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('advance_payment'); ?></label>
                                                         <div class="col-sm-12">
                                                             <input type="text" class="form-control format-currency" name="advance_payment" disabled value="<?php echo $row['advance_payment']; ?>" />
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <!-- col -->
                                             </div>
                                             <!-- fith row -->

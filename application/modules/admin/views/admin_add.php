@@ -52,6 +52,7 @@
                         <select name="role">
                             <option value="admin">Admin</option>
                             <option value="web">General</option>
+                            <option value="cobrador">Cobrador</option>
                             <option value="sales">Agente de Ventas</option>
                         </select>
                     </div>
