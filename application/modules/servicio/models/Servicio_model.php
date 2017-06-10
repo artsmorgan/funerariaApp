@@ -9,6 +9,12 @@ class Servicio_model extends CI_Model
         $this->load->library('session');
     }
 
+    public function getUserContracts($user_id){
+        $this->db->select('contract_number, monto_total, monto_abonado, monto_cuota');
+        $this->db->where('contact_id', $user_id);
+        $this->db->from('contratos_account');
+        return $this->db->get()->result_array();
+    }
 
     public function create_servicio() {
         $data['type'] = $this->input->post('type');
@@ -22,7 +28,6 @@ class Servicio_model extends CI_Model
         $data['contact_id'] = $this->input->post('client_id') ? $this->input->post('client_id') : NULL;
         $data['relationship'] = $this->input->post('relationship');
         $data['payment_method'] = $this->input->post('payment_method');
-        $data['contract_id'] = $this->input->post('contract_id');
         $data['amount'] = $this->input->post('amount');
         $data['balance'] = $this->input->post('balance');
         $data['coffin'] = $this->input->post('coffin');
@@ -58,6 +63,7 @@ class Servicio_model extends CI_Model
         $data['decoration_float'] = $this->input->post('decoration_float');
         $data['decoration_driver'] = $this->input->post('decoration_driver');
         $data['service_observations'] = $this->input->post('service_observations');
+        $data['contract_id'] = $this->input->post('contract_id');
         $data['user_id'] = $this->input->post('seller_id');
         $data['client_first_name'] = $this->input->post('client_first_name');
         $data['client_last_name1'] = $this->input->post('client_last_name1');
@@ -69,6 +75,39 @@ class Servicio_model extends CI_Model
         $data['client_phone3'] = $this->input->post('client_phone3');
 
         $this->db->insert('service', $data);
+        $id = $this->db->insert_id();
+
+        if( $data['type'] == 'contrato' ){
+            $this->servicio_model->create_contract($id);
+        }
+
+        if( !empty( $this->input->post('cuotaFunecredito') ) ){
+            $this->servicio_model->create_funecredito($id);
+        }
+    }
+
+    public function create_funecredito($service_id){
+        $data['service_id'] = $service_id;
+        $data['contact_id'] =  $this->input->post('client_id');
+        $data['monto_total'] = $this->input->post('saldoFunecredito');
+        $data['prima'] = $this->input->post('primaFunecredito');
+        $data['monto_cuota'] = $this->input->post('cuotaFunecredito');
+        $data['fecha_creacion'] = date('Y-m-d');
+        $data['tiempo_servicio'] = $this->input->post('plazoFunecredito');
+
+        $this->db->insert('funecredito_account', $data);
+    }
+
+    public function create_contract($service_id){
+        $data['service_id'] = $service_id;
+        $data['contact_id'] =  $this->input->post('client_id') ;
+        $data['monto_total'] = $this->input->post('amount');
+        $data['tiempo_contrato'] = $this->input->post('tiempo_contrato');
+        $data['monto_cuota'] = $this->input->post('monto_cuota');
+        $data['fecha_creacion'] = date('Y-m-d');
+        $data['contract_number'] = $this->input->post('contract_id');
+
+        $this->db->insert('contratos_account', $data);
     }
 
     public function update_servicio($service_id) {
@@ -136,5 +175,8 @@ class Servicio_model extends CI_Model
     public function delete_servicio($service_id) {
         $this->db->where('service_id', $service_id);
         $this->db->delete('service');
-    }
+
+        $this->db->where('service_id', $service_id);
+        $this->db->delete('contratos_account');
+    }   
 }

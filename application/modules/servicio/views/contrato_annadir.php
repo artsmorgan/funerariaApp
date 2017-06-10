@@ -86,11 +86,11 @@
                 <!-- seccond row -->
                 
                 <div class="row">
-                    <div class="col-md-1">
+                    <div class="col-md-1 hide" >
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Registrado</label>
                             <div class="col-sm-12">
-                                <input type="checkbox" class="form-control" id="client_registered"  />
+                                <input type="checkbox" class="form-control" id="client_registered" checked />
                             </div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                     <!-- col -->
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div class="form-group client">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('phone'); ?></label>
                             <div class="col-sm-4">
@@ -184,15 +184,6 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('payment_method'); ?></label>
-                            <div class="col-sm-12">
-                                <button class="payment_method">Calculo pago</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('contract_id'); ?></label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" name="contract_id"  />
@@ -204,7 +195,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Monto del servicio</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" disabled>
+                                <input type="text"  class="form-control format-currency" >
                                 <input type="hidden" name="amount" value="">
                             </div>
                         </div>
@@ -212,19 +203,23 @@
                     <!-- col -->
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('balance_'); ?></label>
+                            <label for="field-1" class="col-sm-12 control-label">Tiempo del contrato</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control format-currency" disabled>
-                                <input type="hidden" name="balance" value="">
+                                <input type="text" class="form-control" name="tiempo_contrato">
                             </div>
                         </div>
                     </div>
                     <!-- col -->
-                    <input type="hidden" name="saldoFunecredito" value="">
-                    <input type="hidden" name="plazoFunecredito" value="">
-                    <input type="hidden" name="interesFunecredito" value="">
-                    <input type="hidden" name="cuotaFunecredito" value="">
-                    <input type="hidden" name="primaFunecredito" value="">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-1" class="col-sm-12 control-label">Cuota</label>
+                            <div class="col-sm-12">
+                                <input type="text"  class="form-control format-currency" value="0" disabled>
+                                <input type="hidden" value="0" name="monto_cuota">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
                 </div>
                 <!-- fith row -->
 
@@ -720,7 +715,238 @@
         $('.datepicker').datepicker({
             format: 'yyyy-mm-dd'
         });
+    
+        var $addMoreModal = $('#selectAddMore'),
+            $currentAddMore = null;
 
-        $('#calcAmount').removeClass('has-info');
+        $('[data-select-add-custom]').on('change', function(){
+            if( $(this).find('option:selected').is('[data-other]') ){
+                $currentAddMore = $(this);
+                showModal($addMoreModal);
+            }
+        });
+
+        $addMoreModal.off('hide.bs.modal');
+
+        $addMoreModal.on('hide.bs.modal', function(){
+            
+            var value = $.trim( $addMoreModal.find('input').val() );
+                
+            if( value ){
+                var valueExists = $currentAddMore.find('option[value="' + value + '"]').index();
+
+                if( valueExists == -1 ){
+                    var $otherOption = $currentAddMore.find('[data-other]'),
+                        otherValue = $otherOption.text(),
+                        $customOption = $currentAddMore.find('[data-custom]');
+
+                    $currentAddMore.data("selectBox-selectBoxIt").remove( $otherOption.index() );
+                    $currentAddMore.data("selectBox-selectBoxIt").remove( $customOption.index() );
+
+                    $currentAddMore.data("selectBox-selectBoxIt").add([{
+                        text: value,
+                        value: value,
+                        'data-custom': true
+                    },{
+                        text: otherValue,
+                        value: otherValue,
+                        'data-other': true
+                    }]);
+
+                    $currentAddMore.data("selectBox-selectBoxIt").selectOption(value);
+                }
+                else{
+                    $currentAddMore.data("selectBox-selectBoxIt").selectOption(valueExists);
+                }
+               
+            }
+            else{
+                $currentAddMore.data("selectBox-selectBoxIt").selectOption(0);
+            }
+
+             $addMoreModal.find('input').val('');
+        });
+
+        $('[name=amount],[name=tiempo_contrato]').on('input', function(e){
+            calcularSaldo();
+        });
+
+        function calcularSaldo(){
+            var amount = Number($('[name=amount]').val()),
+                time = Number($('[name=tiempo_contrato]').val()),
+                cuota = amount || 0;
+
+            if( amount && time ){
+                cuota = amount / (time * 12);
+            }
+
+            $('[name=monto_cuota]').prev().val(cuota).trigger('input');
+        }
+
+        $('#seller').on('click input', function(){
+            showModal('#vendedoresModal');
+        });
+
+         $('.add-vendedor').off('click');
+
+        $('.add-vendedor').on('click', function(e){
+            e.preventDefault();
+            var name = $(this).data('username');
+            var id =  $(this).data('id');
+            
+            $('#seller').val(name);
+            $('#seller_id').val(id);
+
+            $('#vendedoresModal').modal('hide');
+
+        });
+
+        $('.client input').addClass('on');
+
+        $('#client_registered').on('click', function(){
+            if( $(this).is(':checked') ){
+                $('.client input').addClass('on');
+            }
+            else{
+                $('.client input').removeClass('on');
+            }
+
+            $('.client input').val('');
+        });
+
+        $('.client').on('keypress', '.on', function(){
+            return false;
+        });
+
+        $('.client').on('click', '.on', function(){
+            showModal('#clienteModal');
+        });
+
+        $('.add-client').off('click');
+
+        $('.add-client').on('click', function(e){
+            e.preventDefault();
+            var client_first_name = $(this).data('client_first_name');
+            var client_last_name1 = $(this).data('client_last_name1');
+            var client_last_name2 = $(this).data('client_last_name2');
+            var id =  $(this).data('id');
+            var id_card = $(this).data('id_card');
+            var email = $(this).data('email');
+            var phone = $(this).data('phone');
+            var phone2 = $(this).data('phone2');
+            var phone3 = $(this).data('phone3');
+            
+            $('#client_id').val(id);
+            $('#client_first_name').val(client_first_name);
+            $('#client_last_name1').val(client_last_name1);
+            $('#client_last_name2').val(client_last_name2);
+            $('#client_id_card').val(id_card);
+            $('#client_email').val(email);
+            $('#client_phone').val(phone);
+            $('#client_phone2').val(phone2);
+            $('#client_phone3').val(phone3);
+
+            $('#clienteModal').modal('hide');
+
+        });
+
+
+        $('.format-currency').on('keypress', function(e){
+            
+            var str = String.fromCharCode(e.which);
+
+            if( !/\d/.test(str) || str == '.'  ){
+                if( str == '.' ){
+                    var indexDot = $(this).val().indexOf(str);
+
+                    setCaretPosition($(this).get(0), indexDot + 1 );
+                
+                }
+                return false;
+            }
+        });
+
+        $('.format-currency').formatCurrency({
+            symbol: '₡ '
+        });
+
+        $('.format-currency').on('input', function(e){
+            var inputElem = $(this).get(0),
+                inputLength = inputElem.value.length, 
+                caretPos = doGetCaretPosition( inputElem ),
+                minLength = 6;
+
+            if( inputLength <  minLength){
+                inputLength = minLength;
+                caretPos += 2;
+            }
+
+            inputElem.value = inputElem.value.replace( /\.\d+/ , function(match){
+                return match.substr(0,3);
+            });
+
+            $(this).formatCurrency({
+                symbol: '₡ '
+            });
+
+            $(this).parent().find('[type=hidden]').val( $(this).asNumber() ).trigger('input');
+
+            inputLength = inputElem.value.length - inputLength;
+            caretPos += inputLength;
+
+            if( caretPos > inputElem.value.indexOf('.') ){
+                caretPos++;
+            }
+
+            setCaretPosition(inputElem, caretPos );
+
+        });
+
+        function setCaretPosition(elem, caretPos) {
+            
+            if(elem.createTextRange) {
+                var range = elem.createTextRange();
+                range.move('character', caretPos);
+                range.select();
+            }
+            else {
+                if(elem.selectionStart) {
+                    elem.focus();
+                    elem.setSelectionRange(caretPos, caretPos);
+                }
+                else
+                    elem.focus();
+            }
+        }
+
+        function doGetCaretPosition (oField) {
+
+            // Initialize
+            var iCaretPos = 0;
+
+            // IE Support
+            if (document.selection) {
+
+                // Set focus on the element
+                oField.focus();
+
+                // To get cursor position, get empty selection range
+                var oSel = document.selection.createRange();
+
+                // Move selection start to 0 position
+                oSel.moveStart('character', -oField.value.length);
+
+                // The caret position is selection length
+                iCaretPos = oSel.text.length;
+            }
+
+            // Firefox support
+            else if (oField.selectionStart || oField.selectionStart == '0')
+                iCaretPos = oField.selectionStart;
+
+            // Return results
+            return iCaretPos;
+        }
+
     })();
 </script>

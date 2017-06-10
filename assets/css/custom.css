@@ -68,6 +68,32 @@ form.services .row:nth-child(even){
     display: none;
 }
 
+.modal .form-horizontal label{ 
+    text-align: left;
+}
+
+.modal .form-horizontal .form-group{ 
+    font-size: 12px;
+}
+
+.modal .form-horizontal .row {
+    font-size: 0;
+}
+
+.modal .form-horizontal .row > div{
+    float: none;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.modal .form-horizontal > .row:nth-child(even) {
+    background-color: #eee;
+}
+
+.modal .form-horizontal .form-group{
+    margin-top: 15px;
+} 
+
 @media screen and (min-width: 768px){
     .modal-dialog.modal-sm {
         width: 400px!important;

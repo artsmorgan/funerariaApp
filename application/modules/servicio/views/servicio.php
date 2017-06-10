@@ -1,4 +1,4 @@
-<a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/servicio_annadir/' . $service_type ); ?>')" 
+<a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/'. $modal .'_annadir/' . $service_type ); ?>')" 
     class="btn btn-primary pull-right">
         <i class="entypo-plus-circled"></i>
         <?php echo lang_key('add_service'); ?>
@@ -83,6 +83,209 @@ if(empty($services)){ ?>
 <?php } ?>
 
 
+
+<div class="modal fade" id="calcAmount" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Calculo</h4>
+            </div>
+            <div class="modal-body form-horizontal">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">Monto servicio</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control for-contado format-currency"  id="amountService"   />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">Prima funecrédito</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control format-currency"  id="advance_payment"   />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">Abono</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control for-contado format-currency"  id="payment"   />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">Monto contrato 1</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control lock format-currency" disabled  id="amountContract1"   />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control lock" disabled  id="idContract1"   />
+                            </div>
+                            <label class="control-label col-md-8">N° contrato <input type="checkbox" class="lock" disabled id="useContract1"></label>
+                            
+                        </div>
+                    </div>
+                    <!-- col -->
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">Monto contrato 2</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control lock format-currency" disabled id="amountContract2"   />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control lock" disabled id="idContract2"  />
+                            </div>
+                            <label class="control-label col-md-8">N° contrato <input type="checkbox" class="lock" disabled id="useContract2"></label>
+                            
+                        </div>
+                    </div>
+                    <!-- col -->
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">Monto contrato 3</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control lock format-currency" disabled id="amountContract3"   />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control lock" disabled id="idContract3"   />
+                            </div>
+                            <label class="control-label col-md-8">N° contrato <input type="checkbox" class="lock" disabled id="useContract3"></label>
+                            
+                        </div>
+                    </div>
+                    <!-- col -->
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-6">Saldo a cancelar 1 mes</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control lock format-currency" disabled id="pay1month"   />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- inner col -->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-6">Saldo a financiar Funecrédito</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control format-currency"  id="debt"   />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- inner col -->
+                        </div>
+                        <!-- inner row -->
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Plazo meses</label>
+                                    <div class="col-md-12">
+                                        <input type="number" class="form-control"  id="plazo"   />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- inner col -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Interés</label>
+                                    <div class="col-md-12">
+                                        <input type="number" class="form-control"  id="interes"   />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- inner col -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Cuota mensual funecrédito</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control  format-currency lock" disabled id="cuotaFunecredito"   />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- inner col -->
+                        </div>
+                        <!-- inner row -->
+                    </div>
+                    <!-- col -->
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">Saldo a financiar contrato</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control lock format-currency"  disabled id="saldoContrato"   />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control lock format-currency" disabled id="cuotaContrato"   />
+                               
+                            </div>
+                            <label class="control-label col-md-8">Cuota mensual del contrato</label>
+                        </div>
+                    </div>
+                    <!-- col -->
+                </div>
+                <!-- row -->
+                 <input  type="hidden" id="saldoTotal" >
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-close data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-default" data-accept data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="selectAddMore" role="dialog">
     <div class="modal-dialog modal-sm">
@@ -188,8 +391,55 @@ if(empty($services)){ ?>
         $('.modal-backdrop:last').css('z-index', zIndex - 1);
     }
 
+    function doGetCaretPosition (oField) {
+
+        // Initialize
+        var iCaretPos = 0;
+
+        // IE Support
+        if (document.selection) {
+
+            // Set focus on the element
+            oField.focus();
+
+            // To get cursor position, get empty selection range
+            var oSel = document.selection.createRange();
+
+            // Move selection start to 0 position
+            oSel.moveStart('character', -oField.value.length);
+
+            // The caret position is selection length
+            iCaretPos = oSel.text.length;
+        }
+
+        // Firefox support
+        else if (oField.selectionStart || oField.selectionStart == '0')
+            iCaretPos = oField.selectionStart;
+
+        // Return results
+        return iCaretPos;
+    }
+
+    function setCaretPosition(elem, caretPos) {
+        
+        if(elem.createTextRange) {
+            var range = elem.createTextRange();
+            range.move('character', caretPos);
+            range.select();
+        }
+        else {
+            if(elem.selectionStart) {
+                elem.focus();
+                elem.setSelectionRange(caretPos, caretPos);
+            }
+            else
+                elem.focus();
+        }
+    }
+
     jQuery(document).ready(function($)
     {
+        var site_url = "<?php echo site_url() . '/';?>";
         var datatable = $("#table_export").dataTable({
             "sPaginationType"   : "bootstrap"
         });
@@ -197,6 +447,276 @@ if(empty($services)){ ?>
         $(".dataTables_wrapper select").select2({
             minimumResultsForSearch: -1
         });
+
+        $('.modal').on('keypress', '.format-currency', function(e){
+            
+            var str = String.fromCharCode(e.which);
+
+            if( !/\d/.test(str) || str == '.'  ){
+                if( str == '.' ){
+                    var indexDot = $(this).val().indexOf(str);
+
+                    setCaretPosition($(this).get(0), indexDot + 1 );
+                
+                }
+                return false;
+            }
+        });
+
+        $('.modal').on('input', '.format-currency', function(e){
+            var inputElem = $(this).get(0),
+                inputLength = inputElem.value.length, 
+                caretPos = doGetCaretPosition( inputElem ),
+                minLength = 6;
+
+            if( inputLength <  minLength){
+                inputLength = minLength;
+                caretPos += 2;
+            }
+
+            inputElem.value = inputElem.value.replace( /\.\d+/ , function(match){
+                return match.substr(0,3);
+            });
+
+            $(this).formatCurrency({
+                symbol: '₡ '
+            });
+
+            $(this).parent().find('[type=hidden]').val( $(this).asNumber() );
+
+            inputLength = inputElem.value.length - inputLength;
+            caretPos += inputLength;
+
+            if( caretPos > inputElem.value.indexOf('.') ){
+                caretPos++;
+            }
+
+            setCaretPosition(inputElem, caretPos );
+
+        });
+
+        $('.modal').on('click','.payment_method', function(e){
+            e.preventDefault();
+            var $modal = $('#calcAmount');
+
+            if( !$('#calcAmount').hasClass('has-info') ){
+                $('#calcAmount').addClass('has-info');
+                $modal.find('input').val('');
+                $modal.find('input[type=checkbox]').prop('checked', false);
+                $('#useContract1, #useContract2, #useContract3').prop('disabled',true);
+
+                if( $('#client_registered').is(':checked') ){
+                    $modal.find('input:not(.lock)').prop('disabled', false);
+
+                    $.ajax(site_url + 'servicio/contratosCliente/' + $('#client_id').val())
+                    .done(function(response){
+                        if( $.isArray(response) && response.length){
+                            $.each(response, function(i, data){
+                                data.monto_abonado = data.monto_abonado || 0;
+                                i++;
+                                $( '#amountContract' + i ).val(data.monto_abonado).trigger('input');
+                                $( '#idContract' + i ).val(data.contract_number);
+                                $('#useContract' + i).prop('disabled',false)
+                                .data('monto_abonado', data.monto_abonado)
+                                .data('monto_total', data.monto_total)
+                                .data('monto_cuota', data.monto_cuota);
+                            });
+                        }
+                    });
+                }
+                else{
+                    $modal.find('input:not(.for-contado)').prop('disabled', true);
+                }
+            }
+
+            showModal('#calcAmount');
+        });
+
+        $('.modal').on('click','.add-client', function(e){
+            e.preventDefault();
+            var client_first_name = $(this).data('client_first_name');
+            var client_last_name1 = $(this).data('client_last_name1');
+            var client_last_name2 = $(this).data('client_last_name2');
+            var id =  $(this).data('id');
+            var id_card = $(this).data('id_card');
+            var email = $(this).data('email');
+            var phone = $(this).data('phone');
+            var phone2 = $(this).data('phone2');
+            var phone3 = $(this).data('phone3');
+            
+            $('#client_id').val(id);
+            $('#client_first_name').val(client_first_name);
+            $('#client_last_name1').val(client_last_name1);
+            $('#client_last_name2').val(client_last_name2);
+            $('#client_id_card').val(id_card);
+            $('#client_email').val(email);
+            $('#client_phone').val(phone);
+            $('#client_phone2').val(phone2);
+            $('#client_phone3').val(phone3);
+
+            $('#clienteModal').modal('hide');
+
+            $('.payment_method').prop('disabled', false);
+            $('#calcAmount').removeClass('has-info');
+        });
+
+        var $addMoreModal = $('#selectAddMore'),
+            $currentAddMore = null;
+
+        $('.modal').on('change', '[data-select-add-custom]', function(){
+            if( $(this).find('option:selected').is('[data-other]') ){
+                $currentAddMore = $(this);
+                showModal($addMoreModal);
+            }
+        });
+
+        $addMoreModal.off('hide.bs.modal');
+
+        $addMoreModal.on('hide.bs.modal', function(){
+            
+            var value = $.trim( $addMoreModal.find('input').val() );
+                
+            if( value ){
+                var valueExists = $currentAddMore.find('option[value="' + value + '"]').index();
+
+                if( valueExists == -1 ){
+                    var $otherOption = $currentAddMore.find('[data-other]'),
+                        otherValue = $otherOption.text(),
+                        $customOption = $currentAddMore.find('[data-custom]');
+
+                    $currentAddMore.data("selectBox-selectBoxIt").remove( $otherOption.index() );
+                    $currentAddMore.data("selectBox-selectBoxIt").remove( $customOption.index() );
+
+                    $currentAddMore.data("selectBox-selectBoxIt").add([{
+                        text: value,
+                        value: value,
+                        'data-custom': true
+                    },{
+                        text: otherValue,
+                        value: otherValue,
+                        'data-other': true
+                    }]);
+
+                    $currentAddMore.data("selectBox-selectBoxIt").selectOption(value);
+                }
+                else{
+                    $currentAddMore.data("selectBox-selectBoxIt").selectOption(valueExists);
+                }
+               
+            }
+            else{
+                $currentAddMore.data("selectBox-selectBoxIt").selectOption(0);
+            }
+
+             $addMoreModal.find('input').val('');
+        });
+
+        $('.modal').on('click input', '#seller', function(){
+            showModal('#vendedoresModal');
+        });
+
+        $('.modal').on('click', '.add-vendedor', function(e){
+            e.preventDefault();
+            var name = $(this).data('username');
+            var id =  $(this).data('id');
+            
+            $('#seller').val(name);
+            $('#seller_id').val(id);
+
+            $('#vendedoresModal').modal('hide');
+        });
+
+        $('.modal').on('click','#client_registered', function(){
+            if( $(this).is(':checked') ){
+                $('.client input').addClass('on');
+                $('.payment_method').prop('disabled', true);
+            }
+            else{
+                $('.client input').removeClass('on');
+            }
+
+            $('#calcAmount').removeClass('has-info');
+            $('.client input').val('');
+        });
+
+        $('.modal').on('keypress', '.client .on',  function(){
+            return false;
+        });
+
+        $('.modal').on('click', '.client .on',  function(){
+            showModal('#clienteModal');
+        });
+
+
+        $('#calcAmount').on('keyup change', 'input', function(){
+            calPago();
+        });
+
+        $('#calcAmount').on( 'click', '[data-accept]', function(){
+            $('[name=amount]').val( $('#amountService').asNumber() ).prev().val( $('#amountService').val() );
+            $('[name=balance]').prev().val( $('#saldoTotal').val() ).trigger('input');
+            $('[name=primaFunecredito]').val( $('#debt').asNumber() );
+            $('[name=cuotaFunecredito]').val( $('#cuotaFunecredito').asNumber() );
+            $('[name=plazoFunecredito]').val( $('#plazo').val() );
+            $('[name=interesFunecredito]').val( $('#interes').val() );
+        });
+
+        function calPago(){
+            var montoServicio = $('#amountService').asNumber() || 0,
+                primaFunecredito = $('#advance_payment').asNumber() || 0,
+                saldoFunecredito = $('#debt').asNumber() || 0,
+                abono = $('#payment').asNumber() || 0,
+                montoContratos = 0,
+                totalContratos = 0,
+                saldoContrato = 0,
+                cuotaContrato = 0,
+                saldo = 0;
+                
+                $('#calcAmount [type=checkbox]').each(function(){
+                    if( $(this).is(':checked') ){
+                        montoContratos += Number( $(this).data('monto_abonado') || 0 );
+                        totalContratos += Number( $(this).data('monto_total') || 0 );
+                        cuotaContrato += Number( $(this).data('monto_cuota') || 0 );
+                    }
+                });
+
+                saldo = montoServicio - abono;
+
+                if( saldo >= totalContratos ){
+                    saldo -= totalContratos;
+                    saldoContrato = totalContratos - montoContratos;
+                }
+                else{
+                    saldo = 0;
+                }
+
+                saldo = saldo - primaFunecredito - saldoFunecredito;
+
+                $('#saldoTotal').val(saldo + saldoContrato + saldoFunecredito);
+    
+                $('#pay1month').val(saldo).trigger('input');
+                $('#saldoContrato').val(saldoContrato).trigger('input');
+                $('#cuotaContrato').val(cuotaContrato).trigger('input');
+        }
+
+        $('#debt, #plazo, #interes').on('keyup', function(){
+            updateCuotaFunecredito();
+        });
+
+        function updateCuotaFunecredito(){
+            var saldoFunecredito = $('#debt').asNumber() || 0,
+                plazo = Number($('#plazo').val() || 0 ),
+                interes = Number($('#interes').val() || 0) / 100,
+                cuota = 0;
+
+                if( saldoFunecredito && plazo ){
+                    cuota = saldoFunecredito / plazo;
+                    cuota = cuota + ( cuota *  interes);
+                }
+
+                $('#cuotaFunecredito').val(cuota).trigger('input');
+        }
+
     });
 		
 </script>

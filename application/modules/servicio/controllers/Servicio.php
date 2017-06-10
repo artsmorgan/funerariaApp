@@ -28,7 +28,7 @@ class Servicio extends CI_Controller {
     }
 
     function servicios( $param1 = '', $param2 = '', $param3 = '' ){
-        if( $param1 == NULL || !preg_match( "/^(?:funerarios|realizados|apartados|create|update|delete)$/i", $param1 ) ){
+        if( $param1 == NULL || !preg_match( "/^(?:funerarios|realizados|apartados|contrato|create|update|delete)$/i", $param1 ) ){
             redirect(site_url('admin'));
         }
 
@@ -36,7 +36,7 @@ class Servicio extends CI_Controller {
             case 'create':
                 $service_type = $this->input->post('type');
                 $this->servicio_model->create_servicio();
-                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly'));
+                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
                 redirect(site_url('servicio/servicios/' . $service_type));
             break;
         
@@ -59,9 +59,21 @@ class Servicio extends CI_Controller {
                 $page_data['page_name']     = 'servicio';
                 $page_data['page_title'] = 'Servicios';
 
+                if( $param1 == 'contrato' ){
+                    $page_data['modal'] = 'contrato'; 
+                }
+                else{
+                    $page_data['modal'] = 'servicio';
+                }
+
                 $this->load->view('admin/index', $page_data);
 
         }
+    }
+
+    function contratosCliente($param1 = ''){
+        header('Content-Type: application/json');
+        echo json_encode( $this->servicio_model->getUserContracts($param1) );
     }
 
     function service_details($param1 = '', $param2 = 'summary')

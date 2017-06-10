@@ -75,12 +75,18 @@
             </a>
             <ul>
                 <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
-                    <a href="<?php echo site_url('/servicio/servicios/funerarios'); ?>">
+                    <a href="<?php echo site_url('/servicio/servicios/contrato'); ?>">
                         <i class="entypo-dot"></i>
                         <span>Contratos</span>
                     </a>
                 </li>
-                 <li class="<?php if($page_name == 'account_add') echo 'active'; ?>">
+                <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
+                    <a href="<?php echo site_url('/servicio/servicios/funerarios'); ?>">
+                        <i class="entypo-dot"></i>
+                        <span>Funerarios</span>
+                    </a>
+                </li>
+                 <!--<li class="<?php if($page_name == 'account_add') echo 'active'; ?>">
                     <a href="<?php echo site_url('servicio/servicios/apartados'); ?>">
                         <i class="entypo-dot"></i>
                         <span>Apartados</span>
@@ -91,7 +97,7 @@
                         <i class="entypo-dot"></i>
                         <span>Funecredito</span>
                     </a>
-                </li>
+                </li>-->
                 <li class="<?php if($page_name == 'account_payments') echo 'active'; ?>">
                     <a href="<?php echo site_url('servicio/servicios/realizados'); ?>">
                         <i class="entypo-dot"></i>

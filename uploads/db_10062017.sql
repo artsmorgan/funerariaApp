@@ -3,16 +3,40 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 02, 2017 at 08:44 AM
+-- Generation Time: Jun 10, 2017 at 10:21 AM
 -- Server version: 5.6.33
 -- PHP Version: 7.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
 -- Database: `funerariadb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `apartados_account`
+--
+
+DROP TABLE IF EXISTS `apartados_account`;
+CREATE TABLE `apartados_account` (
+  `id` int(11) NOT NULL,
+  `contact_id` int(11) DEFAULT NULL,
+  `servicio_id` int(11) DEFAULT NULL,
+  `monto_pagado` int(11) DEFAULT NULL,
+  `monto_total` int(11) DEFAULT NULL,
+  `status` char(2) DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -106,6 +130,59 @@ INSERT INTO `bk_contact` (`contact_id`, `type`, `first_name`, `last_name`, `last
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bk_contratos_account`
+--
+
+DROP TABLE IF EXISTS `bk_contratos_account`;
+CREATE TABLE `bk_contratos_account` (
+  `id` int(11) NOT NULL,
+  `contract_number` longtext,
+  `contact_id` int(11) DEFAULT NULL,
+  `service_id` int(11) DEFAULT NULL,
+  `monto_total` double DEFAULT NULL,
+  `monto_abonado` double DEFAULT NULL,
+  `saldo` double DEFAULT NULL,
+  `monto_cuota` double DEFAULT NULL,
+  `tiempo_contrato` int(11) DEFAULT NULL,
+  `cuotas_pagadas` int(11) DEFAULT NULL,
+  `cuotas_pendientes` int(11) DEFAULT NULL,
+  `contract_owner` varchar(45) DEFAULT NULL,
+  `interes` double DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `fecha_creacion` datetime DEFAULT NULL,
+  `status` char(2) DEFAULT NULL,
+  `fecha_aplicacion` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bk_contratos_account`
+--
+
+INSERT INTO `bk_contratos_account` (`id`, `contract_number`, `contact_id`, `service_id`, `monto_total`, `monto_abonado`, `saldo`, `monto_cuota`, `tiempo_contrato`, `cuotas_pagadas`, `cuotas_pendientes`, `contract_owner`, `interes`, `created_by`, `fecha_creacion`, `status`, `fecha_aplicacion`) VALUES
+(5, '12345', 3, 4, 600000, 350000, NULL, 20000, 3, NULL, NULL, NULL, NULL, NULL, '2017-06-10 00:00:00', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bk_cuentas`
+--
+
+DROP TABLE IF EXISTS `bk_cuentas`;
+CREATE TABLE `bk_cuentas` (
+  `id` int(11) NOT NULL,
+  `contract_id` int(11) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `currentBalance` double DEFAULT '0',
+  `interest` double DEFAULT NULL,
+  `late_charge` double DEFAULT NULL,
+  `typoCuenta` char(2) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bk_currency`
 --
 
@@ -187,6 +264,40 @@ CREATE TABLE `bk_expense` (
 INSERT INTO `bk_expense` (`expense_id`, `title`, `description`, `income_expense_category_id`, `amount`, `account_id`, `date`) VALUES
 (1, 'Compra Computadoras', 'Compra de computadoras', 2, '2000', 1, '0'),
 (2, 'Compra de cafe', 'Compre 10kg de cafe', 4, '50000', 2, '1455688800');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bk_funecredito_account`
+--
+
+DROP TABLE IF EXISTS `bk_funecredito_account`;
+CREATE TABLE `bk_funecredito_account` (
+  `id` int(11) NOT NULL,
+  `contact_id` int(11) DEFAULT NULL,
+  `service_id` int(11) DEFAULT NULL,
+  `monto_total` double DEFAULT NULL,
+  `prima` double DEFAULT NULL,
+  `monto_contratos_aplicados` double DEFAULT NULL,
+  `contracts_applied` varchar(45) DEFAULT NULL,
+  `saldo` double DEFAULT NULL,
+  `monto_cuota` double DEFAULT NULL,
+  `tiempo_servicio` int(11) DEFAULT NULL,
+  `cuotas_pagadas` int(11) DEFAULT NULL,
+  `cuotas_pendientes` int(11) DEFAULT NULL,
+  `interes` double DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `fecha_creacion` datetime DEFAULT NULL,
+  `status` char(2) DEFAULT NULL,
+  `fecha_aplicacion` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bk_funecredito_account`
+--
+
+INSERT INTO `bk_funecredito_account` (`id`, `contact_id`, `service_id`, `monto_total`, `prima`, `monto_contratos_aplicados`, `contracts_applied`, `saldo`, `monto_cuota`, `tiempo_servicio`, `cuotas_pagadas`, `cuotas_pendientes`, `interes`, `created_by`, `fecha_creacion`, `status`, `fecha_aplicacion`) VALUES
+(1, 3, 5, 0, 900000, NULL, NULL, NULL, 76500, 12, NULL, NULL, NULL, NULL, '2017-06-10 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -694,58 +805,58 @@ DROP TABLE IF EXISTS `bk_service`;
 CREATE TABLE `bk_service` (
   `service_id` int(11) NOT NULL,
   `type` longtext NOT NULL,
-  `death_date` date NOT NULL,
-  `death_document` longtext NOT NULL,
-  `deceased_first_name` longtext NOT NULL,
+  `death_date` date DEFAULT NULL,
+  `death_document` longtext,
+  `deceased_first_name` longtext,
   `deceased_last_name1` longtext,
   `deceased_last_name2` longtext,
-  `deceased_id_card` longtext NOT NULL,
-  `deceased_age` longtext NOT NULL,
+  `deceased_id_card` longtext,
+  `deceased_age` longtext,
   `contact_id` int(11) DEFAULT NULL,
-  `relationship` longtext NOT NULL,
-  `payment_method` longtext NOT NULL,
-  `contract_id` longtext NOT NULL,
+  `relationship` longtext,
+  `payment_method` longtext,
+  `contract_id` longtext,
   `amount` double NOT NULL,
-  `balance` double NOT NULL,
+  `balance` double DEFAULT NULL,
   `coffin` longtext NOT NULL,
   `bill` longtext NOT NULL,
   `veiling_room` tinyint(1) DEFAULT '0',
   `transfers` tinyint(1) DEFAULT '0',
   `forgetfulness` longtext NOT NULL,
   `pathology` tinyint(1) DEFAULT '0',
-  `technician` longtext NOT NULL,
+  `technician` longtext,
   `flowers` longtext NOT NULL,
   `cremation` tinyint(1) DEFAULT '0',
   `morgue` longtext NOT NULL,
   `transfer_address` longtext NOT NULL,
   `driver` tinyint(1) DEFAULT '0',
   `float` tinyint(1) DEFAULT '0',
-  `transfer_hour` longtext NOT NULL,
+  `transfer_hour` longtext,
   `vault_coffin` longtext NOT NULL,
   `candlestick` longtext NOT NULL,
   `pushcart` longtext NOT NULL,
   `curtain` tinyint(1) DEFAULT '0',
-  `transfer_observations` longtext NOT NULL,
+  `transfer_observations` longtext,
   `arrangements` longtext NOT NULL,
   `pedestal` longtext NOT NULL,
   `lectern` tinyint(1) DEFAULT '0',
   `carpet` tinyint(1) DEFAULT '0',
-  `service_date` date NOT NULL,
-  `service_hour` longtext NOT NULL,
+  `service_date` date DEFAULT NULL,
+  `service_hour` longtext,
   `church` longtext NOT NULL,
   `cemetery` longtext NOT NULL,
   `service_float` longtext NOT NULL,
-  `service_driver` longtext NOT NULL,
+  `service_driver` longtext,
   `decoration_float` longtext NOT NULL,
-  `decoration_driver` longtext NOT NULL,
-  `service_observations` longtext NOT NULL,
+  `decoration_driver` longtext,
+  `service_observations` longtext,
   `user_id` int(11) NOT NULL,
-  `client_first_name` longtext,
-  `client_last_name1` longtext,
+  `client_first_name` longtext NOT NULL,
+  `client_last_name1` longtext NOT NULL,
   `client_last_name2` longtext,
-  `client_id_card` longtext,
+  `client_id_card` longtext NOT NULL,
   `client_email` longtext,
-  `client_phone` longtext,
+  `client_phone` longtext NOT NULL,
   `client_phone2` longtext,
   `client_phone3` longtext,
   `veiling_site` longtext NOT NULL,
@@ -758,7 +869,9 @@ CREATE TABLE `bk_service` (
 
 INSERT INTO `bk_service` (`service_id`, `type`, `death_date`, `death_document`, `deceased_first_name`, `deceased_last_name1`, `deceased_last_name2`, `deceased_id_card`, `deceased_age`, `contact_id`, `relationship`, `payment_method`, `contract_id`, `amount`, `balance`, `coffin`, `bill`, `veiling_room`, `transfers`, `forgetfulness`, `pathology`, `technician`, `flowers`, `cremation`, `morgue`, `transfer_address`, `driver`, `float`, `transfer_hour`, `vault_coffin`, `candlestick`, `pushcart`, `curtain`, `transfer_observations`, `arrangements`, `pedestal`, `lectern`, `carpet`, `service_date`, `service_hour`, `church`, `cemetery`, `service_float`, `service_driver`, `decoration_float`, `decoration_driver`, `service_observations`, `user_id`, `client_first_name`, `client_last_name1`, `client_last_name2`, `client_id_card`, `client_email`, `client_phone`, `client_phone2`, `client_phone3`, `veiling_site`, `print_date`) VALUES
 (2, 'funerarios', '2017-05-04', 'te', 'tesadf', 'test', 'test', 'sadf', 'sadfas', 3, 'Amigo', 'Contrato - Funecrédito', 'vcxzcv', 10000, 1212, 'Europeo', '1212', NULL, 1, '1', 1, '3223', '2', 1, 'Casa de habitación', 'xzcvxzcv', 1, 1, 'xzcvz', 'Merced', '2', 'Nacional', 1, 'xzcvzvczd', '1', '2', 1, 1, '2017-05-27', 'asdfa', 'Tibás', 'Tibás', 'Nissan', 'safdasf', 'Porche', 'asdfasf', 'asdfasdf', 4, 'Alex', 'Morgan', 'Rodriguez', '113710497', 'amorgan115@gmail.com', '71765072', '', '', 'test', '2017-05-26'),
-(3, 'funerarios', '2017-05-30', '1234', 'Miguel Morgan', '', '', '113710498', '89', NULL, 'Hijo', 'Contrato', 'ERM-1234', 700000, 0, 'Diplomático', '0', 1, 1, '1', 1, 'Roberto ', '2', NULL, 'Hogar de ancianos', 'San Sebastian', 1, 1, '09:00', 'Shalom', 'No', 'Europea', 1, 'Todo bien', '1', '2', NULL, NULL, '0000-00-00', '', 'Tibás', 'Tibás', 'Toyota', '', 'Toyota', '', '', 4, 'test', 'test2', 'test3', '1324', 'test@tes.com', '723', '434', '', 'Casa de habitación', NULL);
+(3, 'funerarios', '2017-05-30', '1234', 'Miguel Morgan', '', '', '113710498', '89', NULL, 'Hijo', 'Contrato', 'ERM-1234', 700000, 0, 'Diplomático', '0', 1, 1, '1', 1, 'Roberto ', '2', NULL, 'Hogar de ancianos', 'San Sebastian', 1, 1, '09:00', 'Shalom', 'No', 'Europea', 1, 'Todo bien', '1', '2', NULL, NULL, '0000-00-00', '', 'Tibás', 'Tibás', 'Toyota', '', 'Toyota', '', '', 4, 'test', 'test2', 'test3', '1324', 'test@tes.com', '723', '434', '', 'Casa de habitación', NULL),
+(4, 'contrato', '0000-00-00', '', '', '', '', '', '', 3, '', NULL, '12345', 600000, NULL, 'Diplomático', '', NULL, NULL, '1', NULL, '', '2', NULL, 'Casa de habitación', '', NULL, NULL, '', 'Shalom', 'No', 'Europea', NULL, '', '1', '2', NULL, NULL, '0000-00-00', '', 'Tibás', 'Tibás', 'Toyota', '', 'Toyota', '', '', 7, 'Alex', 'Morgan', 'Rodriguez', '113710497', 'amorgan115@gmail.com', '71765072', '', '', 'Funeraria Shalom', NULL),
+(5, 'funerarios', '0000-00-00', '', '', '', '', '', '', 3, '', NULL, '', 1300000, 900000, 'Diplomático', '', NULL, NULL, '1', NULL, '', '2', NULL, 'Casa de habitación', '', NULL, NULL, '', 'Shalom', 'No', 'Europea', NULL, '', '1', '2', NULL, NULL, '0000-00-00', '', 'Tibás', 'Tibás', 'Toyota', '', 'Toyota', '', '', 0, 'Alex', 'Morgan', 'Rodriguez', '113710497', 'amorgan115@gmail.com', '71765072', '', '', 'Funeraria Shalom', NULL);
 
 -- --------------------------------------------------------
 
@@ -779,10 +892,13 @@ CREATE TABLE `bk_sessions` (
 --
 
 INSERT INTO `bk_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
-('6929dc14359d520a2f18f32186ce810a1bfbdb06', '127.0.0.1', 1496384433, 0x5f5f63695f6c6173745f726567656e65726174657c693a313439363338343433333b7265715f75726c7c733a37323a22687474703a2f2f66756e6572617269612e6c6f63616c2f66756e6572617269612f696e6465782e7068702f736572766963696f2f736572766963696f732f66756e65726172696f73223b757365725f69647c733a313a2232223b757365725f656d61696c7c733a353a2261646d696e223b757365725f66697273745f6e616d657c733a353a2241646d696e223b757365725f6c6173745f6e616d657c733a353a2261646d696e223b726f6c657c733a353a2261646d696e223b73797374656d5f63757272656e63797c733a333a22435243223b63757272656e63795f706c6163696e677c733a31353a226265666f72655f776974685f676170223b),
-('d9db01b15917f36f34d614df2cad12e454c25c9d', '127.0.0.1', 1496385774, 0x5f5f63695f6c6173745f726567656e65726174657c693a313439363338353737343b7265715f75726c7c733a37323a22687474703a2f2f66756e6572617269612e6c6f63616c2f66756e6572617269612f696e6465782e7068702f736572766963696f2f736572766963696f732f66756e65726172696f73223b757365725f69647c733a313a2232223b757365725f656d61696c7c733a353a2261646d696e223b757365725f66697273745f6e616d657c733a353a2241646d696e223b757365725f6c6173745f6e616d657c733a353a2261646d696e223b726f6c657c733a353a2261646d696e223b73797374656d5f63757272656e63797c733a333a22435243223b63757272656e63795f706c6163696e677c733a31353a226265666f72655f776974685f676170223b),
-('efb365e5dca6cb16640b0a33fd29dd6c197830b2', '127.0.0.1', 1496385835, 0x5f5f63695f6c6173745f726567656e65726174657c693a313439363338353739363b757365725f69647c733a313a2232223b757365725f656d61696c7c733a353a2261646d696e223b757365725f66697273745f6e616d657c733a353a2241646d696e223b757365725f6c6173745f6e616d657c733a353a2261646d696e223b726f6c657c733a353a2261646d696e223b73797374656d5f63757272656e63797c733a333a22435243223b63757272656e63795f706c6163696e677c733a31353a226265666f72655f776974685f676170223b),
-('f045e7f30ae67354f31438228ad01885787a5913', '127.0.0.1', 1496385401, 0x5f5f63695f6c6173745f726567656e65726174657c693a313439363338353430313b7265715f75726c7c733a37323a22687474703a2f2f66756e6572617269612e6c6f63616c2f66756e6572617269612f696e6465782e7068702f736572766963696f2f736572766963696f732f66756e65726172696f73223b757365725f69647c733a313a2232223b757365725f656d61696c7c733a353a2261646d696e223b757365725f66697273745f6e616d657c733a353a2241646d696e223b757365725f6c6173745f6e616d657c733a353a2261646d696e223b726f6c657c733a353a2261646d696e223b73797374656d5f63757272656e63797c733a333a22435243223b63757272656e63795f706c6163696e677c733a31353a226265666f72655f776974685f676170223b);
+('11474cd02fe8f5aa47bab588fa187adf352ab631', '127.0.0.1', 1497080419, 0x5f5f63695f6c6173745f726567656e65726174657c693a313439373038303431393b7265715f75726c7c733a34383a22687474703a2f2f66756e6572617269612e6c6f63616c2f66756e6572617269612f696e6465782e7068702f61646d696e223b757365725f69647c733a313a2232223b757365725f656d61696c7c733a353a2261646d696e223b757365725f66697273745f6e616d657c733a353a2241646d696e223b757365725f6c6173745f6e616d657c733a353a2261646d696e223b726f6c657c733a353a2261646d696e223b73797374656d5f63757272656e63797c733a333a22435243223b63757272656e63795f706c6163696e677c733a31353a226265666f72655f776974685f676170223b),
+('4fc5cb40dd2fb5a4c9a04b7677b68083ba50200a', '127.0.0.1', 1497082349, 0x5f5f63695f6c6173745f726567656e65726174657c693a313439373038323334393b7265715f75726c7c733a37323a22687474703a2f2f66756e6572617269612e6c6f63616c2f66756e6572617269612f696e6465782e7068702f736572766963696f2f736572766963696f732f66756e65726172696f73223b757365725f69647c733a313a2232223b757365725f656d61696c7c733a353a2261646d696e223b757365725f66697273745f6e616d657c733a353a2241646d696e223b757365725f6c6173745f6e616d657c733a353a2261646d696e223b726f6c657c733a353a2261646d696e223b73797374656d5f63757272656e63797c733a333a22435243223b63757272656e63795f706c6163696e677c733a31353a226265666f72655f776974685f676170223b),
+('a0c08bf1af6989f5c3184d63c12665e1c46adc16', '127.0.0.1', 1497082713, 0x5f5f63695f6c6173745f726567656e65726174657c693a313439373038323432333b757365725f69647c733a313a2232223b757365725f656d61696c7c733a353a2261646d696e223b757365725f66697273745f6e616d657c733a353a2241646d696e223b757365725f6c6173745f6e616d657c733a353a2261646d696e223b726f6c657c733a353a2261646d696e223b73797374656d5f63757272656e63797c733a333a22435243223b63757272656e63795f706c6163696e677c733a31353a226265666f72655f776974685f676170223b),
+('aeaeea4a0f9f6f7b16e6aa6b0be0e3eb2e1e70a6', '127.0.0.1', 1497078487, 0x5f5f63695f6c6173745f726567656e65726174657c693a313439373037383438373b7265715f75726c7c733a37323a22687474703a2f2f66756e6572617269612e6c6f63616c2f66756e6572617269612f696e6465782e7068702f736572766963696f2f736572766963696f732f66756e65726172696f73223b757365725f69647c733a313a2232223b757365725f656d61696c7c733a353a2261646d696e223b757365725f66697273745f6e616d657c733a353a2241646d696e223b757365725f6c6173745f6e616d657c733a353a2261646d696e223b726f6c657c733a353a2261646d696e223b73797374656d5f63757272656e63797c733a333a22435243223b63757272656e63795f706c6163696e677c733a31353a226265666f72655f776974685f676170223b),
+('bbc137ac5067ceed125681aecf9ef6bdf19fd5f7', '127.0.0.1', 1497081278, 0x5f5f63695f6c6173745f726567656e65726174657c693a313439373038313237383b7265715f75726c7c733a37323a22687474703a2f2f66756e6572617269612e6c6f63616c2f66756e6572617269612f696e6465782e7068702f736572766963696f2f736572766963696f732f66756e65726172696f73223b757365725f69647c733a313a2232223b757365725f656d61696c7c733a353a2261646d696e223b757365725f66697273745f6e616d657c733a353a2241646d696e223b757365725f6c6173745f6e616d657c733a353a2261646d696e223b726f6c657c733a353a2261646d696e223b73797374656d5f63757272656e63797c733a333a22435243223b63757272656e63795f706c6163696e677c733a31353a226265666f72655f776974685f676170223b),
+('e9939f157b78823460d16bc9a1e581d9e4a73f61', '127.0.0.1', 1497080002, 0x7265715f75726c7c733a37323a22687474703a2f2f66756e6572617269612e6c6f63616c2f66756e6572617269612f696e6465782e7068702f736572766963696f2f736572766963696f732f66756e65726172696f73223b5f5f63695f6c6173745f726567656e65726174657c693a313439373038303030323b757365725f69647c733a313a2232223b757365725f656d61696c7c733a353a2261646d696e223b757365725f66697273745f6e616d657c733a353a2241646d696e223b757365725f6c6173745f6e616d657c733a353a2261646d696e223b726f6c657c733a353a2261646d696e223b73797374656d5f63757272656e63797c733a333a22435243223b63757272656e63795f706c6163696e677c733a31353a226265666f72655f776974685f676170223b),
+('ff5e4bea426c1cd3710e19c038fa2134d46915c9', '127.0.0.1', 1497079593, 0x5f5f63695f6c6173745f726567656e65726174657c693a313439373037393539333b7265715f75726c7c733a37323a22687474703a2f2f66756e6572617269612e6c6f63616c2f66756e6572617269612f696e6465782e7068702f736572766963696f2f736572766963696f732f66756e65726172696f73223b757365725f69647c733a313a2232223b757365725f656d61696c7c733a353a2261646d696e223b757365725f66697273745f6e616d657c733a353a2241646d696e223b757365725f6c6173745f6e616d657c733a353a2261646d696e223b726f6c657c733a353a2261646d696e223b73797374656d5f63757272656e63797c733a333a22435243223b63757272656e63795f706c6163696e677c733a31353a226265666f72655f776974685f676170223b);
 
 -- --------------------------------------------------------
 
@@ -897,10 +1013,11 @@ CREATE TABLE `cuentas` (
 DROP TABLE IF EXISTS `transacciones`;
 CREATE TABLE `transacciones` (
   `id` int(11) NOT NULL,
-  `contrato_id` int(11) NOT NULL,
-  `tipo` char(2) DEFAULT NULL,
+  `servicio_id` int(11) NOT NULL,
+  `servicio_tipo` char(2) DEFAULT NULL,
   `monto` double DEFAULT NULL,
   `status` char(2) DEFAULT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
   `metodo_pago` varchar(45) DEFAULT NULL,
   `realizado_por` int(11) DEFAULT NULL,
   `fecha_pago` datetime DEFAULT NULL
@@ -927,115 +1044,37 @@ CREATE TABLE `transaction_log` (
 --
 
 --
--- Indexes for table `bk_account`
+-- Indexes for table `apartados_account`
 --
-ALTER TABLE `bk_account`
-  ADD PRIMARY KEY (`account_id`);
+ALTER TABLE `apartados_account`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `bk_coffin`
+-- Indexes for table `bk_contratos_account`
 --
-ALTER TABLE `bk_coffin`
-  ADD PRIMARY KEY (`coffin_id`);
+ALTER TABLE `bk_contratos_account`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_UNIQUE` (`id`);
 
 --
--- Indexes for table `bk_contact`
+-- Indexes for table `bk_cuentas`
 --
-ALTER TABLE `bk_contact`
-  ADD PRIMARY KEY (`contact_id`),
-  ADD KEY `user_id` (`user_id`);
+ALTER TABLE `bk_cuentas`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_UNIQUE` (`id`);
 
 --
--- Indexes for table `bk_currency`
+-- Indexes for table `bk_funecredito_account`
 --
-ALTER TABLE `bk_currency`
-  ADD PRIMARY KEY (`currency_id`);
-
---
--- Indexes for table `bk_email_template`
---
-ALTER TABLE `bk_email_template`
-  ADD PRIMARY KEY (`email_template_id`);
-
---
--- Indexes for table `bk_expense`
---
-ALTER TABLE `bk_expense`
-  ADD PRIMARY KEY (`expense_id`);
-
---
--- Indexes for table `bk_income`
---
-ALTER TABLE `bk_income`
-  ADD PRIMARY KEY (`income_id`);
-
---
--- Indexes for table `bk_income_expense_category`
---
-ALTER TABLE `bk_income_expense_category`
-  ADD PRIMARY KEY (`income_expense_category_id`);
-
---
--- Indexes for table `bk_language`
---
-ALTER TABLE `bk_language`
-  ADD PRIMARY KEY (`phrase_id`);
-
---
--- Indexes for table `bk_method_payment`
---
-ALTER TABLE `bk_method_payment`
-  ADD PRIMARY KEY (`method_payment_id`);
-
---
--- Indexes for table `bk_note`
---
-ALTER TABLE `bk_note`
-  ADD PRIMARY KEY (`note_id`);
-
---
--- Indexes for table `bk_product`
---
-ALTER TABLE `bk_product`
-  ADD PRIMARY KEY (`product_id`);
-
---
--- Indexes for table `bk_product_category`
---
-ALTER TABLE `bk_product_category`
-  ADD PRIMARY KEY (`product_category_id`);
-
---
--- Indexes for table `bk_purchase`
---
-ALTER TABLE `bk_purchase`
-  ADD PRIMARY KEY (`purchase_id`);
-
---
--- Indexes for table `bk_purchase_item`
---
-ALTER TABLE `bk_purchase_item`
-  ADD PRIMARY KEY (`purchase_item_id`);
-
---
--- Indexes for table `bk_sale`
---
-ALTER TABLE `bk_sale`
-  ADD PRIMARY KEY (`sale_id`);
-
---
--- Indexes for table `bk_sale_item`
---
-ALTER TABLE `bk_sale_item`
-  ADD PRIMARY KEY (`sale_item_id`);
+ALTER TABLE `bk_funecredito_account`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_UNIQUE` (`id`);
 
 --
 -- Indexes for table `bk_service`
 --
 ALTER TABLE `bk_service`
-  ADD PRIMARY KEY (`service_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `contact_id` (`contact_id`);
+  ADD PRIMARY KEY (`service_id`);
 
 --
 -- Indexes for table `bk_sessions`
@@ -1095,85 +1134,25 @@ ALTER TABLE `transaction_log`
 --
 
 --
--- AUTO_INCREMENT for table `bk_account`
+-- AUTO_INCREMENT for table `bk_contratos_account`
 --
-ALTER TABLE `bk_account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `bk_contratos_account`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `bk_contact`
+-- AUTO_INCREMENT for table `bk_cuentas`
 --
-ALTER TABLE `bk_contact`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `bk_cuentas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `bk_currency`
+-- AUTO_INCREMENT for table `bk_funecredito_account`
 --
-ALTER TABLE `bk_currency`
-  MODIFY `currency_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
---
--- AUTO_INCREMENT for table `bk_email_template`
---
-ALTER TABLE `bk_email_template`
-  MODIFY `email_template_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `bk_expense`
---
-ALTER TABLE `bk_expense`
-  MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `bk_income`
---
-ALTER TABLE `bk_income`
-  MODIFY `income_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `bk_income_expense_category`
---
-ALTER TABLE `bk_income_expense_category`
-  MODIFY `income_expense_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `bk_language`
---
-ALTER TABLE `bk_language`
-  MODIFY `phrase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=264;
---
--- AUTO_INCREMENT for table `bk_note`
---
-ALTER TABLE `bk_note`
-  MODIFY `note_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `bk_product`
---
-ALTER TABLE `bk_product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `bk_product_category`
---
-ALTER TABLE `bk_product_category`
-  MODIFY `product_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `bk_purchase`
---
-ALTER TABLE `bk_purchase`
-  MODIFY `purchase_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `bk_purchase_item`
---
-ALTER TABLE `bk_purchase_item`
-  MODIFY `purchase_item_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `bk_sale`
---
-ALTER TABLE `bk_sale`
-  MODIFY `sale_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `bk_sale_item`
---
-ALTER TABLE `bk_sale_item`
-  MODIFY `sale_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `bk_funecredito_account`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `bk_service`
 --
 ALTER TABLE `bk_service`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `bk_settings`
 --
@@ -1204,19 +1183,6 @@ ALTER TABLE `cuentas`
 --
 ALTER TABLE `transaction_log`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `bk_contact`
---
-ALTER TABLE `bk_contact`
-  ADD CONSTRAINT `bk_contact_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `bk_user` (`user_id`);
-
---
--- Constraints for table `bk_service`
---
-ALTER TABLE `bk_service`
-  ADD CONSTRAINT `bk_service_ibfk_1` FOREIGN KEY (`contact_id`) REFERENCES `bk_contact` (`contact_id`),
-  ADD CONSTRAINT `bk_service_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `bk_user` (`user_id`);
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
