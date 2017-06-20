@@ -28,7 +28,7 @@ class Servicio extends CI_Controller {
     }
 
     function servicios( $param1 = '', $param2 = '', $param3 = '' ){
-        if( $param1 == NULL || !preg_match( "/^(?:funerarios|realizados|apartados|contrato|create|update|delete)$/i", $param1 ) ){
+        if( $param1 == NULL || !preg_match( "/^(?:funecredito|apartado|contrato|create|update|delete)$/i", $param1 ) ){
             redirect(site_url('admin'));
         }
 
@@ -54,16 +54,23 @@ class Servicio extends CI_Controller {
             break;
 
             default:
-                $page_data['service_type'] = $page_data['page_type'] = $param1;
+                $page_data['service_type']  = $param1;
                 $page_data['module_type']   = 'servicio';
                 $page_data['page_name']     = 'servicio';
-                $page_data['page_title'] = 'Servicios';
-
-                if( $param1 == 'contrato' ){
-                    $page_data['modal'] = 'contrato'; 
-                }
-                else{
-                    $page_data['modal'] = 'servicio';
+                $page_data['page_title']    = 'Servicios';
+                
+                switch($param1 ){
+                    case 'contrato':
+                        $page_data['page_type']= 'contrato';
+                    break;
+                    case 'funecredito':
+                        $page_data['page_type']= 'funecrédito';
+                    break;
+                    case 'apartado':
+                        $page_data['page_type']= 'servicio apartado';
+                    break;
+                    default:
+                        $page_data['page_type']= 'servicio';
                 }
 
                 $this->load->view('admin/index', $page_data);
@@ -76,15 +83,15 @@ class Servicio extends CI_Controller {
         echo json_encode( $this->servicio_model->getUserContracts($param1) );
     }
 
-    function service_details($param1 = '', $param2 = 'summary')
+    function service_details($param1 = '', $param2 = '', $param3 = 'summary')
     {
         $page_data['service_id']    = $param1;
         $service_type               = get_db_field_by_id('service', 'type', $param1);
         $page_data['page_type']     = $service_type;
-        $page_data['active_tab']    = $param2;
+        $page_data['active_tab']    = $param3;
         $page_data['module_type']   = 'servicio';
-        $page_data['page_name']     = 'servicio_detalles';
-        $page_data['page_title']    = "Servicio detalles";
+        $page_data['page_name']     = $param2 .'_detalle';
+        $page_data['page_title']    = $param2 . " detalles";
         
         $this->load->view('admin/index', $page_data);
     }

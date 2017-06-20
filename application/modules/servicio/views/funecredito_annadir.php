@@ -4,7 +4,7 @@
             <div class="panel-heading">
                 <div class="panel-title" >
                     <i class="entypo-plus-circled"></i>
-                    Añadir contrato
+                    Añadir servicio funecrédito 
                 </div>
             </div>
             
@@ -86,7 +86,7 @@
                 <!-- seccond row -->
                 
                 <div class="row">
-                    <div class="col-md-1 hide" >
+                    <div class="col-md-1 hide">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Registrado</label>
                             <div class="col-sm-12">
@@ -184,6 +184,15 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('payment_method'); ?></label>
+                            <div class="col-sm-12">
+                                <button class="payment_method" disabled>Calculo pago</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-3">
+                        <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('contract_id'); ?></label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" name="contract_id"  />
@@ -193,9 +202,9 @@
                     <!-- col -->
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label">Monto del contrato</label>
+                            <label for="field-1" class="col-sm-12 control-label">Monto del servicio</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control format-currency" >
+                                <input type="text" class="form-control" disabled>
                                 <input type="hidden" name="amount" value="">
                             </div>
                         </div>
@@ -203,23 +212,22 @@
                     <!-- col -->
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label">Tiempo del contrato</label>
+                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('balance_'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="tiempo_contrato">
+                                <input type="text"  class="form-control format-currency" disabled>
+                                <input type="hidden" name="balance" value="">
                             </div>
                         </div>
                     </div>
                     <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label">Cuota</label>
-                            <div class="col-sm-12">
-                                <input type="text"  class="form-control format-currency" value="0" disabled>
-                                <input type="hidden" value="0" name="monto_cuota">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
+                    <input type="hidden"  name="contrato_account_id1" id="contrato_account_id1" />
+                    <input type="hidden"  name="contrato_account_id2" id="contrato_account_id2" />
+                    <input type="hidden"  name="contrato_account_id3" id="contrato_account_id3"/>
+                    <input type="hidden" name="saldoFunecredito" id="saldoFunecredito">
+                    <input type="hidden" name="plazoFunecredito" id="plazoFunecredito">
+                    <input type="hidden" name="interesFunecredito" id="interesFunecredito">
+                    <input type="hidden" name="cuotaFunecredito" id="cuotaFunecredito">
+                    <input type="hidden" name="primaFunecredito" id="primaFunecredito">
                 </div>
                 <!-- fith row -->
 
@@ -705,30 +713,31 @@
     </div>
 </div>
 
+
+
 <script>
-    $('[data-custom]').remove();
+    (function(){
 
-    $('.datepicker').datepicker({
-        format: 'yyyy-mm-dd'
-    });
+        $('[data-custom]').remove();
 
-    if ( $('#client_registered').is(':checked') ){
-        $('.client input').addClass('on');
-    }
+        $('#calcAmount').addClass('has-info');
 
-    $('[name=amount],[name=tiempo_contrato]').on('input', function(e){
-        calcularSaldo();
-    });
+        $('#payment').closest('.row').remove();
 
-    function calcularSaldo(){
-        var amount = Number($('[name=amount]').val()),
-            time = Number($('[name=tiempo_contrato]').val()),
-            cuota = amount || 0;
+        $('#calcAmount').find('input:not(:checkbox)').val('').end()
+        .find(':checkbox').prop('checked', false).end()
+        .find('#useContract1, #useContract2, #useContract3').prop('disabled',true);
 
-        if( amount && time ){
-            cuota = amount / time;
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+
+        $('#calcAmount').removeClass('has-info');
+
+        $('[data-custom]').remove();
+
+        if ( $('#client_registered').is(':checked') ){
+            $('.client input').addClass('on');
         }
-
-        $('[name=monto_cuota]').prev().val(cuota).trigger('input');
-    }
+    })();
 </script>

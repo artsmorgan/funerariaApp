@@ -10,7 +10,7 @@ class Servicio_model extends CI_Model
     }
 
     public function getUserContracts($user_id){
-        $this->db->select('contract_number, monto_total, monto_abonado, monto_cuota');
+        $this->db->select('id, contract_number, monto_total, monto_abonado, monto_cuota');
         $this->db->where('contact_id', $user_id);
         $this->db->from('contratos_account');
         return $this->db->get()->result_array();
@@ -73,6 +73,10 @@ class Servicio_model extends CI_Model
         $data['client_phone'] = $this->input->post('client_phone');
         $data['client_phone2'] = $this->input->post('client_phone2');
         $data['client_phone3'] = $this->input->post('client_phone3');
+        $data['abono'] = $this->input->post('abono');
+        $data['contrato_account_id1'] = $this->input->post('contrato_account_id1');
+        $data['contrato_account_id2'] = $this->input->post('contrato_account_id2');
+        $data['contrato_account_id3'] = $this->input->post('contrato_account_id3');
 
         $this->db->insert('service', $data);
         $id = $this->db->insert_id();
@@ -80,10 +84,21 @@ class Servicio_model extends CI_Model
         if( $data['type'] == 'contrato' ){
             $this->servicio_model->create_contract($id);
         }
-
-        if( !empty( $this->input->post('cuotaFunecredito') ) ){
+        else if( $data['type'] == 'funecredito' ){
             $this->servicio_model->create_funecredito($id);
         }
+        else if($data['type'] == 'apartado' ){
+            $this->servicio_model->create_apartado($id);
+        }
+    }
+
+    public function create_apartado($service_id){
+        $data['service_id'] = $service_id;
+        $data['contact_id'] =  $this->input->post('client_id');
+        $data['monto_total'] = $this->input->post('balance');
+        $data['fecha_creacion'] = date('Y-m-d');
+
+        $this->db->insert('apartados_account', $data);
     }
 
     public function create_funecredito($service_id){
@@ -92,6 +107,7 @@ class Servicio_model extends CI_Model
         $data['monto_total'] = $this->input->post('saldoFunecredito');
         $data['prima'] = $this->input->post('primaFunecredito');
         $data['monto_cuota'] = $this->input->post('cuotaFunecredito');
+        $data['interes'] = $this->input->post('interesFunecredito');
         $data['fecha_creacion'] = date('Y-m-d');
         $data['tiempo_servicio'] = $this->input->post('plazoFunecredito');
 
@@ -167,9 +183,56 @@ class Servicio_model extends CI_Model
         $data['client_phone'] = $this->input->post('client_phone');
         $data['client_phone2'] = $this->input->post('client_phone2');
         $data['client_phone3'] = $this->input->post('client_phone3');
+        $data['abono'] = $this->input->post('abono');
+        $data['contrato_account_id1'] = $this->input->post('contrato_account_id1');
+        $data['contrato_account_id2'] = $this->input->post('contrato_account_id2');
+        $data['contrato_account_id3'] = $this->input->post('contrato_account_id3');
 
         $this->db->where('service_id', $service_id);
         $this->db->update('service', $data);
+
+        if( $data['type'] == 'contrato' ){
+            $this->servicio_model->update_contract($service_id);
+        }
+        else if($data['type'] == 'funecredito' ){
+            $this->servicio_model->update_funecredito($service_id);
+        }
+        else if($data['type'] == 'apartado' ){
+            $this->servicio_model->update_apartado($service_id);
+        }
+    }
+
+    public function update_apartado($service_id){
+        $data['service_id'] = $service_id;
+        $data['contact_id'] =  $this->input->post('client_id');
+        $data['monto_total'] = $this->input->post('balance');
+        $data['fecha_creacion'] = date('Y-m-d');
+
+        $this->db->where('service_id', $service_id);
+        $this->db->update('apartados_account', $data);
+    }
+
+    public function update_funecredito($service_id){
+        $data['contact_id'] =  $this->input->post('client_id');
+        $data['monto_total'] = $this->input->post('saldoFunecredito');
+        $data['prima'] = $this->input->post('primaFunecredito');
+        $data['monto_cuota'] = $this->input->post('cuotaFunecredito');
+        $data['interes'] = $this->input->post('interesFunecredito');
+        $data['tiempo_servicio'] = $this->input->post('plazoFunecredito');
+
+        $this->db->where('service_id', $service_id);
+        $this->db->update('funecredito_account', $data);
+    }
+
+    public function update_contract($service_id){
+        $data['contact_id'] =  $this->input->post('client_id') ;
+        $data['monto_total'] = $this->input->post('amount');
+        $data['tiempo_contrato'] = $this->input->post('tiempo_contrato');
+        $data['monto_cuota'] = $this->input->post('monto_cuota');
+        $data['contract_number'] = $this->input->post('contract_id');
+
+        $this->db->where('service_id', $service_id);
+        $this->db->update('contratos_account', $data);
     }
 
     public function delete_servicio($service_id) {

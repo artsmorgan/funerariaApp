@@ -1,7 +1,7 @@
-<a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/'. $modal .'_annadir/' . $service_type ); ?>')" 
+<a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/'. $service_type  .'_annadir/' . $service_type ); ?>')" 
     class="btn btn-primary pull-right">
         <i class="entypo-plus-circled"></i>
-        <?php echo lang_key('add_service'); ?>
+        Añadir <?php echo $page_type; ?>
 </a> 
 <br><br><br>
 <?php 
@@ -54,13 +54,13 @@ if(empty($services)){ ?>
                             </button>
                             <ul class="dropdown-menu dropdown-default pull-right" role="menu">
                                 <li>
-                                    <a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/servicio_actualizar/' . $row['service_id'] . '/' . $service_type); ?>');">
+                                    <a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/'. $service_type  .'_actualizar/' . $row['service_id'] . '/' . $service_type); ?>');">
                                         <i class="entypo-pencil"></i>
                                         <?php echo lang_key('edit');?>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url('servicio/service_details/' . $row['service_id']); ?>">
+                                    <a href="<?php echo site_url('servicio/service_details/' . $row['service_id'] . '/' . $service_type ); ?>">
                                         <i class="entypo-eye"></i>
                                         <?php echo lang_key('view_details');?>
                                     </a>
@@ -244,7 +244,7 @@ if(empty($services)){ ?>
                                 <div class="form-group">
                                     <label class="control-label col-md-12">Cuota mensual funecrédito</label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control  format-currency lock" disabled id="cuotaFunecredito"   />
+                                        <input type="text" class="form-control  format-currency lock" disabled id="cuota"   />
                                     </div>
                                 </div>
                             </div>
@@ -501,9 +501,9 @@ if(empty($services)){ ?>
 
             if( !$('#calcAmount').hasClass('has-info') ){
                 $('#calcAmount').addClass('has-info');
-                $modal.find('input').val('');
-                $modal.find('input[type=checkbox]').prop('checked', false);
-                $('#useContract1, #useContract2, #useContract3').prop('disabled',true);
+                // $modal.find('input:not(:checkbox)').val('');
+                // $modal.find('input[type=checkbox]').prop('checked', false);
+                // $('#useContract1, #useContract2, #useContract3').prop('disabled',true);
 
                 if( $('#client_registered').is(':checked') ){
                     $modal.find('input:not(.lock)').prop('disabled', false);
@@ -512,20 +512,28 @@ if(empty($services)){ ?>
                     .done(function(response){
                         if( $.isArray(response) && response.length){
                             $.each(response, function(i, data){
+                                
                                 data.monto_abonado = data.monto_abonado || 0;
                                 i++;
+                                var selected_contract  = $('#contrato_account_id'+i).val();
                                 $( '#amountContract' + i ).val(data.monto_abonado).trigger('input');
                                 $( '#idContract' + i ).val(data.contract_number);
-                                $('#useContract' + i).prop('disabled',false)
+                                $('#useContract' + i).prop('disabled', data.id == selected_contract).prop('checked', data.id == selected_contract)
                                 .data('monto_abonado', data.monto_abonado)
                                 .data('monto_total', data.monto_total)
-                                .data('monto_cuota', data.monto_cuota);
+                                .data('monto_cuota', data.monto_cuota)
+                                .data('id', data.id);
+
+
                             });
                         }
+
+                        $('#amountService').filter(function(){ return this.value != ''; }).trigger('keyup');
                     });
                 }
                 else{
-                    $modal.find('input:not(.for-contado)').prop('disabled', true);
+                    //$modal.find('input:not(.for-contado)').prop('disabled', true);
+                    $('#amountService').filter(function(){ return this.value != ''; }).trigger('keyup');
                 }
             }
 
@@ -558,6 +566,16 @@ if(empty($services)){ ?>
 
             $('.payment_method').prop('disabled', false);
             $('#calcAmount').removeClass('has-info');
+            $('[name=amount]').val('').prev().val('');
+            $('[name=balance]').val('').prev().val('');
+            $('#primaFunecredito').val('');
+            $('#saldoFunecredito').val('');
+            $('#plazoFunecredito').val('');
+            $('#cuotaFunecredito').val('');
+            $('#abono').val('');
+            $('#calcAmount').removeClass('has-info');
+
+            $('#calcAmount').find('input:not(:checkbox)').val('').end().find(':checkbox').prop('checked', false).end().find('#useContract1, #useContract2, #useContract3').prop('disabled',true);
         });
 
         var $addMoreModal = $('#selectAddMore'),
@@ -627,14 +645,8 @@ if(empty($services)){ ?>
         });
 
         $('.modal').on('click','#client_registered', function(){
-            if( $(this).is(':checked') ){
-                $('.client input').addClass('on');
-                $('.payment_method').prop('disabled', true);
-            }
-            else{
-                $('.client input').removeClass('on');
-            }
-
+            $('.client input').toggleClass('on', $(this).is(':checked'));
+            $('.payment_method').prop('disabled', $(this).is(':checked'));
             $('#calcAmount').removeClass('has-info');
             $('.client input').val('');
         });
@@ -655,10 +667,18 @@ if(empty($services)){ ?>
         $('#calcAmount').on( 'click', '[data-accept]', function(){
             $('[name=amount]').val( $('#amountService').asNumber() ).prev().val( $('#amountService').val() );
             $('[name=balance]').prev().val( $('#saldoTotal').val() ).trigger('input');
-            $('[name=primaFunecredito]').val( $('#debt').asNumber() );
-            $('[name=cuotaFunecredito]').val( $('#cuotaFunecredito').asNumber() );
+            $('[name=primaFunecredito]').val( $('#advance_payment').asNumber() );
+            $('[name=cuotaFunecredito]').val( $('#cuota').asNumber() );
             $('[name=plazoFunecredito]').val( $('#plazo').val() );
             $('[name=interesFunecredito]').val( $('#interes').val() );
+            $('[name=saldoFunecredito]').val( $('#debt').asNumber() );
+            $('[name=abono]').val( $('#payment').asNumber() );
+
+            $('#useContract1,#useContract2,#useContract3').each(function(i){
+                if( $(this).is(':checked') ){
+                    $('#contrato_account_id' + (i + 1)).val( $(this).data('id') );
+                }
+            });
         });
 
         function calPago(){
@@ -714,7 +734,7 @@ if(empty($services)){ ?>
                     cuota = cuota + ( cuota *  interes);
                 }
 
-                $('#cuotaFunecredito').val(cuota).trigger('input');
+                $('#cuota').val(cuota).trigger('input');
         }
 
     });

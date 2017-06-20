@@ -81,9 +81,9 @@
                     </a>
                 </li>
                 <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
-                    <a href="<?php echo site_url('/servicio/servicios/funerarios'); ?>">
+                    <a href="<?php echo site_url('/servicio/servicios/funecredito'); ?>">
                         <i class="entypo-dot"></i>
-                        <span>Funerarios</span>
+                        <span>Funecrédito</span>
                     </a>
                 </li>
                  <!--<li class="<?php if($page_name == 'account_add') echo 'active'; ?>">
@@ -93,15 +93,15 @@
                     </a>
                 </li>
                  <li class="<?php if($page_name == 'account_add') echo 'active'; ?>">
-                    <a href="<?php echo site_url('servicio/servicios/apartados'); ?>">
+                    <a href="<?php echo site_url('servicio/servicios/apartado'); ?>">
                         <i class="entypo-dot"></i>
                         <span>Funecredito</span>
                     </a>
                 </li>-->
                 <li class="<?php if($page_name == 'account_payments') echo 'active'; ?>">
-                    <a href="<?php echo site_url('servicio/servicios/realizados'); ?>">
+                    <a href="<?php echo site_url('servicio/servicios/apartado'); ?>">
                         <i class="entypo-dot"></i>
-                        <span>Servicios Realizados</span>
+                        <span>Apartado</span>
                     </a>
                 </li>
                
