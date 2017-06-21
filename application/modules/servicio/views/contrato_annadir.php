@@ -203,7 +203,7 @@
                     <!-- col -->
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label">Tiempo del contrato</label>
+                            <label for="field-1" class="col-sm-12 control-label">Tiempo del contrato (meses)</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" name="tiempo_contrato">
                             </div>

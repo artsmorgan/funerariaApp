@@ -120,7 +120,7 @@ if(empty($services)){ ?>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label col-md-6">Abono</label>
+                            <label class="control-label col-md-6">Abono Inicial</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control for-contado format-currency"  id="payment"   />
                             </div>
@@ -140,13 +140,33 @@ if(empty($services)){ ?>
                     </div>
                     <!-- col -->
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="row">
                             <div class="col-md-4">
-                                <input type="text" class="form-control lock" disabled  id="idContract1"   />
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Monto total</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control lock format-currency" disabled  id="totalContract1"   />
+                                    </div>                                    
+                                </div>
                             </div>
-                            <label class="control-label col-md-8">N° contrato <input type="checkbox" class="lock" disabled id="useContract1"></label>
-                            
+                            <!--  inner col -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">N° contrato</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control lock" disabled  id="idContract1"   />
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <!--  inner col -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Aplicar contrato <input type="checkbox" class="lock" disabled id="useContract1"></label>                                 
+                                </div>
+                            </div>
+                            <!--  inner col -->
                         </div>
+                        <!-- inner row -->
                     </div>
                     <!-- col -->
                 </div>
@@ -162,13 +182,31 @@ if(empty($services)){ ?>
                     </div>
                     <!-- col -->
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="row">
                             <div class="col-md-4">
-                                <input type="text" class="form-control lock" disabled id="idContract2"  />
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control lock format-currency" disabled  id="totalContract2"   />
+                                    </div>                                    
+                                </div>
                             </div>
-                            <label class="control-label col-md-8">N° contrato <input type="checkbox" class="lock" disabled id="useContract2"></label>
-                            
+                            <!--  inner col -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control lock" disabled  id="idContract2"   />
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <!--  inner col -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Aplicar contrato <input type="checkbox" class="lock" disabled id="useContract2"></label>                                 
+                                </div>
+                            </div>
+                            <!--  inner col -->
                         </div>
+                        <!-- inner row -->
                     </div>
                     <!-- col -->
                 </div>
@@ -184,13 +222,31 @@ if(empty($services)){ ?>
                     </div>
                     <!-- col -->
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="row">
                             <div class="col-md-4">
-                                <input type="text" class="form-control lock" disabled id="idContract3"   />
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control lock format-currency" disabled  id="totalContract3"   />
+                                    </div>                                    
+                                </div>
                             </div>
-                            <label class="control-label col-md-8">N° contrato <input type="checkbox" class="lock" disabled id="useContract3"></label>
-                            
+                            <!--  inner col -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control lock" disabled  id="idContract3"   />
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <!--  inner col -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Aplicar contrato <input type="checkbox" class="lock" disabled id="useContract3"></label>                                 
+                                </div>
+                            </div>
+                            <!--  inner col -->
                         </div>
+                        <!-- inner row -->
                     </div>
                     <!-- col -->
                 </div>
@@ -211,7 +267,7 @@ if(empty($services)){ ?>
                                 <div class="form-group">
                                     <label class="control-label col-md-6">Saldo a financiar Funecrédito</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control format-currency"  id="debt"   />
+                                        <input type="text" class="form-control format-currency lock" disabled  id="debt"   />
                                     </div>
                                 </div>
                             </div>
@@ -516,8 +572,11 @@ if(empty($services)){ ?>
                                 data.monto_abonado = data.monto_abonado || 0;
                                 i++;
                                 var selected_contract  = $('#contrato_account_id'+i).val();
+                                $( '#totalContract' + i ).val(data.monto_total).trigger('input');
                                 $( '#amountContract' + i ).val(data.monto_abonado).trigger('input');
                                 $( '#idContract' + i ).val(data.contract_number);
+                                
+
                                 $('#useContract' + i).prop('disabled', data.id == selected_contract).prop('checked', data.id == selected_contract)
                                 .data('monto_abonado', data.monto_abonado)
                                 .data('monto_total', data.monto_total)
@@ -662,6 +721,13 @@ if(empty($services)){ ?>
 
         $('#calcAmount').on('keyup change', 'input', function(){
             calPago();
+        });
+
+       $('#calcAmount').on('keyup change', '#advance_payment, :checkbox', function(){
+            var saldo = $('#pay1month').asNumber() + $('#debt').asNumber();
+
+                $('#pay1month').val(0);
+                $('#debt').val(saldo).trigger('input');
         });
 
         $('#calcAmount').on( 'click', '[data-accept]', function(){

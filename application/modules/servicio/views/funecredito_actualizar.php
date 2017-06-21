@@ -216,7 +216,7 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('payment_method'); ?></label>
                             <div class="col-sm-12">
-                                <button class="payment_method">Calculo pago</button>
+                                <button class="payment_method" disabled data-tooltip="Seleccione un cliente primero para calcular pagos">Calculo pago</button>
                             </div>
                         </div>
                     </div>
@@ -905,6 +905,8 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
    $('[data-custom]').remove();
 
    $('#payment').closest('.row').remove();
+
+   $('#pay1month').closest('.col-md-12').hide();
 
     $('#calcAmount').find('input:not(:checkbox)').val('').end()
     .find(':checkbox').prop('checked', false).end()
