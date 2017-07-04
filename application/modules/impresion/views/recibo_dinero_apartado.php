@@ -1,8 +1,8 @@
 <?php 
 
-$sql = "SELECT CONCAT(c.first_name, ' ', c.last_name, ' ', c.last_name2) AS name,
-s.amount, ca.saldo AS saldo_actual, ca.monto_cuota, ca.id FROM bk_service AS s INNER JOIN bk_contact AS c ON c.contact_id = s.contact_id 
-INNER JOIN bk_contratos_account AS ca ON ca.service_id = s.service_id WHERE s.service_id = ?";
+$sql = "SELECT CONCAT(s.client_first_name, ' ', s.client_last_name1, ' ', s.client_last_name2) AS name,
+s.amount, ca.saldo AS saldo_actual, ca.id FROM bk_service AS s 
+INNER JOIN bk_apartados_account AS ca ON ca.service_id = s.service_id WHERE s.service_id = ?";
 
 $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 
@@ -93,7 +93,7 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Abono: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="abono" class="form-control format-currency" value="<?php echo htmlentities( $row['monto_cuota'] ); ?>" />
+                                    <input type="text" data-info="abono" class="form-control format-currency" value="" />
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,7 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Saldo actual: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="saldo_actual" disabled class="form-control format-currency"  value="<?php echo htmlentities( $row['saldo_actual'] - $row['monto_cuota'] ); ?>" />
+                                    <input type="text" data-info="saldo_actual" disabled class="form-control format-currency"  value="<?php echo htmlentities( $row['saldo_actual'] ); ?>" />
                                 </div>
                             </div>
                         </div>

@@ -1,6 +1,5 @@
 <?php
-$sql = "SELECT s.service_id, CONCAT(c.first_name, ' ', c.last_name, ' ', c.last_name2) AS name, c.id_card, s.contract_id
- FROM bk_service AS s INNER JOIN bk_contact AS c ON c.contact_id = s.contact_id";
+$sql = "SELECT s.service_id, CONCAT(s.client_first_name, ' ', s.client_last_name1, ' ', s.client_last_name2) AS name, s.client_id_card AS id_card, s.contract_id FROM bk_service AS s WHERE s.type = 'apartado'";
 
 $services = $this->db->query( $sql )->result_array();
 
@@ -32,7 +31,7 @@ if(empty($services)){ ?>
                     <td><?php echo $row['id_card']; ?></td>
                     <td><?php echo $row['contract_id']; ?></td>
                     <td>
-                        <button type="button" class="btn btn-default" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/impresion/recibo_dinero/' . $row['service_id'] ); ?>');">
+                        <button type="button" class="btn btn-default" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/impresion/recibo_dinero_apartado/' . $row['service_id'] ); ?>');">
                             Imprimir recibo
                         </button>
                         <a type="button" class="btn btn-default" href="<?php echo site_url('/impresion/impresiones/historial?id='+$count); ?>");">

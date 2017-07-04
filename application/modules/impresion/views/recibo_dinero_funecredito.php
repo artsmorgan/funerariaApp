@@ -2,7 +2,7 @@
 
 $sql = "SELECT CONCAT(c.first_name, ' ', c.last_name, ' ', c.last_name2) AS name,
 s.amount, ca.saldo AS saldo_actual, ca.monto_cuota, ca.id FROM bk_service AS s INNER JOIN bk_contact AS c ON c.contact_id = s.contact_id 
-INNER JOIN bk_contratos_account AS ca ON ca.service_id = s.service_id WHERE s.service_id = ?";
+INNER JOIN bk_funecredito_account AS ca ON ca.service_id = s.service_id WHERE s.service_id = ?";
 
 $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 
