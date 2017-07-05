@@ -128,7 +128,15 @@ form.services .row:nth-child(even){
     border-right: 10px solid transparent;
 }
 
+.msgs_container p{
+    color: #000;
+    font-size: 14px;
+    text-align: right;
+}
 
+.msgs_container p.error{
+    color: red;
+}
 
 @media screen and (min-width: 768px){
     .modal-dialog.modal-sm {

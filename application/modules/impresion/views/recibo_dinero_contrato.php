@@ -128,14 +128,18 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                             <br>
                             <div class="form-group">
                                 <div class="col-sm-12 txt-right">
+                                    <input type="hidden" id="contract_id" value="<?php echo $row['id']; ?>">
                                     <button class="btn btn-info" id="print-button">
                                         Imprimir
                                     </button>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                        <div class="col-md-12">
+                            <div class="msgs_container"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,6 +147,8 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
 <?php endif; ?>
 
 <script>
+    var site_url = "<?php echo site_url() . '/';?>";
+
     function doGetCaretPosition (oField) {
 
         // Initialize
@@ -189,8 +195,38 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
         }
     }
 
-    $(function(){
+    function show_print_page(){
         var $print_container = $('.print_container');
+
+        $('.panel-primary [data-info]:not(.exclude,span)').each(function(){
+            var data_info = $(this).attr('data-info');
+
+            if(data_info.indexOf('amount') != -1 ){
+                $print_container.find('.print_amount > span').html('');
+                $print_container.find('.print_amount > span').append('<span class="format-currency">'+  $('[data-info=amount]').val() + '</span> ');
+                $print_container.find('.print_amount > span').append('<span> '+  $('[data-info=amount_word]').val() + '</span>');
+                return true;
+            }
+
+            var value = $.trim( $(this).val() );
+
+            if(/cheque|transferencia/.test(value)){
+                $print_container.find('.print_tipo_pago span').text( value + ' - ' + $('[data-info=numero_transferencia]').val() );
+                return true;
+            }
+
+
+            $print_container.find('.print_' + data_info +  ' span').html(value);
+        });
+
+        $('.print_container .format-currency').formatCurrency({
+            symbol: '₡ '
+        });
+
+        window.print();
+    }
+
+    $(function(){
 
         $('.panel-primary .format-currency').formatCurrency({
             symbol: '₡ '
@@ -236,35 +272,50 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
             $('[data-info=numero_transferencia]').prop('disabled', !$(this).find('option:selected').is('[data-enable]') );
         });
 
+        var processing_transaction = false;
         $('#print-button').on('click', function(e){
             e.preventDefault();
 
-            $('.panel-primary [data-info]:not(.exclude,span)').each(function(){
-                var data_info = $(this).attr('data-info');
+            if( processing_transaction ) return;
 
-                if(data_info.indexOf('amount') != -1 ){
-                    $print_container.find('.print_amount > span').html('');
-                    $print_container.find('.print_amount > span').append('<span class="format-currency">'+  $('[data-info=amount]').val() + '</span> ');
-                    $print_container.find('.print_amount > span').append('<span> '+  $('[data-info=amount_word]').val() + '</span>');
-                    return true;
+            processing_transaction = true;
+            $('.msgs_container').html('<p>Procesando, por favor espere...</p>');
+
+            $.ajax({
+                url: site_url + 'transaction/start_transaction',
+                method: 'POST',
+                datatype: 'json',
+                data: {
+                    id: $( '#contract_id' ).val(),
+                    amount: $( '[data-info=abono]' ).asNumber(),
+                    metodo_pago: $('[data-info=tipo_pago]').val(),
+                    desc: $('[data-info=concepto]').val(),
+                    type: 'contrato'
+                }
+            }).done(function(response){
+                var msgs = '';
+                console.log(response);
+                if( typeof response !== 'object' ) return;
+
+                if( response.errors.length ){
+                    msgs = '<p class="error">' + response.errors.join('</p><p class="error">') + '</p>';
+                }
+                else{
+                    msgs = '<p>' + response.success.join('</p><p>') + '</p>';
+                    show_print_page();
+                    $('#modal_ajax').modal('hide');
                 }
 
-                var value = $.trim( $(this).val() );
+                $('.msgs_container').html(msgs);
+                $('.msgs_container').find('.format-currency').formatCurrency({
+                    symbol: '₡ '
+                });
 
-                if(/cheque|transferencia/.test(value)){
-                    $print_container.find('.print_tipo_pago span').text( value + ' - ' + $('[data-info=numero_transferencia]').val() );
-                    return true;
-                }
+            }).always(function(){
+                processing_transaction = false;
+            })
 
-
-                $print_container.find('.print_' + data_info +  ' span').html(value);
-            });
-
-            $('.print_container .format-currency').formatCurrency({
-                symbol: '₡ '
-            });
-
-            window.print();
+            
         });
     });
 </script>

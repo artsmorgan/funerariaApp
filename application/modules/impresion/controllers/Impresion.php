@@ -169,4 +169,11 @@ class Impresion extends CI_Controller {
         
         $this->load->view('admin/index', $page_data);
     }
+
+
+    function start_transaction( $type, $id, $amount ){
+        switch( $type ){
+            
+        }
+    }
 }

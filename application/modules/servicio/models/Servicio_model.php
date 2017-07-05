@@ -109,7 +109,9 @@ class Servicio_model extends CI_Model
         $data['monto_cuota'] = $this->input->post('cuotaFunecredito');
         $data['interes'] = $this->input->post('interesFunecredito');
         $data['fecha_creacion'] = date('Y-m-d');
+        $data['cuotas_pendientes'] = $this->input->post('plazoFunecredito');
         $data['tiempo_servicio'] = $this->input->post('plazoFunecredito');
+        $data['saldo'] = $data['monto_total'];
 
         $this->db->insert('funecredito_account', $data);
     }
@@ -122,6 +124,8 @@ class Servicio_model extends CI_Model
         $data['monto_cuota'] = $this->input->post('monto_cuota');
         $data['fecha_creacion'] = date('Y-m-d');
         $data['contract_number'] = $this->input->post('contract_id');
+        $data['cuotas_pendientes'] = $this->input->post('tiempo_contrato');
+        $data['saldo'] = $data['monto_total'];
 
         $this->db->insert('contratos_account', $data);
     }
