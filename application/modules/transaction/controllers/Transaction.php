@@ -32,7 +32,7 @@ class Transaction extends CI_Controller {
         $id = intval( trim( $_POST['id']) );
         $amount = (float) trim( $_POST['amount'] );
         $metodo_pago = trim( $_POST['metodo_pago'] );
-        $desc = (float) trim( $_POST['desc'] );
+        $desc = trim( $_POST['desc'] );
         $type = trim( $_POST['type'] );
 
         $response = array( 'errors' => array(), 'success' => array() );
@@ -61,7 +61,7 @@ class Transaction extends CI_Controller {
             $account_data = $this->transaction_model->{"get_$type"}($id);
 
             if( empty( $account_data ) ){
-                $response['errors'][] = 'No se encontro el contrato';
+                $response['errors'][] = 'No se encontro el servicio';
             }
             else{
                 if ( $type !== 'apartado' && $amount < $account_data['monto_cuota'] ){

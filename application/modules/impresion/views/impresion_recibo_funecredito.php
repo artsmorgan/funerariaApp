@@ -50,15 +50,19 @@ if(empty($services)){ ?>
     </table>
 <div class="print_container">
     <div class="page_print">
+        <div class="print_header">
+            <h3>Funeraria Shalom</h3>
+            <p>+506 22354721</p>
+            <p class="print_date"><strong>Fecha: </strong> <span></span></p>
+        </div>
         <p class="print_name"><strong>Nombre: </strong> <span></span></p>
-        <p class="print_date"><strong>Fecha: </strong> <span></span></p>
-        <p class="print_amount"><strong>Monto del contrato: </strong> <span></span></p>
         <p class="print_concepto"><strong>Concepto: </strong> <span></span></p>
         <p class="print_tipo_pago"><strong>Tipo de pago: </strong> <span></span></p>
-        <p class="print_saldo_anterior"><strong>Saldo anterior: </strong> <span></span></p>
-        <p class="print_abono"><strong>Abono: </strong> <span></span></p>
+        <p class="print_amount"><strong>Monto del contrato: </strong> <span></span></p>
         <p class="print_interes"><strong>Interes: </strong> <span></span></p>
         <p class="print_amortizacion"><strong>Amortización: </strong> <span></span></p>
+        <p class="print_abono"><strong>Abono: </strong> <span></span></p>
+        <p class="print_saldo_anterior"><strong>Saldo anterior: </strong> <span></span></p>
         <p class="print_saldo_actual"><strong>Saldo actual: </strong> <span></span></p>
     </div>
 </div>

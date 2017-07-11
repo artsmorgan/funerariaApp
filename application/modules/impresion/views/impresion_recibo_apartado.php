@@ -34,13 +34,13 @@ if(empty($services)){ ?>
                         <button type="button" class="btn btn-default" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/impresion/recibo_dinero_apartado/' . $row['service_id'] ); ?>');">
                             Imprimir recibo
                         </button>
-                        <a type="button" class="btn btn-default" href="<?php echo site_url('/impresion/impresiones/historial?id='+$count); ?>");">
+                        <a type="button" class="btn btn-default" href="<?php echo site_url('/impresion/impresiones/historial?id='+$count); ?>">
                             Ver Historial de pagos
                         </a>
-                        <a type="button" class="btn btn-default" href="<?php echo site_url('/impresion/impresiones/aplicar?tipo=apartados?id='.$count); ?>");">
+                        <a type="button" class="btn btn-default" href="<?php echo site_url('/impresion/impresiones/aplicar?tipo=apartados?id='.$count); ?>">
                             Aplicar Pagos Pendientes
                         </a>
-                        <a type="button" class="btn btn-danger" ); href="<?php echo site_url('/impresion/impresiones/revertir?tipo=apartados?id='.$count); ?>");">
+                        <a type="button" class="btn btn-danger" ); href="<?php echo site_url('/impresion/impresiones/revertir?tipo=apartados?id='.$count); ?>">
                             Revertir Pagos
                         </a>
                     </td>
@@ -50,15 +50,19 @@ if(empty($services)){ ?>
     </table>
 <div class="print_container">
     <div class="page_print">
+        <div class="print_header">
+            <h3>Funeraria Shalom</h3>
+            <p>+506 22354721</p>
+            <p class="print_date"><strong>Fecha: </strong> <span></span></p>
+        </div>
         <p class="print_name"><strong>Nombre: </strong> <span></span></p>
-        <p class="print_date"><strong>Fecha: </strong> <span></span></p>
-        <p class="print_amount"><strong>Monto del contrato: </strong> <span></span></p>
         <p class="print_concepto"><strong>Concepto: </strong> <span></span></p>
         <p class="print_tipo_pago"><strong>Tipo de pago: </strong> <span></span></p>
-        <p class="print_saldo_anterior"><strong>Saldo anterior: </strong> <span></span></p>
-        <p class="print_abono"><strong>Abono: </strong> <span></span></p>
+        <p class="print_amount"><strong>Monto del contrato: </strong> <span></span></p>
         <p class="print_interes"><strong>Interes: </strong> <span></span></p>
         <p class="print_amortizacion"><strong>Amortización: </strong> <span></span></p>
+        <p class="print_abono"><strong>Abono: </strong> <span></span></p>
+        <p class="print_saldo_anterior"><strong>Saldo anterior: </strong> <span></span></p>
         <p class="print_saldo_actual"><strong>Saldo actual: </strong> <span></span></p>
     </div>
 </div>
