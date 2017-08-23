@@ -1,7 +1,7 @@
 <a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/contact/contact_add'); ?>')" 
     class="btn btn-primary pull-right">
         <i class="entypo-plus-circled"></i>
-        <?php echo lang_key('add_new_contact'); ?>
+        Añadir nuevo Cliente
 </a> 
 <br><br><br>
 

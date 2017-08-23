@@ -49,7 +49,7 @@
                     || $page_name == 'contact_details' && $contact_type == 'customer') echo 'active'; ?>">
                     <a href="<?php echo site_url('contact/contacts/customer'); ?>">
                         <i class="entypo-dot"></i>
-                        <span><?php echo lang_key('customers'); ?></span>
+                        <span>Añadir nuevo Cliente</span>
                     </a>
                 </li>
                 <!-- <li class="<?php if($page_name == 'contact' && $contact_type == 'supplier'
@@ -102,6 +102,12 @@
                     <a href="<?php echo site_url('servicio/servicios/apartado'); ?>">
                         <i class="entypo-dot"></i>
                         <span>Apartado</span>
+                    </a>
+                </li>
+                <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
+                    <a href="<?php echo site_url('/servicio/servicios/funeral'); ?>">
+                        <i class="entypo-dot"></i>
+                        <span>Funeral</span>
                     </a>
                 </li>
                

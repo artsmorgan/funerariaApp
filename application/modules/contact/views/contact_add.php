@@ -4,7 +4,7 @@
             <div class="panel-heading">
                 <div class="panel-title" >
                     <i class="entypo-plus-circled"></i>
-                    <?php echo lang_key('add_contact'); ?> 
+                    Añadir Cliente
                 </div>
             </div>
             
@@ -49,6 +49,36 @@
                         </div>
                     </div>
                     <!-- col -->
+                     <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('category'); ?></label>
+                            <div class="col-sm-12">
+                                <div class="rating">
+                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                </div>
+                                <input type="hidden" class="form-control col-sm-12" name="category"  />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- first row -->
+                <div class="row">
+                    <!-- col -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('phone'); ?></label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="phone"  />
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="phone2"  />
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="phone3"  />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('email'); ?></label>
@@ -57,9 +87,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="seller"   />
+                                        <input type="hidden" id="seller_id" name="seller_id"  />
+                                    </div>
+                                </div>
+                                <!-- form-group -->
+                            </div>
                     <!-- col -->
                 </div>
-                <!-- first row -->
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -89,26 +128,11 @@
                             
                         </div>
                     </div>
-                    <!-- col -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('phone'); ?></label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" name="phone"  />
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" name="phone2"  />
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" name="phone3"  />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
+                    
                 </div>
                 <!-- second row -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('other_signs'); ?></label>
                             <div class="col-sm-12">
@@ -116,182 +140,13 @@
                             </div>
                         </div>
                     </div>
-                    <!-- col -->
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="seller"   />
-                                        <input type="hidden" id="seller_id" name="seller_id"  />
-                                    </div>
-                                </div>
-                                <!-- form-group -->
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('route'); ?></label>
-                                    <div class="col-sm-12">
-                                        
-                                        <select class="selectboxit" name="route">
-                                            <option value="">Seleccione ruta</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                            <option value="13">13</option>
-                                            <option value="14">14</option>
-                                            <option value="15">15</option>
-                                            <option value="16">16</option>
-                                            <option value="17">17</option>
-                                            <option value="18">18</option>
-                                            <option value="19">19</option>
-                                            <option value="20">20</option>
-                                            <option value="21">21</option>
-                                            <option value="22">22</option>
-                                            <option value="23">23</option>
-                                            <option value="24">24</option>
-                                            <option value="25">25</option>
-                                            <option value="26">26</option>
-                                            <option value="27">27</option>
-                                            <option value="28">28</option>
-                                            <option value="29">29</option>
-                                            <option value="30">30</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!-- form-group -->
-                            </div>
-                        </div>
-                        <!-- inner row -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="field-1" class="col-sm-12 control-label">Monto del contrato</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control format-currency" value="">
-                                        <input type="hidden" name="amount" value="">
-                                    </div>
-                                </div>
-                                <!-- form-group -->
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('balance_'); ?></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control format-currency" value="">
-                                        <input type="hidden" name="balance" value="">
-                                    </div>
-                                </div>
-                                <!-- form-group -->
-                            </div>
-                        </div>
-                        <!-- inner row -->
-                    </div>
-                    <!-- col -->
-                </div>
-                <!-- third row -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('localization'); ?></label>
-                            <div class="col-sm-4">
-                                <input type="text" data-type="number" maxlength="2" class="form-control" name="localization1"  />
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" data-type="number" maxlength="3" class="form-control" name="localization2"  />
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" data-type="number" maxlength="2" class="form-control" name="localization3"  />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('fee'); ?></label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control format-currency"  value="" />
-                                <input type="hidden" name="fee" value="">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('month_payment'); ?></label>
-                            <div class="col-sm-6">
-                                <select  class="selectboxit" name="month_payment" >
-                                    <option value="Enero">Enero</option>
-                                    <option value="Febrero">Febrero</option>
-                                    <option value="Marzo">Marzo</option>
-                                    <option value="Abril">Abril</option>
-                                    <option value="Mayo">Mayo</option>
-                                    <option value="Junio">Junio</option>
-                                    <option value="Julio">Julio</option>
-                                    <option value="Agosto">Agosto</option>
-                                    <option value="Septiembre">Septiembre</option>
-                                    <option value="Octubre">Octubre</option>
-                                    <option value="Noviembre">Noviembre</option>
-                                    <option value="Diciembre">Diciembre</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control" name="year_payment" value=""  />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                </div>
-                <!-- fourth row -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('incorporation_date'); ?></label>
-                            <div class="col-sm-12">
-                                <input type="text" name="incorporation_date" class="form-control datepicker" >
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('category'); ?></label>
-                            <div class="col-sm-12">
-                                <div class="rating">
-                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                </div>
-                                <input type="hidden" class="form-control col-sm-12" name="category"  />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('advance_payment'); ?></label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control format-currency"  value="" />
-                                <input type="hidden" name="advance_payment" value="">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                </div>
-                <!-- fith row -->
+               </div>
+              
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="col-sm-12 txt-right">
-                                <button type="submit" class="btn btn-info" id="submit-button">
+                                <button type="submit" class="btn btn-info" id="submit-button" style="float: right">
                                     <?php echo lang_key('submit'); ?>
                                 </button>
                             </div>
