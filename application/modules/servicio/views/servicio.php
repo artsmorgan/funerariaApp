@@ -46,7 +46,7 @@ if(empty($services)){ ?>
                     <td><?php echo $row['contract_id']; ?></td>
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['client_id_card']; ?></td>
-                    <td> <a href="/servicios/pagos" class="btn btn-primary">Ver Pagos</a> </td>                    
+                    <td> <a href="/servicios/pagos" class="btn btn-primary">Ver Pagos</a> <a href="/servicios/pagos" class="btn btn-danger">Realizar Pago</a> </td>                    
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">

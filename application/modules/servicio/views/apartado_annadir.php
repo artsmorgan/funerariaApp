@@ -16,7 +16,7 @@
 
                 <input type="hidden" name="type" value="<?php echo $param3;  ?>">
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('date'); ?></label>
@@ -25,7 +25,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- col -->
+                    
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('death_document'); ?></label>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- col -->
+                    
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12" ><?php echo lang_key('seller'); ?></label>
@@ -44,11 +44,11 @@
                             </div>
                         </div>
                     </div>
-                    <!-- col -->
-                </div>
+                    
+                </div> -->
                 <!-- first row -->
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('deceased'); ?></label>
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- col -->
+                    
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('identification_card'); ?></label>
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- col -->
+                    
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('age'); ?></label>
@@ -81,8 +81,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- col -->
-                </div>
+                    
+                </div> -->
                 <!-- seccond row -->
                 
                 <div class="row">

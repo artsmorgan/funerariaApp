@@ -119,13 +119,32 @@ class Servicio_model extends CI_Model
     public function create_contract($service_id){
         $data['service_id'] = $service_id;
         $data['contact_id'] =  $this->input->post('client_id') ;
-        $data['monto_total'] = $this->input->post('amount');
-        $data['tiempo_contrato'] = $this->input->post('tiempo_contrato');
-        $data['monto_cuota'] = $this->input->post('monto_cuota');
-        $data['fecha_creacion'] = date('Y-m-d');
+        
+       
+        // $data['tiempo_contrato'] = $this->input->post('tiempo_contrato');
+        $data['fecha_inclusion'] = $this->input->post('fecha_inclusion');
+        $data['ruta'] = $this->input->post('ruta');
+        $data['vendedor'] = $this->input->post('monto_cuota');
+        $data['forma_pago'] = $this->input->post('forma_pago');
         $data['contract_number'] = $this->input->post('contract_id');
-        $data['cuotas_pendientes'] = $this->input->post('tiempo_contrato');
-        $data['saldo'] = $data['monto_total'];
+
+        $data['monto_total'] = $this->input->post('amount');
+        $data['prima'] = $this->input->post('prima');
+        $data['monto_cuota'] = $this->input->post('cuota');
+        $data['loc_1'] = $this->input->post('local_1');
+        $data['loc_2'] = $this->input->post('local_2');
+        $data['loc_3'] = $this->input->post('local_3');
+        $data['no_recibo'] = $this->input->post('no_recibo');
+         
+        $data['mes_cobro'] = $this->input->post('mes_cobro');
+        $data['saldo_anterior'] = $this->input->post('saldo_anterior');
+        $data['saldo_actual'] = $this->input->post('saldo_actual'); 
+         
+
+        // $data['fecha_creacion'] = date('Y-m-d');
+        
+        // $data['cuotas_pendientes'] = $this->input->post('tiempo_contrato');
+        // $data['saldo'] = $data['monto_total'];
 
         $this->db->insert('contratos_account', $data);
     }
