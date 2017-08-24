@@ -60,6 +60,8 @@
 
 <script src="<?php echo base_url();?>assets/js/neon-notes.js"></script>
 
+<script src="<?php echo base_url();?>assets/js/jquery-ui.min.js"></script>
+
 <script type="text/javascript">
     $(".email_template_editors").wysihtml5();
 </script>
