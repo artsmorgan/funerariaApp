@@ -138,6 +138,14 @@ form.services .row:nth-child(even){
     color: red;
 }
 
+.cell-top{
+    vertical-align: top!important;
+}
+
+ul.ui-autocomplete{
+    z-index: 1100;
+}
+
 @media screen and (min-width: 768px){
     .modal-dialog.modal-sm {
         width: 400px!important;

@@ -28,7 +28,7 @@ class Servicio extends CI_Controller {
     }
 
     function servicios( $param1 = '', $param2 = '', $param3 = '' ){
-        if( $param1 == NULL || !preg_match( "/^(?:funecredito|apartado|contrato|create|update|delete|funeral)$/i", $param1 ) ){
+        if( $param1 == NULL || !preg_match( "/^(?:funecredito|apartado|contrato|create|funeral|update|delete|funeral)$/i", $param1 ) ){
             redirect(site_url('admin'));
         }
 

@@ -6,6 +6,9 @@
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/neon-theme.css">
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/neon-forms.css">
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/custom.css">
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery-ui.min.css">
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery-ui.structure.min.css">
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery-ui.theme.min.css">
 
 <!-- RTL SETTINGS -->
 <?php if ($text_align == 'right-to-left') : ?>

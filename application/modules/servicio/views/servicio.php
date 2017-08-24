@@ -14,6 +14,27 @@ $clientlist = $this->db->get_where('contact')->result_array();
 ?>
 
 <?php
+    $sql_client = "select c.*, CONCAT( u.first_name, ' ', u.last_name ) AS seller_name FROM bk_contact AS c LEFT JOIN bk_user AS u ON c.user_id = u.user_id";
+    $clients_data = $this->db->query( $sql_client )->result_array();
+    $script_js_id_card = array();
+    $script_js_first_name = array();
+    $script_js_last_name = array();
+    $script_js_last_name2 = array();
+    $script_js_clients = array();
+
+    foreach($clients_data as $client) {
+        $script_js_clients[] = $client['contact_id'] . ': { id_card: "' .  $client['id_card'] . '", first_name: "' . $client['first_name'] . '", last_name: "' . $client['last_name'] . '", last_name2:"' . $client['last_name2'] . '", phone: "' . $client['phone'] . '", phone2:"' . $client['phone2'] . '", phone3:"' . $client['phone3'] . '", email:"' . $client['email'] . '", category: "' . $client['category'] .'", seller_name: "' . $client['seller_name'] . '", province: "' . $client['province'] . '", canton: "' . $client['canton'] . '", district: "' . $client['district'] . '" }';
+        $script_js_id_card[] = '{ id:' . $client['contact_id'] . ', label: "' .  $client['id_card'] . ' - ' . $client['first_name'] . ' ' . $client['last_name']  . ' ' .  $client['last_name2']  .'" ,value: "' . $client['id_card'] . '" }';
+        $script_js_first_name[] = '{ id:' . $client['contact_id'] . ', label: "' .$client['first_name'] . ' ' . $client['last_name']  . ' ' .  $client['last_name2'] . '" ,value: "' . $client['first_name'] . '" }';
+        $script_js_last_name[] = '{ id:' . $client['contact_id'] . ', label: "' . $client['first_name'] . ' ' . $client['last_name']  . ' ' .  $client['last_name2'] . '" ,value: "' .  $client['last_name'] . '" }';
+        $script_js_last_name2[] = '{ id:' . $client['contact_id'] . ', label: "' . $client['first_name'] . ' ' . $client['last_name']  . ' ' .  $client['last_name2'] . '" ,value: "' . $client['last_name2'] . '" }';
+    }
+
+    $script_js_clients = "{" . join(',', $script_js_clients) . "}";
+    $script_js_search = "{ id_card: [ " . join(',', $script_js_id_card) . "], first_name: [" . join(',', $script_js_first_name) . "], last_name: [" . join(',', $script_js_last_name) . "], last_name2: [" . join(',', $script_js_last_name2) . "] }";
+?>
+
+<?php
 $sql = "SELECT s.service_id, CONCAT(s.client_first_name, ' ', s.client_last_name1, ' ', s.client_last_name2) AS name, s.client_id_card, s.contract_id FROM bk_service AS s WHERE s.type = ?";
 $services = $this->db->query( $sql, array( $service_type ) )->result_array();
 
@@ -441,6 +462,9 @@ if(empty($services)){ ?>
 
 <!--  DATA TABLE EXPORT CONFIGURATIONS -->                      
 <script type="text/javascript">
+    var search_json = <?php echo $script_js_search; ?>;
+    var clients = <?php echo $script_js_clients; ?>;
+
     function showModal(id){
         var zIndex = 1400;
         $(id).modal().css('z-index', zIndex);
@@ -801,6 +825,70 @@ if(empty($services)){ ?>
                 }
 
                 $('#cuota').val(cuota).trigger('input');
+        }
+
+        $('#modal_ajax').on('show.bs.modal', modal_service_loaded);
+
+        function modal_service_loaded(e){
+            console.log('this is  a test');
+
+            $('[name=amount],[name=tiempo_contrato]').on('input', function(e){
+                calcularSaldo();
+            });
+
+            $('[name=id_card]').autocomplete({
+                source: search_json.id_card,
+                minLength: 2,
+                select: function( event, ui ) {
+                    setClientData(ui.item.id);
+                }
+            });
+
+            $('[name=first_name]').autocomplete({
+                source: search_json.first_name,
+                minLength: 2,
+                select: function( event, ui ) {
+                    setClientData(ui.item.id);
+                }
+            });
+
+            $('[name=last_name]').autocomplete({
+                source: search_json.last_name,
+                minLength: 2,
+                select: function( event, ui ) {
+                    setClientData(ui.item.id);
+                }
+            });
+
+            $('[name=last_name2]').autocomplete({
+                source: search_json.last_name2,
+                minLength: 2,
+                select: function( event, ui ) {
+                    setClientData(ui.item.id);
+                }
+            });
+
+            function setClientData(clientId){
+                $('[name=id_card]').val(clients[clientId].id_card);
+                $('[name=first_name]').val(clients[clientId].first_name);
+                $('[name=last_name]').val(clients[clientId].last_name);
+                $('[name=last_name2]').val(clients[clientId].last_name2);
+                $('[name=phone]').val(clients[clientId].phone);
+                $('[name=phone2]').val(clients[clientId].phone2);
+                $('[name=phone3]').val(clients[clientId].phone3);
+                $('[name=email]').val(clients[clientId].email);
+                $('#seller').val(clients[clientId].seller_name);
+                $('[name=address]').val(clients[clientId].address);
+                $('#provinciasSelectBoxItText').text(  clients[clientId].province  );
+                $('#cantonesSelectBoxItText').text(  clients[clientId].canton  );
+                $('#distritosSelectBoxItText').text(  clients[clientId].district  );
+
+                var startsCount = $('.rating span').length;
+
+                $('.rating span').removeClass('active').eq( startsCount - clients[clientId].category ).addClass('active');
+
+                $('[name=client_id]').val(clientId);
+            }
         }
 
     });
