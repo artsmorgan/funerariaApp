@@ -39,6 +39,13 @@ class Servicio extends CI_Controller {
                 $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
                 redirect(site_url('servicio/servicios/' . $service_type));
             break;
+
+            case 'createContract':
+                $service_type = $this->input->post('type');
+                $this->servicio_model->createContract();
+                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
+                redirect(site_url('servicio/servicios/' . $service_type));
+            break;
         
             case 'update':
                 $service_type = $this->input->post('type');

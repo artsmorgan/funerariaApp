@@ -16,6 +16,12 @@ class Servicio_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
+
+    public function createContract(){
+        
+    }
+
+
     public function create_servicio() {
         $data['type'] = $this->input->post('type');
         $data['death_date'] = $this->input->post('death_date');

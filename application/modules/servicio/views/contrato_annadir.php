@@ -10,7 +10,7 @@
             
             <div class="panel-body">
 
-                <?php echo form_open(site_url('servicio/servicios/create'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
+                <?php echo form_open(site_url('servicio/servicios/createContract'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
 
                 <!-- <h3>Información Personal</h3> -->
 
