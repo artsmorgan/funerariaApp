@@ -673,7 +673,13 @@ if(empty($services)){ ?>
 
         $addMoreModal.off('hide.bs.modal');
 
-        $addMoreModal.on('hide.bs.modal', function(){
+        $addMoreModal.on('click', '[data-close]', function(){
+            $addMoreModal.find('input').val('');
+            $currentAddMore.data("selectBox-selectBoxIt").selectOption(0);
+            $currentAddMore.trigger('change');
+        })
+
+        $addMoreModal.on('click', '[data-add-more-to-select]', function(){
             
             var value = $.trim( $addMoreModal.find('input').val() );
                 
@@ -685,8 +691,12 @@ if(empty($services)){ ?>
                         otherValue = $otherOption.text(),
                         $customOption = $currentAddMore.find('[data-custom]');
 
+
                     $currentAddMore.data("selectBox-selectBoxIt").remove( $otherOption.index() );
-                    $currentAddMore.data("selectBox-selectBoxIt").remove( $customOption.index() );
+
+                    if($customOption.length){
+                        $currentAddMore.data("selectBox-selectBoxIt").remove( $customOption.index() );
+                    }
 
                     $currentAddMore.data("selectBox-selectBoxIt").add([{
                         text: value,
@@ -709,6 +719,7 @@ if(empty($services)){ ?>
                 $currentAddMore.data("selectBox-selectBoxIt").selectOption(0);
             }
 
+            $currentAddMore.trigger('change');
              $addMoreModal.find('input').val('');
         });
 
@@ -811,6 +822,19 @@ if(empty($services)){ ?>
 
         $('#debt, #plazo, #interes').on('keyup', function(){
             updateCuotaFunecredito();
+        });
+
+        $('.modal').on('input change', '[data-duplicate]', function(){
+             var name = $(this).attr('name'),
+                $dupElemen = $('[data-duplicate-name=' + name + ']');
+
+            
+            if( $(this).is('textarea') ){
+                $dupElemen.val( $(this).val()) ;
+            }
+            else if( $(this).is('select') ) {
+                $dupElemen.next().find('.selectboxit-text').text( $(this).val() );
+            }
         });
 
         function updateCuotaFunecredito(){

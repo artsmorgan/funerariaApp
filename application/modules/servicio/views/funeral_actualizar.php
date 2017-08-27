@@ -1,3 +1,15 @@
+<?php 
+$sql = "SELECT s.*, c.*, CONCAT( u.first_name, ' ', u.last_name ) AS seller_name, c.id_card AS c_id_card, c.first_name AS c_first_name, c.last_name AS c_last_name, c.last_name2 AS c_last_name2, c.phone AS c_phone, c.phone2 AS c_phone2, c.phone3 AS c_phone3, c.province AS c_province, c.canton AS c_canton, c.district AS c_district, c.category AS c_category, c.email AS c_email, c.address AS c_address
+FROM bk_service AS s
+LEFT JOIN bk_contact AS c ON s.contact_id = c.contact_id
+LEFT JOIN bk_user AS u ON s.user_id = u.user_id 
+WHERE s.service_id = ?";
+
+$row = $this->db->query( $sql, array( $param3 ) )->row_array();
+
+?>
+
+<?php if(  !empty($row) ) : ?>
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary" data-collapsed="0">
@@ -32,8 +44,8 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('identification_card'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control col-sm-12" name="client_id_card"  />
-                                <input type="hidden" id="contact_id" name="contact_id"  />
+                                <input type="text" class="form-control col-sm-12" name="client_id_card" value="<?php echo htmlentities( $row['c_id_card'] ); ?>" />
+                                <input type="hidden" id="contact_id" name="contact_id" value="<?php echo htmlentities( $row['contact_id'] ); ?>"  />
                             </div>
                         </div>
                     </div>
@@ -42,7 +54,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('first_name'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="client_first_name"  />
+                                <input type="text" class="form-control" name="client_first_name" value="<?php echo htmlentities( $row['c_first_name'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -51,7 +63,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Primer apellido</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="client_last_name1"  />
+                                <input type="text" class="form-control" name="client_last_name1" value="<?php echo htmlentities( $row['c_last_name'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -60,7 +72,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Segundo apellido</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="client_last_name2"  />
+                                <input type="text" class="form-control" name="client_last_name2"  value="<?php echo htmlentities( $row['c_last_name2'] ); ?>"/>
                             </div>
                         </div>
                     </div>
@@ -70,13 +82,21 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('category'); ?></label>
                             <div class="col-sm-12">
-                                <div class="rating block">
-                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                <div class="rating">
+                                    <?php 
+                                        $starts = 5;
+                                        $rating = $starts - $row['c_category'];
+                                    ?>
+
+                                    <?php for( $i = 0; $i < $starts; $i++ ): ?>
+                                        <?php echo '<span ' . ( $i ==  $rating ? 'class="active"' : '' ) . ' >☆</span>' ?>
+                                    <?php endfor; ?>
                                 </div>
-                                <input type="hidden" class="form-control col-sm-12" name="category"  />
+                                <input type="hidden" class="form-control col-sm-12" name="category"  value="<?php echo htmlentities( $row['c_category'] ); ?>" />
                             </div>
                         </div>
                     </div>
+                     <!-- col -->
                 </div>
                 <!-- first row -->
                 <div class="row">
@@ -85,13 +105,13 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('phone'); ?></label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="client_phone" readonly />
+                                <input type="text" class="form-control" name="client_phone" readonly value="<?php echo htmlentities( $row['c_phone'] ); ?>" />
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="client_phone2" readonly />
+                                <input type="text" class="form-control" name="client_phone2" readonly value="<?php echo htmlentities( $row['c_phone2'] ); ?>" />
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="client_phone3" readonly />
+                                <input type="text" class="form-control" name="client_phone3" readonly value="<?php echo htmlentities( $row['c_phone3'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -100,7 +120,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('email'); ?></label>
                             <div class="col-sm-12">
-                                <input type="email" class="form-control" name="client_email" readonly />
+                                <input type="email" class="form-control" name="client_email" readonly  value="<?php echo htmlentities( $row['c_email'] ); ?>"/>
                             </div>
                         </div>
                     </div>
@@ -108,7 +128,7 @@
                                 <div class="form-group">
                                     <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="seller" readonly  />
+                                        <input type="text" class="form-control" id="seller" readonly  value="<?php echo htmlentities( $row['seller_name'] ); ?>" />
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -120,18 +140,21 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('address'); ?></label>
                             <div class="col-sm-4">
-                                <select class="selectboxit" id="provincias" name="province" readonly>
-                                    <option value="">Provincia</option>             
+                                <select class="selectboxit" id="provincias" name="province" readonly >
+                                    <option value="">Provincia</option>
+                                    <?php echo "<option selected >" . $row['c_province'] . "</option>"; ?> 
                                 </select>
                             </div>
                             <div class="col-sm-4" id="lvl-container-2">
-                                    <select class="selectboxit selectaux" id="cantones" name="canton" readonly>
-                                        <option value="">Cantón</option>
-                                    </select>
+                                <select class="selectboxit selectaux" id="cantones" name="canton" readonly >
+                                    <option value="">Cantón</option>
+                                    <?php echo "<option selected >" . $row['c_canton'] . "</option>"; ?> 
+                                </select>
                             </div>
                             <div class="col-sm-4" id="lvl-container-3">
-                                <select class="selectboxit" id="distritos" name="district" readonly>
+                                <select class="selectboxit" id="distritos" name="district" readonly >
                                     <option value="">Distrito</option>
+                                    <?php echo "<option selected >" . $row['c_district'] . "</option>"; ?> 
                                 </select>
                             </div>
                             
@@ -141,7 +164,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('other_signs'); ?></label>
                             <div class="col-sm-12">
-                                <textarea name="client_address" class="form-control" rows="1" readonly></textarea>
+                                <textarea name="client_address" class="form-control" rows="1" readonly><?php echo htmlentities( $row['c_address'] ); ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -152,7 +175,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('deceased'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="deceased_id_card" placeholder="Cédula"  />
+                                <input type="text" class="form-control" name="deceased_id_card" placeholder="Cédula" value="<?php echo htmlentities( $row['deceased_id_card'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -160,7 +183,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="deceased_first_name" placeholder="Nombre" />
+                                <input type="text" class="form-control" name="deceased_first_name" placeholder="Nombre" value="<?php echo htmlentities( $row['deceased_first_name'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -168,7 +191,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="deceased_last_name1" placeholder="Primer apellido" />
+                                <input type="text" class="form-control" name="deceased_last_name1" placeholder="Primer apellido" value="<?php echo htmlentities( $row['deceased_last_name1'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -176,7 +199,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="deceased_last_name2" placeholder="Segundo apellido"  />
+                                <input type="text" class="form-control" name="deceased_last_name2" placeholder="Segundo apellido" value="<?php echo htmlentities( $row['deceased_last_name2'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -185,7 +208,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('age'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="deceased_age"  />
+                                <input type="text" class="form-control" name="deceased_age" value="<?php echo htmlentities( $row['deceased_age'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -199,7 +222,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('death_document'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="death_document"  />
+                                <input type="text" class="form-control" name="death_document" value="<?php echo htmlentities( $row['death_document'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -210,26 +233,33 @@
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="relationship">
                                     <option value="">Seleccione</option>
-                                    <option value="Padre">Padre</option>
-                                    <option value="Madre">Madre</option>
-                                    <option value="Hijo">Hijo</option>
-                                    <option value="Hija">Hija</option>
-                                    <option value="Nieto">Nieto</option>
-                                    <option value="Nieta">Nieta</option>
-                                    <option value="Abuela">Abuela</option>
-                                    <option value="Abuelo">Abuelo</option>
-                                    <option value="Tío">Tío</option>
-                                    <option value="Tía">Tía</option>
-                                    <option value="Sobrino">Sobrino</option>
-                                    <option value="Sobrina">Sobrina</option>
-                                    <option value="Suegra">Suegra</option>
-                                    <option value="Suegro">Suegro</option>
-                                    <option value="Yerno">Yerno</option>
-                                    <option value="Nuera">Nuera</option>
-                                    <option value="Cuñado">Cuñado</option>
-                                    <option value="Amigo">Amigo</option>
-                                    <option value="Otro">Otro</option>
-                                </select> 
+                                    <?php 
+                                        $options = array(
+                                            'Padre',
+                                            'Madre',
+                                            'Hijo',
+                                            'Hija',
+                                            'Nieto',
+                                            'Nieta',
+                                            'Abuela',
+                                            'Abuelo',
+                                            'Tío',
+                                            'Tía',
+                                            'Sobrino',
+                                            'Sobrina',
+                                            'Suegra',
+                                            'Suegro',
+                                            'Yerno',
+                                            'Nuera',
+                                            'Cuñado',
+                                            'Amigo',
+                                            'Otro',);
+                                    ?>
+
+                                    <?php foreach($options as $opt): ?>
+                                        <?php echo "<option value=\"$opt\" " . ($opt == $row['relationship'] ? 'selected' : ''  ) . ">$opt</option>"; ?>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -239,7 +269,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('date'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly />
+                                <input type="text" class="form-control" value="" readonly />
                             </div>
                         </div>
                     </div>
@@ -267,18 +297,39 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('coffin'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="coffin" data-select-add-custom>
-                                    <option value="Diplomático">Diplomático</option>
-                                    <option value="Ejecutivo italiano">Ejecutivo italiano</option>
-                                    <option value="Europeo">Europeo</option>
-                                    <option value="Aura">Aura</option>
-                                    <option value="Italiano vidrio">Italiano vidrio</option>
-                                    <option value="Italiano Diplomático">Italiano Diplomático</option>
-                                    <option value="Pino">Pino</option>
-                                    <option value="Peluche">Peluche</option>
-                                    <option value="Presidencial pilares">Presidencial pilares</option>
-                                    <option value="Presidencial octopilar">Presidencial octopilar</option>
-                                    <option value="Luna">Luna</option>
-                                    <option value="Eco">Eco</option>
+                                    <?php 
+                                        $options = array(
+                                            'Diplomático',
+                                            'Ejecutivo italiano',
+                                            'Europeo',
+                                            'Aura',
+                                            'Italiano vidrio',
+                                            'Italiano Diplomático',
+                                            'Pino',
+                                            'Peluche',
+                                            'Presidencial pilares',
+                                            'Presidencial octopilar',
+                                            'Luna',
+                                            'Eco'
+                                        );
+                                        $optSelected = false;
+                                    ?>
+                                    <?php for($i = 0, $l = count($options) - 1; $i < $l; $i++ ): ?>
+                                        <?php 
+                                            if( $options[$i] == $row['coffin']  )  {
+                                                $optSelected = true;
+                                                echo "<option value=\"" . $row['coffin'] . "\" selected >" . $row['coffin'] . "</option>";
+                                            }
+                                            else{
+                                                echo "<option value=\"" . $options[$i] . "\" >" . $options[$i] . "</option>";
+                                            }                                         
+                                         ?>
+                                    <?php endfor; ?>
+                                    <?php 
+                                        if( !$optSelected ){
+                                            echo "<option data-custom value=\"" . $row['coffin'] . "\" selected >" . $row['coffin'] . "</option>";
+                                        }
+                                    ?>
                                     <option value="Otro" data-other>Otro</option>
                                 </select>
                             </div>
@@ -289,7 +340,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('bill'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="bill"  />
+                                <input type="text" class="form-control" name="bill" value="<?php echo htmlentities( $row['bill'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -298,15 +349,37 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('veiling_site'); ?></label>
                             <div class="col-sm-12">
-                                <select class="selectboxit" name="veiling_site" data-select-add-custom data-duplicate>
-                                    <option value="Funeraria Shalom">Funeraria Shalom</option>
-                                    <option value="Capilla Colima">Capilla Colima</option>
-                                    <option value="Capilla Cinco Esquinas">Capilla Cinco Esquinas</option>
-                                    <option value="Capilla Maria Auxiliadora">Capilla Maria Auxiliadora</option>
-                                    <option value="Capilla Llorente">Capilla Llorente</option>
-                                    <option value="Casa de habitación">Casa de habitación</option>
-                                    <option value="Salon comunal">Salon comunal</option>
-                                    <option value="Iglesia">Iglesia</option>
+                                <select class="selectboxit" name="veiling_site" data-select-add-custom>
+                                        <?php 
+                                            $options = array(
+                                                'Funeraria Shalom',
+                                                'Capilla Colima',
+                                                'Capilla Cinco Esquinas',
+                                                'Capilla Maria Auxiliadora',
+                                                'Capilla Llorente',
+                                                'Casa de habitación',
+                                                'Salon comunal',
+                                                'Iglesia',
+                                                'Otro'
+                                            );
+                                            $optSelected = false;
+                                        ?>
+                                        <?php for($i = 0, $l = count($options) - 1; $i < $l; $i++ ): ?>
+                                        <?php 
+                                            if( $options[$i] == $row['veiling_site']  )  {
+                                                $optSelected = true;
+                                                echo "<option value=\"" . $row['veiling_site'] . "\" selected >" . $row['veiling_site'] . "</option>";
+                                            }
+                                            else{
+                                                echo "<option value=\"" . $options[$i] . "\" >" . $options[$i] . "</option>";
+                                            }                                         
+                                         ?>
+                                    <?php endfor; ?>
+                                    <?php 
+                                        if( !$optSelected ){
+                                            echo "<option data-custom value=\"" . $row['veiling_site'] . "\" selected >" . $row['veiling_site'] . "</option>";
+                                        }
+                                    ?>
                                     <option value="Otro" data-other>Otro</option>
                                 </select>
                             </div>
@@ -318,7 +391,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('address'); ?></label>
                             <div class="col-sm-12">
-                                <textarea name="veiling_site_address" data-duplicate class="form-control" rows="5"></textarea>
+                                <textarea name="veiling_site_address" data-duplicate class="form-control" rows="5"><?php echo htmlentities( $row['veiling_site_address'] ); ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -327,7 +400,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('veiling_room'); ?></label>
                             <div class="col-sm-12">
-                                <input type="checkbox" name="veiling_room" class="form-control" value="1">
+                                <input type="checkbox" name="veiling_room" class="form-control" value="1" <?php echo ( $row['veiling_room'] == true ? 'checked' : ''  ); ?>>
                             </div>
                         </div>
                     </div>
@@ -340,7 +413,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('transfers'); ?></label>
                             <div class="col-sm-12">
-                                <input type="checkbox" name="transfers" class="form-control" value="1">
+                                <input type="checkbox" name="transfers" class="form-control" value="1" <?php echo ( $row['transfers'] == true ? 'checked' : ''  ); ?>>
                             </div>
                         </div>
                     </div>
@@ -350,10 +423,17 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('forgetfulness'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="forgetfulness">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
+                                    <?php 
+                                        $options = array(
+                                            '1',
+                                            '2',
+                                            '3',
+                                            '4'
+                                        );
+                                    ?>
+                                    <?php foreach($options as $opt): ?>
+                                        <?php echo "<option value=\"$opt\" " . ($opt == $row['forgetfulness'] ? 'selected' : ''  ) . ">$opt</option>"; ?>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -364,12 +444,19 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('flowers'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="flowers">
-                                    <option value="2">2</option>
-                                    <option value="4">4</option>
-                                    <option value="6">6</option>
-                                    <option value="8">8</option>
-                                    <option value="10">10</option>
-                                    <option value="12">12</option>
+                                    <?php 
+                                        $options = array(
+                                            '2',
+                                            '4',
+                                            '6',
+                                            '8',
+                                            '10',
+                                            '12'
+                                        );
+                                    ?>
+                                    <?php foreach($options as $opt): ?>
+                                        <?php echo "<option value=\"$opt\" " . ($opt == $row['flowers'] ? 'selected' : ''  ) . ">$opt</option>"; ?>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -380,12 +467,19 @@
                             <label for="field-1" class="col-sm-12 control-label">Tributos</label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="tributes">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
+                                    <?php 
+                                        $options = array(
+                                            '1',
+                                            '2',
+                                            '3',
+                                            '4',
+                                            '5',
+                                            '6'
+                                        );
+                                    ?>
+                                    <?php foreach($options as $opt): ?>
+                                        <?php echo "<option value=\"$opt\" " . ($opt == $row['tributes'] ? 'selected' : ''  ) . ">$opt</option>"; ?>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -395,10 +489,10 @@
                         <div class="form-group">
                             <label for="field-3" class="col-sm-12 control-label"><?php echo lang_key('pathology'); ?></label>
                             <div class="col-sm-3">
-                                <input type="checkbox" name="pathology" class="form-control" value="1">
+                                <input type="checkbox" name="pathology" class="form-control" value="1" <?php echo ( $row['pathology'] == true ? 'checked' : ''  ); ?> >
                             </div>
                             <div class="col-sm-9">
-                                <input type="text" name="pathology_technician" class="form-control" placeholder="<?php echo lang_key('technician'); ?>">
+                                <input type="text" name="pathology_technician" class="form-control" placeholder="<?php echo lang_key('technician'); ?>" value="<?php echo htmlentities( $row['pathology_technician'] ); ?>">
                             </div>
                         </div>
                     </div>
@@ -407,7 +501,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Costo</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="pathology_cost"  />
+                                <input type="text" class="form-control" name="pathology_cost"  value="<?php echo htmlentities( $row['pathology_cost'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -419,7 +513,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('cremation'); ?></label>
                             <div class="col-sm-12">
-                                <input type="checkbox" name="cremation" class="form-control" value="1">
+                                <input type="checkbox" name="cremation" class="form-control"  value="1" <?php echo ( $row['cremation'] == true ? 'checked' : ''  ); ?> >
                             </div>
                         </div>
                     </div>
@@ -428,10 +522,10 @@
                         <div class="form-group">
                             <label for="field-3" class="col-sm-12 control-label">Autopsia</label>
                             <div class="col-sm-3">
-                                <input type="checkbox" name="autopsy" class="form-control" value="1">
+                                <input type="checkbox" name="autopsy" class="form-control" value="1" <?php echo ( $row['autopsy'] == true ? 'checked' : ''  ); ?> >
                             </div>
                             <div class="col-sm-9">
-                                <input type="text" name="autopsy_technician" class="form-control" placeholder="<?php echo lang_key('technician'); ?>">
+                                <input type="text" name="autopsy_technician" class="form-control" placeholder="<?php echo lang_key('technician'); ?>" value="<?php echo htmlentities( $row['autopsy_technician'] ); ?>" >
                             </div>
                         </div>
                     </div>
@@ -440,7 +534,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Costo</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="autopsy_cost"  />
+                                <input type="text" class="form-control" name="autopsy_cost" value="<?php echo htmlentities( $row['autopsy_cost'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -450,9 +544,30 @@
                             <label for="field-1" class="col-sm-12 control-label">Urna</label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="urn" data-select-add-custom>
-                                    <option value="Ecológica">Ecológica</option>
-                                    <option value="Metálica">Metálica</option>
-                                    <option value="Madera">Madera</option>
+                                        <?php 
+                                            $options = array(
+                                                'Ecológica',
+                                                'Metálica',
+                                                'Madera'
+                                            );
+                                            $optSelected = false;
+                                        ?>
+                                        <?php for($i = 0, $l = count($options) - 1; $i < $l; $i++ ): ?>
+                                        <?php 
+                                            if( $options[$i] == $row['urn']  )  {
+                                                $optSelected = true;
+                                                echo "<option value=\"" . $row['urn'] . "\" selected >" . $row['urn'] . "</option>";
+                                            }
+                                            else{
+                                                echo "<option value=\"" . $options[$i] . "\" >" . $options[$i] . "</option>";
+                                            }                                         
+                                         ?>
+                                    <?php endfor; ?>
+                                    <?php 
+                                        if( !$optSelected ){
+                                            echo "<option data-custom value=\"" . $row['urn'] . "\" selected >" . $row['urn'] . "</option>";
+                                        }
+                                    ?>
                                     <option value="Otro" data-other>Otro</option>
                                 </select>
                             </div>
@@ -471,16 +586,37 @@
                                     <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('morgue'); ?></label>
                                     <div class="col-sm-12">
                                         <select class="selectboxit" name="morgue" data-select-add-custom>
-                                            <option value="Casa de habitación">Casa de habitación</option>
-                                            <option value="Hogar de ancianos">Hogar de ancianos</option>
-                                            <option value="Medicatura forense">Medicatura forense</option>
-                                            <option value="Hospital Blanco Cervantes">Hospital Blanco Cervantes</option>
-                                            <option value="Hospital México">Hospital México</option>
-                                            <option value="Hospital San Juan de Dios">Hospital San Juan de Dios</option>
-                                            <option value="Hospital Calderón Guardia">Hospital Calderón Guardia</option>
-                                            <option value="Hospital Cartago">Hospital Cartago</option>
-                                            <option value="Hospital Heredia">Hospital Heredia</option>
-                                            <option value="Hospital Alajuela">Hospital Alajuela</option>
+                                            <?php 
+                                                $options = array(
+                                                    'Casa de habitación',
+                                                    'Hogar de ancianos',
+                                                    'Medicatura forense',
+                                                    'Hospital Blanco Cervantes',
+                                                    'Hospital México',
+                                                    'Hospital San Juan de Dios',
+                                                    'Hospital Calderón Guardia',
+                                                    'Hospital Cartago',
+                                                    'Hospital Heredia',
+                                                    'Hospital Alajuela'
+                                                );
+                                                $optSelected = false;
+                                            ?>
+                                            <?php for($i = 0, $l = count($options) - 1; $i < $l; $i++ ): ?>
+                                            <?php 
+                                                if( $options[$i] == $row['morgue']  )  {
+                                                    $optSelected = true;
+                                                    echo "<option value=\"" . $row['morgue'] . "\" selected >" . $row['morgue'] . "</option>";
+                                                }
+                                                else{
+                                                    echo "<option value=\"" . $options[$i] . "\" >" . $options[$i] . "</option>";
+                                                }                                         
+                                            ?>
+                                            <?php endfor; ?>
+                                            <?php 
+                                                if( !$optSelected ){
+                                                    echo "<option data-custom value=\"" . $row['morgue'] . "\" selected >" . $row['morgue'] . "</option>";
+                                                }
+                                            ?>
                                             <option value="Otro" data-other>Otro</option>
                                         </select>
                                     </div>
@@ -496,7 +632,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('address'); ?></label>
                             <div class="col-sm-12">
-                                <textarea name="morgue_address" class="form-control" rows="5"></textarea>
+                                <textarea name="morgue_address" class="form-control" rows="5"><?php echo htmlentities( $row['morgue_address'] ); ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -507,7 +643,7 @@
                                 <div class="form-group">
                                     <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('driver'); ?></label>
                                     <div class="col-sm-12">
-                                        <input type="checkbox" name="driver" class="form-control" value="1">
+                                        <input type="checkbox" name="driver" class="form-control" value="1" <?php echo ( $row['driver'] == true ? 'checked' : ''  ); ?>>
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -516,7 +652,7 @@
                                 <div class="form-group">
                                     <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('float'); ?></label>
                                     <div class="col-sm-12">
-                                        <input type="checkbox" name="float" class="form-control" value="1">
+                                        <input type="checkbox" name="float" class="form-control" value="1" <?php echo ( $row['float'] == true ? 'checked' : ''  ); ?>>
                                     </div>
                                 </div>
                                 <!-- form-group -->
@@ -534,7 +670,7 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('veiling_site'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" data-duplicate-name="veiling_site" readonly>
-                                    <option value="Funeraria Shalom">Funeraria Shalom</option>
+                                    <?php echo "<option value=\"" . $row['veiling_site'] . "\" selected >" . $row['veiling_site'] . "</option>"; ?>
                                 </select>
                             </div>
                         </div>
@@ -545,7 +681,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('address'); ?></label>
                             <div class="col-sm-12">
-                                <textarea data-duplicate-name="veiling_site_address" class="form-control" rows="5" readonly></textarea>
+                                <textarea data-duplicate-name="veiling_site_address" class="form-control" rows="5" readonly><?php echo htmlentities( $row['veiling_site_address'] ); ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -556,7 +692,7 @@
                                 <div class="form-group">
                                     <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('hour'); ?></label>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" name="transfer_time"  />
+                                        <input type="text" class="form-control" name="transfer_time" value="<?php echo htmlentities( $row['transfer_time'] ); ?>" />
                                     </div>
                                 </div>
                             </div>
@@ -566,8 +702,15 @@
                                     <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('vault_coffin'); ?></label>
                                     <div class="col-sm-12">
                                         <select class="selectboxit" name="vault_coffin">
-                                            <option value="Shalom">Shalom</option>
-                                            <option value="Merced">Merced</option>
+                                            <?php 
+                                                $options = array(
+                                                    'Shalom',
+                                                    'Merced'
+                                                );
+                                            ?>
+                                            <?php foreach($options as $opt): ?>
+                                                <?php echo "<option value=\"$opt\" " . ($opt == $row['vault_coffin'] ? 'selected' : ''  ) . ">$opt</option>"; ?>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
@@ -587,18 +730,25 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('arrangements'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="veiling_site_arrangements">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
+                                    <?php 
+                                        $options = array(
+                                            '1',
+                                            '2',
+                                            '3',
+                                            '4',
+                                            '5',
+                                            '6',
+                                            '7',
+                                            '8',
+                                            '9',
+                                            '10',
+                                            '11',
+                                            '12'
+                                        );
+                                    ?>
+                                    <?php foreach($options as $opt): ?>
+                                        <?php echo "<option value=\"$opt\" " . ($opt == $row['veiling_site_arrangements'] ? 'selected' : ''  ) . ">$opt</option>"; ?>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -609,12 +759,19 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('pedestal'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="pedestal">
-                                    <option value="2">2</option>
-                                    <option value="4">4</option>
-                                    <option value="6">6</option>
-                                    <option value="8">8</option>
-                                    <option value="10">10</option>
-                                    <option value="12">12</option>
+                                    <?php 
+                                        $options = array(
+                                            '2',
+                                            '4',
+                                            '6',
+                                            '8',
+                                            '10',
+                                            '12'
+                                        );
+                                    ?>
+                                    <?php foreach($options as $opt): ?>
+                                        <?php echo "<option value=\"$opt\" " . ($opt == $row['pedestal'] ? 'selected' : ''  ) . ">$opt</option>"; ?>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -625,9 +782,16 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('candlestick'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="candlestick">
-                                    <option value="No">No</option>
-                                    <option value="2">2</option>
-                                    <option value="4">4</option>
+                                    <?php 
+                                        $options = array(
+                                            'No',
+                                            '2',
+                                            '4'
+                                        );
+                                    ?>
+                                    <?php foreach($options as $opt): ?>
+                                        <?php echo "<option value=\"$opt\" " . ($opt == $row['candlestick'] ? 'selected' : ''  ) . ">$opt</option>"; ?>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -637,7 +801,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('carpet'); ?></label>
                             <div class="col-sm-12">
-                                <input type="checkbox" name="carpet" class="form-control" value="1">
+                                <input type="checkbox" name="carpet" class="form-control" value="1" <?php echo ( $row['carpet'] == true ? 'checked' : ''  ); ?> >
                             </div>
                         </div>
                     </div>
@@ -647,9 +811,16 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('pushcart'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="pushcart">
-                                    <option value="Europea">Europea</option>
-                                    <option value="Americana">Americana</option>
-                                    <option value="Nacional">Nacional</option>
+                                    <?php 
+                                        $options = array(
+                                            'Europea',
+                                            'Americana',
+                                            'Nacional'
+                                        );
+                                    ?>
+                                    <?php foreach($options as $opt): ?>
+                                        <?php echo "<option value=\"$opt\" " . ($opt == $row['pushcart'] ? 'selected' : ''  ) . ">$opt</option>"; ?>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -659,7 +830,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('lectern'); ?></label>
                             <div class="col-sm-12">
-                                <input type="checkbox" name="lectern" class="form-control" value="1">
+                                <input type="checkbox" name="lectern" class="form-control" value="1" <?php echo ( $row['lectern'] == true ? 'checked' : ''  ); ?>>
                             </div>
                         </div>
                     </div>
@@ -668,7 +839,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('curtain'); ?></label>
                             <div class="col-sm-12">
-                                <input type="checkbox" name="curtain" class="form-control" value="1">
+                                <input type="checkbox" name="curtain" class="form-control" value="1" <?php echo ( $row['curtain'] == true ? 'checked' : ''  ); ?>>
                             </div>
                         </div>
                     </div>
@@ -681,7 +852,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('observations'); ?></label>
                             <div class="col-sm-12">
-                                <textarea class="form-control" name="transfer_observations" rows="3"></textarea>
+                                <textarea class="form-control" name="transfer_observations" rows="3"><?php echo $row['transfer_observations']?></textarea>
                             </div>
                         </div>
                     </div>
@@ -696,7 +867,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('date'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control datepicker" name="funeral_date"  />
+                                <input type="text" class="form-control datepicker" name="funeral_date"  value="<?php echo htmlentities( $row['funeral_date'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -705,7 +876,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('hour'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="funeral_time"  />
+                                <input type="text" class="form-control" name="funeral_time" value="<?php echo htmlentities( $row['funeral_time'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -715,26 +886,47 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('church'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="church" data-select-add-custom>
-                                    <option value="Tibás">Tibás</option>
-                                    <option value="Colima">Colima</option>
-                                    <option value="Cinco Esquinas">Cinco Esquinas</option>
-                                    <option value="Llorente">Llorente</option>
-                                    <option value="Sta Mónica">Sta Mónica</option>
-                                    <option value="Santo Domingo">Santo Domingo</option>
-                                    <option value="Santo Thomas">Santo Thomas</option>
-                                    <option value="Santa Rosa">Santa Rosa</option>
-                                    <option value="San Miguel">San Miguel</option>
-                                    <option value="San Luis">San Luis</option>
-                                    <option value="Moravia">Moravia</option>
-                                    <option value="Guadalupe">Guadalupe</option>
-                                    <option value="Hatillo Centro">Hatillo Centro</option>
-                                    <option value="Calle Blancos">Calle Blancos</option>
-                                    <option value="Alajuelita">Alajuelita</option>
-                                    <option value="Pavas Sta Barbara">Pavas Sta Barbara</option>
-                                    <option value="Pavas Maria Reina">Pavas Maria Reina</option>
-                                    <option value="Escazú">Escazú</option>
-                                    <option value="Desamparados">Desamparados</option>
-                                    <option value="Paso Ancho">Paso Ancho</option>
+                                    <?php 
+                                        $options = array(
+                                            'Tibás',
+                                            'Colima',
+                                            'Cinco Esquinas',
+                                            'Llorente',
+                                            'Sta Mónica',
+                                            'Santo Domingo',
+                                            'Santo Thomas',
+                                            'Santa Rosa',
+                                            'San Miguel',
+                                            'San Luis',
+                                            'Moravia',
+                                            'Guadalupe',
+                                            'Hatillo Centro',
+                                            'Calle Blancos',
+                                            'Alajuelita',
+                                            'Pavas Sta Barbara',
+                                            'Pavas Maria Reina',
+                                            'Escazú',
+                                            'Desamparados',
+                                            'Paso Ancho'
+                                        );
+                                        $optSelected = false;
+                                    ?>
+                                    <?php for($i = 0, $l = count($options) - 1; $i < $l; $i++ ): ?>
+                                    <?php 
+                                        if( $options[$i] == $row['church']  )  {
+                                            $optSelected = true;
+                                            echo "<option value=\"" . $row['church'] . "\" selected >" . $row['church'] . "</option>";
+                                        }
+                                        else{
+                                            echo "<option value=\"" . $options[$i] . "\" >" . $options[$i] . "</option>";
+                                        }                                         
+                                    ?>
+                                    <?php endfor; ?>
+                                    <?php 
+                                        if( !$optSelected ){
+                                            echo "<option data-custom value=\"" . $row['church'] . "\" selected >" . $row['church'] . "</option>";
+                                        }
+                                    ?>
                                     <option value="Otro" data-other>Otro</option>
                                 </select>
                             </div>
@@ -746,27 +938,48 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('cemetery'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="cemetery" data-select-add-custom>
-                                    <option value="Tibás">Tibás</option>
-                                    <option value="Moravia">Moravia</option>
-                                    <option value="Guadalupe">Guadalupe</option>
-                                    <option value="Santo Domingo">Santo Domingo</option>
-                                    <option value="Jardines del Recuerdo">Jardines del Recuerdo</option>
-                                    <option value="Desamparados">Desamparados</option>
-                                    <option value="Bosques de Paz">Bosques de Paz</option>
-                                    <option value="Obrero">Obrero</option>
-                                    <option value="Alajuelita">Alajuelita</option>
-                                    <option value="Pavas">Pavas</option>
-                                    <option value="Metropolitano">Metropolitano</option>
-                                    <option value="Escazú">Escazú</option>
-                                    <option value="Calvo">Calvo</option>
-                                    <option value="Piedad Heredia">Piedad Heredia</option>
-                                    <option value="Piedad Desamparados">Piedad Desamparados</option>
-                                    <option value="Piedad Sto Domingo">Piedad Sto Domingo</option>
-                                    <option value="Piedad Moravia">Piedad Moravia</option>
-                                    <option value="Piedad Sto Thomas">Piedad Sto Thomas</option>
-                                    <option value="Piedad Escazú">Piedad Escazú</option>
-                                    <option value="Cartago">Cartago</option>
-                                    <option value="Otros" data-other>Otros</option>
+                                    <?php 
+                                        $options = array(
+                                            'Tibás',
+                                            'Moravia',
+                                            'Guadalupe',
+                                            'Santo Domingo',
+                                            'Jardines del Recuerdo',
+                                            'Desamparados',
+                                            'Bosques de Paz',
+                                            'Obrero',
+                                            'Alajuelita',
+                                            'Pavas',
+                                            'Metropolitano',
+                                            'Escazú',
+                                            'Calvo',
+                                            'Piedad Heredia',
+                                            'Piedad Desamparados',
+                                            'Piedad Sto Domingo',
+                                            'Piedad Moravia',
+                                            'Piedad Sto Thomas',
+                                            'Piedad Escazú',
+                                            'Cartago'
+                                        );
+                                        $optSelected = false;
+                                    ?>
+                                    <?php for($i = 0, $l = count($options) - 1; $i < $l; $i++ ): ?>
+                                    <?php 
+                                        if( $options[$i] == $row['cemetery']  )  {
+                                            $optSelected = true;
+                                            echo "<option value=\"" . $row['cemetery'] . "\" selected >" . $row['cemetery'] . "</option>";
+                                        }
+                                        else{
+                                            echo "<option value=\"" . $options[$i] . "\" >" . $options[$i] . "</option>";
+                                        }                                         
+                                    ?>
+                                    <?php endfor; ?>
+                                    <?php 
+                                        if( !$optSelected ){
+                                            echo "<option data-custom value=\"" . $row['cemetery'] . "\" selected >" . $row['cemetery'] . "</option>";
+                                        }
+                                    ?>
+                                    <option value="Otro" data-other>Otro</option>
                                 </select>
                             </div>
                         </div>
@@ -781,16 +994,37 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('float'); ?></label>
                             <div class="col-sm-6">
                                 <select class="selectboxit" name="service_float" data-select-add-custom>
-                                    <option value="Toyota">Toyota</option>
-                                    <option value="Hyundai">Hyundai</option>
-                                    <option value="Buick">Buick</option>
-                                    <option value="Mercedes Shalom">Mercedes Shalom</option>
-                                    <option value="Mercedes Merced">Mercedes Merced</option>
-                                    <option value="Otros" data-other>Otros</option>
+                                    <?php 
+                                        $options = array(
+                                            'Toyota',
+                                            'Hyundai',
+                                            'Buick',
+                                            'Mercedes Shalom',
+                                            'Mercedes Merced'
+                                        );
+                                        $optSelected = false;
+                                    ?>
+                                    <?php for($i = 0, $l = count($options) - 1; $i < $l; $i++ ): ?>
+                                    <?php 
+                                        if( $options[$i] == $row['service_float']  )  {
+                                            $optSelected = true;
+                                            echo "<option value=\"" . $row['service_float'] . "\" selected >" . $row['service_float'] . "</option>";
+                                        }
+                                        else{
+                                            echo "<option value=\"" . $options[$i] . "\" >" . $options[$i] . "</option>";
+                                        }                                         
+                                    ?>
+                                    <?php endfor; ?>
+                                    <?php 
+                                        if( !$optSelected ){
+                                            echo "<option data-custom value=\"" . $row['service_float'] . "\" selected >" . $row['service_float'] . "</option>";
+                                        }
+                                    ?>
+                                    <option value="Otro" data-other>Otro</option>
                                 </select>
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="service_driver" placeholder="<?php echo lang_key('driver');  ?>">
+                                <input type="text" class="form-control" name="service_driver" placeholder="<?php echo lang_key('driver');  ?>" value="<?php echo htmlentities( $row['service_driver'] ); ?>" >
                             </div>
                         </div>
                     </div>
@@ -800,16 +1034,37 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('decoration'); ?></label>
                             <div class="col-sm-6">
                                 <select class="selectboxit" name="decoration_float" data-select-add-custom>
-                                    <option value="Toyota">Toyota</option>
-                                    <option value="Hyundai">Hyundai</option>
-                                    <option value="Buick">Buick</option>
-                                    <option value="Mercedes Shalom">Mercedes Shalom</option>
-                                    <option value="Mercedes Merced">Mercedes Merced</option>
-                                    <option value="Otros" data-other>Otros</option>
+                                    <?php 
+                                        $options = array(
+                                            'Toyota',
+                                            'Hyundai',
+                                            'Buick',
+                                            'Mercedes Shalom',
+                                            'Mercedes Merced'
+                                        );
+                                        $optSelected = false;
+                                    ?>
+                                    <?php for($i = 0, $l = count($options) - 1; $i < $l; $i++ ): ?>
+                                    <?php 
+                                        if( $options[$i] == $row['decoration_float']  )  {
+                                            $optSelected = true;
+                                            echo "<option value=\"" . $row['decoration_float'] . "\" selected >" . $row['decoration_float'] . "</option>";
+                                        }
+                                        else{
+                                            echo "<option value=\"" . $options[$i] . "\" >" . $options[$i] . "</option>";
+                                        }                                         
+                                    ?>
+                                    <?php endfor; ?>
+                                    <?php 
+                                        if( !$optSelected ){
+                                            echo "<option data-custom value=\"" . $row['decoration_float'] . "\" selected >" . $row['decoration_float'] . "</option>";
+                                        }
+                                    ?>
+                                    <option value="Otro" data-other>Otro</option>
                                 </select>
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="decoration_driver" placeholder="<?php echo lang_key('driver');  ?>">
+                                <input type="text" class="form-control" name="decoration_driver" placeholder="<?php echo lang_key('driver');  ?>"  value="<?php echo htmlentities( $row['decoration_driver'] ); ?>" >
                             </div>
                         </div>
                     </div>
@@ -821,7 +1076,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('observations'); ?></label>
                             <div class="col-sm-12">
-                                <textarea class="form-control" name="service_observations"  rows="5" ></textarea>
+                                <textarea class="form-control" name="service_observations"  rows="5" ><?php echo htmlentities( $row['service_observations'] ); ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -835,7 +1090,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Monto Total del Servicio</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control " name="amount" required  />
+                                <input type="text" class="form-control " name="amount" required value="<?php echo htmlentities( $row['amount'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -1195,3 +1450,5 @@
         }
     })();
 </script>
+
+<?php endif; ?>
