@@ -11,6 +11,9 @@ $userlist = $this->db->get_where('user')->result_array();
 $this->db->order_by('contact_id', 'desc');
 $clientlist = $this->db->get_where('contact')->result_array();
 
+
+
+
 ?>
 
 <?php
@@ -36,6 +39,22 @@ $clientlist = $this->db->get_where('contact')->result_array();
 
 <?php
 $sql = "SELECT s.service_id, CONCAT(s.client_first_name, ' ', s.client_last_name1, ' ', s.client_last_name2) AS name, s.client_id_card, s.contract_id FROM bk_service AS s WHERE s.type = ?";
+if($service_type=='contrato'){
+   $sql = "select 
+                c.no_contrato as contract_id, c.id as service_id, c.mes_cobro, c.vendedor, c.ruta,
+                CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card
+            from bk_contratos c
+            inner join bk_contact cn on c.contact_id = cn.contact_id;";
+}
+else if($service_type=='apartado'){
+    $sql = "select 
+    c.id as contract_id, c.id as service_id, 
+    CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card
+    from bk_apartados c
+    inner join bk_contact cn on c.contact_id = cn.contact_id;";
+}
+
+
 $services = $this->db->query( $sql, array( $service_type ) )->result_array();
 
 if(empty($services)){ ?>

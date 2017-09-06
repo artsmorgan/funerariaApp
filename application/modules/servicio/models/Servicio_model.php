@@ -16,11 +16,126 @@ class Servicio_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
+    private function newTransaction($serviceID, $accountID, $createdBy){
 
-    public function createContract(){
-        
     }
 
+
+    public function createContract(){
+        // $data['service_id'] = $service_id;
+        $data['contact_id'] =  $this->input->post('contact_id') ;
+        $data['created_by'] = $_SESSION['user_id'];
+       
+        // $data['tiempo_contrato'] = $this->input->post('tiempo_contrato');
+        $data['fecha_inclusion'] = $this->input->post('fecha_inclusion');
+        $data['ruta'] = $this->input->post('ruta');
+        $data['vendedor'] = $this->input->post('vendedor');
+        $data['forma_pago'] = $this->input->post('forma_pago');
+        $data['no_contrato'] = $this->input->post('contract_id');
+
+        $data['monto_total'] = $this->input->post('amount');
+        $data['prima'] = $this->input->post('prima');
+        $data['monto_cuota'] = $this->input->post('cuota');
+        $data['loc_1'] = $this->input->post('local_1');
+        $data['loc_2'] = $this->input->post('local_2');
+        $data['loc_3'] = $this->input->post('local_3');
+        $data['no_recibo'] = $this->input->post('no_recibo');
+         
+        $data['mes_cobro'] = $this->input->post('mes_cobro');
+        $data['saldo_anterior'] = $this->input->post('saldo_anterior');
+        $data['saldo_actual'] = $this->input->post('saldo_actual'); 
+
+        $data['observaciones'] = $this->input->post('observaciones'); 
+
+        
+        $this->db->insert('contratos', $data);
+        $id = $this->db->insert_id();
+
+        //Create account
+    }
+
+    public function createApartado(){
+        $data['contact_id'] =  $this->input->post('contact_id') ;
+        $data['created_by'] = $_SESSION['user_id'];
+
+        $data['cremacion'] =  $this->input->post('cremacion') ;
+        $data['autopsia'] =  $this->input->post('autopsia') ;
+        $data['tecnico'] =  $this->input->post('tecnico') ;
+        $data['costo'] =  $this->input->post('costo') ;
+        $data['urna'] =  $this->input->post('urna') ;
+        $data['preservacion'] =  $this->input->post('preservacion') ;
+        $data['monto'] =  $this->input->post('monto') ;
+        $data['costo_total'] =  $this->input->post('costo_total') ;
+        $data['saldo_anterior'] =  $this->input->post('saldo_anterior') ;
+        $data['abono'] =  $this->input->post('abono') ;
+        $data['saldo_actual'] =  $this->input->post('saldo_actual') ;
+
+
+        $data['observaciones'] = $this->input->post('observaciones'); 
+
+        $this->db->insert('apartados', $data);
+        $id = $this->db->insert_id();
+    }
+
+     public function updateContract(){
+        $service_id = $this->input->post('service_id');
+        // $data['service_id'] = $service_id;
+        $data['contact_id'] =  $this->input->post('contact_id') ;
+        $data['created_by'] = $_SESSION['user_id'];
+       
+        // $data['tiempo_contrato'] = $this->input->post('tiempo_contrato');
+        $data['fecha_inclusion'] = $this->input->post('fecha_inclusion');
+        $data['ruta'] = $this->input->post('ruta');
+        $data['vendedor'] = $this->input->post('vendedor');
+        $data['forma_pago'] = $this->input->post('forma_pago');
+        $data['no_contrato'] = $this->input->post('contract_id');
+
+        $data['monto_total'] = $this->input->post('amount');
+        $data['prima'] = $this->input->post('prima');
+        $data['monto_cuota'] = $this->input->post('cuota');
+        $data['loc_1'] = $this->input->post('local_1');
+        $data['loc_2'] = $this->input->post('local_2');
+        $data['loc_3'] = $this->input->post('local_3');
+        $data['no_recibo'] = $this->input->post('no_recibo');
+         
+        $data['mes_cobro'] = $this->input->post('mes_cobro');
+        $data['saldo_anterior'] = $this->input->post('saldo_anterior');
+        $data['saldo_actual'] = $this->input->post('saldo_actual'); 
+
+        $data['observaciones'] = $this->input->post('observaciones'); 
+
+        
+       
+        $this->db->where('id', $service_id);
+        $this->db->update('contratos', $data);
+    }
+    
+    public function updateApartado(){
+        $service_id = $this->input->post('service_id');
+        // $data['service_id'] = $service_id;
+        $data['contact_id'] =  $this->input->post('contact_id') ;
+        $data['created_by'] = $_SESSION['user_id'];
+
+        $data['cremacion'] =  $this->input->post('cremacion') ;
+        $data['autopsia'] =  $this->input->post('autopsia') ;
+        $data['tecnico'] =  $this->input->post('tecnico') ;
+        $data['costo'] =  $this->input->post('costo') ;
+        $data['urna'] =  $this->input->post('urna') ;
+        $data['preservacion'] =  $this->input->post('preservacion') ;
+        $data['monto'] =  $this->input->post('monto') ;
+        $data['costo_total'] =  $this->input->post('costo_total') ;
+        $data['saldo_anterior'] =  $this->input->post('saldo_anterior') ;
+        $data['abono'] =  $this->input->post('abono') ;
+        $data['saldo_actual'] =  $this->input->post('saldo_actual') ;
+
+
+        $data['observaciones'] = $this->input->post('observaciones'); 
+
+
+        $this->db->where('id', $service_id);
+        $this->db->update('apartados', $data);
+
+    }
 
     public function create_servicio() {
         $data['type'] = $this->input->post('type');

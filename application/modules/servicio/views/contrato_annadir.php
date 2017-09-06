@@ -143,7 +143,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Fecha de Inclusion</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="fecha_inclusion"  />
+                                <input type="text" class="form-control" name="fecha_inclusion"  value="<?php echo date('Y-m-d H:i') ?>" />
                             </div>
                         </div>
                     </div>
@@ -152,8 +152,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Ruta</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control format-currency" name="ruta" >
-                                <input type="hidden" name="ruta" value="">
+                                <input type="text"  class="form-control" name="ruta" >
                             </div>
                         </div>
                     </div>
@@ -171,7 +170,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Forma de Pago</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control format-currency"  name="forma_pago">
+                                <input type="text"  class="form-control "  name="forma_pago">
                             </div>
                         </div>
                     </div>
@@ -179,7 +178,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">N° Contrato</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control format-currency" value="0" name="contract_id">
+                                <input type="text"  class="form-control" value="0" name="contract_id">
                             </div>
                         </div>
                     </div>
@@ -225,13 +224,13 @@
                             <label for="field-1" class="col-sm-12 control-label">Localización</label>
                             <div class="col-sm-12">
                                 <div class="col-md-4">
-                                    <input type="text"  class="form-control format-currency" name="local_1">
+                                    <input type="text"  class="form-control " name="local_1">
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text"  class="form-control format-currency" name="local_2">
+                                    <input type="text"  class="form-control " name="local_2">
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text"  class="form-control format-currency" name="local_3">
+                                    <input type="text"  class="form-control " name="local_3">
                                 </div>
                             </div>
                             
@@ -241,7 +240,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">N° Recibo</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control format-currency" value="0" name="no_recibo">
+                                <input type="text"  class="form-control" value="0" name="no_recibo">
                             </div>
                         </div>
                     </div>
@@ -282,7 +281,8 @@
                             <div class="form-group">
                                 <label for="field-1" class="col-sm-12 control-label">Saldo Anterior</label>
                                 <div class="col-sm-12">
-                                    <input type="text"  class="form-control " name="saldo_anterior" >
+                                    <input type="text"  class="form-control format-currency" >
+                                    <input type="hidden"   name="saldo_anterior">
                                 </div>
                             </div>
                         </div>
@@ -291,7 +291,8 @@
                             <div class="form-group">
                                 <label for="field-1" class="col-sm-12 control-label">Saldo Actual</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" name="saldo_actual">
+                                    <input type="text"  class="form-control format-currency" >
+                                    <input type="hidden"  name="saldo_actual">
                                 </div>
                             </div>
                         </div>
@@ -304,7 +305,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('observations'); ?></label>
                             <div class="col-sm-12">
-                                <textarea class="form-control" name="service_observations"  rows="1" ></textarea>
+                                <textarea class="form-control" name="observaciones"  rows="1" ></textarea>
                             </div>
                         </div>
                     </div>

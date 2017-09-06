@@ -28,23 +28,55 @@ class Servicio extends CI_Controller {
     }
 
     function servicios( $param1 = '', $param2 = '', $param3 = '' ){
-        if( $param1 == NULL || !preg_match( "/^(?:funecredito|apartado|contrato|create|funeral|update|delete|funeral)$/i", $param1 ) ){
+        if( $param1 == NULL || !preg_match( "/^(?:funecredito|apartado|contrato|create|funeral|update|delete|funeral|createContract|updateContract|createApartado|updateApartado)$/i", $param1 ) ){
             redirect(site_url('admin'));
         }
 
         switch($param1){
             case 'create':
                 $service_type = $this->input->post('type');
-                $this->servicio_model->create_servicio();
+                $this->servicio_model->createContract();
                 $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
                 redirect(site_url('servicio/servicios/' . $service_type));
             break;
 
             case 'createContract':
+
                 $service_type = $this->input->post('type');
-                $this->servicio_model->createContract();
+                // echo $service_type;
+                $id = $this->servicio_model->createContract();
+                // print_r($id);
+                // die();
                 $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
                 redirect(site_url('servicio/servicios/' . $service_type));
+            break;
+
+            case 'createApartado':
+
+                $service_type = $this->input->post('type');
+                // echo $service_type;
+                $id = $this->servicio_model->createApartado();
+                // print_r($id);
+                // die();
+                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
+                redirect(site_url('servicio/servicios/' . $service_type));
+            break;
+
+            case 'updateContract':
+
+                $service_type = $this->input->post('type');
+                $id = $this->servicio_model->updateContract();
+                $this->session->set_flashdata('flash_message', lang_key('data_updated_successfuly') );
+                redirect(site_url('servicio/servicios/contrato'));
+            break;
+
+            case 'updateApartado':
+
+                $service_type = $this->input->post('type');
+                $id = $this->servicio_model->updateApartado();
+                // print_r($id);die();
+                $this->session->set_flashdata('flash_message', lang_key('data_updated_successfuly') );
+                redirect(site_url('servicio/servicios/apartado'));
             break;
         
             case 'update':
@@ -82,7 +114,7 @@ class Servicio extends CI_Controller {
                     default:
                         $page_data['page_type']= 'servicio';
                 }
-
+                // print_r($_SESSION); die();
                 $this->load->view('admin/index', $page_data);
 
         }
