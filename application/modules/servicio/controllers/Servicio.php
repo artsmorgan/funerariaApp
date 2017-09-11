@@ -28,7 +28,7 @@ class Servicio extends CI_Controller {
     }
 
     function servicios( $param1 = '', $param2 = '', $param3 = '' ){
-        if( $param1 == NULL || !preg_match( "/^(?:funecredito|apartado|contrato|create|funeral|update|delete|funeral|createContract|updateContract|createApartado|updateApartado)$/i", $param1 ) ){
+        if( $param1 == NULL || !preg_match( "/^(?:funecredito|apartado|contrato|create|funeral|update|deleteContrato|deleteApartado|createContract|updateContract|createApartado|updateApartado|contractPay|apartadoPay)$/i", $param1 ) ){
             redirect(site_url('admin'));
         }
 
@@ -62,6 +62,26 @@ class Servicio extends CI_Controller {
                 redirect(site_url('servicio/servicios/' . $service_type));
             break;
 
+            case 'contractPay':
+                $service_type = $this->input->post('type');
+                // echo $service_type;
+                $id = $this->servicio_model->contractPay();
+                // print_r($id);
+                // die();
+                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
+                redirect(site_url('servicio/servicios/contrato'));
+            break;
+
+             case 'apartadoPay':
+                $service_type = $this->input->post('type');
+                // echo $service_type;
+                $id = $this->servicio_model->apartadoPay();
+                // print_r($id);
+                // die();
+                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
+                redirect(site_url('servicio/servicios/apartado'));
+            break;
+
             case 'updateContract':
 
                 $service_type = $this->input->post('type');
@@ -86,10 +106,16 @@ class Servicio extends CI_Controller {
                 redirect(site_url('servicio/servicios/' . $service_type));
             break;
 
-            case 'delete':
-                $this->servicio_model->delete_servicio($param2);
+            case 'deleteContrato':
+                $this->servicio_model->delete_servicio_contrato($param2);
                 $this->session->set_flashdata('flash_message', lang_key('data_deleted_successfuly'));
-                redirect(site_url('servicio/servicios/' . $param3));
+                redirect(site_url('servicio/servicios/contrato'));
+            break;
+
+            case 'deleteApartado':
+                $this->servicio_model->delete_servicio_apartado($param2);
+                $this->session->set_flashdata('flash_message', lang_key('data_deleted_successfuly'));
+                redirect(site_url('servicio/servicios/apartado'));
             break;
 
             default:
@@ -107,8 +133,8 @@ class Servicio extends CI_Controller {
                     break;
                     case 'apartado':
                         $page_data['page_type']= 'servicio apartado';
-                    break;
-                     case 'funeral':
+                    break;                    
+                    case 'funeral':
                         $page_data['page_type']= 'Funerales';
                     break;
                     default:

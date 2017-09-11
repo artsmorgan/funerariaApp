@@ -6,6 +6,9 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 // echo '<pre>';
 // print_r($row);
 // echo '</pre>';
+$sql_account = "select * from bk_apartados_account where contract_number = ?";
+$acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
+
 ?>
 <?php if(  !empty($row) ) : ?>
 <div class="row">
@@ -236,8 +239,8 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                                         <div class="form-group">
                                             <label for="field-1" class="col-sm-12 control-label">Costo Total Funeral</label>
                                             <div class="col-sm-12">
-                                                <input type="text"  class="form-control format-currency" >
-                                                <input type="hidden"   name="costo_total" value="<?php echo htmlentities( $row['costo_total'] ); ?>">
+                                                <input type="text"  class="form-control format-currency" disabled value="<?php echo htmlentities( $acc['monto_total'] ); ?>">
+                                                <input type="hidden"   name="costo_total" value="<?php echo htmlentities( $acc['monto_total'] ); ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -247,8 +250,8 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                                         <div class="form-group">
                                             <label for="field-1" class="col-sm-12 control-label">Saldo Anterior</label>
                                             <div class="col-sm-12">
-                                                <input type="text"  class="form-control format-currency" value="<?php echo htmlentities( $row['saldo_anterior'] ); ?>">
-                                                <input type="hidden"   name="saldo_anterior" value="<?php echo htmlentities( $row['saldo_anterior'] ); ?>">
+                                                <input type="text"  class="form-control format-currency" disabled value="<?php echo htmlentities( $acc['saldo_anterior'] ); ?>">
+                                                <input type="hidden" disabled  name="saldo_anterior" value="<?php echo htmlentities( $acc['saldo_anterior'] ); ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -258,7 +261,7 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                                         <div class="form-group">
                                             <label for="field-1" class="col-sm-12 control-label">Abono</label>
                                             <div class="col-sm-12">
-                                                <input type="text"  class="form-control format-currency" value="<?php echo htmlentities( $row['abono'] ); ?>">
+                                                <input type="text"  class="form-control format-currency" disabled value="<?php echo htmlentities( $row['abono'] ); ?>">
                                                 <input type="hidden"   name="abono" value="<?php echo htmlentities( $row['abono'] ); ?>">
                                             </div>
                                         </div>
@@ -269,8 +272,8 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                                         <div class="form-group">
                                             <label for="field-1" class="col-sm-12 control-label">Saldo Actual</label>
                                             <div class="col-sm-12">
-                                                <input type="text"  class="form-control format-currency" value="<?php echo htmlentities( $row['saldo_actual'] ); ?>">
-                                                <input type="hidden"   name="saldo_actual" value="<?php echo htmlentities( $row['saldo_actual'] ); ?>">
+                                                <input type="text"  class="form-control format-currency" disabled value="<?php echo htmlentities( $acc['saldo'] ); ?>">
+                                                <input type="hidden"  disabled name="saldo_actual" value="<?php echo htmlentities( $acc['saldo'] ); ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -316,9 +319,14 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <div class="col-sm-12 txt-right">
+                            <div class="col-sm-11 txt-right">
+                                <button class="btn btn-primary" id="funeral-button">
+                                    Hacer Funeral
+                                </button>
+                            </div>
+                            <div class="col-sm-1 txt-right">
                                 <button type="submit" class="btn btn-info" id="submit-button">
-                                   Actualizar contrato
+                                    <?php echo lang_key('submit'); ?>
                                 </button>
                             </div>
                         </div>

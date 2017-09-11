@@ -37,7 +37,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
             </div>
         </div>
     </div>
@@ -61,13 +61,16 @@
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" style="text-align:center;">Are you sure to delete this information ?</h4>
+                <h4 class="modal-title" style="text-align:center;">Esta segudo que desea eliminar esta Informacion?</h4>
+                <br>
+                <p class="alert alert-danger " style="text-align: center;">Una vez realizada esta accion no podra ser revertida</p>
+                <br>
             </div>
 
 
             <div class="modal-footer" style="margin:0px; border-top:0px; text-align:center;">
-                <a href="#" class="btn btn-danger" id="delete_link">Delete</a>
-                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                <a href="#" class="btn btn-danger" id="delete_link">Eliminar</a>
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>

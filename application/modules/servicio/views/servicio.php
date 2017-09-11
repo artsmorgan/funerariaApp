@@ -41,13 +41,21 @@ $clientlist = $this->db->get_where('contact')->result_array();
 $sql = "SELECT s.service_id, CONCAT(s.client_first_name, ' ', s.client_last_name1, ' ', s.client_last_name2) AS name, s.client_id_card, s.contract_id FROM bk_service AS s WHERE s.type = ?";
 if($service_type=='contrato'){
    $sql = "select 
+                c.id,
                 c.no_contrato as contract_id, c.id as service_id, c.mes_cobro, c.vendedor, c.ruta,
                 CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card
             from bk_contratos c
             inner join bk_contact cn on c.contact_id = cn.contact_id;";
 }
 else if($service_type=='apartado'){
-    $sql = "select 
+    $sql = "select id,
+    c.id as contract_id, c.id as service_id, 
+    CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card
+    from bk_apartados c
+    inner join bk_contact cn on c.contact_id = cn.contact_id;";
+}
+else if($service_type=='funeral'){
+    $sql = "select id,
     c.id as contract_id, c.id as service_id, 
     CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card
     from bk_apartados c
@@ -86,7 +94,27 @@ if(empty($services)){ ?>
                     <td><?php echo $row['contract_id']; ?></td>
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['client_id_card']; ?></td>
-                    <td> <a href="/servicios/pagos" class="btn btn-primary">Ver Pagos</a> <a href="/servicios/pagos" class="btn btn-danger">Realizar Pago</a> </td>                    
+                    <td> 
+                        <?php
+                            if($service_type=='contrato'){
+                                $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_contrato/' . $row['id'] );
+                                $view_pays_url = site_url('admin/modal/popup/servicio/list_contratos_payments/' . $row['id'] );
+                            }else if($service_type=='apartado'){
+                                $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_apartado/' . $row['id'] );
+                                $view_pays_url = site_url('admin/modal/popup/servicio/list_apartados_payments/' . $row['id'] );
+                            }
+                            else if($service_type == 'funeral'){
+                                $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_apartado/' . $row['id'] );
+                                $view_pays_url = site_url('admin/modal/popup/servicio/list_apartados_payments/' . $row['id'] );   
+                            }
+                        ?>
+                        <a href="javascript:;" class="btn btn-primary"  onclick="showAjaxModal('<?php echo $view_pays_url ?>')">
+                          Ver Pagos
+                        </a>                    
+                        <a href="javascript:;" class="btn btn-danger"  onclick="showAjaxModal('<?php echo $service_url ?>')">
+                            Realizar Pago
+                        </a>
+                    </td>                    
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
@@ -107,7 +135,15 @@ if(empty($services)){ ?>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="#" onclick="confirm_modal('<?php echo site_url('servicio/servicios/delete/' . $row['service_id'] . '/' . $service_type); ?>');">
+                                    <?php
+                                        if($service_type=='contrato'){
+                                            $delete_servicio =site_url('servicio/servicios/deleteContrato/' . $row['service_id'] );
+                                        }else if($service_type=='apartado'){
+                                            $delete_servicio =site_url('servicio/servicios/deleteApartado/' . $row['service_id'] );
+                                        }
+                                    ?>
+
+                                    <a href="#" onclick="confirm_modal('<?php echo $delete_servicio; ?>');">
                                         <i class="entypo-trash"></i>
                                         <?php echo lang_key('delete');?>
                                     </a>

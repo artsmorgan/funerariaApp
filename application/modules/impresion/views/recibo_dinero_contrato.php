@@ -1,30 +1,47 @@
 <?php 
 
-$sql = "SELECT CONCAT(c.first_name, ' ', c.last_name, ' ', c.last_name2) AS name,
-s.amount, ca.saldo AS saldo_actual, ca.monto_cuota, ca.id FROM bk_service AS s INNER JOIN bk_contact AS c ON c.contact_id = s.contact_id 
-INNER JOIN bk_contratos_account AS ca ON ca.service_id = s.service_id WHERE s.service_id = ?";
+// echo 'param1 '.  $param1;
+// echo 'param2 '.  $param2;
+// echo 'param3 '.  $param3;
 
+$sql = "select c.*, cn.* from bk_contratos c inner join bk_contact cn on c.contact_id = cn.contact_id where id = ?";
+$sql_account = "select * from bk_contratos_account where contract_number = ?";
+// echo $param3;
 $row = $this->db->query( $sql, array( $param3 ) )->row_array();
+$acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
+// $row = $this->db->query( $sql, array( $param3 ) )->row_array();
+// echo '<pre>';
+// print_r($row);
+// echo '</pre>';
+
+// echo '<pre>';
+// print_r($acc);
+// echo '</pre>';
 
 $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
 ?>
 <?php if(  !empty($row) ) : ?>
+    <?php echo form_open(site_url('servicio/servicios/contractPay'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary" data-collapsed="0">
                 <div class="panel-heading">
                     <div class="panel-title" >
                         <i class="entypo-plus-circled"></i>
-                        Imprimir recibo dinero
+                        Aplicar Pago
                     </div>
                 </div>
+
+                <input type="hidden" name="contractID" value="<?php echo $param3 ; ?>">
+
                 <div class="panel-body form-horizontal form-groups-bordered">
+                    <!-- <input type="hidden" name="contractID" value="$row['id']"> -->
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Nombre: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="name" class="form-control" disabled value="<?php echo $row['name']; ?>" />
+                                    <input type="text" data-info="name" class="form-control" disabled value="<?php echo $row['first_name'] . ' '. $row['last_name']; ?>" />
                                 </div>
                             </div>
                         </div>
@@ -40,8 +57,8 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Monto total: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="amount" class="form-control format-currency" disabled value="<?php echo $row['amount']; ?>" />
-                                    <input type="hidden" class="exclude" data-info="amount_word" value="<?php echo $f->format( $row['amount'] ); ?>" />
+                                    <input type="text" data-info="amount" class="form-control format-currency" value="<?php echo $acc['monto_total']; ?>" />
+                                    <input type="hidden" class="exclude" data-info="amount_word" value="<?php echo $f->format( $row['monto_total'] ); ?>"  />
                                 </div>
                             </div>
                         </div>
@@ -51,7 +68,7 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Concepto: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="concepto" class="form-control"  />
+                                    <input type="text" data-info="concepto" name="concepto" class="form-control" value="Pago de contrato # <?php echo $row['no_contrato']; ?> " />
                                 </div>
                             </div>
                         </div>
@@ -59,7 +76,7 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Tipo de pago: </label>
                                 <div class="col-sm-12">
-                                    <select class="selectboxit" data-info="tipo_pago">
+                                    <select class="selectboxit" data-info="tipo_pago" name="tipo_pago">
                                         <option value="efectivo">Efectivo</option>
                                         <option value="tarjeta de crédito">Tarjeta de crédito</option>
                                         <option data-enable value="cheque">Cheque</option>
@@ -73,7 +90,7 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Número de transferencia o cheque: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="numero_transferencia" disabled class="form-control exclude"  />
+                                    <input type="text" data-info="numero_transferencia" disabled class="form-control exclude" name="no_transferencia"  />
                                 </div>
                             </div>
                         </div>
@@ -85,7 +102,7 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Saldo anterior: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="saldo_anterior" class="form-control format-currency" disabled  value="<?php echo htmlentities( $row['saldo_actual'] ); ?>" />
+                                    <input type="text" data-info="saldo_anterior" class="form-control format-currency" disabled  value="<?php echo htmlentities( $acc['saldo_anterior'] ); ?>" />
                                 </div>
                             </div>
                         </div>
@@ -93,7 +110,8 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Abono: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="abono" class="form-control format-currency" value="<?php echo htmlentities( $row['monto_cuota'] ); ?>" />
+                                    <input type="text" data-info="abono" class="form-control format-currency"  value="<?php echo htmlentities( $acc['monto_cuota'] ); ?>" />
+                                    <input type="hidden"  value="<?php echo  $acc['monto_cuota'] ; ?>" name="abono" />
                                 </div>
                             </div>
                         </div>
@@ -110,9 +128,9 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="field-1" class="control-label col-sm-12">Amortización: </label>
+                                <label for="field-1" class="control-label col-sm-12">Mes al cobro: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="amortizacion" class="form-control" disabled value="TBP" />
+                                    <input type="text" name="mes_cobro" class="form-control"  />
                                 </div>
                             </div>
                         </div>
@@ -120,7 +138,7 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Saldo actual: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="saldo_actual" disabled class="form-control format-currency"  value="<?php echo htmlentities( $row['saldo_actual'] - $row['monto_cuota'] ); ?>" />
+                                    <input type="text" data-info="saldo_actual" disabled class="form-control format-currency"  value="<?php echo htmlentities( $acc['saldo']); ?>" />
                                 </div>
                             </div>
                         </div>
@@ -129,8 +147,9 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                             <div class="form-group">
                                 <div class="col-sm-12 txt-right">
                                     <input type="hidden" id="contract_id" value="<?php echo $row['id']; ?>">
-                                    <button class="btn btn-info" id="print-button">
-                                        Imprimir
+<!--                                     <button class="btn btn-info" id="print-button" type="submit"> -->
+                                    <button class="btn btn-info" type="submit">
+                                        Aplicar e Imprimir
                                     </button>
                                 </div>
                             </div>
@@ -144,6 +163,7 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
             </div>
         </div>
     </div>
+    <?php echo form_close(); ?>
 <?php endif; ?>
 
 <script>

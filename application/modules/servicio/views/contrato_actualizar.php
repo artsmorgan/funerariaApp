@@ -1,8 +1,10 @@
 <?php 
 
 $sql = "select c.*, cn.* from bk_contratos c inner join bk_contact cn on c.contact_id = cn.contact_id where id = ?";
+$sql_account = "select * from bk_contratos_account where contract_number = ?";
 // echo $param3;
 $row = $this->db->query( $sql, array( $param3 ) )->row_array();
+$acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
 // echo '<pre>';
 // print_r($row);
 // echo '</pre>';
@@ -290,7 +292,7 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Mes Al Cobro</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" name="mes_cobro"  value="<?php echo htmlentities( $row['mes_cobro'] ); ?>"/>
+                                    <input type="text" class="form-control" name="mes_cobro"  value="<?php echo htmlentities( $acc['mes_cobro'] ); ?>"/>
                                 </div>
                             </div>
                         </div>
@@ -299,8 +301,8 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                             <div class="form-group">
                                 <label for="field-1" class="col-sm-12 control-label">Saldo Anterior</label>
                                 <div class="col-sm-12">
-                                    <input type="text"  class="form-control format-currency" value="<?php echo htmlentities( $row['saldo_anterior'] ); ?>">
-                                    <input type="hidden"   name="saldo_anterior" value="<?php echo htmlentities( $row['saldo_anterior'] ); ?>">
+                                    <input type="text"  class="form-control format-currency" disabled value="<?php echo htmlentities( $acc['saldo_anterior'] ); ?>">
+                                    <input type="hidden"   name="saldo_anterior" value="<?php echo htmlentities( $acc['saldo_anterior'] ); ?>">
                                 </div>
                             </div>
                         </div>
@@ -309,8 +311,8 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
                             <div class="form-group">
                                 <label for="field-1" class="col-sm-12 control-label">Saldo Actual</label>
                                 <div class="col-sm-12">
-                                    <input type="text"  class="form-control format-currency" value="<?php echo htmlentities( $row['saldo_actual'] ); ?>">
-                                    <input type="hidden"  name="saldo_actual" value="<?php echo htmlentities( $row['saldo_actual'] ); ?>">
+                                    <input type="text"  class="form-control format-currency" disabled value="<?php echo htmlentities( $acc['saldo'] ); ?>">
+                                    <input type="hidden"  name="saldo_actual" value="<?php echo htmlentities( $acc['saldo'] ); ?>">
                                 </div>
                             </div>
                         </div>

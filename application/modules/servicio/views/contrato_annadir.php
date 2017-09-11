@@ -281,7 +281,7 @@
                             <div class="form-group">
                                 <label for="field-1" class="col-sm-12 control-label">Saldo Anterior</label>
                                 <div class="col-sm-12">
-                                    <input type="text"  class="form-control format-currency" >
+                                    <input type="text" disabled class="form-control format-currency" >
                                     <input type="hidden"   name="saldo_anterior">
                                 </div>
                             </div>
@@ -291,7 +291,7 @@
                             <div class="form-group">
                                 <label for="field-1" class="col-sm-12 control-label">Saldo Actual</label>
                                 <div class="col-sm-12">
-                                    <input type="text"  class="form-control format-currency" >
+                                    <input type="text" disabled class="form-control format-currency" >
                                     <input type="hidden"  name="saldo_actual">
                                 </div>
                             </div>

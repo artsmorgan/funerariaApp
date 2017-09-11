@@ -16,9 +16,167 @@ class Servicio_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
-    private function newTransaction($serviceID, $accountID, $createdBy){
 
+    // private function openApartadosAccount($userID, $customerID, $apartado$id){}
+
+    private function openContratosAccount($userID, $customerID, $contractID, $monto_total, $prima, $mes_cobro, $monto_cuota){
+
+        $saldo_actual = $monto_total - $prima;
+
+        $data['contract_number'] = $contractID;
+        $data['contact_id'] = $customerID;
+        $data['created_by'] = $userID;
+        $data['status'] = "A"; // active
+        $data['monto_total'] = $monto_total;
+        $data['prima'] = $prima;
+        $data['mes_cobro'] = $mes_cobro;
+        $data['monto_cuota'] = $monto_cuota;
+        $data['saldo'] = $saldo_actual;
+        $data['saldo_anterior'] = $monto_total;
+        $data['monto_abonado'] = $prima;
+        
+        $this->db->insert('contratos_account', $data);
+        return $this->db->insert_id();
     }
+
+
+    private function openApartadosAccount($userID, $customerID, $contractID, $monto_total, $prima, $mes_cobro=''){
+
+        $saldo_actual = $monto_total;
+
+        $data['contract_number'] = $contractID;
+        $data['contact_id'] = $customerID;
+        $data['created_by'] = $userID;
+        $data['status'] = "A"; // active
+        $data['monto_total'] = $monto_total;
+        // $data['mes_cobro'] = $mes_cobro;
+        // $data['monto_cuota'] = $monto_cuota;
+        $data['saldo'] = $saldo_actual;
+        $data['saldo_anterior'] = $monto_total;
+        $data['monto_abonado'] = $prima;
+        
+        $this->db->insert('apartados_account', $data);
+        return $this->db->insert_id();
+    }
+
+
+    private function newTransaction($userID, $contractID, $tipo_servicio, $monto, $metodo_pago, $descripcion, $detalles, $saldo_anterior, $status = 'A' ){
+        $data['servicio_id'] = $contractID;
+        $data['servicio_tipo'] = $tipo_servicio;
+        $data['monto'] = $monto;
+        $data['status'] = $status;
+        $data['descripcion'] = $descripcion;
+        $data['metodo_pago'] = $metodo_pago;
+        $data['realizado_por'] = $userID;    
+        $data['detalles'] = $detalles;
+        $data['saldo_anterior'] = $saldo_anterior;
+
+        $this->db->insert('bk_transaccion', $data);
+        return $this->db->insert_id();
+    }
+
+    private function getAccountByContractID($contractID){
+        $sql_account = "select * from bk_contratos_account where contract_number = ?";
+        return $this->db->query( $sql_account, array( $contractID ) )->row_array();
+    }
+    private function getApartadoAccountByContractID($contractID){
+        $sql_account = "select * from bk_apartados_account where contract_number = ?";
+        return $this->db->query( $sql_account, array( $contractID ) )->row_array();
+    }
+
+    private function applyContractPay($contractID, $monto, $mes_cobro){
+        
+        $acc = $this->getAccountByContractID($contractID);
+
+        // $monto_abonado;
+        $saldo = $acc['saldo'];
+        $saldo_anterior = $acc['saldo_anterior'];
+        $mes_cobro = $acc['mes_cobro'];
+        $monto_abonado = $acc['monto_abonado'];
+
+        $new_saldo = $saldo - $monto;
+        $new_monto_abonado = $monto_abonado + $monto;
+        $new_saldo_anterior = $saldo_anterior - $monto;
+
+
+        $data['saldo'] = $new_saldo;
+        $data['monto_abonado'] = $new_monto_abonado;
+        $data['saldo_anterior'] = $new_saldo_anterior;
+        $data['mes_cobro'] = $mes_cobro;
+        $this->db->where('contract_number', $contractID);
+        $this->db->update('contratos_account', $data);
+    }
+
+
+    private function applyApartadosPay($contractID, $monto){
+        
+        $acc = $this->getApartadoAccountByContractID($contractID);
+
+        // $monto_abonado;
+        $saldo = $acc['saldo'];
+        $saldo_anterior = $acc['saldo_anterior'];
+        // $mes_cobro = $acc['mes_cobro'];
+        $monto_abonado = $acc['monto_abonado'];
+
+        $new_saldo = $saldo - $monto;
+        $new_monto_abonado = $monto_abonado + $monto;
+        $new_saldo_anterior = $saldo_anterior - $monto;
+
+
+        $data['saldo'] = $new_saldo;
+        $data['monto_abonado'] = $new_monto_abonado;
+        $data['saldo_anterior'] = $new_saldo_anterior;
+        // $data['mes_cobro'] = $mes_cobro;
+        $this->db->where('contract_number', $contractID);
+        $this->db->update('apartados_account', $data);
+    }
+
+    public function contractPay(){
+        
+        $contractID = $this->input->post('contractID');
+        $monto = $this->input->post('abono');
+        $forma_pago = $this->input->post('tipo_pago');
+        $detalles = $this->input->post('no_transferencia');
+        $concepto = $this->input->post('concepto');
+        $mes_cobro = $this->input->post('mes_cobro');
+
+        $acc = $this->getAccountByContractID($contractID);
+        // echo 'contractID '. $contractID;
+        // echo '<pre>';
+        // print_r($acc);
+        // echo '<pre>';
+        // die();
+
+        $transactionID = $this->newTransaction($_SESSION['user_id'], $acc['id'], 'contrato', $monto,  $forma_pago, $concepto, $detalles, $acc['saldo_anterior']);
+            // print_r($transactionID);die();
+            if($transactionID>0){
+                $this->applyContractPay($acc['id'], $monto, $mes_cobro);
+            }
+    }
+
+
+    public function apartadoPay(){
+        $contractID = $this->input->post('contractID');
+        $monto = $this->input->post('abono');
+        $forma_pago = $this->input->post('tipo_pago');
+        $detalles = $this->input->post('no_transferencia');
+        $concepto = $this->input->post('concepto');
+        $mes_cobro = $this->input->post('mes_cobro');
+
+        $acc = $this->getApartadoAccountByContractID($contractID);
+        // echo 'contractID '. $contractID;
+        // echo '<pre>';
+        // print_r($acc);
+        // echo '<pre>';
+        // die();
+
+        $transactionID = $this->newTransaction($_SESSION['user_id'], $acc['id'], 'apartado', $monto,  $forma_pago, $concepto, $detalles,$acc['saldo_anterior']);
+            // print_r($transactionID);die();
+            if($transactionID>0){
+                $this->applyApartadosPay($acc['id'], $monto, $mes_cobro);
+            }   
+    }
+    // private function openFuneralesAccount1($userID, $customerID, $apartado$id){}    
 
 
     public function createContract(){
@@ -47,10 +205,21 @@ class Servicio_model extends CI_Model
 
         $data['observaciones'] = $this->input->post('observaciones'); 
 
-        
         $this->db->insert('contratos', $data);
-        $id = $this->db->insert_id();
+        $contractID = $this->db->insert_id();
 
+
+        $accID = $this->openContratosAccount($_SESSION['user_id'],  $this->input->post('contact_id'), $contractID, $this->input->post('amount'), 
+                                    0, $this->input->post('mes_cobro'), $this->input->post('cuota') );
+        
+
+        if($accID > 0){
+            $transactionID = $this->newTransaction($_SESSION['user_id'], $accID, 'contrato', $this->input->post('prima'),  $this->input->post('forma_pago'), 'Prima', '', 0);
+            if($transactionID>0){
+                $this->applyContractPay($accID, $this->input->post('prima'), $this->input->post('mes_cobro'));
+            }
+        }
+        
         //Create account
     }
 
@@ -74,7 +243,16 @@ class Servicio_model extends CI_Model
         $data['observaciones'] = $this->input->post('observaciones'); 
 
         $this->db->insert('apartados', $data);
-        $id = $this->db->insert_id();
+        $contractID = $this->db->insert_id();
+
+        $accID = $this->openApartadosAccount( $_SESSION['user_id'],$this->input->post('contact_id'), $contractID, $this->input->post('costo_total'), 0);
+
+        if($accID > 0){
+            $transactionID = $this->newTransaction($_SESSION['user_id'], $accID, 'apartado', $this->input->post('abono'), 'efectivo', 'Prima', '',0);
+            if($transactionID>0){
+                $this->applyApartadosPay($accID, $this->input->post('abono') );
+            }
+        }
     }
 
      public function updateContract(){
@@ -399,11 +577,13 @@ class Servicio_model extends CI_Model
         $this->db->update('contratos_account', $data);
     }
 
-    public function delete_servicio($service_id) {
-        $this->db->where('service_id', $service_id);
-        $this->db->delete('service');
+    public function delete_servicio_contrato($service_id) {
+        $this->db->where('id', $service_id);
+        $this->db->delete('contratos');
+    }   
 
-        $this->db->where('service_id', $service_id);
-        $this->db->delete('contratos_account');
+    public function delete_servicio_apartado($service_id) {
+        $this->db->where('id', $service_id);
+        $this->db->delete('apartados');
     }   
 }
