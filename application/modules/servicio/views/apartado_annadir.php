@@ -170,7 +170,9 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Costo</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control "  name="costo">
+                               
+                                <input type="text"  class="form-control format-currency" >
+                                <input type="hidden"   name="costo">
                             </div>
                         </div>
                     </div>

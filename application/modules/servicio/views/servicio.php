@@ -124,15 +124,15 @@ if(empty($services)){ ?>
                                 <li>
                                     <a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/'. $service_type  .'_actualizar/' . $row['service_id'] . '/' . $service_type); ?>');">
                                         <i class="entypo-pencil"></i>
-                                        <?php echo lang_key('edit');?>
+                                       Ver / Editar
                                     </a>
                                 </li>
-                                <li>
+                               <!--  <li>
                                     <a href="<?php echo site_url('servicio/service_details/' . $row['service_id'] . '/' . $service_type ); ?>">
                                         <i class="entypo-eye"></i>
                                         <?php echo lang_key('view_details');?>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="divider"></li>
                                 <li>
                                     <?php
