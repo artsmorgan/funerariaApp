@@ -591,39 +591,44 @@ if(empty($services)){ ?>
                 if( str == '.' ){
                     var indexDot = $(this).val().indexOf(str);
 
+                    if(indexDot == -1){
+                        return true;
+                    }
+
                     setCaretPosition($(this).get(0), indexDot + 1 );
                 
                 }
+
                 return false;
             }
         });
 
         $('.modal').on('input', '.format-currency', function(e){
             var inputElem = $(this).get(0),
-                inputLength = inputElem.value.length, 
                 caretPos = doGetCaretPosition( inputElem ),
-                minLength = 6;
+                val = $.trim($(this).val()),
+                valLength = val.length,
+                lastDigit = val.substr(-1);
 
-            if( inputLength <  minLength){
-                inputLength = minLength;
-                caretPos += 2;
+            // inputElem.value = inputElem.value.replace( /\.\d+/ , function(match){
+            //     return match.substr(0,3);
+            // });
+
+            if( lastDigit !== '.'){
+                $(this).val($(this).asNumber()).formatCurrency({symbol: '₡ ', roundToDecimalPlace: -1});
             }
-
-            inputElem.value = inputElem.value.replace( /\.\d+/ , function(match){
-                return match.substr(0,3);
-            });
-
-            $(this).formatCurrency({
-                symbol: '₡ '
-            });
 
             $(this).parent().find('[type=hidden]').val( $(this).asNumber() );
 
-            inputLength = inputElem.value.length - inputLength;
-            caretPos += inputLength;
+            if( val.indexOf('.') !== -1 && lastDigit === '0' ){
+                 $(this).val( val );
+            }
 
-            if( caretPos > inputElem.value.indexOf('.') ){
-                caretPos++;
+            if( $(this).val().length > valLength ){
+                caretPos += ( $(this).val().length - valLength );
+            }
+            else if( $(this).val().length < valLength ){
+                caretPos - ( valLength - $(this).val().length  );
             }
 
             setCaretPosition(inputElem, caretPos );
