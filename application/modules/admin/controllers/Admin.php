@@ -53,6 +53,36 @@ class Admin extends CI_Controller {
         $this->load->view('index', $page_data);
     }
 
+
+    // MANAGE ADMINS
+    function vendedores($param1 = '', $param2 = '')
+    {
+        if ($param1 == 'create') {
+            $this->admin_model->create_admin();
+            $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly'));
+            redirect(site_url('admin/admins'));
+        }
+
+        if ($param1 == 'edit') {
+
+            $this->admin_model->update_admin($param2);
+            $this->session->set_flashdata('flash_message', 'Usuario Actualizado con exito');
+            redirect(site_url('admin/admins'));
+        }
+
+        if ($param1 == 'delete') {
+            $this->admin_model->delete_admin();
+            $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly'));
+            //redirect(site_url('admin/admins'));
+            echo 'OK';
+            return;
+        }
+        
+        $page_data['page_name']     = 'vendedores';
+        $page_data['page_title']    = lang_key('admin_list');
+        $this->load->view('index', $page_data);
+    }
+
     // MANAGE SYSTEM SETTINGS
     function system_settings($param1 = '')
     {

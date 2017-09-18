@@ -375,11 +375,26 @@
         </li>
         
         <li class="<?php if($page_name == 'admin') echo 'active'; ?>">
-            <a href="<?php echo site_url('admin/admins'); ?>">
-                <i class="entypo-user"></i>
+            <a href="#">
+                 <i class="entypo-user"></i>
                 <span><?php echo lang_key('admins'); ?></span>
             </a>
+            <ul>
+                <li>
+                    <a href="<?php echo site_url('admin/admins'); ?>">
+                        <i class="entypo-user"></i>
+                        <span><?php echo lang_key('admins'); ?></span>
+                    </a>
+                </li>
+                 <li class="<?php if($page_name == 'admin') echo 'active'; ?>">
+                    <a href="<?php echo site_url('admin/vendedores'); ?>">
+                        <i class="entypo-user"></i>
+                        <span>Vendedores</span>
+                    </a>
+                </li>
+            </ul>
         </li>
+       
         
         <!-- SETTINGS -->
         <!-- <li class="<?php if ($page_name == 'email_settings' || $page_name == 'system_settings'
