@@ -58,22 +58,22 @@ class Admin extends CI_Controller {
     function vendedores($param1 = '', $param2 = '')
     {
         if ($param1 == 'create') {
-            $this->admin_model->create_admin();
+            $this->admin_model->create_vend();
             $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly'));
-            redirect(site_url('admin/admins'));
+            redirect(site_url('admin/vendedores'));
         }
 
         if ($param1 == 'edit') {
 
-            $this->admin_model->update_admin($param2);
+            $this->admin_model->update_vend();
             $this->session->set_flashdata('flash_message', 'Usuario Actualizado con exito');
-            redirect(site_url('admin/admins'));
+            redirect(site_url('admin/vendedores'));
         }
 
         if ($param1 == 'delete') {
-            $this->admin_model->delete_admin();
+            $this->admin_model->delete_vend();
             $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly'));
-            //redirect(site_url('admin/admins'));
+            // redirect(site_url('admin/vendedores'));
             echo 'OK';
             return;
         }

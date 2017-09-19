@@ -85,7 +85,45 @@ class Admin_model extends CI_Model
         // EMAIL NOTIFICATION
         $this->email_model->notify_email('new_admin_account_opening', $admin_id, $this->input->post('password'));
     }
+
+
+    // Vendedores
+
+    function create_vend() {
+        $data['nombre'] = $this->input->post('first_name');
+        $data['apellido1']  = $this->input->post('last_name');
+        $data['apellido2']  = $this->input->post('second_last_name');
+        $data['fecha_inicio']      = $this->input->post('init_date');
+        $data['created_by']      = $_SESSION['user_id'];
+        
+
+        $this->db->insert('vendedores', $data);
+        return $this->db->insert_id();
+    }
+
+    function update_vend() {
+        $id = $this->input->post('vendedor_id');
+        $data['nombre'] = $this->input->post('first_name');
+        $data['apellido1']  = $this->input->post('last_name');
+        $data['apellido2']  = $this->input->post('second_last_name');
+        $data['fecha_inicio']      = $this->input->post('init_date');
+        $data['created_by']      = $_SESSION['user_id'];
+
+        $this->db->where('id_vendedor', $id);
+        $this->db->update('vendedores', $data);
+    }
     
+    function delete_vend() {
+        $id = $this->input->post('vendedor_id');
+        $this->db->where('id_vendedor', $id);
+        $this->db->delete('vendedores');
+    }
+
+
+    // End Vendedores
+
+
+
     // NOTES
     function create_note() {
         $data['user_id']    = $this->session->userdata('user_id');
