@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <!-- col -->
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('email'); ?></label>
                             <div class="col-sm-12">
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                   <!--  <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
                                     <div class="col-sm-12">
@@ -95,8 +95,8 @@
                                         <input type="hidden" id="seller_id" name="seller_id"  />
                                     </div>
                                 </div>
-                                <!-- form-group -->
-                            </div>
+                                
+                            </div> -->
                     <!-- col -->
                 </div>
                 <div class="row">

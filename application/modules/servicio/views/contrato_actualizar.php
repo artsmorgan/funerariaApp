@@ -6,8 +6,16 @@ $sql_account = "select * from bk_contratos_account where contract_number = ?";
 $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
 // echo '<pre>';
-// print_r($row);
+// print_r($acc);
 // echo '</pre>';
+
+$sql = "select * from bk_vendedores";
+$vendedores = $this->db->query( $sql)->result_array();
+
+// print_r($vendedores);
+
+
+
 ?>
 <?php if(  !empty($row) ) : ?>
 <div class="row">
@@ -105,22 +113,13 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                         </div>
                     </div>
                     <!-- col -->
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('email'); ?></label>
                             <div class="col-sm-12">
                                 <input type="email" class="form-control" name="client_email" disabled value="<?php echo htmlentities( $row['email'] ); ?>"/>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="seller" disabled />
-                            </div>
-                        </div>
-                        <!-- form-group -->
                     </div>
                     <!-- col -->
                 </div>
@@ -181,7 +180,8 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Vendedor</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="vendedor" value="<?php echo htmlentities( $row['vendedor'] ); ?>">
+                                <?php echo vend_list($vendedores, $row['vendedor']); ?>
+                               
                             </div>
                         </div>
                     </div>
@@ -214,8 +214,8 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Monto del contrato</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control format-currency" value="<?php echo htmlentities( $row['monto_total'] ); ?>">
-                                <input type="hidden" name="amount"  value="<?php echo htmlentities( $row['monto_total'] ); ?>">
+                                <input type="text"  class="form-control format-currency" value="<?php echo htmlentities( $acc['monto_total'] ); ?>">
+                                <input type="hidden" name="amount"  value="<?php echo htmlentities( $acc['monto_total'] ); ?>">
                             </div>
                         </div>
                     </div>
@@ -292,7 +292,7 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Mes Al Cobro</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" name="mes_cobro"  value="<?php echo htmlentities( $acc['mes_cobro'] ); ?>"/>
+                                    <?php echo print_months(true,'mes_cobro','class="selectboxit"',$row['mes_cobro']);?>
                                 </div>
                             </div>
                         </div>

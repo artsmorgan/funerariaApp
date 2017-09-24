@@ -64,11 +64,16 @@
  * Different environments will require different levels of error reporting.
  * By default development will show errors but testing and live will hide them.
  */
+
+// echo ENVIRONMENT; die();
+
 switch (ENVIRONMENT)
 {
 	case 'development':
 		//error_reporting(-1);
-		error_reporting(E_ALL);
+		error_reporting(0);
+
+		// error_reporting(E_ALL);
 		ini_set('display_errors', 1);
 	break;
 

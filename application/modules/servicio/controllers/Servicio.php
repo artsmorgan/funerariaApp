@@ -28,7 +28,7 @@ class Servicio extends CI_Controller {
     }
 
     function servicios( $param1 = '', $param2 = '', $param3 = '' ){
-        if( $param1 == NULL || !preg_match( "/^(?:funecredito|apartado|contrato|create|funeral|update|deleteContrato|deleteApartado|createContract|updateContract|createApartado|updateApartado|contractPay|apartadoPay)$/i", $param1 ) ){
+        if( $param1 == NULL || !preg_match( "/^(?:funecredito|apartado|contrato|create|funeral|update|deleteContrato|deleteApartado|createContract|updateContract|createApartado|updateApartado|contractPay|apartadoPay|newAmountAdjustment|newAmountDiscount)$/i", $param1 ) ){
             redirect(site_url('admin'));
         }
 
@@ -50,6 +50,26 @@ class Servicio extends CI_Controller {
                 $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
                 redirect(site_url('servicio/servicios/' . $service_type));
             break;
+
+            case 'newAmountAdjustment':
+                $service_type = $this->input->post('type');
+                // echo $service_type;
+                $id = $this->servicio_model->newAmountAdjustment();
+                // print_r($id);
+                // die();
+                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
+                redirect(site_url('servicio/servicios/' . $service_type));
+                break;
+
+            case 'newAmountDiscount':
+                $service_type = $this->input->post('type');
+                // echo $service_type;
+                $id = $this->servicio_model->newAmountDiscount();
+                // print_r($id);
+                // die();
+                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
+                redirect(site_url('servicio/servicios/' . $service_type));
+                break;    
 
             case 'createApartado':
 

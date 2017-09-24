@@ -1,3 +1,19 @@
+<?php
+    $sql = "select * from bk_vendedores";
+    $vendedores = $this->db->query( $sql)->result_array();
+
+    // print_r($vendedores);
+    
+    if(count($vendedores>0)){
+        $vend_list = '<select name="vendedor" >';
+            foreach ($vendedores as $key => $value) {
+                $vend_list .= '<option value="'.$value['id_vendedor'].'">'.$value['nombre'].' '.$value['apellido1']. '</option>';
+            }
+        $vend_list .= '</select>';
+    }
+
+?>
+
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary" data-collapsed="0">
@@ -85,7 +101,7 @@
                         </div>
                     </div>
                     <!-- col -->
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('email'); ?></label>
                             <div class="col-sm-12">
@@ -93,15 +109,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <!-- <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="seller" disabled  />
                             </div>
-                        </div>
+                        </div -->>
                         <!-- form-group -->
-                    </div>
+                    <!-- </div> -->
                     <!-- col -->
                 </div>
                 <div class="row">
@@ -161,7 +177,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Vendedor</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="vendedor">
+                                <?php echo $vend_list; ?>
                             </div>
                         </div>
                     </div>
@@ -272,7 +288,8 @@
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Mes Al Cobro</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" name="mes_cobro"  />
+                                    <?php echo print_months(true,'mes_cobro','class="selectboxit"');?>
+                                    
                                 </div>
                             </div>
                         </div>

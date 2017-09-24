@@ -99,6 +99,8 @@ if(empty($services)){ ?>
                             if($service_type=='contrato'){
                                 $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_contrato/' . $row['id'] );
                                 $view_pays_url = site_url('admin/modal/popup/servicio/list_contratos_payments/' . $row['id'] );
+                                $discount_url = site_url('admin/modal/popup/impresion/aplicar_descuento/' . $row['id'] );
+                                $adjustment_url = site_url('admin/modal/popup/impresion/aplicar_ajuste/' . $row['id'] );
                             }else if($service_type=='apartado'){
                                 $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_apartado/' . $row['id'] );
                                 $view_pays_url = site_url('admin/modal/popup/servicio/list_apartados_payments/' . $row['id'] );
@@ -109,7 +111,7 @@ if(empty($services)){ ?>
                             }
                         ?>
                         <a href="javascript:;" class="btn btn-primary"  onclick="showAjaxModal('<?php echo $view_pays_url ?>')">
-                          Ver Pagos
+                          Ver Transacciones
                         </a>                    
                         <a href="javascript:;" class="btn btn-danger"  onclick="showAjaxModal('<?php echo $service_url ?>')">
                             Realizar Pago
@@ -122,6 +124,20 @@ if(empty($services)){ ?>
                             </button>
                             <ul class="dropdown-menu dropdown-default pull-right" role="menu">
                                 <li>
+                                    <a href="javascript:;" onclick="showAjaxModal('<?php echo $adjustment_url ?>')">
+                                        <i class="fa fa-money"></i> 
+                                       Ajuste de Precio
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                 <li>
+                                    <a href="javascript:;" onclick="showAjaxModal('<?php echo $discount_url ?>')">
+                                        <i class="fa fa-minus-square"></i> 
+                                        Aplicar Descuento
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                 <li>
                                     <a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/'. $service_type  .'_actualizar/' . $row['service_id'] . '/' . $service_type); ?>');">
                                         <i class="entypo-pencil"></i>
                                        Ver / Editar

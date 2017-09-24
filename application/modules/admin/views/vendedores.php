@@ -1,3 +1,4 @@
+
 <a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/admin/vendedor_add'); ?>')" 
     class="btn btn-primary pull-right">
         <i class="entypo-plus-circled"></i>

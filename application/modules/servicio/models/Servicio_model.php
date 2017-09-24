@@ -75,6 +75,60 @@ class Servicio_model extends CI_Model
         return $this->db->insert_id();
     }
 
+
+    public function newAmountAdjustment(){
+        $monto = $this->input->post('abono');
+        $contractID = $this->input->post('contractID');
+        $concepto = $this->input->post('concepto');
+        $acc = $this->getAccountByContractID($contractID);
+        // $monto_abonado;
+        $saldo = $acc['saldo'];
+        $saldo_anterior = $acc['saldo_anterior'];
+        
+        $monto_total = $acc['monto_total'];
+        $monto_abonado = $acc['monto_abonado'];
+
+        $transactionID = $this->newTransaction($_SESSION['user_id'], $acc['id'], 'contrato', $monto,  'n/a', $concepto, '', $acc['saldo_anterior'],'J'); //Status = J Tipo Ajuste
+            
+            if($transactionID>0){
+
+                $data['monto_total'] = $monto_total + $monto;;
+                $data['saldo'] = $saldo + $monto;
+                $data['saldo_anterior'] = $acc['saldo_anterior'] + $monto;
+                $this->db->where('contract_number', $contractID);
+                $this->db->update('contratos_account', $data);
+            }
+
+        
+    }
+
+
+    public function newAmountDiscount(){
+        $monto = $this->input->post('abono');
+        $contractID = $this->input->post('contractID');
+        $concepto = $this->input->post('concepto');
+        $acc = $this->getAccountByContractID($contractID);
+        // $monto_abonado;
+        $saldo = $acc['saldo'];
+        $saldo_anterior = $acc['saldo_anterior'];       
+        $monto_total = $acc['monto_total'];
+        $monto_abonado = $acc['monto_abonado'];
+
+        $transactionID = $this->newTransaction($_SESSION['user_id'], $acc['id'], 'contrato', $monto,  'n/a', $concepto, '', $acc['saldo_anterior'],'D'); //Status = D Tipo Descuento
+            
+            if($transactionID>0){
+
+                $data['monto_total'] = $monto_total - $monto;;
+                $data['saldo'] = $saldo - $monto;
+                $data['saldo_anterior'] = $acc['saldo_anterior'] - $monto;
+                $this->db->where('contract_number', $contractID);
+                $this->db->update('contratos_account', $data);
+            }
+
+        
+    }
+
+
     private function getAccountByContractID($contractID){
         $sql_account = "select * from bk_contratos_account where contract_number = ?";
         return $this->db->query( $sql_account, array( $contractID ) )->row_array();
@@ -91,7 +145,7 @@ class Servicio_model extends CI_Model
         // $monto_abonado;
         $saldo = $acc['saldo'];
         $saldo_anterior = $acc['saldo_anterior'];
-        $mes_cobro = $acc['mes_cobro'];
+        // $mes_cobro = $acc['mes_cobro'];
         $monto_abonado = $acc['monto_abonado'];
 
         $new_saldo = $saldo - $monto;
@@ -105,6 +159,10 @@ class Servicio_model extends CI_Model
         $data['mes_cobro'] = $mes_cobro;
         $this->db->where('contract_number', $contractID);
         $this->db->update('contratos_account', $data);
+
+        $data_contrato['mes_cobro'] = $mes_cobro;
+        $this->db->where('id', $contractID);
+        $this->db->update('contratos', $data_contrato);
     }
 
 

@@ -45,7 +45,7 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
 // print_r($acc);
 // echo '</pre>';
 
-$f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
+// $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
 ?>
 <?php if(  !empty($row) ) : ?>
     <?php echo form_open(site_url('servicio/servicios/contractPay'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
@@ -90,7 +90,7 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                                 <label for="field-1" class="control-label col-sm-12">Monto total: </label>
                                 <div class="col-sm-12">
                                     <input type="text" data-info="amount" class="form-control format-currency" disabled value="<?php echo $acc['monto_total']; ?>" />
-                                    <!-- <input type="hidden" class="exclude" data-info="amount_word" value="<?php echo $f->format( $row['monto_total'] ); ?>"  /> -->
+                                    
                                 </div>
                             </div>
                         </div>

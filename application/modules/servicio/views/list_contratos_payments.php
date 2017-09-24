@@ -32,19 +32,46 @@
 			<th>Fecha de Pago</th>
 			<th>Monto</th>
 			<th>Detalle</th>
+			<th>Tipo</th>
 			<th>Forma de Pago</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php foreach ($services as $row): ?> 
-			<tr>
+			<tr
+				<?php
+					if($row['status']=='J'){
+						echo 'class="success" style="color:#000"';
+					}else if($row['status']=='D'){
+						echo 'class="warning" style="color:#000"';
+					}
+				?>
+			>
 				<td><?php echo $row['id'] ?></td>
 				<td><?php echo $row['fecha_pago'] ?></td>
 				<td >
 					 ₡ <?php echo  number_format(htmlentities( $row['monto']), 2, '.', ''); ?>
 				</td>
 				<td><?php echo $row['descripcion'] ?></td>
+				<td>
+					<?php
+						switch ($row['status']) {
+							case 'J':
+								$type = 'Ajuste';
+								break;
+							case 'D':
+								$type = 'Descuento';
+								break;	
+							
+							default:
+								$type = 'Pago';
+								break;
+						}
+						echo $type;
+					?>
+
+				</td>
 				<td><?php echo $row['metodo_pago'] ?></td>
 				<td>
 					<?php

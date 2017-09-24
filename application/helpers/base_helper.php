@@ -599,6 +599,56 @@ if ( ! function_exists('get_plugins'))
     }
 }
 
+
+if ( ! function_exists('print_months'))
+{
+    function print_months($isCombo = true,  $input_name,$options, $selected=null)
+    {
+        $months = array(
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        );
+
+        if($isCombo){
+            $month_list = '<select name="'.$input_name.'" '.$option.' >';
+            foreach ($months as $value) {
+                $isSelected = '';
+                if(!is_null($selected)){
+                    if(strtolower($value) == strtolower($selected)){
+                        $isSelected = 'selected';
+                    }
+                }
+                $month_list .= '<option value="'.$value.'" '.$isSelected.'>'.$value.'</option>';
+            }
+            $month_list .= '</select >';
+        }
+
+        return $month_list;
+    }
+}
+
+if ( ! function_exists('vend_list'))
+{
+    function vend_list($list, $selected = null)
+    {
+    
+        $vend_list = '<select name="vendedor" >';
+        foreach ($list as $key => $value) {
+            $isSelected = '';
+            if(!is_null($selected)){
+                if($value['id_vendedor'] == $selected){
+                    $isSelected = 'selected';
+                }
+            }
+
+            $vend_list .= '<option value="'.$value['id_vendedor'].'" '.$isSelected.'>'.$value['nombre'].' '.$value['apellido1']. '</option>';
+        }
+        $vend_list .= '</select>';
+        
+
+        return $vend_list;
+    }
+}
+
 if ( ! function_exists('configPagination'))
 {
     function configPagination($url,$total_rows,$segment,$per_page=10)

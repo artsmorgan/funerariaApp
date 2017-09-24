@@ -18,25 +18,24 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
 // print_r($acc);
 // echo '</pre>';
 
-$sql = "select * from bk_vendedores";
-$vendedores = $this->db->query( $sql)->result_array();
 
 
 // $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
 ?>
 <?php if(  !empty($row) ) : ?>
-    <?php echo form_open(site_url('servicio/servicios/contractPay'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
+    <?php echo form_open(site_url('servicio/servicios/newAmountAdjustment'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary" data-collapsed="0">
                 <div class="panel-heading">
                     <div class="panel-title" >
                         <i class="entypo-plus-circled"></i>
-                        Aplicar Pago
+                        Aplicar Ajuste
                     </div>
                 </div>
 
                 <input type="hidden" name="contractID" value="<?php echo $param3 ; ?>">
+                <input type="hidden" name="type" value="contrato">
 
                 <div class="panel-body form-horizontal form-groups-bordered">
                     <!-- <input type="hidden" name="contractID" value="$row['id']"> -->
@@ -61,46 +60,31 @@ $vendedores = $this->db->query( $sql)->result_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Monto total: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="amount" class="form-control format-currency" value="<?php echo $acc['monto_total']; ?>" />
+                                    <input type="text" data-info="amount" class="form-control format-currency" value="<?php echo $acc['monto_total']; ?>" disabled/>
                                     <input type="hidden" class="exclude" data-info="amount_word" value="<?php echo  $row['monto_total'] ; ?>"  />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Concepto: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="concepto" name="concepto" class="form-control" value="Pago de contrato # <?php echo $row['no_contrato']; ?> " />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="field-1" class="control-label col-sm-12">Tipo de pago: </label>
-                                <div class="col-sm-12">
-                                    <select class="selectboxit" data-info="tipo_pago" name="tipo_pago">
-                                        <option value="efectivo">Efectivo</option>
-                                        <option value="tarjeta de crédito">Tarjeta de crédito</option>
-                                        <option data-enable value="cheque">Cheque</option>
-                                        <option data-enable value="transferencia">Transferencia</option>
-                                    </select>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="field-1" class="control-label col-sm-12">Número de transferencia o cheque: </label>
-                                <div class="col-sm-12">
-                                    <input type="text" data-info="numero_transferencia" disabled class="form-control exclude" name="no_transferencia"  />
+                                    <input type="text" data-info="concepto" name="concepto" class="form-control" value="AJUSTE: " />
                                 </div>
                             </div>
                         </div>
                         
+                        
                     </div>
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-warning" style="margin-top: 15px">
+                                <p>El monto del ajuste se sumara al monto Total</p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -112,57 +96,22 @@ $vendedores = $this->db->query( $sql)->result_array();
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="field-1" class="control-label col-sm-12">Abono: </label>
+                                <label for="field-1" class="control-label col-sm-12">Monto del Ajuste: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="abono" class="form-control format-currency"  value="<?php echo htmlentities( $acc['monto_cuota'] ); ?>" />
-                                    <input type="hidden"  value="<?php echo  $acc['monto_cuota'] ; ?>" name="abono" />
+                                    <input type="text" data-info="abono" class="form-control format-currency"  value="10000" />
+                                    <input type="hidden"   name="abono" value="10000"/>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="field-1" class="control-label col-sm-12">Interes: </label>
-                                <div class="col-sm-12">
-                                    <input type="text" data-info="interes" class="form-control" disabled value="TBP" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="field-1" class="control-label col-sm-12">Mes al cobro: </label>
-                                <div class="col-sm-12">
-                                    <?php echo print_months(true,'mes_cobro','class="selectboxit"',$row['mes_cobro']);?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="field-1" class="control-label col-sm-12">Saldo actual: </label>
-                                <div class="col-sm-12">
-                                    <input type="text" data-info="saldo_actual" disabled class="form-control format-currency"  value="<?php echo htmlentities( $acc['saldo_anterior']); ?>" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <br>
-                            <div class="form-group">
-                                <div class="col-sm-12 txt-right">
-                                    <input type="hidden" id="contract_id" value="<?php echo $row['id']; ?>">
-<!--                                     <button class="btn btn-info" id="print-button" type="submit"> -->
-                                    <button class="btn btn-info" type="submit">
-                                        Aplicar e Imprimir
+                                <button class="btn btn-info" type="submit">
+                                        Aplicar Ajuste
                                     </button>
-                                </div>
                             </div>
                         </div>
-
-                        <div class="col-md-12">
-                            <div class="msgs_container"></div>
-                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
