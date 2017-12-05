@@ -73,7 +73,7 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Nombre: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="name" class="form-control" disabled value="<?php echo $row['first_name'] . ' '. $row['last_name']; ?>" />
+                                    <input type="text" data-info="name" class="form-control" disabled value="<?php echo $row['first_name'] . ' '. $row['last_name']. ' '. $row['last_name2']; ?>" />
                                 </div>
                             </div>
                         </div>

@@ -5,7 +5,7 @@
     // print_r($vendedores);
     
     if(count($vendedores>0)){
-        $vend_list = '<select name="vendedor" >';
+        $vend_list = '<select name="vendedor" class="selectboxit">';
             foreach ($vendedores as $key => $value) {
                 $vend_list .= '<option value="'.$value['id_vendedor'].'">'.$value['nombre'].' '.$value['apellido1']. '</option>';
             }
@@ -284,11 +284,20 @@
                 <!-- fith row -->
 
                 <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Mes Al Cobro</label>
                                 <div class="col-sm-12">
                                     <?php echo print_months(true,'mes_cobro','class="selectboxit"');?>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label col-sm-12">Año Al Cobro</label>
+                                <div class="col-sm-12">
+                                    <?php echo print_years(true,'anno_cobro','class="selectboxit"');?>
                                     
                                 </div>
                             </div>

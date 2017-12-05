@@ -602,7 +602,7 @@ if ( ! function_exists('get_plugins'))
 
 if ( ! function_exists('print_months'))
 {
-    function print_months($isCombo = true,  $input_name,$options, $selected=null)
+    function print_months($isCombo = true,  $input_name,$option, $selected=null)
     {
         $months = array(
             'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre'
@@ -611,6 +611,39 @@ if ( ! function_exists('print_months'))
         if($isCombo){
             $month_list = '<select name="'.$input_name.'" '.$option.' >';
             foreach ($months as $value) {
+                $isSelected = '';
+                if(!is_null($selected)){
+                    if(strtolower($value) == strtolower($selected)){
+                        $isSelected = 'selected';
+                    }
+                }
+                $month_list .= '<option value="'.$value.'" '.$isSelected.'>'.$value.'</option>';
+            }
+            $month_list .= '</select >';
+        }
+
+        return $month_list;
+    }
+}
+
+if ( ! function_exists('print_years'))
+{
+    function print_years($isCombo = true,  $input_name,$option, $selected=null)
+    {
+        $start = 1960;
+        $end = date('Y');
+
+        $years = Array();
+
+        for($i = $start; $i < $end; $i++){
+            array_push($years, $i);
+        }
+
+        $years =  array_reverse($years);
+
+        if($isCombo){
+            $month_list = '<select name="'.$input_name.'" '.$option.' >';
+            foreach ($years as $value) {
                 $isSelected = '';
                 if(!is_null($selected)){
                     if(strtolower($value) == strtolower($selected)){

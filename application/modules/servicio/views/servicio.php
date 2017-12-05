@@ -26,7 +26,7 @@ $clientlist = $this->db->get_where('contact')->result_array();
     $script_js_clients = array();
 
     foreach($clients_data as $client) {
-        $script_js_clients[] = $client['contact_id'] . ': { id_card: "' .  $client['id_card'] . '", first_name: "' . $client['first_name'] . '", last_name: "' . $client['last_name'] . '", last_name2:"' . $client['last_name2'] . '", phone: "' . $client['phone'] . '", phone2:"' . $client['phone2'] . '", phone3:"' . $client['phone3'] . '", email:"' . $client['email'] . '", category: "' . $client['category'] .'", seller_name: "' . $client['seller_name'] . '", province: "' . $client['province'] . '", canton: "' . $client['canton'] . '", district: "' . $client['district'] . '" }';
+        $script_js_clients[] = $client['contact_id'] . ': { id_card: "' .  $client['id_card'] . '", first_name: "' . $client['first_name'] . '", last_name: "' . $client['last_name'] . '", last_name2:"' . $client['last_name2'] . '", phone: "' . $client['phone'] . '", phone2:"' . $client['phone2'] . '", phone3:"' . $client['phone3'] . '", email:"' . $client['email'] . '", category: "' . $client['category'] .'", seller_name: "' . $client['seller_name'] . '", province: "' . $client['province'] . '", canton: "' . $client['canton'] . '", district: "' . $client['district'] .'", address: "' . $client['address'] . '" }';
         $script_js_id_card[] = '{ id:' . $client['contact_id'] . ', label: "' .  $client['id_card'] . ' - ' . $client['first_name'] . ' ' . $client['last_name']  . ' ' .  $client['last_name2']  .'" ,value: "' . $client['id_card'] . '" }';
         $script_js_first_name[] = '{ id:' . $client['contact_id'] . ', label: "' .$client['first_name'] . ' ' . $client['last_name']  . ' ' .  $client['last_name2'] . '" ,value: "' . $client['first_name'] . '" }';
         $script_js_last_name[] = '{ id:' . $client['contact_id'] . ', label: "' . $client['first_name'] . ' ' . $client['last_name']  . ' ' .  $client['last_name2'] . '" ,value: "' .  $client['last_name'] . '" }';
@@ -107,7 +107,9 @@ if(empty($services)){ ?>
                             }
                             else if($service_type == 'funeral'){
                                 $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_apartado/' . $row['id'] );
-                                $view_pays_url = site_url('admin/modal/popup/servicio/list_apartados_payments/' . $row['id'] );   
+                                $view_pays_url = site_url('admin/modal/popup/servicio/list_apartados_payments/' . $row['id'] ); 
+                                 $discount_url = site_url('admin/modal/popup/impresion/aplicar_descuento/' . $row['id'] );
+                                $adjustment_url = site_url('admin/modal/popup/impresion/aplicar_ajuste/' . $row['id'] );  
                             }
                         ?>
                         <a href="javascript:;" class="btn btn-primary"  onclick="showAjaxModal('<?php echo $view_pays_url ?>')">
@@ -150,11 +152,29 @@ if(empty($services)){ ?>
                                     </a>
                                 </li> -->
                                 <li class="divider"></li>
+                                 <?php if($service_type=='funeral'){ ?>
+                                    <li>
+                                        <a href="#" onclick="confirm_modal('/');">
+                                            <i class="fa fa-truck"></i>
+                                            Ver Traslado
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                     <li>
+                                        <a href="#" onclick="">
+                                            <i class="fa fa-print"></i>
+                                            Imprimir Contrato
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                <?php } ?>
                                 <li>
                                     <?php
                                         if($service_type=='contrato'){
                                             $delete_servicio =site_url('servicio/servicios/deleteContrato/' . $row['service_id'] );
                                         }else if($service_type=='apartado'){
+                                            $delete_servicio =site_url('servicio/servicios/deleteApartado/' . $row['service_id'] );
+                                        }else if($service_type=='funeral'){
                                             $delete_servicio =site_url('servicio/servicios/deleteApartado/' . $row['service_id'] );
                                         }
                                     ?>

@@ -19,7 +19,7 @@ class Servicio_model extends CI_Model
 
     // private function openApartadosAccount($userID, $customerID, $apartado$id){}
 
-    private function openContratosAccount($userID, $customerID, $contractID, $monto_total, $prima, $mes_cobro, $monto_cuota){
+    private function openContratosAccount($userID, $customerID, $contractID, $monto_total, $prima, $mes_cobro, $monto_cuota, $anno_cobro){
 
         $saldo_actual = $monto_total - $prima;
 
@@ -34,6 +34,7 @@ class Servicio_model extends CI_Model
         $data['saldo'] = $saldo_actual;
         $data['saldo_anterior'] = $monto_total;
         $data['monto_abonado'] = $prima;
+        $data['anno_cobro'] = $anno_cobro;
         
         $this->db->insert('contratos_account', $data);
         return $this->db->insert_id();
@@ -263,12 +264,21 @@ class Servicio_model extends CI_Model
 
         $data['observaciones'] = $this->input->post('observaciones'); 
 
+        $data['anno_cobro'] = $this->input->post('anno_cobro'); 
+
         $this->db->insert('contratos', $data);
         $contractID = $this->db->insert_id();
 
 
-        $accID = $this->openContratosAccount($_SESSION['user_id'],  $this->input->post('contact_id'), $contractID, $this->input->post('amount'), 
-                                    0, $this->input->post('mes_cobro'), $this->input->post('cuota') );
+        $accID = $this->openContratosAccount(
+            $_SESSION['user_id'],  
+            $this->input->post('contact_id'), 
+            $contractID, 
+            $this->input->post('amount'), 
+            0, 
+            $this->input->post('mes_cobro'), 
+            $this->input->post('cuota'), 
+            $this->input->post('anno_cobro') );
         
 
         if($accID > 0){
@@ -338,7 +348,8 @@ class Servicio_model extends CI_Model
         $data['saldo_anterior'] = $this->input->post('saldo_anterior');
         $data['saldo_actual'] = $this->input->post('saldo_actual'); 
 
-        $data['observaciones'] = $this->input->post('observaciones'); 
+        $data['observaciones'] = $this->input->post('observaciones');
+        $data['anno_cobro'] = $this->input->post('anno_cobro'); 
 
         
        

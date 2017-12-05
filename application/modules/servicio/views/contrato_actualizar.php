@@ -288,21 +288,21 @@ $vendedores = $this->db->query( $sql)->result_array();
                 <!-- fith row -->
 
                 <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Mes Al Cobro</label>
                                 <div class="col-sm-12">
-                                    <?php echo print_months(true,'mes_cobro','class="selectboxit"',$row['mes_cobro']);?>
+                                    <?php echo print_months(true,'mes_cobro','class="selectboxit"', $row['mes_cobro']);?>
+                                    
                                 </div>
                             </div>
                         </div>
-                        <!-- col -->
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
-                                <label for="field-1" class="col-sm-12 control-label">Saldo Anterior</label>
+                                <label for="field-1" class="control-label col-sm-12">Año Al Cobro</label>
                                 <div class="col-sm-12">
-                                    <input type="text"  class="form-control format-currency" disabled value="<?php echo htmlentities( $acc['saldo_anterior'] ); ?>">
-                                    <input type="hidden"   name="saldo_anterior" value="<?php echo htmlentities( $acc['saldo_anterior'] ); ?>">
+                                    <?php echo print_years(true,'anno_cobro','class="selectboxit"',$row['anno_cobro']);?>
+                                    
                                 </div>
                             </div>
                         </div>

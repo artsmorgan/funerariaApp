@@ -106,7 +106,7 @@
                     </div>
                     <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
+                                    <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('seller'); ?></label>
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" id="seller" readonly  />
                                     </div>
@@ -239,7 +239,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('date'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly />
+                                <input type="text" class="form-control datepicker" value="<?php echo date('Y-m-d'); ?>"  />
                             </div>
                         </div>
                     </div>
@@ -256,11 +256,6 @@
                     </div>-->
                     <!-- col -->
                 </div>
-                <!-- first row -->
-
-                
-                <h3>Características del servicio</h3>
-    
                 <div class="row">
                     <div class="col-md-3 cell-top">
                         <div class="form-group">
@@ -293,8 +288,16 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <!-- first row -->
+
+                <hr>
+                <h3>Características del servicio</h3>
+                <hr>
+                <!-- <div class="row"> -->
+                    
                     <!-- col -->
-                    <div class="col-md-3 cell-top">
+                    <!-- <div class="col-md-3 cell-top">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('veiling_site'); ?></label>
                             <div class="col-sm-12">
@@ -310,29 +313,29 @@
                                     <option value="Otro" data-other>Otro</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- form-group -->
-                    </div>
+                    <!-- </div> -->
                     <!-- col -->
-                    <div class="col-md-3">
+                    <!-- <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('address'); ?></label>
                             <div class="col-sm-12">
                                 <textarea name="veiling_site_address" data-duplicate class="form-control" rows="5"></textarea>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- col -->
-                    <div class="col-md-3">
+                    <!-- <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('veiling_room'); ?></label>
                             <div class="col-sm-12">
                                 <input type="checkbox" name="veiling_room" class="form-control" value="1">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- col -->
-                </div>
+                <!-- </div> -->
                 <!-- sixth row -->
 
                 <div class="row">
@@ -350,6 +353,7 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('forgetfulness'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="forgetfulness">
+                                    <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -364,6 +368,7 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('flowers'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="flowers">
+                                    <option value="0">0</option>
                                     <option value="2">2</option>
                                     <option value="4">4</option>
                                     <option value="6">6</option>
@@ -380,6 +385,7 @@
                             <label for="field-1" class="col-sm-12 control-label">Tributos</label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="tributes">
+                                    <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -407,7 +413,8 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Costo</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="pathology_cost"  />
+                                <input type="text"  class="form-control format-currency" name="pathology_cost" />
+                                    <input type="hidden" class="exclude" data-info="amount_word"   />
                             </div>
                         </div>
                     </div>
@@ -492,7 +499,7 @@
                         
                     </div>
                     <!-- col -->
-                    <div class="col-md-6 cell-top">
+                    <div class="col-md-9 cell-top">
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('address'); ?></label>
                             <div class="col-sm-12">
@@ -501,7 +508,7 @@
                         </div>
                     </div>
                     <!-- col -->
-                    <div class="col-md-3 cell-top">
+                   <!--  <div class="col-md-3 cell-top">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -510,7 +517,7 @@
                                         <input type="checkbox" name="driver" class="form-control" value="1">
                                     </div>
                                 </div>
-                                <!-- form-group -->
+                                
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -519,23 +526,22 @@
                                         <input type="checkbox" name="float" class="form-control" value="1">
                                     </div>
                                 </div>
-                                <!-- form-group -->
+                                
                             </div>
                         </div>
                         
-                    </div>
+                    </div> -->
                     <!-- col -->
                 </div>
                 <!-- eight row -->
 
                 <div class="row">
                     <div class="col-md-3 cell-top">
+
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('veiling_site'); ?></label>
                             <div class="col-sm-12">
-                                <select class="selectboxit" data-duplicate-name="veiling_site" readonly>
-                                    <option value="Funeraria Shalom">Funeraria Shalom</option>
-                                </select>
+                                <input type="text"  name="veiling_site" class="form-control" >
                             </div>
                         </div>
                         <!-- form-group -->
@@ -552,12 +558,35 @@
                     <!-- col -->
                     <div class="col-md-3 cell-top">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('hour'); ?></label>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" name="transfer_time"  />
+                                        
+                                        <select class="selectboxit" name="transfer_time">
+                                            <option value="12">12:00</option>
+                                            <option value="1">1:00</option>
+                                            <option value="2">2:00</option>
+                                            <option value="3">3:00</option>
+                                            <option value="4">4:00</option>
+                                            <option value="5">5:00</option>
+                                            <option value="6">6:00</option>
+                                            <option value="7">7:00</option>
+                                            <option value="8">8:00</option>
+                                            <option value="9">9:00</option>
+                                            <option value="10">10:00</option>
+                                            <option value="11">11:00</option>
+                                        </select>
                                     </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select class="selectboxit" name="transfer_time_ampm">
+                                            <option value="am">AM</option>
+                                            <option value="pm">PM</option>
+                                        </select>
                                 </div>
                             </div>
                             <!-- col -->
@@ -587,6 +616,7 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('arrangements'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="veiling_site_arrangements">
+                                    <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -609,6 +639,7 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('pedestal'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="pedestal">
+                                    <option value="0">0</option>
                                     <option value="2">2</option>
                                     <option value="4">4</option>
                                     <option value="6">6</option>
@@ -647,6 +678,7 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('pushcart'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="pushcart">
+                                    <option value="No">No</option>
                                     <option value="Europea">Europea</option>
                                     <option value="Americana">Americana</option>
                                     <option value="Nacional">Nacional</option>
@@ -701,12 +733,35 @@
                         </div>
                     </div>
                     <!-- col -->
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('hour'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="funeral_time"  />
+                                
+                                <select class="selectboxit" name="funeral_time">
+                                    <option value="12">12:00</option>
+                                    <option value="1">1:00</option>
+                                    <option value="2">2:00</option>
+                                    <option value="3">3:00</option>
+                                    <option value="4">4:00</option>
+                                    <option value="5">5:00</option>
+                                    <option value="6">6:00</option>
+                                    <option value="7">7:00</option>
+                                    <option value="8">8:00</option>
+                                    <option value="9">9:00</option>
+                                    <option value="10">10:00</option>
+                                    <option value="11">11:00</option>
+                                </select>
                             </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <select class="selectboxit" name="funeral_time_ampm">
+                                    <option value="am">AM</option>
+                                    <option value="pm">PM</option>
+                                </select>
                         </div>
                     </div>
                     <!-- col -->
@@ -835,135 +890,17 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Monto Total del Servicio</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control " name="amount" required  />
+                                <input type="text" class="form-control format-currency " name="amount" required  />
+                                <input type="hidden" class="exclude" data-info="amount_word"  />
                             </div>
                         </div>
                     </div>
-                    <!-- col -->
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="col-sm-12 control-label">
-                                Aplicar Contrato 1
-                            </label>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Número</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Valor</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Aplicar</label>
-                            <div class="col-sm-12">
-                                <input type="checkbox" name="" class="form-control" value="1">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    
-                </div>
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="col-sm-12 control-label">
-                                Aplicar Contrato 1
-                            </label>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Número</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Valor</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Aplicar</label>
-                            <div class="col-sm-12">
-                                <input type="checkbox" name="" class="form-control" value="1">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    
-                </div>
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="col-sm-12 control-label">
-                                Aplicar Contrato 1
-                            </label>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Número</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Valor</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Aplicar</label>
-                            <div class="col-sm-12">
-                                <input type="checkbox" name="" class="form-control" value="1">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    
-                </div>
-                <!-- row -->
-                <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Prima</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
+                                <input type="text" class="form-control format-currency " name="prima" required  />
+                                <input type="hidden" class="exclude" data-info="prima_word"  />
                             </div>
                         </div>
                     </div>
@@ -972,7 +909,8 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Saldo total</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
+                                <input type="text" class="form-control format-currency " name="saldo" required  />
+                                <input type="hidden" class="exclude" data-info="saldo_word"  />
                             </div>
                         </div>
                     </div>
@@ -981,7 +919,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Contado</label>
                             <div class="col-sm-12">
-                                <input type="checkbox" name="" class="form-control" value="1">
+                                <input type="radio" name="forma_pago" class="form-control" value="1">
                             </div>
                         </div>
                     </div>
@@ -990,26 +928,142 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Crédito</label>
                             <div class="col-sm-12">
-                                <input type="checkbox" name="" class="form-control" value="1">
+                                <input type="radio" name="forma_pago" class="form-control" value="1">
                             </div>
                         </div>
                     </div>
                     <!-- col -->
                 </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                Aplicar Contrato 1
+                            </label>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Número</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control " name=""  />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Valor</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control format-currency " name="contrato_1" required  />
+                                <input type="hidden" class="exclude" data-info="amount_word"  />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Aplicar</label>
+                            <div class="col-sm-12">
+                                <input type="checkbox" name="" class="form-control" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    
+                </div>
                 <!-- row -->
                 <div class="row">
-                    <div class="col-sm-12">
-                        <p style="margin: 15px 0;">Historial de pagos en servicio de contado</p>
-                        <table style="width: 100%;height: 60px;border: 1px solid grey;border-collapse: unset;margin: 15px 0;"></table>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                Aplicar Contrato 2
+                            </label>
+                        </div>
                     </div>
+                    <!-- col -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Número</label>
+                            <div class="col-sm-12">
+                               <input type="text" class="form-control format-currency " name="contrato_2" required  />
+                                <input type="hidden" class="exclude" data-info="amount_word"  />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Valor</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control " name=""  />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Aplicar</label>
+                            <div class="col-sm-12">
+                                <input type="checkbox" name="" class="form-control" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    
                 </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label">
+                                Aplicar Contrato 3
+                            </label>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Número</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control format-currency " name="contrato_3" required  />
+                                <input type="hidden" class="exclude" data-info="amount_word"  />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Valor</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control " name=""  />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Aplicar</label>
+                            <div class="col-sm-12">
+                                <input type="checkbox" name="" class="form-control" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    
+                </div>
+                <!-- row -->
+                
+               
                 <!-- row -->
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Monto del crédito</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
+                                <input type="text" class="form-control format-currency " name="monto_credito" required  />
+                                <input type="hidden" class="exclude" data-info="amount_word"  />
                             </div>
                         </div>
                     </div>
@@ -1044,12 +1098,7 @@
                 </div>
                 <!-- row -->
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <p style="margin: 15px 0;">Historial de pagos en servicio de crédito</p>
-                        <table style="width: 100%;height: 60px;border: 1px solid grey;border-collapse: unset;margin: 15px 0;"></table>
-                    </div>
-                </div>
+               
                 <!-- row -->
 
                 <div class="row">
@@ -1057,7 +1106,8 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Saldo a financiar de contratos</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
+                                <input type="text" class="form-control format-currency " name="saldo_financiar" required  />
+                                <input type="hidden" class="exclude" data-info="amount_word"  />
                             </div>
                         </div>
                     </div>
@@ -1066,19 +1116,15 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Cuota Mensual</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
+                                <input type="text" class="form-control format-currency " name="cuota_mensual" required  />
+                                <input type="hidden" class="exclude" data-info="amount_word"  />
                             </div>
                         </div>
                     </div>
                     <!-- col -->
                 </div>
                 <!-- row -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <p style="margin: 15px 0;">Historial de pagos en servicio de contrato</p>
-                        <table style="width: 100%;height: 60px;border: 1px solid grey;border-collapse: unset;margin: 15px 0;"></table>
-                    </div>
-                </div>
+                
                 <!-- row -->
 
                 <div class="row">
@@ -1087,12 +1133,6 @@
                             <div class="col-sm-12 txt-right">
                                 <button type="submit" class="btn btn-info" id="submit-button">
                                     <?php echo lang_key('submit'); ?>
-                                </button>
-                                 <button type="submit" class="btn btn-info" id="transfer-button">
-                                    Traslado
-                                </button>
-                                 <button type="submit" class="btn btn-info" id="print-button">
-                                    Imprimir
                                 </button>
                             </div>
                         </div>
@@ -1109,6 +1149,10 @@
 
 <script>
     (function(){
+
+        $('.panel-primary .format-currency').formatCurrency({
+            symbol: '₡ '
+        });
 
         $('[data-custom]').remove();
 
@@ -1173,6 +1217,7 @@
         });
 
         function setClientData(clientId){
+            console.log('clients[clientId]',clients[clientId])
             $('[name=client_id_card]').val(clients[clientId].id_card);
             $('[name=client_first_name]').val(clients[clientId].first_name);
             $('[name=client_last_name]').val(clients[clientId].last_name);
