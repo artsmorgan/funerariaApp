@@ -1,4 +1,13 @@
-<a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/'. $service_type  .'_annadir/' . $service_type ); ?>')" 
+<?php
+    $service_type_opt = $service_type;
+    $createBtn = $service_type;
+    if($service_type=='funecredito'){
+        $createBtn = 'funeral';
+        $service_type_opt = 'funecredito';
+    }
+?>
+
+<a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/'. $createBtn  .'_annadir/' . $service_type_opt ); ?>')" 
     class="btn btn-primary pull-right">
         <i class="entypo-plus-circled"></i>
         Añadir <?php echo $page_type; ?>
@@ -55,11 +64,19 @@ else if($service_type=='apartado'){
     inner join bk_contact cn on c.contact_id = cn.contact_id;";
 }
 else if($service_type=='funeral'){
-    $sql = "select id,
-    c.id as contract_id, c.id as service_id, 
-    CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card
-    from bk_apartados c
-    inner join bk_contact cn on c.contact_id = cn.contact_id;";
+    $sql = "select c.id_funeral as id, c.id_funeral as contract_id, 
+    CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card, CONCAT(c.fallecido_nombre, ' ', c.fallecido_apellido, ' ', c.fallecido_apellido2) AS fallecido
+    from bk_funeral c
+    inner join bk_contact cn on c.contact_id = cn.contact_id
+    where c.funeral_tipo = 'funeral'; ";
+}
+
+else if($service_type=='funecredito'){
+    $sql = "select c.id_funeral as id, c.id_funeral as contract_id, 
+    CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card, CONCAT(c.fallecido_nombre, ' ', c.fallecido_apellido, ' ', c.fallecido_apellido2) AS fallecido
+    from bk_funeral c
+    inner join bk_contact cn on c.contact_id = cn.contact_id
+    where c.funeral_tipo = 'funecredito'";
 }
 
 
@@ -80,8 +97,11 @@ if(empty($services)){ ?>
                 <th>Contrato</th>
                 <th>Nombre</th>
                 <th>Cédula</th>
-                
+                <?php if($service_type=='funeral'){ ?>
+                <th>Nombre Fallecido</th>
+                <?php }else { ?>
                 <th>Historial de Pagos</th>
+                <?php }?>                                
                 <th><?php echo lang_key('options'); ?></th>
             </tr>
         </thead>
@@ -91,7 +111,15 @@ if(empty($services)){ ?>
             foreach ($services as $row): ?>
                 <tr>
                     <td><?php echo $count++ ?></td>
-                    <td><?php echo $row['contract_id']; ?></td>
+                    <td><?php 
+                            if($service_type=='contrato'){
+                                echo 'CT-';
+                            }else if($service_type=='apartado'){
+                                echo 'AP-';
+                            }else if($service_type == 'funeral'){
+                                echo 'FN-';
+                            }
+                            echo '000'.$row['contract_id']; ?></td>
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['client_id_card']; ?></td>
                     <td> 
@@ -104,20 +132,26 @@ if(empty($services)){ ?>
                             }else if($service_type=='apartado'){
                                 $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_apartado/' . $row['id'] );
                                 $view_pays_url = site_url('admin/modal/popup/servicio/list_apartados_payments/' . $row['id'] );
+                                $discount_url = site_url('admin/modal/popup/impresion/aplicar_descuento/' . $row['id'] );
+                                $adjustment_url = site_url('admin/modal/popup/impresion/aplicar_ajuste/' . $row['id'] );
                             }
                             else if($service_type == 'funeral'){
-                                $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_apartado/' . $row['id'] );
-                                $view_pays_url = site_url('admin/modal/popup/servicio/list_apartados_payments/' . $row['id'] ); 
-                                 $discount_url = site_url('admin/modal/popup/impresion/aplicar_descuento/' . $row['id'] );
-                                $adjustment_url = site_url('admin/modal/popup/impresion/aplicar_ajuste/' . $row['id'] );  
+                                echo $row['fallecido'];
                             }
+                            //     $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_apartado/' . $row['id'] );
+                            //     $view_pays_url = site_url('admin/modal/popup/servicio/list_apartados_payments/' . $row['id'] ); 
+                            //      $discount_url = site_url('admin/modal/popup/impresion/aplicar_descuento/' . $row['id'] );
+                            //     $adjustment_url = site_url('admin/modal/popup/impresion/aplicar_ajuste/' . $row['id'] );  
+                            // }
                         ?>
+                        <?php if($service_type != 'funeral'){ ?>
                         <a href="javascript:;" class="btn btn-primary"  onclick="showAjaxModal('<?php echo $view_pays_url ?>')">
                           Ver Transacciones
                         </a>                    
                         <a href="javascript:;" class="btn btn-danger"  onclick="showAjaxModal('<?php echo $service_url ?>')">
                             Realizar Pago
                         </a>
+                        <?php } ?>
                     </td>                    
                     <td>
                         <div class="btn-group">
@@ -125,36 +159,56 @@ if(empty($services)){ ?>
                                 <?php echo lang_key('actions') ?> <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu dropdown-default pull-right" role="menu">
+
+                                <?php  if($service_type == 'apartado'){ ?>
+                                    <li>
+                                    <a href="javascript:;" 
+                                        onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/funeral_apartado_annadir/funeral?ap=apartado&row='. $row['id']  ); ?>')" 
+                                    >
+                                       
+                                       Hacer Funeral Contado
+                                    </a>
+                                </li>  
+                                <li class="divider"></li>
+                                 <li>
+                                    <a href="javascript:;" 
+                                        onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/funeral_apartado_annadir/funecredito?ap=apartado&row='. $row['id']  ); ?>')" 
+                                    >
+                                        
+                                       Hacer Funeral Credito
+                                    </a>
+                                </li>
+                                <li class="divider"></li>                                
+                                <?php } ?>
+                             
+
+                                 <?php if($service_type != 'funeral'){ ?>
                                 <li>
                                     <a href="javascript:;" onclick="showAjaxModal('<?php echo $adjustment_url ?>')">
                                         <i class="fa fa-money"></i> 
                                        Ajuste de Precio
                                     </a>
                                 </li>
+                               
                                 <li class="divider"></li>
                                  <li>
                                     <a href="javascript:;" onclick="showAjaxModal('<?php echo $discount_url ?>')">
                                         <i class="fa fa-minus-square"></i> 
                                         Aplicar Descuento
                                     </a>
-                                </li>
+                                </li>                                
                                 <li class="divider"></li>
+                                <?php } ?>
                                  <li>
-                                    <a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/'. $service_type  .'_actualizar/' . $row['service_id'] . '/' . $service_type); ?>');">
+                                    <a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/'. $service_type  .'_actualizar/' . $row['id'] . '/' . $service_type); ?>');">
                                         <i class="entypo-pencil"></i>
                                        Ver / Editar
                                     </a>
                                 </li>
-                               <!--  <li>
-                                    <a href="<?php echo site_url('servicio/service_details/' . $row['service_id'] . '/' . $service_type ); ?>">
-                                        <i class="entypo-eye"></i>
-                                        <?php echo lang_key('view_details');?>
-                                    </a>
-                                </li> -->
                                 <li class="divider"></li>
                                  <?php if($service_type=='funeral'){ ?>
                                     <li>
-                                        <a href="#" onclick="confirm_modal('/');">
+                                        <a href="#" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/funeral_traslado_ver/' . $row['id'] . '/' . $service_type); ?>');">
                                             <i class="fa fa-truck"></i>
                                             Ver Traslado
                                         </a>
@@ -171,11 +225,11 @@ if(empty($services)){ ?>
                                 <li>
                                     <?php
                                         if($service_type=='contrato'){
-                                            $delete_servicio =site_url('servicio/servicios/deleteContrato/' . $row['service_id'] );
+                                            $delete_servicio =site_url('servicio/servicios/deleteContrato/' . $row['contract_id'] );
                                         }else if($service_type=='apartado'){
-                                            $delete_servicio =site_url('servicio/servicios/deleteApartado/' . $row['service_id'] );
+                                            $delete_servicio =site_url('servicio/servicios/deleteApartado/' . $row['contract_id'] );
                                         }else if($service_type=='funeral'){
-                                            $delete_servicio =site_url('servicio/servicios/deleteApartado/' . $row['service_id'] );
+                                            $delete_servicio =site_url('servicio/servicios/deleteApartado/' . $row['contract_id'] );
                                         }
                                     ?>
 
@@ -194,266 +248,6 @@ if(empty($services)){ ?>
     
 <?php } ?>
 
-
-
-<div class="modal fade" id="calcAmount" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Calculo</h4>
-            </div>
-            <div class="modal-body form-horizontal">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label col-md-6">Monto servicio</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control for-contado format-currency"  id="amountService"   />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                </div>
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label col-md-6">Prima funecrédito</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control format-currency"  id="advance_payment"   />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                </div>
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label col-md-6">Abono Inicial</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control for-contado format-currency"  id="payment"   />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                </div>
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label col-md-6">Monto contrato 1</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control lock format-currency" disabled  id="amountContract1"   />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label col-md-12">Monto total</label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control lock format-currency" disabled  id="totalContract1"   />
-                                    </div>                                    
-                                </div>
-                            </div>
-                            <!--  inner col -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label col-md-12">N° contrato</label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control lock" disabled  id="idContract1"   />
-                                    </div>                                    
-                                </div>
-                            </div>
-                            <!--  inner col -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label col-md-12">Aplicar contrato <input type="checkbox" class="lock" disabled id="useContract1"></label>                                 
-                                </div>
-                            </div>
-                            <!--  inner col -->
-                        </div>
-                        <!-- inner row -->
-                    </div>
-                    <!-- col -->
-                </div>
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label col-md-6">Monto contrato 2</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control lock format-currency" disabled id="amountContract2"   />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control lock format-currency" disabled  id="totalContract2"   />
-                                    </div>                                    
-                                </div>
-                            </div>
-                            <!--  inner col -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control lock" disabled  id="idContract2"   />
-                                    </div>                                    
-                                </div>
-                            </div>
-                            <!--  inner col -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label col-md-12">Aplicar contrato <input type="checkbox" class="lock" disabled id="useContract2"></label>                                 
-                                </div>
-                            </div>
-                            <!--  inner col -->
-                        </div>
-                        <!-- inner row -->
-                    </div>
-                    <!-- col -->
-                </div>
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label col-md-6">Monto contrato 3</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control lock format-currency" disabled id="amountContract3"   />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control lock format-currency" disabled  id="totalContract3"   />
-                                    </div>                                    
-                                </div>
-                            </div>
-                            <!--  inner col -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control lock" disabled  id="idContract3"   />
-                                    </div>                                    
-                                </div>
-                            </div>
-                            <!--  inner col -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label col-md-12">Aplicar contrato <input type="checkbox" class="lock" disabled id="useContract3"></label>                                 
-                                </div>
-                            </div>
-                            <!--  inner col -->
-                        </div>
-                        <!-- inner row -->
-                    </div>
-                    <!-- col -->
-                </div>
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label col-md-6">Saldo a cancelar 1 mes</label>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control lock format-currency" disabled id="pay1month"   />
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- inner col -->
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label col-md-6">Saldo a financiar Funecrédito</label>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control format-currency lock" disabled  id="debt"   />
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- inner col -->
-                        </div>
-                        <!-- inner row -->
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label col-md-12">Plazo meses</label>
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control"  id="plazo"   />
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- inner col -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label col-md-12">Interés</label>
-                                    <div class="col-md-12">
-                                        <input type="number" class="form-control"  id="interes"   />
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- inner col -->
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label col-md-12">Cuota mensual funecrédito</label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control  format-currency lock" disabled id="cuota"   />
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- inner col -->
-                        </div>
-                        <!-- inner row -->
-                    </div>
-                    <!-- col -->
-                </div>
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label col-md-6">Saldo a financiar contrato</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control lock format-currency"  disabled id="saldoContrato"   />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="col-md-4">
-                                <input type="text" class="form-control lock format-currency" disabled id="cuotaContrato"   />
-                               
-                            </div>
-                            <label class="control-label col-md-8">Cuota mensual del contrato</label>
-                        </div>
-                    </div>
-                    <!-- col -->
-                </div>
-                <!-- row -->
-                 <input  type="hidden" id="saldoTotal" >
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-close data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-default" data-accept data-dismiss="modal">Aceptar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="modal fade" id="selectAddMore" role="dialog">
     <div class="modal-dialog modal-sm">
@@ -716,7 +510,7 @@ if(empty($services)){ ?>
                 }
             }
 
-            showModal('#calcAmount');
+            //showModal('#calcAmount');
         });
 
         $('.modal').on('click','.add-client', function(e){
@@ -850,33 +644,33 @@ if(empty($services)){ ?>
         });
 
 
-        $('#calcAmount').on('keyup change', 'input', function(){
-            calPago();
-        });
+        // $('#calcAmount').on('keyup change', 'input', function(){
+        //     calPago();
+        // });
 
-       $('#calcAmount').on('keyup change', '#advance_payment, :checkbox', function(){
-            var saldo = $('#pay1month').asNumber() + $('#debt').asNumber();
+       // $('#calcAmount').on('keyup change', '#advance_payment, :checkbox', function(){
+       //      var saldo = $('#pay1month').asNumber() + $('#debt').asNumber();
 
-                $('#pay1month').val(0);
-                $('#debt').val(saldo).trigger('input');
-        });
+       //          $('#pay1month').val(0);
+       //          $('#debt').val(saldo).trigger('input');
+       //  });
 
-        $('#calcAmount').on( 'click', '[data-accept]', function(){
-            $('[name=amount]').val( $('#amountService').asNumber() ).prev().val( $('#amountService').val() );
-            $('[name=balance]').prev().val( $('#saldoTotal').val() ).trigger('input');
-            $('[name=primaFunecredito]').val( $('#advance_payment').asNumber() );
-            $('[name=cuotaFunecredito]').val( $('#cuota').asNumber() );
-            $('[name=plazoFunecredito]').val( $('#plazo').val() );
-            $('[name=interesFunecredito]').val( $('#interes').val() );
-            $('[name=saldoFunecredito]').val( $('#debt').asNumber() );
-            $('[name=abono]').val( $('#payment').asNumber() );
+       //  $('#calcAmount').on( 'click', '[data-accept]', function(){
+       //      $('[name=amount]').val( $('#amountService').asNumber() ).prev().val( $('#amountService').val() );
+       //      $('[name=balance]').prev().val( $('#saldoTotal').val() ).trigger('input');
+       //      $('[name=primaFunecredito]').val( $('#advance_payment').asNumber() );
+       //      $('[name=cuotaFunecredito]').val( $('#cuota').asNumber() );
+       //      $('[name=plazoFunecredito]').val( $('#plazo').val() );
+       //      $('[name=interesFunecredito]').val( $('#interes').val() );
+       //      $('[name=saldoFunecredito]').val( $('#debt').asNumber() );
+       //      $('[name=abono]').val( $('#payment').asNumber() );
 
-            $('#useContract1,#useContract2,#useContract3').each(function(i){
-                if( $(this).is(':checked') ){
-                    $('#contrato_account_id' + (i + 1)).val( $(this).data('id') );
-                }
-            });
-        });
+       //      $('#useContract1,#useContract2,#useContract3').each(function(i){
+       //          if( $(this).is(':checked') ){
+       //              $('#contrato_account_id' + (i + 1)).val( $(this).data('id') );
+       //          }
+       //      });
+       //  });
 
         function calPago(){
             var montoServicio = $('#amountService').asNumber() || 0,
@@ -950,8 +744,7 @@ if(empty($services)){ ?>
         $('#modal_ajax').on('show.bs.modal', modal_service_loaded);
 
         function modal_service_loaded(e){
-            console.log('this is  a test');
-
+            
             $('[name=amount],[name=tiempo_contrato]').on('input', function(e){
                 calcularSaldo();
             });

@@ -2,11 +2,11 @@
 
 $sql = "select c.*, cn.* from bk_contratos c inner join bk_contact cn on c.contact_id = cn.contact_id where id = ?";
 $sql_account = "select * from bk_contratos_account where contract_number = ?";
-// echo $param3;
+
 $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
 // echo '<pre>';
-// print_r($acc);
+// print_r($row);
 // echo '</pre>';
 
 $sql = "select * from bk_vendedores";
@@ -300,9 +300,8 @@ $vendedores = $this->db->query( $sql)->result_array();
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Año Al Cobro</label>
-                                <div class="col-sm-12">
-                                    <?php echo print_years(true,'anno_cobro','class="selectboxit"',$row['anno_cobro']);?>
-                                    
+                                <div class="col-sm-12">                                    
+                                    <input type="number" class="form-control" value="<?php echo $row['anno_cobro']; ?>">
                                 </div>
                             </div>
                         </div>

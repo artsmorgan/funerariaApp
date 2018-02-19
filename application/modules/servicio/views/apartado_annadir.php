@@ -143,7 +143,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Cremación</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="cremacion"  value="" />
+                                <input type="checkbox" class="form-control" name="cremacion"  />
                             </div>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Autopsia</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control" name="autopsia" >
+                                <input type="checkbox"  class="form-control" name="autopsia" >
                             </div>
                         </div>
                     </div>
@@ -171,8 +171,8 @@
                             <label for="field-1" class="col-sm-12 control-label">Costo</label>
                             <div class="col-sm-12">
                                
-                                <input type="text"  class="form-control format-currency" >
-                                <input type="hidden"   name="costo">
+                                <input type="text"  class="form-control format-currency" value="0" >
+                                <input type="hidden"   name="costo" value="0" >
                             </div>
                         </div>
                     </div>
@@ -180,7 +180,12 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Urna</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control" name="urna">
+                                <select class="selectboxit" name="urna" data-select-add-custom>
+                                    <option value="Ecológica">Ecológica</option>
+                                    <option value="Metálica">Metálica</option>
+                                    <option value="Madera">Madera</option>
+                                    <option value="Otro" data-other>Otro</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -196,7 +201,7 @@
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Preservación</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" name="preservacion"  />
+                                    <input type="checkbox" class="form-control" name="preservacion"  />
                                 </div>
                             </div>
                         </div>
@@ -205,15 +210,15 @@
                             <div class="form-group">
                                 <label for="field-1" class="col-sm-12 control-label">Monto</label>
                                 <div class="col-sm-12">
-                                    <input type="text"  class="form-control format-currency" >
-                                    <input type="hidden"   name="monto">
+                                    <input type="text"  class="form-control format-currency" value="0">
+                                    <input type="hidden"   name="monto" value="0">
                                 </div>
                             </div>
                         </div>
                        
                 </div>
 
-                 <div class="row">
+                <!--  <div class="row">
                         <div class="col-md-4">
                             <div class="row">
                                     <div class="col-md-12">
@@ -279,6 +284,26 @@
                                 </table>
                             </div>
                         </div>
+                </div> -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                <label for="field-1" class="control-label col-sm-12">Monto Total del funeral</label>
+                                <div class="col-sm-12">
+                                    <input type="text"  class="form-control format-currency" required>
+                                    <input type="hidden" name="costo_total"  />
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                <label for="field-1" class="control-label col-sm-12">Monto Inicial</label>
+                                <div class="col-sm-12">
+                                    <input type="text"  class="form-control format-currency" value="0">
+                                    <input type="hidden" name="abono" value="0" />
+                                </div>
+                            </div>
+                    </div>
                 </div>
 
                 <br><br>
@@ -293,6 +318,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- col -->
                 </div>
                 <!-- eleventh row -->
@@ -300,12 +326,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <div class="col-sm-11 txt-right">
+                            <!-- <div class="col-sm-11 txt-right">
                                 <button class="btn btn-primary" id="funeral-button">
                                     Hacer Funeral
                                 </button>
-                            </div>
-                            <div class="col-sm-1 txt-right">
+                            </div> -->
+                            <div class="col-sm-12 txt-right">
                                 <button type="submit" class="btn btn-info" id="submit-button">
                                     <?php echo lang_key('submit'); ?>
                                 </button>

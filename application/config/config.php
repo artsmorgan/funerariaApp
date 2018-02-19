@@ -1,4 +1,9 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
@@ -211,6 +216,11 @@ $config['directory_trigger'] = 'd';
 | your log files will fill up very fast.
 |
 */
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $config['log_threshold'] = 0;
 
 /*

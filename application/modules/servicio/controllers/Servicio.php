@@ -28,7 +28,7 @@ class Servicio extends CI_Controller {
     }
 
     function servicios( $param1 = '', $param2 = '', $param3 = '' ){
-        if( $param1 == NULL || !preg_match( "/^(?:funecredito|apartado|contrato|create|funeral|update|deleteContrato|deleteApartado|createContract|updateContract|createApartado|updateApartado|contractPay|apartadoPay|newAmountAdjustment|newAmountDiscount)$/i", $param1 ) ){
+        if( $param1 == NULL || !preg_match( "/^(?:funecredito|apartado|contrato|create|funeral|update|deleteContrato|deleteApartado|createContract|updateContract|createApartado|updateApartado|contractPay|apartadoPay|newAmountAdjustment|newAmountDiscount|createFuneral|updateFuneral)$/i", $param1 ) ){
             redirect(site_url('admin'));
         }
 
@@ -47,8 +47,30 @@ class Servicio extends CI_Controller {
                 $id = $this->servicio_model->createContract();
                 // print_r($id);
                 // die();
-                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
+                $this->session->set_flashdata('flash_message', "Funeral Actualizado con Exito" );
                 redirect(site_url('servicio/servicios/' . $service_type));
+            break;
+
+            case 'updateFuneral':
+
+                $service_type = $this->input->post('type');
+                // echo $service_type;
+                $id = $this->servicio_model->updateFuneral();
+                // print_r($id);
+                // die();
+                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
+                redirect(site_url('servicio/servicios/funeral'));
+            break;
+
+            case 'createFuneral':
+
+                $service_type = $this->input->post('type');
+                // echo $service_type;
+                $id = $this->servicio_model->createFuneral();
+                // print_r($id);
+                // die();
+                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
+                redirect(site_url('servicio/servicios/funeral'));
             break;
 
             case 'newAmountAdjustment':

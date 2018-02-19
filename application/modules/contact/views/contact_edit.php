@@ -55,15 +55,66 @@ foreach($edit_data as $row) : ?>
                     <!-- col -->
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('email'); ?></label>
+                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('category'); ?></label>
                             <div class="col-sm-12">
-                                <input type="email" class="form-control" name="email" value="<?php echo $row['email']; ?>" />
+                                <div class="rating">
+                                    <?php 
+                                        $starts = 5;
+                                        $rating = $starts - $row['category'];
+                                    ?>
+
+                                    <?php for( $i = 0; $i < $starts; $i++ ): ?>
+                                        <?php echo '<span ' . ( $i ==  $rating ? 'class="active"' : '' ) . ' >☆</span>' ?>
+                                    <?php endfor; ?>
+                                </div>
+                                <input type="hidden" class="form-control col-sm-12" name="category"  value="<?php echo $row['category']; ?>" />
                             </div>
                         </div>
                     </div>
                     <!-- col -->
                 </div>
                 <!-- first row -->
+                 <!-- first row -->
+                <div class="row">
+                    <!-- col -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('phone'); ?></label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="phone" value="<?php echo $row['phone']; ?>" />
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="phone2" value="<?php echo $row['phone2']; ?>" />
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="phone3" value="<?php echo $row['phone3']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('email'); ?></label>
+                            <div class="col-sm-12">
+                                 <input type="email" class="form-control" name="email" value="<?php echo $row['email']; ?>" />
+                            </div>
+                        </div>
+                    </div>
+                   <!--  <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="seller"   />
+                                        <input type="hidden" id="seller_id" name="seller_id"  />
+                                    </div>
+                                </div>
+                                
+                            </div> -->
+                    <!-- col -->
+                </div>
+
+
+                <!----end--->
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -101,25 +152,12 @@ foreach($edit_data as $row) : ?>
                         </div>
                     </div>
                     <!-- col -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('phone'); ?></label>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" name="phone" value="<?php echo $row['phone']; ?>" />
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" name="phone2" value="<?php echo $row['phone2']; ?>" />
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" name="phone3" value="<?php echo $row['phone3']; ?>" />
-                            </div>
-                        </div>
-                    </div>
+                    
                     <!-- col -->
                 </div>
                 <!-- second row -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('other_signs'); ?></label>
                             <div class="col-sm-12">
@@ -127,195 +165,10 @@ foreach($edit_data as $row) : ?>
                             </div>
                         </div>
                     </div>
-                    <!-- col -->
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="seller"  value="<?php echo $row['seller_name']; ?>" />
-                                        <input type="hidden" id="seller_id" name="seller_id" value="<?php echo $row['user_id']; ?>" />
-                                    </div>
-                                </div>
-                                <!-- form-group -->
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('route'); ?></label>
-                                    <div class="col-sm-12">
-                                        <select  class="selectboxit" name="route" >
-                                            <?php 
-                                                $routes = array(
-                                                    '1',
-                                                    '2',
-                                                    '3',
-                                                    '4',
-                                                    '5',
-                                                    '6',
-                                                    '7',
-                                                    '8',
-                                                    '9',
-                                                    '10',
-                                                    '11',
-                                                    '12',
-                                                    '13',
-                                                    '14',
-                                                    '15',
-                                                    '16',
-                                                    '17',
-                                                    '18',
-                                                    '19',
-                                                    '20',
-                                                    '21',
-                                                    '22',
-                                                    '23',
-                                                    '24',
-                                                    '25',
-                                                    '26',
-                                                    '27',
-                                                    '28',
-                                                    '29',
-                                                    '30'
-                                                );
-                                            ?>
-                                            <?php foreach($routes as $route): ?>
-                                                <?php echo "<option value=\"$route\" " . ($route == $row['route'] ? 'selected' : ''  ) . ">$route</option>"; ?>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!-- form-group -->
-                            </div>
-                        </div>
-                        <!-- inner row -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="field-1" class="col-sm-12 control-label">Monto del contrato</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control format-currency" value="<?php echo $row['amount']; ?>">
-                                        <input type="hidden" name="amount" value="<?php echo $row['amount']; ?>">
-                                    </div>
-                                </div>
-                                <!-- form-group -->
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('balance_'); ?></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control format-currency" value="<?php echo $row['balance']; ?>">
-                                        <input type="hidden" name="balance" value="<?php echo $row['balance']; ?>">
-                                    </div>
-                                </div>
-                                <!-- form-group -->
-                            </div>
-                        </div>
-                        <!-- inner row -->
-                    </div>
+                    
                     <!-- col -->
                 </div>
-                <!-- third row -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('localization'); ?></label>
-                            <div class="col-sm-4">
-                                <input type="text" data-type="number" maxlength="2" class="form-control" name="localization1" value="<?php echo $row['localization1']; ?>" />
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" data-type="number" maxlength="3" class="form-control" name="localization2" value="<?php echo $row['localization2']; ?>" />
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" data-type="number" maxlength="2" class="form-control" name="localization3" value="<?php echo $row['localization3']; ?>"  />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('fee'); ?></label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control format-currency"  value="<?php echo $row['fee']; ?>" />
-                                <input type="hidden" name="fee" value="<?php echo $row['fee']; ?>">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Mes y año de cobro</label>
-                            <div class="col-sm-6">
-                                <select  class="selectboxit" name="month_payment" >
-                                    <?php 
-                                        $months = array(
-                                            'Enero',
-                                            'Febrero',
-                                            'Marzo',
-                                            'Abril',
-                                            'Mayo',
-                                            'Junio',
-                                            'Julio',
-                                            'Agosto',
-                                            'Septiembre',
-                                            'Octubre',
-                                            'Noviembre',
-                                            'Diciembre'
-                                        );
-                                    ?>
-                                    <?php foreach($months as $month): ?>
-                                        <?php echo "<option value=\"$month\" " . ($month == $row['month_payment'] ? 'selected' : ''  ) . ">$month</option>"; ?>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control" name="year_payment" value="<?php echo $row['year_payment']; ?>"  />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                </div>
-                <!-- fourth row -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('incorporation_date'); ?></label>
-                            <div class="col-sm-12">
-                                <input type="text" name="incorporation_date" class="form-control datepicker" value="<?php echo $row['incorporation_date']; ?>" >
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('category'); ?></label>
-                            <div class="col-sm-12">
-                                <div class="rating">
-                                    <?php 
-                                        $starts = 5;
-                                        $rating = $starts - $row['category'];
-                                    ?>
-
-                                    <?php for( $i = 0; $i < $starts; $i++ ): ?>
-                                        <?php echo '<span ' . ( $i ==  $rating ? 'class="active"' : '' ) . ' >☆</span>' ?>
-                                    <?php endfor; ?>
-                                </div>
-                                <input type="hidden" class="form-control col-sm-12" name="category"  value="<?php echo $row['category']; ?>" />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('advance_payment'); ?></label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control format-currency"  value="<?php echo $row['advance_payment']; ?>" />
-                                <input type="hidden" name="advance_payment" value="<?php echo $row['advance_payment']; ?>">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col -->
-                </div>
+                
                 <!-- fith row -->
                 <div class="row">
                     <div class="col-md-12">

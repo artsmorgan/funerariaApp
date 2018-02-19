@@ -9,6 +9,10 @@ $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 $sql_account = "select * from bk_apartados_account where contract_number = ?";
 $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
 
+function checked_input($input){
+    return ($input==1) ? "checked" : "";
+}
+
 ?>
 <?php if(  !empty($row) ) : ?>
 <div class="row">
@@ -164,7 +168,7 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Cremación</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="cremacion"  value="<?php echo htmlentities( $row['cremacion'] ); ?>" />
+                                <input type="checkbox" class="form-control" name="cremacion"  <?php echo checked_input( $row['cremacion'] ); ?> />
                             </div>
                         </div>
                     </div>
@@ -173,7 +177,7 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Autopsia</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control" name="autopsia" value="<?php echo htmlentities( $row['autopsia'] ); ?>">
+                                <input type="checkbox"  class="form-control" name="autopsia" <?php echo checked_input( $row['autopsia'] ); ?>>
                             </div>
                         </div>
                     </div>
@@ -182,7 +186,7 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Técnico</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="tecnico" value="<?php echo htmlentities( $row['tecnico'] ); ?>">
+                                <input type="text" class="form-control" name="tecnico" value="<?php echo $row['tecnico']; ?> ">
                             </div>
                         </div>
                     </div>
@@ -191,7 +195,9 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Costo</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control "  name="costo" value="<?php echo htmlentities( $row['costo'] ); ?>">
+                                
+                                <input type="text"  class="form-control format-currency" value="<?php echo htmlentities( $row['costo'] ); ?>">
+                                <input type="hidden"   name="costo" value="<?php echo htmlentities( $row['costo'] ); ?>">
                             </div>
                         </div>
                     </div>
@@ -199,23 +205,26 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Urna</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control" name="urna" value="<?php echo htmlentities( $row['urna'] ); ?>">
+                                <select class="selectboxit" name="urna" data-select-add-custom>
+                                    <?php echo "<option selected >" . $row['urna'] . "</option>"; ?> 
+                                    <option value="Ecológica">Ecológica</option>
+                                    <option value="Metálica">Metálica</option>
+                                    <option value="Madera">Madera</option>
+                                    <option value="Otro" data-other>Otro</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                     <!-- col -->
                 </div>
 
-                
-
-               
 
                 <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Preservación</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" name="preservacion" value="<?php echo htmlentities( $row['preservacion'] ); ?>" />
+                                    <input type="checkbox" class="form-control" name="preservacion"<?php echo checked_input( $row['preservacion'] ); ?> />
                                 </div>
                             </div>
                         </div>
@@ -224,7 +233,7 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                             <div class="form-group">
                                 <label for="field-1" class="col-sm-12 control-label">Monto</label>
                                 <div class="col-sm-12">
-                                    <input type="text"  class="form-control format-currency" >
+                                    <input type="text"  class="form-control format-currency" value="<?php echo htmlentities( $row['monto'] ); ?>">
                                     <input type="hidden"   name="monto" value="<?php echo htmlentities( $row['monto'] ); ?>">
                                 </div>
                             </div>
@@ -232,72 +241,25 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                        
                 </div>
 
-                 <div class="row">
-                        <div class="col-md-4">
-                            <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="field-1" class="col-sm-12 control-label">Costo Total Funeral</label>
-                                            <div class="col-sm-12">
-                                                <input type="text"  class="form-control format-currency" disabled value="<?php echo htmlentities( $acc['monto_total'] ); ?>">
-                                                <input type="hidden"   name="costo_total" value="<?php echo htmlentities( $acc['monto_total'] ); ?>">
-                                            </div>
-                                        </div>
-                                    </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                <label for="field-1" class="control-label col-sm-12">Monto Total del funeral</label>
+                                <div class="col-sm-12">
+                                    <input type="text"  class="form-control format-currency" value="<?php echo htmlentities( $row['costo_total'] ); ?>" required>
+                                    <input type="hidden"  name="costo_total"  value="<?php echo htmlentities( $row['costo_total'] ); ?>"/>
+                                </div>
                             </div>
-                            <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="field-1" class="col-sm-12 control-label">Saldo Anterior</label>
-                                            <div class="col-sm-12">
-                                                <input type="text"  class="form-control format-currency" disabled value="<?php echo htmlentities( $acc['saldo_anterior'] ); ?>">
-                                                <input type="hidden" disabled  name="saldo_anterior" value="<?php echo htmlentities( $acc['saldo_anterior'] ); ?>">
-                                            </div>
-                                        </div>
-                                    </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                                <label for="field-1" class="control-label col-sm-12">Monto Inicial</label>
+                                <div class="col-sm-12">
+                                    <input type="text"  class="form-control format-currency" value="<?php echo htmlentities( $row['abono'] ); ?>">
+                                    <input type="hidden" name="abono"  value="<?php echo htmlentities( $row['abono'] ); ?>"/>
+                                </div>
                             </div>
-                            <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="field-1" class="col-sm-12 control-label">Abono</label>
-                                            <div class="col-sm-12">
-                                                <input type="text"  class="form-control format-currency" disabled value="<?php echo htmlentities( $row['abono'] ); ?>">
-                                                <input type="hidden"   name="abono" value="<?php echo htmlentities( $row['abono'] ); ?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
-                            <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="field-1" class="col-sm-12 control-label">Saldo Actual</label>
-                                            <div class="col-sm-12">
-                                                <input type="text"  class="form-control format-currency" disabled value="<?php echo htmlentities( $acc['saldo'] ); ?>">
-                                                <input type="hidden"  disabled name="saldo_actual" value="<?php echo htmlentities( $acc['saldo'] ); ?>">
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="row" style="min-height: 330px;">
-                                <h3>Historial de pagos en servicio Apartado</h3>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Fecha</th>
-                                            <th>Monto</th>
-                                        </tr>
-                                    </thead>
-                                   <tbody>
-                                       <tr>
-                                           <td></td>
-                                           <td></td>
-                                       </tr>
-                                   </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    </div>
                 </div>
 
                 <br><br>
@@ -319,12 +281,8 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <div class="col-sm-11 txt-right">
-                                <button class="btn btn-primary" id="funeral-button">
-                                    Hacer Funeral
-                                </button>
-                            </div>
-                            <div class="col-sm-1 txt-right">
+                            
+                            <div class="col-sm-12 txt-right">
                                 <button type="submit" class="btn btn-info" id="submit-button">
                                     <?php echo lang_key('submit'); ?>
                                 </button>

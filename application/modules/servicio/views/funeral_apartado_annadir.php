@@ -1,4 +1,33 @@
+<?php
+//comes from apartado
+if(!isset($_GET['ap']) && !$_GET['ap']=='apartado'){
+    die('Debe proporcionar un numero valido de apartado');
+}
 
+$apID = $_GET['row'];
+
+$sql = "select c.*, cn.* 
+        from bk_apartados c 
+        inner join bk_contact cn on c.contact_id = cn.contact_id 
+        where id = ?";
+// $sql_account = "select * from bk_contratos_account where contract_number = ?";
+// echo '$param3 '.$param3.'<br>';
+$row = $this->db->query( $sql, array( $apID ) )->row_array();
+// $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
+// echo '<pre>';
+// print_r($row);
+// echo '</pre>';
+
+$sql_account = "select * from bk_apartados_account where contract_number = ?";
+$acc = $this->db->query( $sql_account, array( $apID ) )->row_array();
+
+$sql = "select * from bk_vendedores";
+$vendedores = $this->db->query( $sql)->result_array();
+
+function checked_input($input){
+    return ($input==1) ? "checked" : "";
+}
+?>
 
 <div class="row">
     <div class="col-md-12">
@@ -30,13 +59,14 @@
                     </div>
                 </div>
 
-                <div class="row">
+                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('identification_card'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control col-sm-12" name="client_id_card"  />
-                                <input type="hidden" id="contact_id" name="contact_id"  />
+                                <input type="text" class="form-control col-sm-12" name="client_id_card" value="<?php echo htmlentities( $row['id_card'] ); ?>" />
+                                <input type="hidden" id="contact_id" name="contact_id"  value="<?php echo htmlentities( $row['contact_id'] ); ?>"  />
+                                <input type="hidden" id="contact_id" name="service_id"  value="<?php echo htmlentities( $row['id'] ); ?>"  />
                             </div>
                         </div>
                     </div>
@@ -45,7 +75,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('first_name'); ?></label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="client_first_name"  />
+                                <input type="text" class="form-control" name="client_first_name" value="<?php echo htmlentities( $row['first_name'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -54,7 +84,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Primer apellido</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="client_last_name1"  />
+                                <input type="text" class="form-control" name="client_last_name"  value="<?php echo htmlentities( $row['last_name'] ); ?>"/>
                             </div>
                         </div>
                     </div>
@@ -63,7 +93,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Segundo apellido</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="client_last_name2"  />
+                                <input type="text" class="form-control" name="client_last_name2"  value="<?php echo htmlentities( $row['last_name2'] ); ?>"/>
                             </div>
                         </div>
                     </div>
@@ -73,10 +103,17 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('category'); ?></label>
                             <div class="col-sm-12">
-                                <div class="rating block">
-                                    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                               <div class="rating">
+                                    <?php 
+                                        $starts = 5;
+                                        $rating = $starts - $row['category'];
+                                    ?>
+
+                                    <?php for( $i = 0; $i < $starts; $i++ ): ?>
+                                        <?php echo '<span ' . ( $i ==  $rating ? 'class="active"' : '' ) . ' >☆</span>' ?>
+                                    <?php endfor; ?>
                                 </div>
-                                <input type="hidden" class="form-control col-sm-12" name="category"  />
+                                <input type="hidden" class="form-control col-sm-12" name="category"  value="<?php echo htmlentities( $row['category'] ); ?>" />
                             </div>
                         </div>
                     </div>
@@ -88,13 +125,13 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('phone'); ?></label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="client_phone" readonly />
+                                <input type="text" class="form-control" name="client_phone" disabled value="<?php echo htmlentities( $row['phone'] ); ?>"/>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="client_phone2" readonly />
+                                <input type="text" class="form-control" name="client_phone2" disabled value="<?php echo htmlentities( $row['phone2'] ); ?>"/>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="client_phone3" readonly />
+                                <input type="text" class="form-control" name="client_phone3" disabled value="<?php echo htmlentities( $row['phone3'] ); ?>"/>
                             </div>
                         </div>
                     </div>
@@ -103,19 +140,19 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('email'); ?></label>
                             <div class="col-sm-12">
-                                <input type="email" class="form-control" name="client_email" readonly />
+                                <input type="email" class="form-control" name="client_email" disabled value="<?php echo htmlentities( $row['email'] ); ?>"/>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('seller'); ?></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="seller"  />
-                                    </div>
-                                </div>
-                                <!-- form-group -->
+                        <div class="form-group">
+                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('agent'); ?></label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="seller" disabled />
                             </div>
+                        </div>
+                        <!-- form-group -->
+                    </div>
                     <!-- col -->
                 </div>
                 <div class="row">
@@ -123,18 +160,18 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('address'); ?></label>
                             <div class="col-sm-4">
-                                <select class="selectboxit" id="provincias" name="province" readonly>
-                                    <option value="">Provincia</option>             
+                                <select class="selectboxit" id="provincias" name="province" disabled >
+                                     <?php echo "<option selected >" . $row['province'] . "</option>"; ?>           
                                 </select>
                             </div>
                             <div class="col-sm-4" id="lvl-container-2">
-                                    <select class="selectboxit selectaux" id="cantones" name="canton" readonly>
-                                        <option value="">Cantón</option>
+                                    <select class="selectboxit selectaux" id="cantones" name="canton" disabled>
+                                         <?php echo "<option selected >" . $row['canton'] . "</option>"; ?>  
                                     </select>
                             </div>
                             <div class="col-sm-4" id="lvl-container-3">
-                                <select class="selectboxit" id="distritos" name="district" readonly>
-                                    <option value="">Distrito</option>
+                                <select class="selectboxit" id="distritos" name="district" disabled>
+                                    <?php echo "<option selected >" . $row['district'] . "</option>"; ?>  
                                 </select>
                             </div>
                             
@@ -144,7 +181,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('other_signs'); ?></label>
                             <div class="col-sm-12">
-                                <textarea name="client_address" class="form-control" rows="1" readonly></textarea>
+                                <textarea name="client_address" class="form-control" rows="1" disabled><?php echo htmlentities( $row['address'] ); ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -297,50 +334,6 @@
                 <hr>
                 <h3>Características del servicio</h3>
                 <hr>
-                <!-- <div class="row"> -->
-                    
-                    <!-- col -->
-                    <!-- <div class="col-md-3 cell-top">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('veiling_site'); ?></label>
-                            <div class="col-sm-12">
-                                <select class="selectboxit" name="veiling_site" data-select-add-custom data-duplicate>
-                                    <option value="Funeraria Shalom">Funeraria Shalom</option>
-                                    <option value="Capilla Colima">Capilla Colima</option>
-                                    <option value="Capilla Cinco Esquinas">Capilla Cinco Esquinas</option>
-                                    <option value="Capilla Maria Auxiliadora">Capilla Maria Auxiliadora</option>
-                                    <option value="Capilla Llorente">Capilla Llorente</option>
-                                    <option value="Casa de habitación">Casa de habitación</option>
-                                    <option value="Salon comunal">Salon comunal</option>
-                                    <option value="Iglesia">Iglesia</option>
-                                    <option value="Otro" data-other>Otro</option>
-                                </select>
-                            </div>
-                        </div> -->
-                        <!-- form-group -->
-                    <!-- </div> -->
-                    <!-- col -->
-                    <!-- <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('address'); ?></label>
-                            <div class="col-sm-12">
-                                <textarea name="veiling_site_address" data-duplicate class="form-control" rows="5"></textarea>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- col -->
-                    <!-- <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('veiling_room'); ?></label>
-                            <div class="col-sm-12">
-                                <input type="checkbox" name="veiling_room" class="form-control" value="1">
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- col -->
-                <!-- </div> -->
-                <!-- sixth row -->
-
                 <div class="row">
                     <div class="col-md-1">
                         <div class="form-group">
@@ -429,7 +422,7 @@
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label"><?php echo lang_key('cremation'); ?></label>
                             <div class="col-sm-12">
-                                <input type="checkbox" name="cremation" class="form-control" value="1">
+                                <input type="checkbox" name="cremation" class="form-control" value="1"  <?php echo checked_input( $row['cremacion'] ); ?>>
                             </div>
                         </div>
                     </div>
@@ -438,10 +431,10 @@
                         <div class="form-group">
                             <label for="field-3" class="col-sm-12 control-label">Autopsia</label>
                             <div class="col-sm-3">
-                                <input type="checkbox" name="autopsy" class="form-control" value="1">
+                                <input type="checkbox" name="autopsy" class="form-control" value="1"  <?php echo checked_input( $row['autopsia'] ); ?>>
                             </div>
                             <div class="col-sm-9">
-                                <input type="text" name="autopsy_technician" class="form-control" placeholder="<?php echo lang_key('technician'); ?>">
+                                <input type="text" name="autopsy_technician" class="form-control" placeholder="<?php echo lang_key('technician'); ?>" value="<?php echo $row['tecnico'] ?>">
                             </div>
                         </div>
                     </div>
@@ -451,7 +444,7 @@
                             <label for="field-1" class="control-label col-sm-12">Costo</label>
                             <div class="col-sm-12">
                                 <input type="text"  class="form-control format-currency" />
-                                    <input type="hidden"  name="autopsy_cost" />
+                                    <input type="hidden"  name="autopsy_cost" value="<?php echo $row['costo'] ?>"/>
                             </div>
                         </div>
                     </div>
@@ -461,6 +454,7 @@
                             <label for="field-1" class="col-sm-12 control-label">Urna</label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="urn" data-select-add-custom>
+                                    <?php echo "<option selected >" . $row['urna'] . "</option>"; ?>
                                     <option value="Ecológica">Ecológica</option>
                                     <option value="Metálica">Metálica</option>
                                     <option value="Madera">Madera</option>
@@ -911,12 +905,30 @@
                 <h3>Forma de pago</h3>
                 <div class="row">
                     <?php if($param3 == 'funeral'){ ?>
-                    <div class="col-md-11">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Monto Total del Servicio</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control format-currency "  required  />
-                                <input type="hidden"    name="amount" />
+                                <input type="text" class="form-control format-currency "  required  value="<?php echo htmlentities( $row['costo_total'] ); ?>"/>
+                                <input type="hidden"    name="amount" value="<?php echo htmlentities( $row['costo_total'] ); ?>"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Monto Abonado</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control format-currency "  required  value="<?php echo htmlentities( $acc['monto_abonado'] ); ?>"/>
+                                <input type="hidden"    name="amount" value="<?php echo htmlentities( $acc['monto_abonado'] ); ?>"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Saldo</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control format-currency "  required  value="<?php echo htmlentities( $acc['saldo'] ); ?>"/>
+                                <input type="hidden"    name="amount" value="<?php echo htmlentities( $acc['saldo'] ); ?>"/>
                             </div>
                         </div>
                     </div>
@@ -1058,6 +1070,8 @@
                             </div>
                         </div>
                     </div>
+
+
                     <!-- col -->
                     <!-- <div class="col-md-3">
                         <div class="form-group">
@@ -1075,8 +1089,17 @@
                         <div class="form-group">
                             <label class="control-label col-md-6">Monto servicio</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control for-contado format-currency"  />
-                                <input type="hidden"  id="amountService"  name="amountService" />
+                                <input type="text" class="form-control for-contado format-currency"  value="<?php echo htmlentities( $row['costo_total'] ); ?>"/>
+                                <input type="hidden"  id="amountService"  name="amountService" value="<?php echo htmlentities( $row['costo_total'] ); ?>"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label col-sm-12">Monto Abonado</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control format-currency "  readonly="true"   value="<?php echo htmlentities( $acc['monto_abonado'] ); ?>"/>
+                                <input type="hidden"    name="amount" value="<?php echo htmlentities( $acc['monto_abonado'] ); ?>"/>
                             </div>
                         </div>
                     </div>
@@ -1088,8 +1111,8 @@
                         <div class="form-group">
                             <label class="control-label col-md-6">Prima funecrédito</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control format-currency"   />
-                                <input type="hidden"  id="advance_payment"  name="advance_payment"   />
+                                <input type="text" class="form-control format-currency"  value="<?php echo htmlentities( $acc['monto_abonado'] ); ?>" />
+                                <input type="hidden"  id="advance_payment"  name="advance_payment"  value="<?php echo htmlentities( $acc['monto_abonado'] ); ?>" />
                             </div>
                         </div>
                     </div>

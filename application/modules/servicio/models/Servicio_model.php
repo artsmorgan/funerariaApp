@@ -16,6 +16,27 @@ class Servicio_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
+    private function getCurrentMonth()
+    {
+       $date = date('F Y');
+       $meses = array(
+        'january'   => 'Enero',
+        'february'  => 'Febrero',
+        'march'     => 'Marzo',
+        'april'     => 'Abril',
+        'may'       => 'Mayo',
+        'june'      => 'Junio',
+        'july '     => 'Julio',
+        'august'    => 'Agosto',
+        'september' => 'Septiembre',
+        'october'   => 'Octubre',
+        'november'  => 'Noviembre',
+        'december'  => 'Diciembre'
+       );
+
+       return $meses[$date];
+    }  
+
 
     // private function openApartadosAccount($userID, $customerID, $apartado$id){}
 
@@ -39,6 +60,56 @@ class Servicio_model extends CI_Model
         $this->db->insert('contratos_account', $data);
         return $this->db->insert_id();
     }
+
+    private function openFunecreditoAccount($userID, $customerID, 
+                                        $funeral_id, $monto_principal, $monto_abonado, $saldo, 
+                                        $interes_mensual,$plazo_inicial,$plazo_restante, 
+                                        $couta_sin_interes,$couta_con_interes,$fecha_aplicacion, 
+                                        $mes_cobro,$saldo_anterior){
+
+        $saldo_actual = $monto_total - $prima;
+
+        $data['funeral_id'] = $funeral_id;
+        $data['contact_id'] = $customerID;
+        $data['monto_principal'] = $monto_principal;
+        $data['monto_abonado'] = $monto_abonado;
+        $data['saldo'] = $saldo;
+        $data['interes_mensual'] = $interes_mensual;
+        $data['plazo_inicial'] = $plazo_inicial;
+        $data['plazo_restante'] = $plazo_restante;
+        $data['couta_sin_interes'] = $couta_sin_interes; // active
+        $data['couta_con_interes'] = $couta_con_interes;
+        $data['status'] = "A";
+        $data['fecha_aplicacion'] = $fecha_aplicacion;
+        $data['mes_cobro'] = $mes_cobro;
+        $data['saldo_anterior'] = $saldo_anterior;
+        $data['created_by'] = $userID;
+        
+        
+        $this->db->insert('funecredito_account', $data);
+        return $this->db->insert_id();
+    }
+
+
+    private function openFuneralAccount($userID, $customerID, 
+                                        $funeral_id, $monto_principal, $monto_abonado, $saldo, $saldo_anterior){
+
+        $saldo_actual = $monto_total - $prima;
+
+        $data['funeral_id'] = $funeral_id;
+        $data['contact_id'] = $customerID;
+        $data['monto_total'] = $monto_principal;
+        $data['monto_abonado'] = $monto_abonado;
+        $data['saldo'] = $saldo;
+        $data['status'] = "A";
+        $data['saldo_anterior'] = $saldo_anterior;
+        $data['created_by'] = $userID;
+        
+        
+        $this->db->insert('funecredito_account', $data);
+        return $this->db->insert_id();
+    }
+
 
 
     private function openApartadosAccount($userID, $customerID, $contractID, $monto_total, $prima, $mes_cobro=''){
@@ -98,9 +169,7 @@ class Servicio_model extends CI_Model
                 $data['saldo_anterior'] = $acc['saldo_anterior'] + $monto;
                 $this->db->where('contract_number', $contractID);
                 $this->db->update('contratos_account', $data);
-            }
-
-        
+            }  
     }
 
 
@@ -125,7 +194,6 @@ class Servicio_model extends CI_Model
                 $this->db->where('contract_number', $contractID);
                 $this->db->update('contratos_account', $data);
             }
-
         
     }
 
@@ -134,6 +202,7 @@ class Servicio_model extends CI_Model
         $sql_account = "select * from bk_contratos_account where contract_number = ?";
         return $this->db->query( $sql_account, array( $contractID ) )->row_array();
     }
+
     private function getApartadoAccountByContractID($contractID){
         $sql_account = "select * from bk_apartados_account where contract_number = ?";
         return $this->db->query( $sql_account, array( $contractID ) )->row_array();
@@ -235,9 +304,7 @@ class Servicio_model extends CI_Model
                 $this->applyApartadosPay($acc['id'], $monto, $mes_cobro);
             }   
     }
-    // private function openFuneralesAccount1($userID, $customerID, $apartado$id){}    
-
-
+   
     public function createContract(){
         // $data['service_id'] = $service_id;
         $data['contact_id'] =  $this->input->post('contact_id') ;
@@ -291,6 +358,281 @@ class Servicio_model extends CI_Model
         //Create account
     }
 
+
+    public function createFuneral(){
+        $max_contracts = 3;
+        // $data['service_id'] = $service_id;
+        $type =  $this->input->post('type') ;
+        $data['contact_id'] =  $this->input->post('contact_id') ;
+        $data['created_by'] = $_SESSION['user_id'];
+
+        $data['fallecido_ced'] = $this->input->post('deceased_id_card');
+        $data['fallecido_nombre'] = $this->input->post('deceased_first_name');
+        $data['fallecido_apellido'] = $this->input->post('deceased_last_name1');
+        $data['fallecido_apellido2'] = $this->input->post('deceased_last_name2');
+        $data['fallecido_edad'] = $this->input->post('deceased_age');
+
+        $data['acta_defuncion'] = $this->input->post('death_document');
+        $data['parentesco'] = $this->input->post('relationship');
+        $data['fecha'] = $this->input->post('deseace_date');
+        $data['cofre'] = $this->input->post('coffin');
+        $data['factura'] = $this->input->post('bill');
+
+        $data['serv_traslado'] = $this->input->post('transfers');
+        $data['serv_esquelas'] = $this->input->post('forgetfulness');
+        $data['serv_flores'] = $this->input->post('flowers');
+        $data['serv_tributos'] = $this->input->post('tributes');
+        $data['serv_patologia'] = $this->input->post('pathology');
+        $data['serv_patologia_tecnico'] = $this->input->post('technician');
+        $data['serv_patologia_costo'] = $this->input->post('pathology_cost');
+
+        $data['serv_cremacion'] = $this->input->post('cremation');
+        $data['serv_autopsia'] = $this->input->post('autopsy');
+        $data['serv_autopsia_tecnico'] = $this->input->post('autopsy_technician');
+        $data['serv_autopsia_costo'] = $this->input->post('autopsy_cost');
+        $data['serv_urna'] = $this->input->post('urn');
+
+        $data['tras_morgue'] = $this->input->post('morgue');
+        $data['tras_direccion'] = $this->input->post('morgue_address');
+        $data['tras_velacion'] = $this->input->post('veiling_site');
+        $data['tras_velacion_direccion'] = $this->input->post('veiling_site_address');
+        $data['tras_hora'] = $this->input->post('veiling_time');
+        $data['tras_hora_det'] = $this->input->post('veiling_time_det');
+        $data['tras_bodega_cofre'] = $this->input->post('vault_coffin');
+        $data['tras_arreglos'] = $this->input->post('veiling_site_arrangements');
+        $data['tras_pedestal'] = $this->input->post('veiling_pedestal');
+        $data['tras_candelero'] = $this->input->post('veiling_candlestick');
+        $data['tras_alfombra_int'] = $this->input->post('carpet');
+        $data['tras_carretilla'] = $this->input->post('pushcart');
+        $data['tras_atril'] = $this->input->post('lectern');
+        $data['tras_cortinero'] = $this->input->post('curtain');
+        $data['tras_carroza'] = $this->input->post('service_float');
+        $data['tras_chofer'] = $this->input->post('service_driver');
+        $data['tras_observaciones'] = $this->input->post('transfer_observations');
+
+        $data['info_fecha'] = $this->input->post('funeral_date');
+        $data['info_hora'] = $this->input->post('funeral_time');
+        $data['info_hora_det'] = $this->input->post('funeral_time_det');
+        $data['info_iglesia'] = $this->input->post('church');
+        $data['info_cementerio'] = $this->input->post('cemetery');
+        $data['info_carroza'] = $this->input->post('info_service_float');
+        $data['info_chofer'] = $this->input->post('info_service_driver');
+        $data['info_decora'] = $this->input->post('info_decoration_float');
+        $data['info_decora_chofer'] = $this->input->post('info_decoration_driver');
+        $data['info_observaciones'] = $this->input->post('info_service_observations');
+
+        $data['funeral_tipo'] = $this->input->post('forma_pago'); //1 contado - 2 credito
+        $data['monto_total'] = $this->input->post('amount');
+        $data['saldo_total'] = $this->input->post('saldo');
+        $data['prima'] = $this->input->post('prima');
+        $data['contrato_1_numero'] = $this->input->post('contrato_1_num');
+        $data['contrato_1_valor'] = $this->input->post('contrato_1_val');
+        $data['contrato_2_numero'] = $this->input->post('contrato_2_num');
+        $data['contrato_2_valor'] = $this->input->post('contrato_2_val');
+        $data['contrato_3_numero'] = $this->input->post('contrato_3_num');
+        $data['contrato_3_valor'] = $this->input->post('contrato_3_val');
+       
+        foreach ($data as $key => $value) {
+            if($value == 'on'){
+               $data[$key] =  1;
+            }else if($value== 'off'){
+                $data[$key] =  0;
+            }
+        }
+
+        $this->db->insert('funeral', $data);
+        $contractID = $this->db->insert_id();
+
+// $data['contact_id'] =  $this->input->post('contact_id') ;
+//         $data['created_by'] = $_SESSION['user_id'];
+        if($type == 'funecredito'){
+            $accID = $this->openFunecreditoAccount( $userID, 
+                                                    $customerID, 
+                                                    $funeral_id, 
+                                                    $monto_principal, 
+                                                    $monto_abonado, 
+                                                    $saldo, 
+                                                    $interes_mensual,
+                                                    $plazo_inicial,
+                                                    $plazo_restante, 
+                                                    $couta_sin_interes,
+                                                    $couta_con_interes,
+                                                    $fecha_aplicacion, 
+                                                    $mes_cobro,$saldo_anterior);
+            if($accID > 0){
+                $transactionID = $this->newTransaction(
+                                                    $_SESSION['user_id'], 
+                                                    $accID, 
+                                                    'funecredito', 
+                                                    $this->input->post('advance_payment'),  
+                                                    'Efectivo', 
+                                                    'Prima', '', 0);
+                if($transactionID>0){
+                    $this->applyContractPay(
+                                    $accID, 
+                                    $this->input->post('advance_payment'), 
+                                    $this->getCurrentMonth());
+                }
+            }
+
+            for($i = 0; $i > $max_contracts; $i++){
+                $contractNo = $max_contracts+1;
+                $current_contract_id = 'idContract'.$contractNo;
+                $current_contract = 'amountContract'.$contractNo;
+                if( $this->input->post($current_contract > 0) )
+                {
+                    $transactionID = $this->newTransaction(
+                                                    $_SESSION['user_id'], 
+                                                    $accID, 
+                                                    'funecredito', 
+                                                    $this->input->post($current_contract),  
+                                                    'Efectivo', 
+                                                    "Pago con Contrato # $current_contract_id", '', 0);
+                    if($transactionID>0){
+                        $this->applyContractPay(
+                                        $accID, 
+                                        $this->input->post($current_contract), 
+                                        $this->getCurrentMonth());
+                    }
+                }
+            }
+
+        }else{
+
+            /* *********************************************************
+             *  
+             *  Function for not a funecredito.  
+             *
+             ********************************************************* */
+            $accID = $this->openFuneralAccount( $_SESSION['user_id'], 
+                                                $this->input->post('contact_id'), 
+                                                $contractID, 
+                                                $this->input->post('amount'), 
+                                                $this->input->post('amount'), 
+                                                0, 
+                                                0);
+            if($accID > 0){
+                $transactionID = $this->newTransaction(
+                                                    $_SESSION['user_id'], 
+                                                    $accID, 
+                                                    'contrato', 
+                                                    $this->input->post('prima'),  
+                                                    $this->input->post('forma_pago'), 
+                                                    'Prima', '', 0);
+                if($transactionID>0){
+                    $this->applyContractPay(
+                                    $accID, 
+                                    $this->input->post('prima'), 
+                                    $this->input->post('mes_cobro'));
+                }
+            }
+        }
+
+        // $accID = $this->openContratosAccount(
+        //     $_SESSION['user_id'],  
+        //     $this->input->post('contact_id'), 
+        //     $contractID, 
+        //     $this->input->post('amount'), 
+        //     0, 
+        //     $this->input->post('mes_cobro'), 
+        //     $this->input->post('cuota'), 
+        //     $this->input->post('anno_cobro') );
+        
+
+        
+        
+        //Create account
+    }
+
+    public function updateFuneral(){
+        // $data['service_id'] = $service_id;
+        $service_id =  $this->input->post('service_id') ;
+
+        $data['contact_id'] =  $this->input->post('contact_id') ;
+        $data['created_by'] = $_SESSION['user_id'];
+
+        $data['fallecido_ced'] = $this->input->post('deceased_id_card');
+        $data['fallecido_nombre'] = $this->input->post('deceased_first_name');
+        $data['fallecido_apellido'] = $this->input->post('deceased_last_name1');
+        $data['fallecido_apellido2'] = $this->input->post('deceased_last_name2');
+        $data['fallecido_edad'] = $this->input->post('deceased_age');
+
+        $data['acta_defuncion'] = $this->input->post('death_document');
+        $data['parentesco'] = $this->input->post('relationship');
+        $data['fecha'] = $this->input->post('deseace_date');
+        $data['cofre'] = $this->input->post('coffin');
+        $data['factura'] = $this->input->post('bill');
+
+        $data['serv_traslado'] = $this->input->post('transfers');
+        $data['serv_esquelas'] = $this->input->post('forgetfulness');
+        $data['serv_flores'] = $this->input->post('flowers');
+        $data['serv_tributos'] = $this->input->post('tributes');
+        $data['serv_patologia'] = $this->input->post('pathology');
+        $data['serv_patologia_tecnico'] = $this->input->post('technician');
+        $data['serv_patologia_costo'] = $this->input->post('pathology_cost');
+
+        $data['serv_cremacion'] = $this->input->post('cremation');
+        $data['serv_autopsia'] = $this->input->post('autopsy');
+        $data['serv_autopsia_tecnico'] = $this->input->post('autopsy_technician');
+        $data['serv_autopsia_costo'] = $this->input->post('autopsy_cost');
+        $data['serv_urna'] = $this->input->post('urn');
+
+        $data['tras_morgue'] = $this->input->post('morgue');
+        $data['tras_direccion'] = $this->input->post('morgue_address');
+        $data['tras_velacion'] = $this->input->post('veiling_site');
+        $data['tras_velacion_direccion'] = $this->input->post('veiling_site_address');
+        $data['tras_hora'] = $this->input->post('veiling_time');
+        $data['tras_hora_det'] = $this->input->post('veiling_time_det');
+        $data['tras_bodega_cofre'] = $this->input->post('vault_coffin');
+        $data['tras_arreglos'] = $this->input->post('veiling_site_arrangements');
+        $data['tras_pedestal'] = $this->input->post('veiling_pedestal');
+        $data['tras_candelero'] = $this->input->post('veiling_candlestick');
+        $data['tras_alfombra_int'] = $this->input->post('carpet');
+        $data['tras_carretilla'] = $this->input->post('pushcart');
+        $data['tras_atril'] = $this->input->post('lectern');
+        $data['tras_cortinero'] = $this->input->post('curtain');
+        $data['tras_carroza'] = $this->input->post('service_float');
+        $data['tras_chofer'] = $this->input->post('service_driver');
+        $data['tras_observaciones'] = $this->input->post('transfer_observations');
+
+        $data['info_fecha'] = $this->input->post('funeral_date');
+        $data['info_hora'] = $this->input->post('funeral_time');
+        $data['info_hora_det'] = $this->input->post('funeral_time_det');
+        $data['info_iglesia'] = $this->input->post('church');
+        $data['info_cementerio'] = $this->input->post('cemetery');
+        $data['info_carroza'] = $this->input->post('info_service_float');
+        $data['info_chofer'] = $this->input->post('info_service_driver');
+        $data['info_decora'] = $this->input->post('info_decoration_float');
+        $data['info_decora_chofer'] = $this->input->post('info_decoration_driver');
+        $data['info_observaciones'] = $this->input->post('info_service_observations');
+
+        $data['funeral_tipo'] = $this->input->post('funeral_tipo'); //1 contado - 2 credito
+        $data['monto_total'] = $this->input->post('amount');
+        $data['saldo_total'] = $this->input->post('saldo');
+        $data['prima'] = $this->input->post('prima');
+        $data['contrato_1_numero'] = $this->input->post('contrato_1_num');
+        $data['contrato_1_valor'] = $this->input->post('contrato_1_val');
+        $data['contrato_2_numero'] = $this->input->post('contrato_2_num');
+        $data['contrato_2_valor'] = $this->input->post('contrato_2_val');
+        $data['contrato_3_numero'] = $this->input->post('contrato_3_num');
+        $data['contrato_3_valor'] = $this->input->post('contrato_3_val');
+       
+        foreach ($data as $key => $value) {
+            if($value == 'on'){
+               $data[$key] =  1;
+            }else if($value== 'off'){
+                $data[$key] =  0;
+            }
+        }
+
+        // echo '<pre>';
+        // print_r($data);
+        // echo '<pre>';
+        // die();
+        $this->db->where('id_funeral', $service_id);
+        $this->db->update('funeral', $data);
+    }
+
     public function createApartado(){
         $data['contact_id'] =  $this->input->post('contact_id') ;
         $data['created_by'] = $_SESSION['user_id'];
@@ -310,13 +652,21 @@ class Servicio_model extends CI_Model
 
         $data['observaciones'] = $this->input->post('observaciones'); 
 
+        foreach ($data as $key => $value) {
+            if($value == 'on'){
+               $data[$key] =  1;
+            }else if($value== 'off'){
+                $data[$key] =  0;
+            }
+        }
+
         $this->db->insert('apartados', $data);
         $contractID = $this->db->insert_id();
 
         $accID = $this->openApartadosAccount( $_SESSION['user_id'],$this->input->post('contact_id'), $contractID, $this->input->post('costo_total'), 0);
 
         if($accID > 0){
-            $transactionID = $this->newTransaction($_SESSION['user_id'], $accID, 'apartado', $this->input->post('abono'), 'efectivo', 'Prima', '',0);
+            $transactionID = $this->newTransaction($_SESSION['user_id'], $accID, 'apartado', $this->input->post('abono'), 'efectivo', 'Apertura de cuenta', '',0);
             if($transactionID>0){
                 $this->applyApartadosPay($accID, $this->input->post('abono') );
             }
@@ -378,6 +728,13 @@ class Servicio_model extends CI_Model
 
         $data['observaciones'] = $this->input->post('observaciones'); 
 
+        foreach ($data as $key => $value) {
+            if($value == 'on'){
+               $data[$key] =  1;
+            }else if($value== 'off'){
+                $data[$key] =  0;
+            }
+        }
 
         $this->db->where('id', $service_id);
         $this->db->update('apartados', $data);

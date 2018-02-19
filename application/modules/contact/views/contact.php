@@ -56,12 +56,12 @@ if(empty($contacts)){ ?>
                                         <?php echo lang_key('edit');?>
                                     </a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="<?php echo site_url('contact/contact_details/' . $row['contact_id']); ?>">
                                         <i class="entypo-eye"></i>
                                         <?php echo lang_key('view_details');?>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="divider"></li>
                                 <li>
                                     <a href="#" onclick="confirm_modal('<?php echo site_url('contact/contacts/delete/' . $row['contact_id'] . '/' . $row['type']); ?>');">

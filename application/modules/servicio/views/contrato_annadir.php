@@ -296,9 +296,8 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Año Al Cobro</label>
-                                <div class="col-sm-12">
-                                    <?php echo print_years(true,'anno_cobro','class="selectboxit"');?>
-                                    
+                                <div class="col-sm-12">                                    
+                                    <input type="number" class="form-control" value="<?php echo date("Y");   ?>">
                                 </div>
                             </div>
                         </div>
