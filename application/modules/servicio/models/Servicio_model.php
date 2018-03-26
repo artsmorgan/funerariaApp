@@ -102,7 +102,7 @@ class Servicio_model extends CI_Model
         $data['monto_abonado'] = $monto_abonado;
         $data['saldo'] = $saldo;
         $data['status'] = "A";
-        $data['saldo_anterior'] = $saldo_anterior;
+        // $data['saldo_anterior'] = $saldo_anterior;
         $data['created_by'] = $userID;
         
         
