@@ -94,7 +94,7 @@ class Servicio_model extends CI_Model
     private function openFuneralAccount($userID, $customerID, 
                                         $funeral_id, $monto_principal, $monto_abonado, $saldo, $saldo_anterior){
 
-        $saldo_actual = $monto_total - $prima;
+        // $saldo_actual = $monto_total - $prima;
 
         $data['funeral_id'] = $funeral_id;
         $data['contact_id'] = $customerID;
@@ -106,7 +106,7 @@ class Servicio_model extends CI_Model
         $data['created_by'] = $userID;
         
         
-        $this->db->insert('funecredito_account', $data);
+        $this->db->insert('funeral_account', $data);
         return $this->db->insert_id();
     }
 

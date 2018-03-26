@@ -146,10 +146,10 @@ class Auth extends CI_Controller {
         $response['login_status']           = 'invalid';
         $response['invalid_login_message']  = '';
         
+
+
         if ($query->num_rows() > 0) {
             $row = $query->row();
-
-
             
             if ($row->status == 2)
                 $ok = 2;
@@ -184,7 +184,9 @@ class Auth extends CI_Controller {
         } else {
             $response['invalid_login_message'] = 'Invalid Email or Password';
         }
+
         echo json_encode($response);
+        
     }
 
     #logout function

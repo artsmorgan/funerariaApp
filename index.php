@@ -53,6 +53,19 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
+// session_destroy();
+error_reporting(0);
+
+
+session_start();
+
+ini_set('session.use_trans_sid', 0);
+ini_set('session.use_strict_mode', 1);
+ini_set('session.use_cookies', 1);
+ini_set('session.use_only_cookies', 1);
+ini_set('session.hash_function', 1);
+ini_set('session.hash_bits_per_character', 4);
+
 	//define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'production');
 	define('ENVIRONMENT', 'development');
 	date_default_timezone_set('America/Costa_Rica');
@@ -72,11 +85,8 @@
 switch (ENVIRONMENT)
 {
 	case 'development':
-		error_reporting(-1);
-		error_reporting(0);
-
-		error_reporting(E_ALL);
-		ini_set('display_errors', 1);
+		    error_reporting(0);
+            ini_set('display_errors', 0);  
 	break;
 
 	case 'testing':

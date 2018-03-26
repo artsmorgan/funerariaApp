@@ -175,15 +175,15 @@
                 <i class="fa fa-truck"></i>
                 <span>Rutas</span>
             </a>
-            <ul>
+            <ul><!-- 
                 <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
                     <a href="#>">
                         <i class="entypo-tag"></i>
                         <span>Crear Rutas</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
-                    <a href="#>">
+                    <a href="<?php echo site_url('servicio/servicios/rutas'); ?>">
                         <i class="entypo-tag"></i>
                         <span>Ver Rutas</span>
                     </a>

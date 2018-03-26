@@ -26,6 +26,7 @@ class Admin extends CI_Controller {
 
 
         if (!is_loggedin()) {
+            
             if (count($_POST) <= 0)
                 $this->session->set_userdata('req_url', current_url());
             redirect(site_url('admin/auth'));

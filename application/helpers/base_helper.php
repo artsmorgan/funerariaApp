@@ -297,7 +297,9 @@ if ( ! function_exists('is_loggedin'))
     function is_loggedin()
     {
 
+
         $CI = get_instance();
+        // print_r($CI->session->userdata);die();
         if($CI->session->userdata('user_email') == '')
             return FALSE;
         else
