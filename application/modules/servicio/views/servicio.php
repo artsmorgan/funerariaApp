@@ -68,7 +68,7 @@ else if($service_type=='funeral'){
     CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card, CONCAT(c.fallecido_nombre, ' ', c.fallecido_apellido, ' ', c.fallecido_apellido2) AS fallecido
     from bk_funeral c
     inner join bk_contact cn on c.contact_id = cn.contact_id
-    where c.funeral_tipo = 'funeral'; ";
+    where c.funeral_tipo = 1; ";
 }
 
 else if($service_type=='funecredito'){
@@ -76,7 +76,7 @@ else if($service_type=='funecredito'){
     CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card, CONCAT(c.fallecido_nombre, ' ', c.fallecido_apellido, ' ', c.fallecido_apellido2) AS fallecido
     from bk_funeral c
     inner join bk_contact cn on c.contact_id = cn.contact_id
-    where c.funeral_tipo = 'funecredito'";
+    where c.funeral_tipo = 2";
 }
 
 
