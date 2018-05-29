@@ -5,9 +5,10 @@ $sql_account = "select * from bk_contratos_account where contract_number = ?";
 
 $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
-// echo '<pre>';
-// print_r($row);
-// echo '</pre>';
+echo '<pre>';
+print_r($row);
+echo '</pre>';
+// die();
 
 $sql = "select * from bk_vendedores";
 $vendedores = $this->db->query( $sql)->result_array();
@@ -244,13 +245,40 @@ $vendedores = $this->db->query( $sql)->result_array();
                             <label for="field-1" class="col-sm-12 control-label">Localización</label>
                             <div class="col-sm-12">
                                 <div class="col-md-4">
-                                    <input type="text"  class="form-control " name="local_1" value="<?php echo htmlentities( $row['loc_1'] ); ?>">
+                                    <select   class="selectboxit " name="local_1" id="local_1">
+                                        <option selected="true" 
+                                                value="<?php echo htmlentities( $row['loc_1'] ); ?>"><?php echo htmlentities( $row['loc_1'] ); ?>
+                                        </option>
+                                        <?php 
+                                            for($i = 1; $i < 29; $i++){
+                                                echo '<option value="'.$i.'">'.$i.'</option>';
+                                            }
+                                         ?>
+                                    </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text"  class="form-control " name="local_2" value="<?php echo htmlentities( $row['loc_2'] ); ?>">
+                                    <select   class="selectboxit " name="local_2" id="local_2">
+                                        <option selected="true" 
+                                                value="<?php echo htmlentities( $row['loc_2'] ); ?>"><?php echo htmlentities( $row['loc_2'] ); ?>
+                                        </option>
+                                         <?php 
+                                            for($i = 1; $i < 29; $i++){
+                                                echo '<option value="'.$i.'">'.$i.'</option>';
+                                            }
+                                         ?>
+                                    </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text"  class="form-control " name="local_3" value="<?php echo htmlentities( $row['loc_3'] ); ?>">
+                                    <select   class="selectboxit " name="local_3" id="local_3">
+                                        <option selected="true" 
+                                                value="<?php echo htmlentities( $row['loc_3'] ); ?>"><?php echo htmlentities( $row['loc_3'] ); ?>
+                                        </option>
+                                         <?php 
+                                            for($i = 1; $i < 29; $i++){
+                                                echo '<option value="'.$i.'">'.$i.'</option>';
+                                            }
+                                         ?>
+                                    </select>
                                 </div>
                             </div>
                             
@@ -301,7 +329,7 @@ $vendedores = $this->db->query( $sql)->result_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Año Al Cobro</label>
                                 <div class="col-sm-12">                                    
-                                    <input type="number" class="form-control" value="<?php echo $row['anno_cobro']; ?>">
+                                    <input type="text"  name="anno_cobro" class="form-control" value="<?php echo $row['anno_cobro']; ?>">
                                 </div>
                             </div>
                         </div>

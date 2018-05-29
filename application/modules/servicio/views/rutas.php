@@ -1,4 +1,47 @@
 <?php
+
+echo 'service_type '.$param1;
+
+?>
+<br><br><br>
+<div class="row">
+    <div class="col-md-2">
+        Seleccionar Ruta
+    </div>
+    <div class="col-md-2">    
+        <select class="selectboxit" style="width: 200px">
+                <?php 
+                    for($i = 1; $i < 29; $i++){
+                        echo '<option value="'.$i.'">'.$i.'</option>';
+                    }
+                 ?>
+        </select>
+    </div>
+    <div class="col-md-2">    
+        <select class="selectboxit" style="width: 200px">
+                <?php 
+                    for($i = 1; $i < 29; $i++){
+                        echo '<option value="'.$i.'">'.$i.'</option>';
+                    }
+                 ?>
+        </select>
+    </div>
+    <div class="col-md-2">    
+        <select class="selectboxit" style="width: 200px">
+                <?php 
+                    for($i = 1; $i < 29; $i++){
+                        echo '<option value="'.$i.'">'.$i.'</option>';
+                    }
+                 ?>
+        </select>
+    </div>
+    <div class="col-md-1">    
+        <a href="#" class="btn btn-primary ">Seleccionar Ruta</a>
+    </div>
+    
+</div>
+<br><br><br>
+<?php
     $service_type_opt = $service_type;
     $createBtn = $service_type;
     if($service_type=='funecredito'){
@@ -7,6 +50,8 @@
     }
 ?>
 
+
+<br><br><br>
 <?php 
 $this->db->order_by('user_id', 'desc');
 $userlist = $this->db->get_where('user')->result_array();
@@ -62,7 +107,7 @@ else if($service_type=='funeral'){
     CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card, CONCAT(c.fallecido_nombre, ' ', c.fallecido_apellido, ' ', c.fallecido_apellido2) AS fallecido
     from bk_funeral c
     inner join bk_contact cn on c.contact_id = cn.contact_id
-    where c.funeral_tipo = 'funeral'; ";
+    where c.funeral_tipo = 1; ";
 }
 
 else if($service_type=='funecredito'){
@@ -70,40 +115,12 @@ else if($service_type=='funecredito'){
     CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card, CONCAT(c.fallecido_nombre, ' ', c.fallecido_apellido, ' ', c.fallecido_apellido2) AS fallecido
     from bk_funeral c
     inner join bk_contact cn on c.contact_id = cn.contact_id
-    where c.funeral_tipo = 'funecredito'";
+    where c.funeral_tipo = 2";
 }
 
 
 $services = $this->db->query( $sql, array( $service_type ) )->result_array();
 
-?>
-<br><br><br>
-<div class="row">
-    <div class="col-md-2">
-        Seleccionar Ruta
-    </div>
-    <div class="col-md-2">    
-        <select class="selectboxit" style="width: 200px">
-                <option>00</option>
-        </select>
-    </div>
-    <div class="col-md-2">    
-        <select class="selectboxit" style="width: 200px">
-                <option>00</option>
-        </select>
-    </div>
-    <div class="col-md-2">    
-        <select class="selectboxit" style="width: 200px">
-                <option>00</option>
-        </select>
-    </div>
-    <div class="col-md-1">    
-        <a href="#" class="btn btn-primary ">Seleccionar Ruta</a>
-    </div>
-    
-</div>
-<br><br><br>
-<?php
 if(empty($services)){ ?>
     <div class="alert alert-info">
         <?php
@@ -827,5 +844,5 @@ if(empty($services)){ ?>
         }
 
     });
-		
+        
 </script>

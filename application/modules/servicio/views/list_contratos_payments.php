@@ -16,10 +16,10 @@
 		<strong>No# Contrato: </strong> <?php echo $row['no_contrato']; ?>
 	</div>
 	<div class="col-md-4">
-		<strong>Monto Total: </strong> ₡ <?php echo  number_format(htmlentities( $row['monto_total']), 2, '.', ''); ?>
+		<strong>Monto Total: </strong> ₡ <?php echo  number_format(htmlentities( $row['monto_total']), 2, '.', ','); ?>
 	</div>
 	<div class="col-md-4">
-		<strong>Saldo Pendiente: </strong> ₡ <?php echo  number_format(htmlentities( $acc['saldo']), 2, '.', ''); ?>
+		<strong>Saldo Pendiente: </strong> ₡ <?php echo  number_format(htmlentities( $acc['saldo']), 2, '.', ','); ?>
 	</div>
 </div>
 <br>
@@ -51,7 +51,7 @@
 				<td><?php echo $row['id'] ?></td>
 				<td><?php echo $row['fecha_pago'] ?></td>
 				<td >
-					 ₡ <?php echo  number_format(htmlentities( $row['monto']), 2, '.', ''); ?>
+					 ₡ <?php echo  number_format(htmlentities( $row['monto']), 2, '.', ','); ?>
 				</td>
 				<td><?php echo $row['descripcion'] ?></td>
 				<td>

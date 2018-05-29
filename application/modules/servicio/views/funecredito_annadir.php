@@ -154,6 +154,8 @@
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="relationship">
                                     <option value="">Seleccione</option>
+                                    <option value="Esposo">Esposo</option>
+                                    <option value="Esposa">Esposa</option>
                                     <option value="Padre">Padre</option>
                                     <option value="Madre">Madre</option>
                                     <option value="Hijo">Hijo</option>
