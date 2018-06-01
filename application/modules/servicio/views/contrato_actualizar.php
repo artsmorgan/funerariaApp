@@ -5,9 +5,9 @@ $sql_account = "select * from bk_contratos_account where contract_number = ?";
 
 $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
-echo '<pre>';
-print_r($row);
-echo '</pre>';
+// echo '<pre>';
+// print_r($row);
+// echo '</pre>';
 // die();
 
 $sql = "select * from bk_vendedores";
