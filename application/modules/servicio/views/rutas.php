@@ -2,6 +2,23 @@
 
 echo 'service_type '.$param1;
 
+print_r($_GET);
+
+if(count($_GET)>0){
+    switch ($_GET['loc']) {
+        case 'cont':
+            $service_type = 'contrato';
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+    $loc1 = $_GET['loc1'];
+    $loc2 = $_GET['loc2'];
+    $loc3 = $_GET['loc3'];
+}
+
 ?>
 <br><br><br>
 <div class="row">
@@ -9,7 +26,7 @@ echo 'service_type '.$param1;
         Seleccionar Ruta
     </div>
     <div class="col-md-2">    
-        <select class="selectboxit" style="width: 200px">
+        <select class="selectboxit" style="width: 200px" id="loc1">
                 <?php 
                     for($i = 1; $i < 29; $i++){
                         echo '<option value="'.$i.'">'.$i.'</option>';
@@ -18,7 +35,7 @@ echo 'service_type '.$param1;
         </select>
     </div>
     <div class="col-md-2">    
-        <select class="selectboxit" style="width: 200px">
+        <select class="selectboxit" style="width: 200px" id="loc2">
                 <?php 
                     for($i = 1; $i < 29; $i++){
                         echo '<option value="'.$i.'">'.$i.'</option>';
@@ -27,7 +44,7 @@ echo 'service_type '.$param1;
         </select>
     </div>
     <div class="col-md-2">    
-        <select class="selectboxit" style="width: 200px">
+        <select class="selectboxit" style="width: 200px" id="loc3">
                 <?php 
                     for($i = 1; $i < 29; $i++){
                         echo '<option value="'.$i.'">'.$i.'</option>';
@@ -36,7 +53,7 @@ echo 'service_type '.$param1;
         </select>
     </div>
     <div class="col-md-1">    
-        <a href="#" class="btn btn-primary ">Seleccionar Ruta</a>
+        <button class="btn btn-primary " id="sel_ruta">Seleccionar Ruta</button>
     </div>
     
 </div>
@@ -87,13 +104,18 @@ $clientlist = $this->db->get_where('contact')->result_array();
 
 <?php
 $sql = "SELECT s.service_id, CONCAT(s.client_first_name, ' ', s.client_last_name1, ' ', s.client_last_name2) AS name, s.client_id_card, s.contract_id FROM bk_service AS s WHERE s.type = ?";
+
+
+
+
 if($service_type=='contrato'){
    $sql = "select 
-                c.id,
-                c.no_contrato as contract_id, c.id as service_id, c.mes_cobro, c.vendedor, c.ruta,
-                CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card
-            from bk_contratos c
-            inner join bk_contact cn on c.contact_id = cn.contact_id;";
+    c.id,
+    c.no_contrato as contract_id, c.id as service_id, c.mes_cobro, c.vendedor, c.ruta, c.loc_1, c.loc_2, c.loc_3,
+    CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card
+    from bk_contratos c
+    inner join bk_contact cn on c.contact_id = cn.contact_id
+    where c.loc_1 = ".$loc1." and c.loc_2 = ".$loc2." and c.loc_3 = ".$loc3.";";
 }
 else if($service_type=='apartado'){
     $sql = "select id,
@@ -134,6 +156,7 @@ if(empty($services)){ ?>
             <tr>
                 <th>#Id</th>
                 <th>Contrato</th>
+                <td>Localizacion</td>
                 <th>Nombre</th>
                 <th>Cédula</th>
                 <?php if($service_type=='funeral'){ ?>
@@ -158,7 +181,13 @@ if(empty($services)){ ?>
                             }else if($service_type == 'funeral'){
                                 echo 'FN-';
                             }
-                            echo '000'.$row['contract_id']; ?></td>
+                            echo '000'.$row['contract_id']; ?>                                
+                    </td>
+                    <td>
+                        <?php
+                            echo $row['loc_1'].'-'.$row['loc_2'].'-'.$row['loc_3'];
+                        ?>                        
+                    </td>
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['client_id_card']; ?></td>
                     <td> 
@@ -187,9 +216,9 @@ if(empty($services)){ ?>
                         <a href="javascript:;" class="btn btn-primary"  onclick="showAjaxModal('<?php echo $view_pays_url ?>')">
                           Ver Transacciones
                         </a>                    
-                        <a href="javascript:;" class="btn btn-danger"  onclick="showAjaxModal('<?php echo $service_url ?>')">
+                        <!-- <a href="javascript:;" class="btn btn-danger"  onclick="showAjaxModal('<?php echo $service_url ?>')">
                             Realizar Pago
-                        </a>
+                        </a> -->
                         <?php } ?>
                     </td>                    
                     <td>
@@ -222,20 +251,20 @@ if(empty($services)){ ?>
                              
 
                                  <?php if($service_type != 'funeral'){ ?>
-                                <li>
+                                <!-- <li>
                                     <a href="javascript:;" onclick="showAjaxModal('<?php echo $adjustment_url ?>')">
                                         <i class="fa fa-money"></i> 
                                        Ajuste de Precio
                                     </a>
-                                </li>
+                                </li> -->
                                
-                                <li class="divider"></li>
+                                <!-- <li class="divider"></li>
                                  <li>
                                     <a href="javascript:;" onclick="showAjaxModal('<?php echo $discount_url ?>')">
                                         <i class="fa fa-minus-square"></i> 
                                         Aplicar Descuento
                                     </a>
-                                </li>                                
+                                </li>  -->                               
                                 <li class="divider"></li>
                                 <?php } ?>
                                  <li>
@@ -261,7 +290,7 @@ if(empty($services)){ ?>
                                     </li>
                                     <li class="divider"></li>
                                 <?php } ?>
-                                <li>
+                                <!-- <li>
                                     <?php
                                         if($service_type=='contrato'){
                                             $delete_servicio =site_url('servicio/servicios/deleteContrato/' . $row['contract_id'] );
@@ -276,7 +305,7 @@ if(empty($services)){ ?>
                                         <i class="entypo-trash"></i>
                                         <?php echo lang_key('delete');?>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </td>
@@ -386,6 +415,25 @@ if(empty($services)){ ?>
 
 <!--  DATA TABLE EXPORT CONFIGURATIONS -->                      
 <script type="text/javascript">
+
+    $('#sel_ruta').on('click',function(e){
+                var loc1 =  $("#loc1 option:selected").val();
+                var loc2 =  $("#loc2 option:selected").val();
+                var loc3 =  $("#loc3 option:selected").val();
+                var url  =  window.location.href;
+
+                if(url.indexOf('?')>=0){
+                    url = window.location.href.split('?')[0];
+                }
+
+                var str  =  url+'?loc=cont&loc1='+loc1+'&loc2='+loc2+'&loc3='+loc3;
+                window.location.href = str;
+                // console.log('str',str);
+
+            })
+
+
+
     var search_json = <?php echo $script_js_search; ?>;
     var clients = <?php echo $script_js_clients; ?>;
 
@@ -819,6 +867,7 @@ if(empty($services)){ ?>
                     setClientData(ui.item.id);
                 }
             });
+
 
             function setClientData(clientId){
                 $('[name=id_card]').val(clients[clientId].id_card);

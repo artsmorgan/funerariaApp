@@ -7036,3 +7036,9 @@ hr + .mail-env {
   -ms-transform: scale(1.15, );
   transform: scale(1.15, );
 }
+
+.page-body .selectboxit-container .selectboxit .selectboxit-arrow-container {
+    border-left: 1px solid #ebebeb;
+    text-align: center;
+    width: 20px;
+}

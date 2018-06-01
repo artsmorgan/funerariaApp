@@ -59,7 +59,7 @@ class Servicio extends CI_Controller {
                 // print_r($id);
                 // die();
                 $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
-                redirect(site_url('servicio/servicios/funeral'));
+                redirect(site_url('servicio/servicios/'.$service_type));
             break;
 
             case 'createFuneral':

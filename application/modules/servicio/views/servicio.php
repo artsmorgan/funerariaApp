@@ -221,10 +221,20 @@ if(empty($services)){ ?>
                                 <li class="divider"></li>
                                 <?php } ?>
                                  <li>
+                                    <?php
+                                        if($service_type == 'funecredito'){
+                                            $service_type = 'funeral';
+                                        }
+                                    ?>
                                     <a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/'. $service_type  .'_actualizar/' . $row['id'] . '/' . $service_type); ?>');">
                                         <i class="entypo-pencil"></i>
                                        Ver / Editar
                                     </a>
+                                    <?php
+                                        if($service_type == 'funeral'){
+                                            $service_type = 'funecredito';
+                                        }
+                                    ?>
                                 </li>
                                 <li class="divider"></li>
                                  <?php if($service_type=='funeral'){ ?>
