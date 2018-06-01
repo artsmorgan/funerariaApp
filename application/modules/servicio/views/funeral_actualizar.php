@@ -40,7 +40,7 @@ function checked_input($input){
 
                 <?php echo form_open(site_url('servicio/servicios/updateFuneral'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
 
-                <input type="hidden" name="funeral_tipo" value="funeral">
+                <input type="hidden" name="1" value="funeral">
 
                 <h3>Información Personal</h3>
 
@@ -954,6 +954,7 @@ function checked_input($input){
 
                 <h3>Forma de pago</h3>
                 <div class="row">
+                    <?php if($param3 == 'funeral'){ ?>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Monto Total del Servicio</label>
@@ -1118,81 +1119,191 @@ function checked_input($input){
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="funeral_tipo" value="1">
                     <!-- col -->
-                    
+                    <?php }else{ ?><input type="hidden" name="forma_pago" value="2">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">Monto servicio</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control for-contado format-currency"  />
+                                <input type="hidden"  id="amountService"  name="amountService" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
                 </div>
                 <!-- row -->
-                
-               
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">Prima funecrédito</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control format-currency"   />
+                                <input type="hidden"  id="advance_payment"  name="advance_payment"   />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                </div>
                 <!-- row -->
-                <!-- <div class="row">
-                    <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Monto del crédito</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control format-currency " name="monto_credito" required  />
-                                <input type="hidden"   data-info="amount_word"  />
+                            <label class="control-label col-md-6">Abono Inicial</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control for-contado format-currency"  id="payment"   />
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Plazo</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Intereses</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Cuota Mensual</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control " name=""  />
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+                    <!-- col -->
+                </div>
                 <!-- row -->
-
-               
-                <!-- row -->
-
-                <!-- <div class="row">
-                    <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Saldo a financiar de contratos</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control format-currency " name="saldo_financiar" required  />
-                                <input type="hidden"   data-info="amount_word"  />
+                            <label class="control-label col-md-6">Monto contrato #1</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control lock format-currency"   />
+                                <input type="hidden"  id="amountContract1"  name="amountContract1"   />
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <!-- col -->
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">N° contrato</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control lock"   id="idContract1"   />
+                                    </div>                                    
+                                </div>
+                            </div>
+                           
+                            <!--  inner col -->
+                        </div>
+                        <!-- inner row -->
+                    </div>
+                    <!-- col -->
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label for="field-1" class="control-label col-sm-12">Cuota Mensual</label>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control format-currency " name="cuota_mensual" required  />
-                                <input type="hidden"   data-info="amount_word"  />
+                            <label class="control-label col-md-6">Monto contrato 2</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control lock format-currency"  id=""   />
+                                <input type="hidden"  id="amountContract2"  name="amountContract2"   />
                             </div>
                         </div>
                     </div>
-                </div> -->
+                    <!-- col -->
+                    <div class="col-md-6">
+                        <div class="row">
+                        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control lock"   id="idContract2"   />
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- row -->
-                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">Monto contrato 3</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control lock format-currency"  />
+                                <input type="hidden"  id="amountContract3"  name="amountContract3"   />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control lock"  id="idContract3"   />
+                                    </div>                                    
+                                </div>
+                            </div>
+                           
+                            <!--  inner col -->
+                        </div>
+                        <!-- inner row -->
+                    </div>
+                    <!-- col -->
+                </div>
                 <!-- row -->
+                <div class="row" style="background-color: lightsteelblue;">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-6">Saldo a financiar Funecrédito</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control format-currency lock" disabled  id="debt_format"/>
+                                        <input type="hidden"  id="debt"  name="debt"   />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- col -->
+                    <div class="col-md-6" >
+                        <div class="row" >
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Plazo meses</label>
+                                    <div class="col-md-12">
+                                        <input type="number" class="form-control"  id="plazo"  name="plazo" min="1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- inner col -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Interés Mensual</label>
+                                    <div class="col-md-12">
+                                        <input type="number" class="form-control"  id="interesMensual" name="interes_mensual"  />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- inner col -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Cuota mensual funecrédito</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control  format-currency lock" disabled id="cuota_format"   />
+                                        <input type="hidden"  id="couta"  name="couta"   />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- inner col -->
+                        </div>
+                        <!-- inner row -->
+                    </div>
+                    <!-- col -->
+                </div>
+                    <input type="hidden" name="funeral_tipo" value="2">
+                    <?php } ?>                
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
+                            
                             <div class="col-sm-12 txt-right">
+                                <?php if($param3 =='funecredito'){ ?>
+                                <a class="btn btn-info"  id="calcCuotaBTN">
+                                    Calcular Cuota
+                                </a>
+                                <?php } ?>
                                 <button type="submit" class="btn btn-info" id="submit-button">
                                     <?php echo lang_key('submit'); ?>
                                 </button>

@@ -240,13 +240,31 @@
                             <label for="field-1" class="col-sm-12 control-label">Localización</label>
                             <div class="col-sm-12">
                                 <div class="col-md-4">
-                                    <input type="text"  class="form-control " name="local_1">
+                                    <select   class="selectboxit " name="local_1" id="local_1">
+                                        <?php 
+                                            for($i = 1; $i < 29; $i++){
+                                                echo '<option value="'.$i.'">'.$i.'</option>';
+                                            }
+                                         ?>
+                                    </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text"  class="form-control " name="local_2">
+                                    <select   class="selectboxit " name="local_2" id="local_2">
+                                         <?php 
+                                            for($i = 1; $i < 29; $i++){
+                                                echo '<option value="'.$i.'">'.$i.'</option>';
+                                            }
+                                         ?>
+                                    </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text"  class="form-control " name="local_3">
+                                    <select   class="selectboxit " name="local_3" id="local_3">
+                                         <?php 
+                                            for($i = 1; $i < 29; $i++){
+                                                echo '<option value="'.$i.'">'.$i.'</option>';
+                                            }
+                                         ?>
+                                    </select>
                                 </div>
                             </div>
                             
@@ -297,7 +315,7 @@
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Año Al Cobro</label>
                                 <div class="col-sm-12">                                    
-                                    <input type="number" class="form-control" value="<?php echo date("Y");   ?>">
+                                    <input type="number" name="anno_cobro" class="form-control" value="<?php echo date("Y");   ?>">
                                 </div>
                             </div>
                         </div>
@@ -357,6 +375,8 @@
 </div>
 
 <script>
+
+    
     $('[data-custom]').remove();
 
     $('.datepicker').datepicker({

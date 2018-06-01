@@ -1,6 +1,5 @@
 <?php
 
-
 if(count($_GET)>0){
     switch ($_GET['loc']) {
         case 'cont':

@@ -16,6 +16,10 @@ class Servicio_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
+    private function now(){
+        return date("Y-m-d H:i:s");
+    }
+
     private function getCurrentMonth()
     {
        $date = date('F Y');
@@ -61,6 +65,21 @@ class Servicio_model extends CI_Model
         return $this->db->insert_id();
     }
 
+    // openFunecreditoAccount(                         $_SESSION['user_id'],
+    //                                                 $this->input->post('contact_id'), 
+    //                                                 $contractID, 
+    //                                                 $this->input->post('amountService'), 
+    //                                                 $this->input->post('advance_payment'), 
+    //                                                 $saldo_actual, 
+    //                                                 $data['interes_mensual'],
+    //                                                 $data['plazo'],
+    //                                                 $data['plazo'], 
+    //                                                 $data['cuota'],
+    //                                                 $data['cuota'],
+    //                                                 $this->now(), 
+    //                                                 $this->getCurrentMonth(),
+    //                                                 $this->input->post('amount'));
+
     private function openFunecreditoAccount($userID, $customerID, 
                                         $funeral_id, $monto_principal, $monto_abonado, $saldo, 
                                         $interes_mensual,$plazo_inicial,$plazo_restante, 
@@ -102,7 +121,7 @@ class Servicio_model extends CI_Model
         $data['monto_abonado'] = $monto_abonado;
         $data['saldo'] = $saldo;
         $data['status'] = "A";
-        $data['saldo_anterior'] = $saldo_anterior;
+        // $data['saldo_anterior'] = $saldo_anterior;
         $data['created_by'] = $userID;
         
         
@@ -424,7 +443,7 @@ class Servicio_model extends CI_Model
         $data['funeral_tipo'] = $this->input->post('forma_pago'); //1 contado - 2 credito
         $data['monto_total'] = $this->input->post('amount');
         $data['saldo_total'] = $this->input->post('saldo');
-        $data['prima'] = $this->input->post('prima');
+        $data['prima'] = $this->input->post('advance_payment');
         $data['contrato_1_numero'] = $this->input->post('contrato_1_num');
         $data['contrato_1_valor'] = $this->input->post('contrato_1_val');
         $data['contrato_2_numero'] = $this->input->post('contrato_2_num');
@@ -446,27 +465,33 @@ class Servicio_model extends CI_Model
 // $data['contact_id'] =  $this->input->post('contact_id') ;
 //         $data['created_by'] = $_SESSION['user_id'];
         if($type == 'funecredito'){
-            $accID = $this->openFunecreditoAccount( $userID, 
-                                                    $customerID, 
-                                                    $funeral_id, 
-                                                    $monto_principal, 
-                                                    $monto_abonado, 
-                                                    $saldo, 
-                                                    $interes_mensual,
-                                                    $plazo_inicial,
-                                                    $plazo_restante, 
-                                                    $couta_sin_interes,
-                                                    $couta_con_interes,
-                                                    $fecha_aplicacion, 
-                                                    $mes_cobro,$saldo_anterior);
+            // $data['contrato_3_valor'] = $this->input->post('contrato_3_val');
+             // = $this->input->post('contrato_3_val');
+            $saldo_actual = $this->input->post('amountService') - $this->input->post('advance_payment');
+
+            $accID = $this->openFunecreditoAccount( $_SESSION['user_id'],
+                                                    $this->input->post('contact_id'), 
+                                                    $contractID, 
+                                                    $this->input->post('amountService'), 
+                                                    $this->input->post('advance_payment'), 
+                                                    $saldo_actual, 
+                                                    $this->input->post('interes_mensual'),
+                                                    $this->input->post('plazo'),
+                                                    $this->input->post('plazo'),
+                                                    $this->input->post('couta'),
+                                                    $this->input->post('couta'),
+                                                    $this->now(), 
+                                                    $this->getCurrentMonth(),
+                                                    $this->input->post('amount'));
             if($accID > 0){
+                // newTransaction($userID, $contractID, $tipo_servicio, $monto, $metodo_pago, $descripcion, $detalles, $saldo_anterior, $status = 'A' ){
                 $transactionID = $this->newTransaction(
                                                     $_SESSION['user_id'], 
                                                     $accID, 
                                                     'funecredito', 
                                                     $this->input->post('advance_payment'),  
                                                     'Efectivo', 
-                                                    'Prima', '', 0);
+                                                    'Prima', '', $this->input->post('amountService'));
                 if($transactionID>0){
                     $this->applyContractPay(
                                     $accID, 
@@ -512,10 +537,11 @@ class Servicio_model extends CI_Model
                                                 0, 
                                                 0);
             if($accID > 0){
+                
                 $transactionID = $this->newTransaction(
                                                     $_SESSION['user_id'], 
                                                     $accID, 
-                                                    'contrato', 
+                                                    'funeral', 
                                                     $this->input->post('prima'),  
                                                     $this->input->post('forma_pago'), 
                                                     'Prima', '', 0);

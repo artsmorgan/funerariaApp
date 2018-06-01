@@ -213,6 +213,8 @@
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="relationship">
                                     <option value="">Seleccione</option>
+                                    <option value="Esposo">Esposo</option>
+                                    <option value="Esposa">Esposa</option>
                                     <option value="Padre">Padre</option>
                                     <option value="Madre">Madre</option>
                                     <option value="Hijo">Hijo</option>
@@ -416,8 +418,8 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Costo</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control format-currency" />
-                                    <input type="hidden" value="" name="pathology_cost" />
+                                <input type="text"  class="form-control format-currency" value="0" />
+                                    <input type="hidden" name="pathology_cost" value="0" />
                             </div>
                         </div>
                     </div>
@@ -450,9 +452,9 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Costo</label>
                             <div class="col-sm-12">
-                                <input type="text"  class="form-control format-currency" />
-                                    <input type="hidden"  name="autopsy_cost" />
-                            </div>
+                                <input type="text"  class="form-control format-currency" value="0" />
+                                    <input type="hidden"  name="autopsy_cost" value="0"/>
+                            </div>  
                         </div>
                     </div>
                     <!-- col -->
@@ -658,7 +660,7 @@
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('candlestick'); ?></label>
                             <div class="col-sm-12">
                                 <select class="selectboxit" name="veiling_candlestick">
-                                    <option value="No">0</option>
+                                    <option value="0">0</option>
                                     <option value="2">2</option>
                                     <option value="4">4</option>
                                 </select>
@@ -916,7 +918,7 @@
                             <label for="field-1" class="control-label col-sm-12">Monto Total del Servicio</label>
                             <div class="col-sm-12">
                                 <input type="text" class="form-control format-currency "  required  />
-                                <input type="hidden"    name="amount" />
+                                <input type="hidden" name="amount" />
                             </div>
                         </div>
                     </div>
@@ -1070,7 +1072,7 @@
                     <!-- col -->
                     <?php }else{ ?>
                         <!-- funecredito pagos -->
-
+                    <input type="hidden" name="forma_pago" value="2">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label col-md-6">Monto servicio</label>
@@ -1211,7 +1213,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-12">Plazo meses</label>
                                     <div class="col-md-12">
-                                        <input type="number" class="form-control"  id="plazo"  min="1" />
+                                        <input type="number" class="form-control"  id="plazo"  name="plazo" min="1" />
                                     </div>
                                 </div>
                             </div>
@@ -1220,7 +1222,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-12">Interés Mensual</label>
                                     <div class="col-md-12">
-                                        <input type="number" class="form-control"  id="interesMensual"   />
+                                        <input type="number" class="form-control"  id="interesMensual" name="interes_mensual"  />
                                     </div>
                                 </div>
                             </div>
@@ -1241,8 +1243,7 @@
                     <!-- col -->
                 </div>
             
-                    <?php } ?>
-                </div>
+                    <?php } ?>                
 
                 <div class="row">
                     <div class="col-md-12">
@@ -1250,9 +1251,9 @@
                             
                             <div class="col-sm-12 txt-right">
                                 <?php if($param3 =='funecredito'){ ?>
-                                <button  class="btn btn-info"  id="calcCuotaBTN">
+                                <a class="btn btn-info"  id="calcCuotaBTN">
                                     Calcular Cuota
-                                </button>
+                                </a>
                                 <?php } ?>
                                 <button type="submit" class="btn btn-info" id="submit-button">
                                     Crear Servicio

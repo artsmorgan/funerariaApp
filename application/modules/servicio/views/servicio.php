@@ -68,7 +68,7 @@ else if($service_type=='funeral'){
     CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card, CONCAT(c.fallecido_nombre, ' ', c.fallecido_apellido, ' ', c.fallecido_apellido2) AS fallecido
     from bk_funeral c
     inner join bk_contact cn on c.contact_id = cn.contact_id
-    where c.funeral_tipo = 'funeral'; ";
+    where c.funeral_tipo = 1; ";
 }
 
 else if($service_type=='funecredito'){
@@ -76,7 +76,7 @@ else if($service_type=='funecredito'){
     CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card, CONCAT(c.fallecido_nombre, ' ', c.fallecido_apellido, ' ', c.fallecido_apellido2) AS fallecido
     from bk_funeral c
     inner join bk_contact cn on c.contact_id = cn.contact_id
-    where c.funeral_tipo = 'funecredito'";
+    where c.funeral_tipo = 2";
 }
 
 
@@ -97,7 +97,7 @@ if(empty($services)){ ?>
                 <th>Contrato</th>
                 <th>Nombre</th>
                 <th>Cédula</th>
-                <?php if($service_type=='funeral'){ ?>
+                <?php if($service_type=='funeral' || $service_type == 'funecredito'){ ?>
                 <th>Nombre Fallecido</th>
                 <?php }else { ?>
                 <th>Historial de Pagos</th>
@@ -119,11 +119,15 @@ if(empty($services)){ ?>
                             }else if($service_type == 'funeral'){
                                 echo 'FN-';
                             }
+                            else if($service_type == 'funecredito'){
+                                echo 'FC-';
+                            }
                             echo '000'.$row['contract_id']; ?></td>
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['client_id_card']; ?></td>
                     <td> 
                         <?php
+                            // echo "service_type ".$service_type;
                             if($service_type=='contrato'){
                                 $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_contrato/' . $row['id'] );
                                 $view_pays_url = site_url('admin/modal/popup/servicio/list_contratos_payments/' . $row['id'] );
@@ -135,16 +139,17 @@ if(empty($services)){ ?>
                                 $discount_url = site_url('admin/modal/popup/impresion/aplicar_descuento/' . $row['id'] );
                                 $adjustment_url = site_url('admin/modal/popup/impresion/aplicar_ajuste/' . $row['id'] );
                             }
-                            else if($service_type == 'funeral'){
+                            else if($service_type == 'funeral' || $service_type == 'funecredito'){
                                 echo $row['fallecido'];
                             }
+
                             //     $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_apartado/' . $row['id'] );
                             //     $view_pays_url = site_url('admin/modal/popup/servicio/list_apartados_payments/' . $row['id'] ); 
                             //      $discount_url = site_url('admin/modal/popup/impresion/aplicar_descuento/' . $row['id'] );
                             //     $adjustment_url = site_url('admin/modal/popup/impresion/aplicar_ajuste/' . $row['id'] );  
                             // }
                         ?>
-                        <?php if($service_type != 'funeral'){ ?>
+                        <?php if($service_type == 'contrato' || $service_type == 'apartado'){ ?>
                         <a href="javascript:;" class="btn btn-primary"  onclick="showAjaxModal('<?php echo $view_pays_url ?>')">
                           Ver Transacciones
                         </a>                    
@@ -154,6 +159,22 @@ if(empty($services)){ ?>
                         <?php } ?>
                     </td>                    
                     <td>
+                        <?php 
+                            $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_funeral/' . $row['id'].'/funecredito' );
+                            $view_pays_url = site_url('admin/modal/popup/servicio/list_funeral_payments/' . $row['id'].'/funecredito' );
+                            // $discount_url = site_url('admin/modal/popup/impresion/aplicar_descuento/' . $row['id'] );
+                            // $adjustment_url = site_url('admin/modal/popup/impresion/aplicar_ajuste/' . $row['id'] );
+                            // echo $view_pays_url;
+
+                            if($service_type=='funecredito'){ ?>
+
+                        <a href="javascript:;" class="btn btn-primary"  onclick="showAjaxModal('<?php echo $view_pays_url ?>')">
+                          Ver Transacciones
+                        </a>                    
+                        <a href="javascript:;" class="btn btn-danger"  onclick="showAjaxModal('<?php echo $service_url ?>')">
+                            Realizar Pago
+                        </a>
+                        <?php } ?>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
                                 <?php echo lang_key('actions') ?> <span class="caret"></span>
@@ -200,10 +221,20 @@ if(empty($services)){ ?>
                                 <li class="divider"></li>
                                 <?php } ?>
                                  <li>
+                                    <?php
+                                        if($service_type == 'funecredito'){
+                                            $service_type = 'funeral';
+                                        }
+                                    ?>
                                     <a href="javascript:;" onclick="showAjaxModal('<?php echo site_url('admin/modal/popup/servicio/'. $service_type  .'_actualizar/' . $row['id'] . '/' . $service_type); ?>');">
                                         <i class="entypo-pencil"></i>
                                        Ver / Editar
                                     </a>
+                                    <?php
+                                        if($service_type == 'funeral'){
+                                            $service_type = 'funecredito';
+                                        }
+                                    ?>
                                 </li>
                                 <li class="divider"></li>
                                  <?php if($service_type=='funeral'){ ?>
