@@ -111,6 +111,11 @@ class Servicio extends CI_Controller {
                 // print_r($id);
                 // die();
                 $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
+
+                if( $id > 0  ){
+                    $this->session->set_flashdata('flash_print_popup', 'recibo_dinero_contrato_readonly/' . $id);
+                }
+                
                 redirect(site_url('servicio/servicios/contrato'));
             break;
 
@@ -121,6 +126,9 @@ class Servicio extends CI_Controller {
                 // print_r($id);
                 // die();
                 $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
+                if( $id > 0  ){
+                    $this->session->set_flashdata('flash_print_popup', 'recibo_dinero_contrato_readonly/' . $id);
+                }
                 redirect(site_url('servicio/servicios/apartado'));
             break;
 
