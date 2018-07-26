@@ -380,7 +380,8 @@ if(empty($services)){ ?>
 <script type="text/javascript">
     var search_json = <?php echo $script_js_search; ?>;
     var clients = <?php echo $script_js_clients; ?>;
-
+</script>
+<script type="text/javascript">
     function showModal(id){
         var zIndex = 1400;
         $(id).modal().css('z-index', zIndex);
