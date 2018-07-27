@@ -839,7 +839,10 @@ if(empty($services)){ ?>
         window.print_popup = '<?= $this->session->flashdata('flash_print_popup') ?>';
 
         if(print_popup){
-            showAjaxModal( site_url + 'admin/modal/popup/impresion/' + print_popup);
+            //bug fix modal not showing up
+            setTimeout( function (){
+                showAjaxModal( site_url + 'admin/modal/popup/impresion/' + print_popup);    
+            }, 50);
         }
     });
 		
