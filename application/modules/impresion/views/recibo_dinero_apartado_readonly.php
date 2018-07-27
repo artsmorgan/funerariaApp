@@ -259,10 +259,10 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
         
         if($aux.length == 0){
             $aux = $('<div class="print_aux" />');
-            $('body').append($aux);
+            $('body').prepend($aux);
         }
 
-        $aux.append($print_container);
+        $aux.html($print_container.html());
 
         window.print();
     }

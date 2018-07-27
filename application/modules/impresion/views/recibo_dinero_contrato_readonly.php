@@ -274,10 +274,10 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
         
         if($aux.length == 0){
             $aux = $('<div class="print_aux" />');
-            $('body').append($aux);
+            $('body').prepend($aux);
         }
 
-        $aux.append($print_container);
+        $aux.html($print_container.html());
 
         window.print();
     }
