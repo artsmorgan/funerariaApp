@@ -176,7 +176,7 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
                                 <div class="col-sm-12 txt-right">
                                     <input type="hidden" id="contract_id" value="<?php echo $row['id']; ?>">
 <!--                                     <button class="btn btn-info" id="print-button" type="submit"> -->
-                                    <button class="btn btn-info" type="submit">
+                                    <button class="btn btn-info">
                                         Reimprimir
                                     </button>
                                 </div>
@@ -269,32 +269,15 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
     }
 
     function show_print_page(){
-        var $print_container = $('.print_container');
+        var $print_container = $('.print_container').clone();
+        var $aux = $('body .print_aux');
+        
+        if($aux.length == 0){
+            $aux = $('<div class="print_aux" />');
+            $('body').apennd($aux);
+        }
 
-        $('.panel-primary [data-info]:not(.exclude,span)').each(function(){
-            var data_info = $(this).attr('data-info');
-
-            if(data_info.indexOf('amount') != -1 ){
-                $print_container.find('.print_amount > span').html('');
-                $print_container.find('.print_amount > span').append('<span class="format-currency">'+  $('[data-info=amount]').val() + '</span> ');
-                $print_container.find('.print_amount > span').append('<span> '+  $('[data-info=amount_word]').val() + '</span>');
-                return true;
-            }
-
-            var value = $.trim( $(this).val() );
-
-            if(/cheque|transferencia/.test(value)){
-                $print_container.find('.print_tipo_pago span').text( value + ' - ' + $('[data-info=numero_transferencia]').val() );
-                return true;
-            }
-
-
-            $print_container.find('.print_' + data_info +  ' span').html(value);
-        });
-
-        $('.print_container .format-currency').formatCurrency({
-            symbol: '₡ '
-        });
+        $aux.append($print_container);
 
         window.print();
     }
@@ -302,13 +285,19 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
     function printPageReady(){
         if(typeof print_popup != 'undefined' && print_popup ){
             print_popup = null;
-            print();
+            show_print_page();
         }
     }
 
     $(function(){
 
         printPageReady();
+
+        $('.btn-info').on('click', function(e){
+            e.preventDefault();
+            show_print_page();
+            return false;
+        });
 
         $('.panel-primary .format-currency').formatCurrency({
             symbol: '₡ '
