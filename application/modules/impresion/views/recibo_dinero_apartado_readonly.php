@@ -262,7 +262,8 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
             $('body').prepend($aux);
         }
 
-        $aux.html($print_container.html());
+        $aux.html('<div />');
+        $aux.find('div').replaceWith($print_container);
 
         window.print();
     }

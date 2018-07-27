@@ -277,7 +277,8 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
             $('body').prepend($aux);
         }
 
-        $aux.html($print_container.html());
+        $aux.html('<div />');
+        $aux.find('div').replaceWith($print_container);
 
         window.print();
     }
