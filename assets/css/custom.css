@@ -177,6 +177,8 @@ ul.ui-autocomplete{
         display: none;
     }
 
+    .print_aux ~ *{display:none;}
+
     .print_container{
         display: block;
     }
