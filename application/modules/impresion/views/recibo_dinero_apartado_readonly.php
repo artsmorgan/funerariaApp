@@ -182,24 +182,25 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
         </div>
     </div>
     <?php echo form_close(); ?>
-
-    <div class="page_print">
-        <div class="print_header">
-            <h3>Funeraria Shalom</h3>
-            <p>Tel: +506 22354721</p>
-            <p class="print_date"><?= $recibo['fecha_pago'] ?></p>
+    <div class="print_container">
+        <div class="page_print">
+            <div class="print_header">
+                <h3>Funeraria Shalom</h3>
+                <p>Tel: +506 22354721</p>
+                <p class="print_date"><?= $recibo['fecha_pago'] ?></p>
+            </div>
+            <p>Detalle de recibo #: <?php echo $prefix.'000'.$recibo['id'] ?> - Contrato # <?= $row['no_contrato']  ?></p>
+            <p>Nombre: <?= $row['first_name'] . ' '. $row['last_name']. ' '. $row['last_name2'] ?></p>
+            <p>Monto total: <?= $acc['monto_total'] ?></p>
+            <p>Concepto: <?= $recibo['descripcion']; ?></p>
+            <p>Tipo de pago: <?= $recibo['metodo_pago'] ?></p>
+            <p>Número de transferencia o cheque: <?= $recibo['detalles'] ?></p>
+            <p>Mes al cobro: <?=  $acc['mes_cobro'] ; ?></p>
+            <p>Interes: TBP</p>
+            <p>Saldo anterior: <?= $recibo['saldo_anterior'] ?></p>
+            <p>Saldo actual: <?= $acc['saldo'] ?></p>
+            <h2>Abono: <?= $recibo['monto_cuota'] ?></h2>
         </div>
-        <p>Detalle de recibo #: <?php echo $prefix.'000'.$recibo['id'] ?> - Contrato # <?= $row['no_contrato']  ?></p>
-        <p>Nombre: <?= $row['first_name'] . ' '. $row['last_name']. ' '. $row['last_name2'] ?></p>
-        <p>Monto total: <?= $acc['monto_total'] ?></p>
-        <p>Concepto: <?= $recibo['descripcion']; ?></p>
-        <p>Tipo de pago: <?= $recibo['metodo_pago'] ?></p>
-        <p>Número de transferencia o cheque: <?= $recibo['detalles'] ?></p>
-        <p>Mes al cobro: <?=  $acc['mes_cobro'] ; ?></p>
-        <p>Interes: TBP</p>
-        <p>Saldo anterior: <?= $recibo['saldo_anterior'] ?></p>
-        <p>Saldo actual: <?= $acc['saldo'] ?></p>
-        <h2>Abono: <?= $recibo['monto_cuota'] ?></h2>
     </div>
 <?php endif; ?>
 
