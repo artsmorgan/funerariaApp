@@ -29,7 +29,7 @@ class Impresion extends CI_Controller {
 
     function impresiones( $param1 = '', $param2 = '', $param3 = '' ){
         // echo $param1;
-        if( $param1 == NULL || !preg_match( "/^(?:index|impresiones|rutas|recibo-dinero|recibo-dinero-apartado|recibo-dinero-contrato|recibo-dinero-funecredito|rutas-adelantados|sobres|tarjetas-cobrador|tarjetas-posteo|aplicar|revertir|historial)$/i", $param1 ) ){
+        if( $param1 == NULL || !preg_match( "/^(?:index|impresiones|rutas|recibo-dinero|recibo-dinero-apartado|recibo-dinero-contrato|recibo-dinero-funecredito|rutas-adelantados|sobres|tarjetas-cobrador|tarjetas-posteo|aplicar|revertir|historial|plain)$/i", $param1 ) ){
             redirect(site_url('admin'));
         }
 
