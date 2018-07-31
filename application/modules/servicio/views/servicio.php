@@ -380,7 +380,8 @@ if(empty($services)){ ?>
 <script type="text/javascript">
     var search_json = <?php echo $script_js_search; ?>;
     var clients = <?php echo $script_js_clients; ?>;
-
+</script>
+<script type="text/javascript">
     function showModal(id){
         var zIndex = 1400;
         $(id).modal().css('z-index', zIndex);
@@ -835,6 +836,14 @@ if(empty($services)){ ?>
             }
         }
 
+        window.print_popup = '<?= $this->session->flashdata('flash_print_popup') ?>';
+
+        if(print_popup){
+            //bug fix modal not showing up
+            setTimeout( function (){
+                showAjaxModal( site_url + 'admin/modal/popup/impresion/' + print_popup);    
+            }, 50);
+        }
     });
 		
 </script>

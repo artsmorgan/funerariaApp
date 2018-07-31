@@ -182,6 +182,26 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
         </div>
     </div>
     <?php echo form_close(); ?>
+    <div class="print_container">
+        <div class="page_print">
+            <div class="print_header">
+                <h3>Funeraria Shalom</h3>
+                <p>Tel: +506 22354721</p>
+                <p class="print_date"><?= $recibo['fecha_pago'] ?></p>
+            </div>
+            <p>Detalle de recibo #: <?php echo $prefix.'000'.$recibo['id'] ?> - Contrato # <?= $row['no_contrato']  ?></p>
+            <p>Nombre: <?= $row['first_name'] . ' '. $row['last_name']. ' '. $row['last_name2'] ?></p>
+            <p>Monto total: <?= $acc['monto_total'] ?></p>
+            <p>Concepto: <?= $recibo['descripcion']; ?></p>
+            <p>Tipo de pago: <?= $recibo['metodo_pago'] ?></p>
+            <p>Número de transferencia o cheque: <?= $recibo['detalles'] ?></p>
+            <p>Mes al cobro: <?=  $acc['mes_cobro'] ; ?></p>
+            <p>Interes: TBP</p>
+            <p>Saldo anterior: <?= $recibo['saldo_anterior'] ?></p>
+            <p>Saldo actual: <?= $acc['saldo'] ?></p>
+            <h2>Abono: <?= $recibo['monto_cuota'] ?></h2>
+        </div>
+    </div>
 <?php endif; ?>
 
 <script>
@@ -234,37 +254,36 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
     }
 
     function show_print_page(){
-        var $print_container = $('.print_container');
+        var $print_container = $('.print_container').clone();
+        var $aux = $('body .print_aux');
+        
+        if($aux.length == 0){
+            $aux = $('<div class="print_aux" />');
+            $('body').prepend($aux);
+        }
 
-        $('.panel-primary [data-info]:not(.exclude,span)').each(function(){
-            var data_info = $(this).attr('data-info');
-
-            if(data_info.indexOf('amount') != -1 ){
-                $print_container.find('.print_amount > span').html('');
-                $print_container.find('.print_amount > span').append('<span class="format-currency">'+  $('[data-info=amount]').val() + '</span> ');
-                $print_container.find('.print_amount > span').append('<span> '+  $('[data-info=amount_word]').val() + '</span>');
-                return true;
-            }
-
-            var value = $.trim( $(this).val() );
-
-            if(/cheque|transferencia/.test(value)){
-                $print_container.find('.print_tipo_pago span').text( value + ' - ' + $('[data-info=numero_transferencia]').val() );
-                return true;
-            }
-
-
-            $print_container.find('.print_' + data_info +  ' span').html(value);
-        });
-
-        $('.print_container .format-currency').formatCurrency({
-            symbol: '₡ '
-        });
+        $aux.html('<div />');
+        $aux.find('div').replaceWith($print_container);
 
         window.print();
     }
 
+    function printPageReady(){
+        if(typeof print_popup != 'undefined' && print_popup ){
+            print_popup = null;
+            show_print_page();
+        }
+    }
+
     $(function(){
+
+        printPageReady();
+
+        $('.btn-info').on('click', function(e){
+            e.preventDefault();
+            show_print_page();
+            return false;
+        });
 
         $('.panel-primary .format-currency').formatCurrency({
             symbol: '₡ '

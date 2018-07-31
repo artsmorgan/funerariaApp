@@ -299,6 +299,8 @@ class Servicio_model extends CI_Model
             if($transactionID>0){
                 $this->applyContractPay($acc['id'], $monto, $mes_cobro);
             }
+
+        return $transactionID;
     }
 
 
@@ -321,7 +323,10 @@ class Servicio_model extends CI_Model
             // print_r($transactionID);die();
             if($transactionID>0){
                 $this->applyApartadosPay($acc['id'], $monto, $mes_cobro);
-            }   
+            }
+        
+        
+        return $transactionID;
     }
    
     public function createContract(){
