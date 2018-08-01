@@ -213,7 +213,7 @@ function checked_input($input){
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('age'); ?></label>
                             <div class="col-sm-12">
-                                <input type="number" class="form-control" value="50" name="deceased_age"  value="<?php echo htmlentities( $row['fallecido_edad'] ); ?>"/>
+                                <input type="text" class="form-control" value="50" name="deceased_age"  value="<?php echo htmlentities( $row['fallecido_edad'] ); ?>"/>
                             </div>
                         </div>
                     </div>
@@ -243,6 +243,8 @@ function checked_input($input){
                                     <option value="Madre">Madre</option>
                                     <option value="Hijo">Hijo</option>
                                     <option value="Hija">Hija</option>
+                                    <option value="Hermano">Hermano</option>
+                                    <option value="Hermana">Hermana</option>
                                     <option value="Nieto">Nieto</option>
                                     <option value="Nieta">Nieta</option>
                                     <option value="Abuela">Abuela</option>
@@ -952,9 +954,9 @@ function checked_input($input){
                 </div>
                 <!-- eleventh row -->
 
-                <h3>Forma de pago</h3>
+                <h3>Forma de pago</h3>                
                 <div class="row">
-                    <?php if($param3 == 'funeral'){ ?>
+                    <?php if($param4 == 'funeral'){ ?>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Monto Total del Servicio</label>

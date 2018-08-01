@@ -159,25 +159,25 @@ $vendedores = $this->db->query( $sql)->result_array();
               
               <!-- Fecha de inclusion -->
               <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12">Fecha de Inclusion</label>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" name="fecha_inclusion"  value="<?php echo htmlentities( $row['fecha_inclusion'] ); ?>" />
+                                <input type="text" class="form-control" id="fecha_inclusion" name="fecha_inclusion"  value="<?php echo htmlentities( $row['fecha_inclusion'] ); ?>" />
                             </div>
                         </div>
                     </div>
                     <!-- col -->
-                    <div class="col-md-2">
+                   <!--  <div class="col-md-2">
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Ruta</label>
                             <div class="col-sm-12">
                                 <input type="text"  class="form-control" name="ruta" value="<?php echo htmlentities( $row['ruta'] ); ?>">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- col -->
-                    <div class="col-md-2">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Vendedor</label>
                             <div class="col-sm-12">
@@ -186,15 +186,16 @@ $vendedores = $this->db->query( $sql)->result_array();
                             </div>
                         </div>
                     </div>
+                    <input type="hidden"   name="forma_pago" value="<?php echo htmlentities( $row['forma_pago'] ); ?>">
                     <!-- col -->
-                    <div class="col-md-3">
+                    <!-- <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Forma de Pago</label>
                             <div class="col-sm-12">
                                 <input type="text"  class="form-control "  name="forma_pago" value="<?php echo htmlentities( $row['forma_pago'] ); ?>">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                      <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">N° Contrato</label>
@@ -262,7 +263,7 @@ $vendedores = $this->db->query( $sql)->result_array();
                                                 value="<?php echo htmlentities( $row['loc_2'] ); ?>"><?php echo htmlentities( $row['loc_2'] ); ?>
                                         </option>
                                          <?php 
-                                            for($i = 1; $i < 29; $i++){
+                                            for($i = 1; $i < 1000; $i++){
                                                 echo '<option value="'.$i.'">'.$i.'</option>';
                                             }
                                          ?>
@@ -385,6 +386,10 @@ $vendedores = $this->db->query( $sql)->result_array();
     $('[data-custom]').remove();
 
     $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd'
+    });
+
+    $('#fecha_inclusion').datepicker({
         format: 'yyyy-mm-dd'
     });
 

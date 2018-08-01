@@ -256,11 +256,11 @@ if(empty($services)){ ?>
                                 <li>
                                     <?php
                                         if($service_type=='contrato'){
-                                            $delete_servicio =site_url('servicio/servicios/deleteContrato/' . $row['contract_id'] );
+                                            $delete_servicio =site_url('servicio/servicios/deleteContrato/' . $row['id'] );
                                         }else if($service_type=='apartado'){
-                                            $delete_servicio =site_url('servicio/servicios/deleteApartado/' . $row['contract_id'] );
+                                            $delete_servicio =site_url('servicio/servicios/deleteApartado/' . $row['id'] );
                                         }else if($service_type=='funeral'){
-                                            $delete_servicio =site_url('servicio/servicios/deleteApartado/' . $row['contract_id'] );
+                                            $delete_servicio =site_url('servicio/servicios/deleteApartado/' . $row['id'] );
                                         }
                                     ?>
 

@@ -1,5 +1,3 @@
-
-
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary" data-collapsed="0">
@@ -188,7 +186,7 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label col-sm-12"><?php echo lang_key('age'); ?></label>
                             <div class="col-sm-12">
-                                <input type="number" class="form-control" value="50" name="deceased_age"  />
+                                <input type="text" class="form-control" value="50" name="deceased_age"  />
                             </div>
                         </div>
                     </div>
@@ -217,6 +215,8 @@
                                     <option value="Esposa">Esposa</option>
                                     <option value="Padre">Padre</option>
                                     <option value="Madre">Madre</option>
+                                    <option value="Hermano">Hermano</option>
+                                    <option value="Hermana">Hermana</option>
                                     <option value="Hijo">Hijo</option>
                                     <option value="Hija">Hija</option>
                                     <option value="Nieto">Nieto</option>
