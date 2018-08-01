@@ -954,8 +954,7 @@ function checked_input($input){
                 </div>
                 <!-- eleventh row -->
 
-                <h3>Forma de pago</h3>
-                
+                <h3>Forma de pago</h3>                
                 <div class="row">
                     <?php if($param4 == 'funeral'){ ?>
                     <div class="col-md-4">
