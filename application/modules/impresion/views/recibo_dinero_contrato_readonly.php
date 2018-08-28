@@ -269,8 +269,8 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
     }
 
     function show_print_page(){
-        var $print_container = $('.print_container').clone();
-        var $aux = $('body .print_aux');
+        var $print_container = $('.modal-body .print_container:first').clone();
+        var $aux = $('.print_aux');
         
         if($aux.length == 0){
             $aux = $('<div class="print_aux" />');
