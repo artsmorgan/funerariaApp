@@ -31,21 +31,14 @@ if(count($_GET)>0){
         </select>
     </div>
     <div class="col-md-2">    
-        <select class="selectboxit" style="width: 200px" id="loc2">
-                <?php 
-                    for($i = 1; $i < 29; $i++){
-                        echo '<option value="'.$i.'">'.$i.'</option>';
-                    }
-                 ?>
+         <select   class="selectboxit " name="funeraria" id="funeraria">
+            <option value="1">La Merced</option>
+            <option value="2">Shalom</option>
         </select>
     </div>
     <div class="col-md-2">    
         <select class="selectboxit" style="width: 200px" id="loc3">
-                <?php 
-                    for($i = 1; $i < 29; $i++){
-                        echo '<option value="'.$i.'">'.$i.'</option>';
-                    }
-                 ?>
+                <option val="today"><?php echo date("Y-m-d") ?></option>
         </select>
     </div>
     <div class="col-md-1">    
