@@ -173,11 +173,22 @@
                         </div>
                     </div> -->
                     <!-- col --><input type="hidden"  class=""  name="forma_pago">
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Vendedor</label>
                             <div class="col-sm-12">
                                 <?php echo $vend_list; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="field-1" class="col-sm-12 control-label">Funeraria</label>
+                            <div class="col-sm-12">
+                                <select   class="selectboxit " name="funeraria" id="funeraria">
+                                        <option value="1">La Merced</option>
+                                        <option value="2">Shalom</option>
+                                    </select>
                             </div>
                         </div>
                     </div>

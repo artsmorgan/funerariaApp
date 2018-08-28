@@ -367,6 +367,21 @@
             </ul>
         </li> -->
         
+        <li class="<?php if($page_name == 'reports') echo 'active'; ?>">
+            <a href="#">
+                 <i class="fa fa-truck"></i>
+                <span>Reportes</span>
+            </a>
+            <ul>
+                <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
+                    <a href="<?php echo site_url('servicio/servicios/reportes'); ?>">
+                        <i class="entypo-tag"></i>
+                        <span>Ventas Diarias</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
         <li class="<?php if($page_name == 'note') echo 'active'; ?>">
             <a href="<?php echo site_url('admin/note'); ?>">
                 <i class="entypo-doc-text"></i>

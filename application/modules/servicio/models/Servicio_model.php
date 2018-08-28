@@ -354,6 +354,7 @@ class Servicio_model extends CI_Model
         $data['saldo_actual'] = $this->input->post('saldo_actual'); 
 
         $data['observaciones'] = $this->input->post('observaciones'); 
+        $data['funeraria_id'] = $this->input->post('funeraria'); 
 
         $data['anno_cobro'] = $this->input->post('anno_cobro'); 
 
@@ -724,6 +725,7 @@ class Servicio_model extends CI_Model
         $data['loc_2'] = $this->input->post('local_2');
         $data['loc_3'] = $this->input->post('local_3');
         $data['no_recibo'] = $this->input->post('no_recibo');
+        $data['funeraria_id'] = $this->input->post('funeraria'); 
          
         $data['mes_cobro'] = $this->input->post('mes_cobro');
         $data['saldo_anterior'] = $this->input->post('saldo_anterior');
