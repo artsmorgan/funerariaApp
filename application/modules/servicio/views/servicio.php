@@ -35,6 +35,9 @@ $clientlist = $this->db->get_where('contact')->result_array();
     $script_js_clients = array();
 
     foreach($clients_data as $client) {
+
+        $client['address'] = str_replace('"',"'",$client['address']);
+
         $script_js_clients[] = $client['contact_id'] . ': { id_card: "' .  $client['id_card'] . '", first_name: "' . $client['first_name'] . '", last_name: "' . $client['last_name'] . '", last_name2:"' . $client['last_name2'] . '", phone: "' . $client['phone'] . '", phone2:"' . $client['phone2'] . '", phone3:"' . $client['phone3'] . '", email:"' . $client['email'] . '", category: "' . $client['category'] .'", seller_name: "' . $client['seller_name'] . '", province: "' . $client['province'] . '", canton: "' . $client['canton'] . '", district: "' . $client['district'] .'", address: "' . $client['address'] . '" }';
         $script_js_id_card[] = '{ id:' . $client['contact_id'] . ', label: "' .  $client['id_card'] . ' - ' . $client['first_name'] . ' ' . $client['last_name']  . ' ' .  $client['last_name2']  .'" ,value: "' . $client['id_card'] . '" }';
         $script_js_first_name[] = '{ id:' . $client['contact_id'] . ', label: "' .$client['first_name'] . ' ' . $client['last_name']  . ' ' .  $client['last_name2'] . '" ,value: "' . $client['first_name'] . '" }';
