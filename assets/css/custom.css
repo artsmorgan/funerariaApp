@@ -155,7 +155,7 @@ ul.ui-autocomplete{
 @media print{
 
     @page { 
-        size: 320pt; 
+        size: auto; 
         margin: 0mm 8mm 0mm 8mm;  
         /*margin: 0;  */
     } 
@@ -167,7 +167,7 @@ ul.ui-autocomplete{
     }
 
     .page_print{
-       height: 300pt;
+       /*height: 300pt;*/
     }
 
 
@@ -207,7 +207,7 @@ ul.ui-autocomplete{
 
     .print_container p{
         margin-bottom: 5px;
-        font-size: 10px;
+        font-size: 18pt;
     }
 
     .main-content{
