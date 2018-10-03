@@ -209,6 +209,7 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
                 <!-- <h3>Funeraria La Merced</h3> -->
                 <p>Tel: +506 22217656</p>
                 <p>Cédula Jurídica: 3102049777</p>
+                <p style="font-size: 12pt">Dirección: San José, avenidas 6 y 8, calle 12</p>
                 <p class="print_date"><?= $recibo['fecha_pago'] ?></p>
             </div>
             <p>Número Recibo #: <?php echo $prefix.'000'.$recibo['id'] ?> - 
