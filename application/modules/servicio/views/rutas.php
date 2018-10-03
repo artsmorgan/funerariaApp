@@ -1,20 +1,22 @@
 <?php
 
-if(count($_GET)>0){
-    switch ($_GET['loc']) {
-        case 'cont':
-            $service_type = 'contrato';
-            break;
-        
-        default:
-            # code...
-            break;
-    }
-    $loc1 = $_GET['loc1'];
-    $loc2 = $_GET['loc2'];
-    $loc3 = $_GET['loc3'];
+// $service_type = '';
+// if($_GET['t'] == 'cont'){
+//  // $service_type = 'contrato'; 
+//  $type = 'contrato';
+// }
+// echo $_GET["t"];
+// echo 'service '.$type;
+$service_type = 'contrato';
+$loc = 1;
+
+if(isset($_GET['loc1'])){    
+    $loc = $_GET['loc1'];
 }
 
+// echo $loc;
+// exit();
+// die();
 ?>
 <br><br><br>
 <div class="row">
@@ -24,7 +26,12 @@ if(count($_GET)>0){
     <div class="col-md-2">    
         <select class="selectboxit" style="width: 200px" id="loc1">
                 <?php 
-                    for($i = 1; $i < 29; $i++){
+                    // if(isset($_GET['loc1'])){
+                    //         $loc = 1;
+                            echo '<option value="'.$loc.'">'.$loc.'</option>';
+                            echo '<option value="" disabled>-----</option>';
+                    //     }
+                    for($i = 1; $i < 29; $i++){                        
                         echo '<option value="'.$i.'">'.$i.'</option>';
                     }
                  ?>
@@ -80,6 +87,7 @@ $clientlist = $this->db->get_where('contact')->result_array();
     $script_js_clients = array();
 
     foreach($clients_data as $client) {
+        $client['address'] = str_replace('"',"'",$client['address']);
         $script_js_clients[] = $client['contact_id'] . ': { id_card: "' .  $client['id_card'] . '", first_name: "' . $client['first_name'] . '", last_name: "' . $client['last_name'] . '", last_name2:"' . $client['last_name2'] . '", phone: "' . $client['phone'] . '", phone2:"' . $client['phone2'] . '", phone3:"' . $client['phone3'] . '", email:"' . $client['email'] . '", category: "' . $client['category'] .'", seller_name: "' . $client['seller_name'] . '", province: "' . $client['province'] . '", canton: "' . $client['canton'] . '", district: "' . $client['district'] .'", address: "' . $client['address'] . '" }';
         $script_js_id_card[] = '{ id:' . $client['contact_id'] . ', label: "' .  $client['id_card'] . ' - ' . $client['first_name'] . ' ' . $client['last_name']  . ' ' .  $client['last_name2']  .'" ,value: "' . $client['id_card'] . '" }';
         $script_js_first_name[] = '{ id:' . $client['contact_id'] . ', label: "' .$client['first_name'] . ' ' . $client['last_name']  . ' ' .  $client['last_name2'] . '" ,value: "' . $client['first_name'] . '" }';
@@ -104,7 +112,9 @@ if($service_type=='contrato'){
     CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card
     from bk_contratos c
     inner join bk_contact cn on c.contact_id = cn.contact_id
-    where c.loc_1 = ".$loc1." and c.loc_2 = ".$loc2." and c.loc_3 = ".$loc3.";";
+    where c.loc_1 = ".$loc." order by loc_1, loc_2+0 ASC, loc_3+0 ASC ";
+
+    // echo $sql;
 }
 else if($service_type=='apartado'){
     $sql = "select id,
@@ -405,21 +415,7 @@ if(empty($services)){ ?>
 <!--  DATA TABLE EXPORT CONFIGURATIONS -->                      
 <script type="text/javascript">
 
-    $('#sel_ruta').on('click',function(e){
-                var loc1 =  $("#loc1 option:selected").val();
-                var loc2 =  $("#loc2 option:selected").val();
-                var loc3 =  $("#loc3 option:selected").val();
-                var url  =  window.location.href;
-
-                if(url.indexOf('?')>=0){
-                    url = window.location.href.split('?')[0];
-                }
-
-                var str  =  url+'?loc=cont&loc1='+loc1+'&loc2='+loc2+'&loc3='+loc3;
-                window.location.href = str;
-                // console.log('str',str);
-
-            })
+    
 
 
 
@@ -484,6 +480,20 @@ if(empty($services)){ ?>
         var datatable = $("#table_export").dataTable({
             "sPaginationType"   : "bootstrap"
         });
+
+        $('#sel_ruta').on('click',function(e){
+                var loc1 =  $("#loc1 option:selected").val();
+                var url  =  window.location.href;
+
+                if(url.indexOf('?')>=0){
+                    url = window.location.href.split('?')[0];
+                }
+
+                var str  =  url+'?loc=cont&loc1='+loc1;
+                window.location.href = str;
+                // console.log('str',str);
+
+            })
 
         $(".dataTables_wrapper select").select2({
             minimumResultsForSearch: -1
