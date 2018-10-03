@@ -207,9 +207,9 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
             <div class="print_header">
                 <div class="logo"><img src="/assets/images/lamercedlogo.jpeg"></div>
                 <!-- <h3>Funeraria La Merced</h3> -->
-                <p style="font-size: 12pt">Tel: +506 22217656</p>
-                <p style="font-size: 12pt">Cédula Jurídica: 3102049777</p>
-                <p style="font-size: 12pt">Dirección: San José, avenidas 6 y 8, calle 12</p>
+                <p>Tel: +506 22217656</p>
+                <p>Cédula Jurídica: 3102049777</p>
+                <p>Dirección: San José, avenidas 6 y 8, calle 12</p>
                 <p class="print_date"><?= $recibo['fecha_pago'] ?></p>
             </div>
             <p>Número Recibo #: <?php echo $prefix.'000'.$recibo['id'] ?> - 
@@ -235,10 +235,10 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
             <p>Concepto: <?= $recibo['descripcion']; ?></p>
             <p>Tipo de pago: <?= $recibo['metodo_pago'] ?></p>
             <p>Número de transferencia o cheque: <?= $recibo['detalles'] ?></p>
-            <p>Mes al cobro: <?=  $recibo['mes_cobro'] ; ?> <?=  $recibo['anno_cobro'] ; ?></p>
-            <p>Saldo anterior: ¢<?= number_format($recibo['saldo_anterior'], 2, '.', ',') ?></p>
-            <p><?= $tipo_pago ?>: ¢<?= number_format($recibo['monto'], 2, '.', ',') ?></p>
-            <p>Saldo actual: ¢<?= number_format($acc['saldo'], 2, '.', ',') ?></p>
+            <p style="font-size: 12pt">Mes al cobro: <?=  $recibo['mes_cobro'] ; ?> <?=  $recibo['anno_cobro'] ; ?></p>
+            <p style="font-size: 12pt">Saldo anterior: ¢<?= number_format($recibo['saldo_anterior'], 2, '.', ',') ?></p>
+            <p style="font-size: 12pt"><?= $tipo_pago ?>: ¢<?= number_format($recibo['monto'], 2, '.', ',') ?></p>
+            <p style="font-size: 12pt">Saldo actual: ¢<?= number_format($acc['saldo'], 2, '.', ',') ?></p>
             
         </div>
     </div>
