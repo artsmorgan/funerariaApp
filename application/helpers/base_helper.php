@@ -604,21 +604,33 @@ if ( ! function_exists('get_plugins'))
 
 if ( ! function_exists('print_months'))
 {
-    function print_months($isCombo = true,  $input_name,$option, $selected=null)
+    function print_months($isCombo = true,  $input_name,$option, $selected=null, $moveForward=false)
     {
         $months = array(
             'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre'
         );
+    
 
         if($isCombo){
             $month_list = '<select name="'.$input_name.'" '.$option.' >';
             foreach ($months as $value) {
                 $isSelected = '';
                 if(!is_null($selected)){
-                    if(strtolower($value) == strtolower($selected)){
-                        $isSelected = 'selected';
+
+                    if($moveForward){
+                        //get the next month based on selected
+                        $getArrPos = array_search($selected, $months);
+                        $nextMonth = $months[$getArrPos+1];
+                        if(strtolower($value) == strtolower($nextMonth)){
+                            $isSelected = 'selected';
+                        }
+                    }else{
+                        if(strtolower($value) == strtolower($selected)){
+                            $isSelected = 'selected';
+                        }
                     }
-                }
+                    
+                }                
                 $month_list .= '<option value="'.$value.'" '.$isSelected.'>'.$value.'</option>';
             }
             $month_list .= '</select >';

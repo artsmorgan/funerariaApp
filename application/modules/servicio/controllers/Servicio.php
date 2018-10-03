@@ -113,10 +113,12 @@ class Servicio extends CI_Controller {
                 $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
 
                 if( $id > 0  ){
-                    $this->session->set_flashdata('flash_print_popup', 'recibo_dinero_contrato_readonly/' . $id);
+                    $site_url = 'servicio/servicios/contrato/?flash_print_popup='.$id;
+                }else{
+                    $site_url = 'servicio/servicios/contrato';    
                 }
                 
-                redirect(site_url('servicio/servicios/contrato'));
+                redirect(site_url($site_url));
             break;
 
              case 'apartadoPay':

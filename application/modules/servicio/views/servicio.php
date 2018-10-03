@@ -378,7 +378,9 @@ if(empty($services)){ ?>
     </div>
     </div>
 </div>
-
+<pre>
+<?php print_r($this->session); ?>
+</pre>
 <!--  DATA TABLE EXPORT CONFIGURATIONS -->                      
 <script type="text/javascript">
     var search_json = <?php echo $script_js_search; ?>;
@@ -837,14 +839,17 @@ if(empty($services)){ ?>
 
                 $('[name=client_id]').val(clientId);
             }
-        }
+        }   
 
-        window.print_popup = '<?= $this->session->flashdata('flash_print_popup') ?>';
 
-        if(print_popup){
+
+        window.print_popup = '<?= $_GET['flash_print_popup'] ?>';
+        // console.log('print_popup',print_popup)
+        if(window.print_popup){
+            $(window).off('beforeunload');
             //bug fix modal not showing up
             setTimeout( function (){
-                showAjaxModal( site_url + 'admin/modal/popup/impresion/' + print_popup);    
+                showAjaxModal( site_url + 'admin/modal/popup/impresion/recibo_dinero_contrato_readonly/' + print_popup);    
             }, 50);
         }
     });

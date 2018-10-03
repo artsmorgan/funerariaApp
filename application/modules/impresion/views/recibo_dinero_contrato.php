@@ -24,6 +24,7 @@ $vendedores = $this->db->query( $sql)->result_array();
 
 // $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
 ?>
+holi
 <?php if(  !empty($row) ) : ?>
     <?php echo form_open(site_url('servicio/servicios/contractPay'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
     <div class="row">
@@ -134,7 +135,15 @@ $vendedores = $this->db->query( $sql)->result_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Mes al cobro: </label>
                                 <div class="col-sm-12">
-                                    <?php echo print_months(true,'mes_cobro','class="selectboxit"',$row['mes_cobro']);?>
+                                    <?php echo print_months(true,'mes_cobro','class="selectboxit"',$row['mes_cobro'],true);?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label col-sm-12">Año al cobro: </label>
+                                <div class="col-sm-12">
+                                   <input type="text" name="anno_cobro" value="2018" class="form-control " />
                                 </div>
                             </div>
                         </div>
@@ -146,7 +155,9 @@ $vendedores = $this->db->query( $sql)->result_array();
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <br>
                             <div class="form-group">
                                 <div class="col-sm-12 txt-right">
@@ -155,9 +166,11 @@ $vendedores = $this->db->query( $sql)->result_array();
                                     <button class="btn btn-info" type="submit">
                                         Aplicar e Imprimir
                                     </button>
+                                    
                                 </div>
                             </div>
                         </div>
+                    </div>    
 
                         <div class="col-md-12">
                             <div class="msgs_container"></div>

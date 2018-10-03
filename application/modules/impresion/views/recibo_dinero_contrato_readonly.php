@@ -47,6 +47,7 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
 
 // $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
 ?>
+
 <?php if(  !empty($row) ) : ?>
     <?php echo form_open(site_url('servicio/servicios/contractPay'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
     <div class="row">
@@ -171,14 +172,10 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <br>
                             <div class="form-group">
-                                <div class="col-sm-12 txt-right">
-                                    <input type="hidden" id="contract_id" value="<?php echo $row['id']; ?>">
-<!--                                     <button class="btn btn-info" id="print-button" type="submit"> -->
-                                    <button class="btn btn-info">
-                                        Reimprimir
-                                    </button>
+                                <label for="field-1" class="control-label col-sm-12">Fecha: </label>
+                                <div class="col-sm-12">
+                                    <input type="text" data-info="saldo_actual" disabled class="form-control"  value="<?php echo date("Y-m-d H:i:s"); ?>" />
                                 </div>
                             </div>
                         </div>
@@ -187,6 +184,17 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
                             <div class="msgs_container"></div>
                         </div>
                     </div>
+
+                    <div class="row" style="background: #fff !important">
+                        <div class="col-sm-12 txt-right">
+                                    <input type="hidden" id="contract_id" value="<?php echo $row['id']; ?>">
+<!--                                     <button class="btn btn-info" id="print-button" type="submit"> -->
+                                    <button class="btn btn-info">
+                                        Imprimir
+                                    </button>
+                                </div>
+                    </div>    
+
                 </div>
             </div>
         </div>
@@ -195,7 +203,7 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
     <div class="print_container">
         <div class="page_print">
             <div class="print_header">
-                <h3>Funeraria Shalom</h3>
+                <h3>Funeraria La Merced</h3>
                 <p>Tel: +506 22354721</p>
                 <p class="print_date"><?= $recibo['fecha_pago'] ?></p>
             </div>
@@ -205,16 +213,27 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
                     echo "Contrato # ". $row['no_contrato'];
                 }
                 ?></p>
+
+            <?php
+                $tipo_pago = 'Abono';
+                if($recibo['tipo']=='J'){
+                    $tipo_pago = 'Ajuste';
+                }else if($recibo['tipo']=='D'){
+                    $tipo_pago = 'Descuento';
+                }
+            ?>    
+            <p>Fecha de Pago: <?= $recibo['fecha_pago'] ?></p>
             <p>Nombre: <?= $row['first_name'] . ' '. $row['last_name']. ' '. $row['last_name2'] ?></p>
-            <p>Monto total: <?= $acc['monto_total'] ?></p>
+            <p>Monto total:  ¢<?= $acc['monto_total'] ?></p>
             <p>Concepto: <?= $recibo['descripcion']; ?></p>
             <p>Tipo de pago: <?= $recibo['metodo_pago'] ?></p>
             <p>Número de transferencia o cheque: <?= $recibo['detalles'] ?></p>
             <p>Mes al cobro: <?=  $acc['mes_cobro'] ; ?></p>
+            <p>Año al cobro: <?=  $acc['mes_cobro'] ; ?></p>
             <p>Interes: TBP</p>
-            <p>Saldo anterior: <?= $recibo['saldo_anterior'] ?></p>
-            <p>Saldo actual: <?= $acc['saldo'] ?></p>
-            <h2>Abono: <?= $recibo['monto'] ?></h2>
+            <p>Saldo anterior: ¢<?= $recibo['saldo_anterior'] ?></p>
+            <p>Saldo actual: ¢<?= $acc['saldo'] ?></p>
+            <h2><?= $tipo_pago ?>: ¢<?= $recibo['monto'] ?></h2>
         </div>
     </div>
 <?php endif; ?>

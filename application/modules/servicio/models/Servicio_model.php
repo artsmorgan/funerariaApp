@@ -151,7 +151,7 @@ class Servicio_model extends CI_Model
     }
 
 
-    private function newTransaction($userID, $contractID, $tipo_servicio, $monto, $metodo_pago, $descripcion, $detalles, $saldo_anterior, $status = 'A' ){
+    private function newTransaction($userID, $contractID, $tipo_servicio, $monto, $metodo_pago, $descripcion, $detalles, $saldo_anterior, $status = 'A', $mes_cobro=null,$anno_cobro=null ){
         $data['servicio_id'] = $contractID;
         $data['servicio_tipo'] = $tipo_servicio;
         $data['monto'] = $monto;
@@ -161,6 +161,13 @@ class Servicio_model extends CI_Model
         $data['realizado_por'] = $userID;    
         $data['detalles'] = $detalles;
         $data['saldo_anterior'] = $saldo_anterior;
+        
+        if(isset($mes_cobro)){
+            $data['mes_cobro'] = $mes_cobro;    
+        }
+        if(isset($anno_cobro)){
+            $data['anno_cobro'] = $anno_cobro;    
+        }
 
         $this->db->insert('bk_transaccion', $data);
         return $this->db->insert_id();
@@ -286,6 +293,7 @@ class Servicio_model extends CI_Model
         $detalles = $this->input->post('no_transferencia');
         $concepto = $this->input->post('concepto');
         $mes_cobro = $this->input->post('mes_cobro');
+        $anno_cobro = $this->input->post('anno_cobro');
 
         $acc = $this->getAccountByContractID($contractID);
         // echo 'contractID '. $contractID;
@@ -294,7 +302,9 @@ class Servicio_model extends CI_Model
         // echo '<pre>';
         // die();
 
-        $transactionID = $this->newTransaction($_SESSION['user_id'], $acc['id'], 'contrato', $monto,  $forma_pago, $concepto, $detalles, $acc['saldo_anterior']);
+        // ($userID, $contractID, $tipo_servicio, $monto, $metodo_pago, $descripcion, $detalles, $saldo_anterior, $status = 'A', $mes_cobro=null,$anno_cobro=null ){
+
+        $transactionID = $this->newTransaction($_SESSION['user_id'], $acc['id'], 'contrato', $monto,  $forma_pago, $concepto, $detalles, $acc['saldo_anterior'],'A',$mes_cobro,$anno_cobro);
             // print_r($transactionID);die();
             if($transactionID>0){
                 $this->applyContractPay($acc['id'], $monto, $mes_cobro);
