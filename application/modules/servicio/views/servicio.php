@@ -378,9 +378,7 @@ if(empty($services)){ ?>
     </div>
     </div>
 </div>
-<pre>
-<?php print_r($this->session); ?>
-</pre>
+
 <!--  DATA TABLE EXPORT CONFIGURATIONS -->                      
 <script type="text/javascript">
     var search_json = <?php echo $script_js_search; ?>;

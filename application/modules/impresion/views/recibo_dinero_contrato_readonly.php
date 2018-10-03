@@ -48,6 +48,7 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
 // $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
 ?>
 
+
 <?php if(  !empty($row) ) : ?>
     <?php echo form_open(site_url('servicio/servicios/contractPay'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
     <div class="row">
@@ -200,6 +201,7 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
         </div>
     </div>
     <?php echo form_close(); ?>
+
     <div class="print_container">
         <div class="page_print">
             <div class="print_header">
@@ -216,24 +218,24 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
 
             <?php
                 $tipo_pago = 'Abono';
-                if($recibo['tipo']=='J'){
+                if($recibo['status']=='J'){
                     $tipo_pago = 'Ajuste';
-                }else if($recibo['tipo']=='D'){
+                }else if($recibo['status']=='D'){
                     $tipo_pago = 'Descuento';
                 }
             ?>    
             <p>Fecha de Pago: <?= $recibo['fecha_pago'] ?></p>
             <p>Nombre: <?= $row['first_name'] . ' '. $row['last_name']. ' '. $row['last_name2'] ?></p>
-            <p>Monto total:  ¢<?= $acc['monto_total'] ?></p>
+            <p>Monto total:  ¢<?= number_format($acc['monto_total'], 2, '.', ',') ?></p>
             <p>Concepto: <?= $recibo['descripcion']; ?></p>
             <p>Tipo de pago: <?= $recibo['metodo_pago'] ?></p>
             <p>Número de transferencia o cheque: <?= $recibo['detalles'] ?></p>
-            <p>Mes al cobro: <?=  $acc['mes_cobro'] ; ?></p>
-            <p>Año al cobro: <?=  $acc['mes_cobro'] ; ?></p>
+            <p>Mes al cobro: <?=  $recibo['mes_cobro'] ; ?></p>
+            <p>Año al cobro: <?=  $recibo['anno_cobro'] ; ?></p>
             <p>Interes: TBP</p>
-            <p>Saldo anterior: ¢<?= $recibo['saldo_anterior'] ?></p>
-            <p>Saldo actual: ¢<?= $acc['saldo'] ?></p>
-            <h2><?= $tipo_pago ?>: ¢<?= $recibo['monto'] ?></h2>
+            <p>Saldo anterior: ¢<?= number_format($recibo['saldo_anterior'], 2, '.', ',') ?></p>
+            <p>Saldo actual: ¢<?= number_format($acc['saldo'], 2, '.', ',') ?></p>
+            <h2><?= $tipo_pago ?>: ¢<?= number_format($recibo['monto'], 2, '.', ',') ?></h2>
         </div>
     </div>
 <?php endif; ?>

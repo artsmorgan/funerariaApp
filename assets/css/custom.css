@@ -155,19 +155,27 @@ ul.ui-autocomplete{
 @media print{
 
     @page { 
-        size: auto; 
-        margin: 12mm 8mm 12mm 8mm;  
+        size: 320pt; 
+        margin: 0mm 8mm 0mm 8mm;  
+        /*margin: 0;  */
     } 
 
     html,body{
-        height: 100%;
+        height: auto;
         margin: 0px;
         padding: 0;
     }
 
     .page_print{
-        page-break-before: always;
+       height: 300pt;
     }
+
+
+
+    .page_print:last-child {
+         page-break-after: auto;
+    }
+
 
     .modal{
         display: none!important;
