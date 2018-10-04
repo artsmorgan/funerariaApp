@@ -205,7 +205,7 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
     <div class="print_container">
         <div class="page_print">
             <div class="print_header">
-                <div class="logo"><img src="/assets/images/lamercedlogo.jpeg"></div>
+                <p><img src="/assets/images/lamercedlogo.jpeg"></p>
                 <br>
                 <!-- <h3>Funeraria La Merced</h3> -->
                 <p>Tel: +506 22217656</p>
