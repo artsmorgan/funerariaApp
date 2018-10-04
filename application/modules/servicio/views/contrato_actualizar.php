@@ -262,7 +262,7 @@ $vendedores = $this->db->query( $sql)->result_array();
                                                 value="<?php echo htmlentities( $row['loc_1'] ); ?>"><?php echo htmlentities( $row['loc_1'] ); ?>
                                         </option>
                                         <?php 
-                                            for($i = 1; $i < 29; $i++){
+                                            for($i = 1; $i < 100; $i++){
                                                 echo '<option value="'.$i.'">'.$i.'</option>';
                                             }
                                          ?>
@@ -286,7 +286,7 @@ $vendedores = $this->db->query( $sql)->result_array();
                                                 value="<?php echo htmlentities( $row['loc_3'] ); ?>"><?php echo htmlentities( $row['loc_3'] ); ?>
                                         </option>
                                          <?php 
-                                            for($i = 1; $i < 29; $i++){
+                                            for($i = 1; $i < 100; $i++){
                                                 echo '<option value="'.$i.'">'.$i.'</option>';
                                             }
                                          ?>

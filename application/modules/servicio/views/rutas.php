@@ -31,7 +31,7 @@ if(isset($_GET['loc1'])){
                             echo '<option value="'.$loc.'">'.$loc.'</option>';
                             echo '<option value="" disabled>-----</option>';
                     //     }
-                    for($i = 1; $i < 29; $i++){                        
+                    for($i = 1; $i < 100; $i++){                        
                         echo '<option value="'.$i.'">'.$i.'</option>';
                     }
                  ?>
@@ -215,9 +215,9 @@ if(empty($services)){ ?>
                         <a href="javascript:;" class="btn btn-primary"  onclick="showAjaxModal('<?php echo $view_pays_url ?>')">
                           Ver Transacciones
                         </a>                    
-                        <!-- <a href="javascript:;" class="btn btn-danger"  onclick="showAjaxModal('<?php echo $service_url ?>')">
+                        <a href="javascript:;" class="btn btn-danger"  onclick="showAjaxModal('<?php echo $service_url ?>')">
                             Realizar Pago
-                        </a> -->
+                        </a> 
                         <?php } ?>
                     </td>                    
                     <td>
@@ -250,20 +250,20 @@ if(empty($services)){ ?>
                              
 
                                  <?php if($service_type != 'funeral'){ ?>
-                                <!-- <li>
+                                 <li>
                                     <a href="javascript:;" onclick="showAjaxModal('<?php echo $adjustment_url ?>')">
                                         <i class="fa fa-money"></i> 
                                        Ajuste de Precio
                                     </a>
-                                </li> -->
+                                </li>
                                
-                                <!-- <li class="divider"></li>
+                                <li class="divider"></li>
                                  <li>
                                     <a href="javascript:;" onclick="showAjaxModal('<?php echo $discount_url ?>')">
                                         <i class="fa fa-minus-square"></i> 
                                         Aplicar Descuento
                                     </a>
-                                </li>  -->                               
+                                </li>
                                 <li class="divider"></li>
                                 <?php } ?>
                                  <li>

@@ -92,8 +92,8 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Monto del Descuento: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="abono" class="form-control format-currency"  value="10000" />
-                                    <input type="hidden"   name="abono" />
+                                    <input type="text" data-info="abono" class="form-control format-currency"  value="0" />
+                                    <input type="hidden"  name="abono" />
                                 </div>
                             </div>
                         </div>

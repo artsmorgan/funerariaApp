@@ -98,8 +98,8 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Monto del Ajuste: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="abono" class="form-control format-currency"  value="10000" />
-                                    <input type="hidden"   name="abono" value="10000"/>
+                                    <input type="text" data-info="abono" class="form-control format-currency"  value="0" />
+                                    <input type="hidden"   name="abono" value="0"/>
                                 </div>
                             </div>
                         </div>

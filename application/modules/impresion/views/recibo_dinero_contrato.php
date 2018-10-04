@@ -24,7 +24,6 @@ $vendedores = $this->db->query( $sql)->result_array();
 
 // $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
 ?>
-holi
 <?php if(  !empty($row) ) : ?>
     <?php echo form_open(site_url('servicio/servicios/contractPay'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
     <div class="row">

@@ -1,11 +1,13 @@
 <script type="text/javascript">
     function showAjaxModal(url)
     {
+        // console.log('here')
         // SHOWING AJAX PRELOADER IMAGE
         jQuery('#modal_ajax .modal-body').html('<div style="text-align:center;margin-top:200px;"><img src="<?php echo base_url();?>assets/images/preloader.gif" /></div>');
 
         // LOADING THE AJAX MODAL
-        jQuery('#modal_ajax').modal('show', {backdrop: 'true'});
+        jQuery('#modal_ajax').modal({backdrop: true, keyboard: false, show: true})
+            .data('bs.modal').options.backdrop = 'static';;
 
         // SHOW AJAX RESPONSE ON REQUEST SUCCESS
         $.ajax({
@@ -19,7 +21,7 @@
 </script>
 
 <!-- (Ajax Modal)-->
-<div class="modal fade" id="modal_ajax">
+<div class="modal fade" id="modal_ajax" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
 

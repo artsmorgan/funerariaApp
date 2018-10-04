@@ -253,7 +253,7 @@
                                 <div class="col-md-4">
                                     <select   class="selectboxit " name="local_1" id="local_1">
                                         <?php 
-                                            for($i = 1; $i < 29; $i++){
+                                            for($i = 1; $i < 100; $i++){
                                                 echo '<option value="'.$i.'">'.$i.'</option>';
                                             }
                                          ?>
@@ -271,7 +271,7 @@
                                 <div class="col-md-4">
                                     <select   class="selectboxit " name="local_3" id="local_3">
                                          <?php 
-                                            for($i = 1; $i < 29; $i++){
+                                            for($i = 1; $i < 100; $i++){
                                                 echo '<option value="'.$i.'">'.$i.'</option>';
                                             }
                                          ?>
