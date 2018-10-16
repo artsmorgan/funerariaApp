@@ -1,25 +1,27 @@
 <?php
-	$sql = "select * from bk_transaccion where servicio_tipo = 'funecredito' and servicio_id = ? order by fecha_pago asc;";
-	$services = $this->db->query( $sql, array( $param3  ) )->result_array();
 
+	
+	
     $sql_contrato = "select * from bk_funeral where id_funeral = ?";
-    $sql_account = "select * from bk_contratos_account where contract_number = ?";
+    $sql_account = "select * from bk_funecredito_account where funeral_id = ?";
 
 	// echo $param3;
 	$row = $this->db->query( $sql_contrato, array( $param3) )->row_array();
-
 	$acc = $this->db->query( $sql_account, array($param3 ) )->row_array();
 
+
+	$sql = "select * from bk_transaccion where servicio_tipo = 'funecredito' and servicio_id = ? order by fecha_pago asc;";
+	$services = $this->db->query( $sql, array( $acc['id']  ) )->result_array();
 ?>
 <div class="row">
 	<div class="col-md-4">
-		<strong>No# Contrato: </strong> <?php echo $row['no_contrato']; ?>
+		<strong>Fecha de Apertura: </strong> <?php echo $acc['fecha_aplicacion']; ?>
 	</div>
 	<div class="col-md-4">
-		<strong>Monto Total: </strong> ₡ <?php echo  number_format(htmlentities( $row['monto_total']), 2, '.', ','); ?>
+		<strong>Monto Total: </strong> ₡ <?php echo  number_format(htmlentities( $acc['monto_principal']), 2, '.', ','); ?>
 	</div>
 	<div class="col-md-4">
-		<strong>Saldo Pendiente: </strong> ₡ <?php echo  number_format(htmlentities( $acc['saldo']), 2, '.', ','); ?>
+		<strong>Interes Mensual: </strong> <?php echo  htmlentities( $acc['interes_mensual']); ?>%
 	</div>
 </div>
 <br>

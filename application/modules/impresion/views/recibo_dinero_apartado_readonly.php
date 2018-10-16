@@ -120,7 +120,7 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Saldo anterior: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="saldo_anterior" class="form-control format-currency" disabled  value="<?php echo htmlentities( $acc['saldo_anterior'] ); ?>" />
+                                    <input type="text" data-info="saldo_anterior" class="form-control format-currency" disabled  value="<?php echo htmlentities( $recibo['saldo_anterior'] ); ?>" />
                                 </div>
                             </div>
                         </div>
@@ -128,8 +128,8 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Abono: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="abono" class="form-control format-currency" disabled value="<?php echo htmlentities( $acc['monto_cuota'] ); ?>" />
-                                    <input type="hidden"  value="<?php echo  $acc['monto_cuota'] ; ?>" name="abono" />
+                                    <input type="text" data-info="abono" class="form-control format-currency" disabled value="<?php echo htmlentities( $recibo['monto'] ); ?>" />
+                                    <input type="hidden"  value="<?php echo  $recibo['monto'] ; ?>" name="abono" />
                                 </div>
                             </div>
                         </div>
@@ -146,9 +146,10 @@ $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
                     <div class="row" style="background: #fff !important">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="field-1" class="control-label col-sm-12">Mes al cobro: </label>
+                                <label for="field-1" class="control-label col-sm-12">Mes al cobro!: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" name="mes_cobro" class="form-control"  disabled value="<?php echo  $acc['mes_cobro'] ; ?>"/>
+                                    <input type="text" name="mes_cobro" class="form-control"  disabled 
+                                        value="<?php echo  $recibo['mes_cobro'] ; ?>"/>
                                 </div>
                             </div>
                         </div>

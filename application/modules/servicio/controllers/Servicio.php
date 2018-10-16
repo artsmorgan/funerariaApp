@@ -28,7 +28,7 @@ class Servicio extends CI_Controller {
     }
 
     function servicios( $param1 = '', $param2 = '', $param3 = '' ){
-        if( $param1 == NULL || !preg_match( "/^(?:funecredito|apartado|contrato|create|funeral|update|deleteContrato|deleteApartado|createContract|updateContract|createApartado|updateApartado|contractPay|apartadoPay|newAmountAdjustment|newAmountDiscount|createFuneral|updateFuneral|rutas|reportes|reporteVentas)$/i", $param1 ) ){
+        if( $param1 == NULL || !preg_match( "/^(?:funecredito|apartado|contrato|create|funeral|update|deleteContrato|deleteApartado|createContract|updateContract|createApartado|updateApartado|contractPay|apartadoPay|funecreditoPay|newAmountAdjustment|newAmountDiscount|createFuneral|updateFuneral|rutas|reportes|reporteVentas)$/i", $param1 ) ){
             redirect(site_url('admin'));
         }
 
@@ -121,17 +121,38 @@ class Servicio extends CI_Controller {
                 redirect(site_url($site_url));
             break;
 
-             case 'apartadoPay':
+            case 'apartadoPay':
                 $service_type = $this->input->post('type');
                 // echo $service_type;
                 $id = $this->servicio_model->apartadoPay();
                 // print_r($id);
                 // die();
                 $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
+                
                 if( $id > 0  ){
-                    $this->session->set_flashdata('flash_print_popup', 'recibo_dinero_contrato_readonly/' . $id);
+                    $site_url = 'servicio/servicios/apartado/?flash_print_popup='.$id;
+                }else{
+                    $site_url = 'servicio/servicios/apartado';    
                 }
-                redirect(site_url('servicio/servicios/apartado'));
+                
+                redirect(site_url($site_url));
+            break;
+
+            case 'funecreditoPay':
+                $service_type = $this->input->post('type');
+                // echo $service_type;
+                $id = $this->servicio_model->funecreditoPay();
+                // print_r($id);
+                // die();
+                $this->session->set_flashdata('flash_message', lang_key('data_created_successfuly') );
+                
+                if( $id > 0  ){
+                    $site_url = 'servicio/servicios/funecredito/?flash_print_popup='.$id;
+                }else{
+                    $site_url = 'servicio/servicios/funecredito';    
+                }
+                
+                redirect(site_url($site_url));
             break;
 
             case 'updateContract':

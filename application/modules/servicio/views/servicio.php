@@ -57,21 +57,21 @@ if($service_type=='contrato'){
                 c.no_contrato as contract_id, c.id as service_id, c.mes_cobro, c.vendedor, c.ruta,
                 CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card
             from bk_contratos c
-            inner join bk_contact cn on c.contact_id = cn.contact_id";
+            inner join bk_contact cn on c.contact_id = cn.contact_id  order by c.fecha_inclusion DESC";
 }
 else if($service_type=='apartado'){
     $sql = "select id,
     c.id as contract_id, c.id as service_id, 
     CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card
     from bk_apartados c
-    inner join bk_contact cn on c.contact_id = cn.contact_id";
+    inner join bk_contact cn on c.contact_id = cn.contact_id order by c.fecha_creacion ASC";
 }
 else if($service_type=='funeral'){
     $sql = "select c.id_funeral as id, c.id_funeral as contract_id, 
     CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card, CONCAT(c.fallecido_nombre, ' ', c.fallecido_apellido, ' ', c.fallecido_apellido2) AS fallecido
     from bk_funeral c
     inner join bk_contact cn on c.contact_id = cn.contact_id
-    where c.funeral_tipo = 1 ";
+    where c.funeral_tipo = 1 order by createdAt ASC";
 }
 
 else if($service_type=='funecredito'){
@@ -79,10 +79,10 @@ else if($service_type=='funecredito'){
     CONCAT(cn.first_name, ' ', cn.last_name, ' ', cn.last_name2) AS name , cn.phone, cn.id_card as client_id_card, CONCAT(c.fallecido_nombre, ' ', c.fallecido_apellido, ' ', c.fallecido_apellido2) AS fallecido
     from bk_funeral c
     inner join bk_contact cn on c.contact_id = cn.contact_id
-    where c.funeral_tipo = 2";
+    where c.funeral_tipo = 2 order by createdAt ASC";
 }
 
-$sql .= ' order by c.fecha_inclusion DESC';
+// echo $sql;
 
 $services = $this->db->query( $sql, array( $service_type ) )->result_array();
 
@@ -164,8 +164,8 @@ if(empty($services)){ ?>
                     </td>                    
                     <td>
                         <?php 
-                            $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_funeral/' . $row['id'].'/funecredito' );
-                            $view_pays_url = site_url('admin/modal/popup/servicio/list_funeral_payments/' . $row['id'].'/funecredito' );
+                            $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_funeral/' . $row['contract_id'].'/funecredito' );
+                            $view_pays_url = site_url('admin/modal/popup/servicio/list_funeral_payments/' . $row['contract_id'].'/funecredito' );
                             // $discount_url = site_url('admin/modal/popup/impresion/aplicar_descuento/' . $row['id'] );
                             // $adjustment_url = site_url('admin/modal/popup/impresion/aplicar_ajuste/' . $row['id'] );
                             // echo $view_pays_url;

@@ -100,8 +100,8 @@ class Servicio_model extends CI_Model
         $data['couta_con_interes'] = $couta_con_interes;
         $data['status'] = "A";
         $data['fecha_aplicacion'] = $fecha_aplicacion;
-        $data['mes_cobro'] = $mes_cobro;
-        $data['saldo_anterior'] = $saldo_anterior;
+        $data['mes_cobro'] = $this->getCurrentMonth();
+        $data['saldo_anterior'] = $saldo;
         $data['created_by'] = $userID;
         
         
@@ -229,6 +229,11 @@ class Servicio_model extends CI_Model
         return $this->db->query( $sql_account, array( $contractID ) )->row_array();
     }
 
+    private function getAccountByFunecreditoID($contractID){
+        $sql_account = "select * from bk_funecredito_account where funeral_id = ?";
+        return $this->db->query( $sql_account, array( $contractID ) )->row_array();
+    }
+
     private function getApartadoAccountByContractID($contractID){
         $sql_account = "select * from bk_apartados_account where contract_number = ?";
         return $this->db->query( $sql_account, array( $contractID ) )->row_array();
@@ -259,6 +264,32 @@ class Servicio_model extends CI_Model
         $data_contrato['mes_cobro'] = $mes_cobro;
         $this->db->where('id', $contractID);
         $this->db->update('contratos', $data_contrato);
+    }
+
+    private function applyFunecreditoPay($contractID, $monto, $mes_cobro){
+        
+        $acc = $this->getAccountByFunecreditoID($contractID);
+
+        
+        $saldo = $acc['saldo'];
+        $saldo_anterior = $acc['saldo_anterior'];
+        $monto_abonado = $acc['monto_abonado'];
+
+        $new_saldo = $saldo - $monto;
+        $new_monto_abonado = $monto_abonado + $monto;
+        $new_saldo_anterior = $saldo_anterior - $monto;
+
+
+        $data['saldo'] = $new_saldo;
+        $data['monto_abonado'] = $new_monto_abonado;
+        $data['saldo_anterior'] = $new_saldo_anterior;
+        $data['mes_cobro'] = $mes_cobro;
+        $this->db->where('funeral_id', $contractID);
+        $this->db->update('funecredito_account', $data);
+
+        // $data_contrato['mes_cobro'] = $mes_cobro;
+        // $this->db->where('id', $contractID);
+        // $this->db->update('contratos', $data_contrato);
     }
 
 
@@ -313,6 +344,34 @@ class Servicio_model extends CI_Model
         return $transactionID;
     }
 
+    public function funecreditoPay(){
+        
+        $contractID = $this->input->post('contractID');
+        $monto = $this->input->post('abono');
+        $forma_pago = $this->input->post('tipo_pago');
+        $detalles = $this->input->post('no_transferencia');
+        $concepto = $this->input->post('concepto');
+        $mes_cobro = $this->input->post('mes_cobro');
+        $anno_cobro = $this->input->post('anno_cobro');
+
+        $acc = $this->getAccountByFunecreditoID($contractID);
+        // echo 'contractID '. $contractID;
+        // echo '<pre>';
+        // print_r($acc);
+        // echo '<pre>';
+        // die();
+
+        // ($userID, $contractID, $tipo_servicio, $monto, $metodo_pago, $descripcion, $detalles, $saldo_anterior, $status = 'A', $mes_cobro=null,$anno_cobro=null ){
+
+        $transactionID = $this->newTransaction($_SESSION['user_id'], $acc['id'], 'funecredito', $monto,  $forma_pago, $concepto, $detalles, $acc['saldo_anterior'],'A',$mes_cobro,$anno_cobro);
+            // print_r($transactionID);die();
+            if($transactionID>0){
+                $this->applyFunecreditoPay($acc['id'], $monto, $mes_cobro);
+            }
+
+        return $transactionID;
+    }
+
 
     public function apartadoPay(){
         $contractID = $this->input->post('contractID');
@@ -321,6 +380,7 @@ class Servicio_model extends CI_Model
         $detalles = $this->input->post('no_transferencia');
         $concepto = $this->input->post('concepto');
         $mes_cobro = $this->input->post('mes_cobro');
+        $anno_cobro = $this->input->post('anno_cobro');
 
         $acc = $this->getApartadoAccountByContractID($contractID);
         // echo 'contractID '. $contractID;
@@ -329,7 +389,8 @@ class Servicio_model extends CI_Model
         // echo '<pre>';
         // die();
 
-        $transactionID = $this->newTransaction($_SESSION['user_id'], $acc['id'], 'apartado', $monto,  $forma_pago, $concepto, $detalles,$acc['saldo_anterior']);
+        $transactionID = $this->newTransaction($_SESSION['user_id'], $acc['id'], 'apartado', $monto,  
+            $forma_pago, $concepto, $detalles,$acc['saldo_anterior'],'A',$mes_cobro,$anno_cobro);
             // print_r($transactionID);die();
             if($transactionID>0){
                 $this->applyApartadosPay($acc['id'], $monto, $mes_cobro);

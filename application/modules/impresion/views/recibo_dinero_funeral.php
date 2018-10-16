@@ -4,18 +4,22 @@ echo 'param1 '.  $param1;
 echo 'param2 '.  $param2;
 echo 'param3 '.  $param3;
 
-$sql = "select c.*, cn.* from bk_contratos c inner join bk_contact cn on c.contact_id = cn.contact_id where id = ?";
-$sql_account = "select * from bk_contratos_account where contract_number = ?";
+$sql = "select f.*, cn.* from bk_funeral f inner join bk_contact cn on f.contact_id = cn.contact_id where id_funeral = ?";
+$sql_account = "select * from bk_funecredito_account where funeral_id = ?";
 // echo $param3;
+
 $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
+// $coutaCalc = explode('.', $acc['couta_con_interes']);
+// print_r($coutaCalc);
+// $acc['couta_redondeada'] = $coutaCalc[0];
 // $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 // echo '<pre>';
 // print_r($row);
 // echo '</pre>';
 
 // echo '<pre>';
-// print_r($acc);
+// var_dump($acc);
 // echo '</pre>';
 
 $sql = "select * from bk_vendedores";
@@ -25,7 +29,7 @@ $vendedores = $this->db->query( $sql)->result_array();
 // $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
 ?>
 <?php if(  !empty($row) ) : ?>
-    <?php echo form_open(site_url('servicio/servicios/contractPay'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
+    <?php echo form_open(site_url('servicio/servicios/funecreditoPay'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary" data-collapsed="0">
@@ -61,8 +65,8 @@ $vendedores = $this->db->query( $sql)->result_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Monto total: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="amount" class="form-control format-currency" value="<?php echo $acc['monto_total']; ?>" />
-                                    <input type="hidden" class="exclude" data-info="amount_word" value="<?php echo  $row['monto_total'] ; ?>"  />
+                                    <input type="text" data-info="amount" class="form-control format-currency" value="<?php echo $acc['monto_principal']; ?>" />
+                                    <input type="hidden" class="exclude" data-info="amount_word" value="<?php echo  $row['monto_principal'] ; ?>"  />
                                 </div>
                             </div>
                         </div>
@@ -72,7 +76,7 @@ $vendedores = $this->db->query( $sql)->result_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Concepto: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="concepto" name="concepto" class="form-control" value="Pago de contrato # <?php echo $row['no_contrato']; ?> " />
+                                    <input type="text" data-info="concepto" name="concepto" class="form-control" value="Pago de Mensualidad " />
                                 </div>
                             </div>
                         </div>
@@ -106,16 +110,17 @@ $vendedores = $this->db->query( $sql)->result_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Saldo anterior: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="saldo_anterior" class="form-control format-currency" disabled  value="<?php echo htmlentities( $acc['saldo_anterior'] ); ?>" />
+                                    <input type="text" data-info="saldo_anterior" class="form-control format-currency" disabled  value="<?php echo htmlentities( $acc['saldo'] ); ?>" />
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="field-1" class="control-label col-sm-12">Abono: </label>
+                                <label for="field-1" class="control-label col-sm-12">Abono: 
+                                    <?php echo  $acc['cuota_con_interes'];?></label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="abono" class="form-control format-currency"  value="<?php echo htmlentities( $acc['monto_cuota'] ); ?>" />
-                                    <input type="hidden"  value="<?php echo  $acc['monto_cuota'] ; ?>" name="abono" />
+                                    <input type="text" data-info="abono" class="form-control format-currency"  value="<?php echo  $acc['couta_con_interes'];  ?>" />
+                                    <input type="hidden"  value="<?php echo  $acc['couta_con_interes']; ?>" name="abono" />
                                 </div>
                             </div>
                         </div>
@@ -123,7 +128,7 @@ $vendedores = $this->db->query( $sql)->result_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Interes: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="interes" class="form-control" disabled value="TBP" />
+                                    <input type="text" data-info="interes" class="form-control" disabled value="<?php echo $acc['interes_mensual'] ?>%" />
                                 </div>
                             </div>
                         </div>
@@ -134,7 +139,15 @@ $vendedores = $this->db->query( $sql)->result_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Mes al cobro: </label>
                                 <div class="col-sm-12">
-                                    <?php echo print_months(true,'mes_cobro','class="selectboxit"',$row['mes_cobro']);?>
+                                    <?php echo print_months(true,'mes_cobro','class="selectboxit"',$row['mes_cobro'],true);?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label col-sm-12">Año al cobro: </label>
+                                <div class="col-sm-12">
+                                   <input type="text" name="anno_cobro" value="2018" class="form-control " />
                                 </div>
                             </div>
                         </div>
@@ -146,7 +159,9 @@ $vendedores = $this->db->query( $sql)->result_array();
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <br>
                             <div class="form-group">
                                 <div class="col-sm-12 txt-right">
@@ -155,9 +170,11 @@ $vendedores = $this->db->query( $sql)->result_array();
                                     <button class="btn btn-info" type="submit">
                                         Aplicar e Imprimir
                                     </button>
+                                    
                                 </div>
                             </div>
                         </div>
+                    </div>    
 
                         <div class="col-md-12">
                             <div class="msgs_container"></div>

@@ -21,21 +21,46 @@ $recibo = $this->db->query( $sql_recibo, array( $param3 ) )->row_array();
 $servicio_id = $recibo['servicio_id'];
 $tipo = $recibo['servicio_tipo'];
 
+echo $tipo . '  /  ' .$servicio_id . ' / param3: '. $param3;
+
 if($tipo == 'contrato'){
     $sql = "select c.*, cn.* from bk_contratos c inner join bk_contact cn on c.contact_id = cn.contact_id where id = ?";
     $sql_account = "select * from bk_contratos_account where contract_number = ?";
     $prefix = 'CT';
+    $row = $this->db->query( $sql, array( $servicio_id ) )->row_array();
+    $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
+    $acc['interes_mensual'] = 'TBP';
 }
 else if($tipo == 'apartado'){
     $sql = "select c.*, cn.* from bk_apartados c inner join bk_contact cn on c.contact_id = cn.contact_id where id = ?";
     $sql_account = "select * from bk_apartados_account where contract_number = ?";
     $prefix = 'APT';   
+    $row = $this->db->query( $sql, array( $servicio_id ) )->row_array();    
+    $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
+    $acc['interes_mensual'] = 'TBP';
+}
+else if($tipo == 'funecredito'){
+
+    //get funeral id by acc id
+    $sql_account = "select * from bk_funecredito_account where id = ?";
+    $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
+
+    // print_r($acc);
+    $sql = "select f.*, cn.* from bk_funeral f inner join bk_contact cn on f.contact_id = cn.contact_id where id_funeral = ?";
+    $prefix = 'FNC';  
+    $row = $this->db->query( $sql, array( $acc['funeral_id'] ) )->row_array();   
+    $acc['monto_total'] = $acc['monto_principal'];
+    $acc['interes_mensual'] = $acc['interes_mensual'].'%';
 }
 
 
 // echo $param3;
-$row = $this->db->query( $sql, array( $servicio_id ) )->row_array();
-$acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
+
+
+// $row = $this->db->query( $sql, array( $servicio_id ) )->row_array();
+// $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
+
+
 // $row = $this->db->query( $sql, array( $param3 ) )->row_array();
 // echo '<pre>';
 // print_r($row);
@@ -149,7 +174,8 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Interes: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="interes" class="form-control" disabled value="TBP" />
+                                    <input type="text" data-info="interes" class="form-control" disabled 
+                                    value="<?php echo $acc['interes_mensual']; ?>" />
                                 </div>
                             </div>
                         </div>
@@ -160,7 +186,8 @@ $acc = $this->db->query( $sql_account, array( $servicio_id ) )->row_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Mes al cobro: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" name="mes_cobro" class="form-control"  disabled value="<?php echo  $acc['mes_cobro'] ; ?>"/>
+                                    <input type="text" name="mes_cobro" class="form-control"  disabled 
+                                    value="<?php echo  $recibo['mes_cobro'].' '.$recibo['anno_cobro'] ; ?>"/>
                                 </div>
                             </div>
                         </div>

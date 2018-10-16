@@ -112,8 +112,8 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Abono: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="abono" class="form-control format-currency"  />
-                                    <input type="hidden"  name="abono" />
+                                    <input type="text" data-info="abono" class="form-control format-currency" value="10000" />
+                                    <input type="hidden"  name="abono" value="10000" />
                                 </div>
                             </div>
                         </div>
@@ -132,7 +132,15 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Mes al cobro: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" name="mes_cobro" class="form-control"  />
+                                    <?php echo print_months(true,'mes_cobro','class="selectboxit"',$row['mes_cobro'],true);?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label col-sm-12">Año al cobro: </label>
+                                <div class="col-sm-12">
+                                   <input type="text" name="anno_cobro" value="2018" class="form-control " />
                                 </div>
                             </div>
                         </div>
@@ -140,11 +148,13 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                             <div class="form-group">
                                 <label for="field-1" class="control-label col-sm-12">Saldo actual: </label>
                                 <div class="col-sm-12">
-                                    <input type="text" data-info="saldo_actual" disabled class="form-control format-currency"  value="<?php echo htmlentities( $acc['saldo']); ?>" />
+                                    <input type="text" data-info="saldo_actual" disabled class="form-control format-currency"  value="<?php echo htmlentities( $acc['saldo_anterior']); ?>" />
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <br>
                             <div class="form-group">
                                 <div class="col-sm-12 txt-right">
@@ -153,9 +163,11 @@ $acc = $this->db->query( $sql_account, array( $param3 ) )->row_array();
                                     <button class="btn btn-info" type="submit">
                                         Aplicar e Imprimir
                                     </button>
+                                    
                                 </div>
                             </div>
                         </div>
+                    </div> 
 
                         <div class="col-md-12">
                             <div class="msgs_container"></div>
