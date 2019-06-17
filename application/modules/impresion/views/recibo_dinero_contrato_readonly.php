@@ -1,20 +1,5 @@
 <?php 
 
-// echo 'param1 '.  $param1;
-// echo 'param2 '.  $param2;
-// echo 'param3 '.  $param3;
-
-// $params = explode("_", $param3);
-
-// $reciboID = $params[0];
-// $tipo = $params[1];
-
-// echo '<pre>';
-// print_r($params);
-// echo '</pre>';
-
-
-
 
 $sql_recibo = "select * from bk_transaccion where id = ?";
 $recibo = $this->db->query( $sql_recibo, array( $param3 ) )->row_array();

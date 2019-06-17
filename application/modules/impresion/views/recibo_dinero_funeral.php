@@ -1,8 +1,7 @@
 <?php 
 
-echo 'param1 '.  $param1;
-echo 'param2 '.  $param2;
-echo 'param3 '.  $param3;
+$idServicio = $_GET['serv'];
+echo 'test' .  $idServicio;
 
 $sql = "select c.*, cn.* from bk_contratos c inner join bk_contact cn on c.contact_id = cn.contact_id where id = ?";
 $sql_account = "select * from bk_contratos_account where contract_number = ?";
@@ -24,7 +23,7 @@ $vendedores = $this->db->query( $sql)->result_array();
 
 // $f = new NumberFormatter("es", NumberFormatter::SPELLOUT);
 ?>
-<?php if(  !empty($row) ) : ?>
+<?php if( r) : ?>
     <?php echo form_open(site_url('servicio/servicios/contractPay'), array('class' => 'services form-horizontal form-groups-bordered form-fun validate', 'enctype' => 'multipart/form-data')); ?>
     <div class="row">
         <div class="col-md-12">

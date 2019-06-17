@@ -177,16 +177,16 @@ $vendedores = $this->db->query( $sql)->result_array();
                         </div>
                     </div> -->
                     <!-- col -->
-                    <div class="col-md-3">
+                    <div class="col-md-5">
+                        <input type="hidden" name="funeraria" value='1'>
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Vendedor</label>
                             <div class="col-sm-12">
-                                <?php echo vend_list($vendedores, $row['vendedor']); ?>
-                               
+                                <?php echo vend_list($vendedores, $row['vendedor']); ?>                               
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <!-- <div class="col-md-2">
                         <div class="form-group">
                             <label for="field-1" class="col-sm-12 control-label">Funeraria</label>
                             <div class="col-sm-12">
@@ -196,7 +196,7 @@ $vendedores = $this->db->query( $sql)->result_array();
                                     </select>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <input type="hidden"   name="forma_pago" value="<?php echo htmlentities( $row['forma_pago'] ); ?>">
                     <!-- col -->
                     <!-- <div class="col-md-3">

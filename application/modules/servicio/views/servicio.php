@@ -160,8 +160,8 @@ if(empty($services)){ ?>
                     </td>                    
                     <td>
                         <?php 
-                            $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_funeral/' . $row['id'].'/funecredito' );
-                            $view_pays_url = site_url('admin/modal/popup/servicio/list_funeral_payments/' . $row['id'].'/funecredito' );
+                            $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_servicio/' . $row['id'].'/funecredito?serv=funecredito' );
+                            $view_pays_url = site_url('admin/modal/popup/servicio/list_funeral_payments/' . $row['id'].'/funecredito?serv=funecredito' );
                             // $discount_url = site_url('admin/modal/popup/impresion/aplicar_descuento/' . $row['id'] );
                             // $adjustment_url = site_url('admin/modal/popup/impresion/aplicar_ajuste/' . $row['id'] );
                             // echo $view_pays_url;

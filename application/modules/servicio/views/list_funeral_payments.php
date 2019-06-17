@@ -3,7 +3,7 @@
 	$services = $this->db->query( $sql, array( $param3  ) )->result_array();
 
     $sql_contrato = "select * from bk_funeral where id_funeral = ?";
-    $sql_account = "select * from bk_contratos_account where contract_number = ?";
+    $sql_account = "select * from bk_funecredito_account where funeral_id = ?";
 
 	// echo $param3;
 	$row = $this->db->query( $sql_contrato, array( $param3) )->row_array();
@@ -75,7 +75,7 @@
 				<td><?php echo $row['metodo_pago'] ?></td>
 				<td>
 					<?php
-						  $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_contrato_readonly/' . $row['id'] );
+						  $service_url = site_url('admin/modal/popup/impresion/recibo_dinero_funecredito_readonly/' . $row['id'] );
 					?>
 					<a href="javascript:;" class="btn btn-primary"  onclick="showAjaxModal('<?php echo $service_url ?>')">
 						Ver Recibo

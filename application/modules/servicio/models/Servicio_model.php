@@ -354,7 +354,7 @@ class Servicio_model extends CI_Model
         $data['saldo_actual'] = $this->input->post('saldo_actual'); 
 
         $data['observaciones'] = $this->input->post('observaciones'); 
-        $data['funeraria_id'] = $this->input->post('funeraria'); 
+        // $data['funeraria_id'] = $this->input->post('funeraria'); 
 
         $data['anno_cobro'] = $this->input->post('anno_cobro'); 
 
@@ -446,9 +446,11 @@ class Servicio_model extends CI_Model
         $data['info_decora_chofer'] = $this->input->post('info_decoration_driver');
         $data['info_observaciones'] = $this->input->post('info_service_observations');
 
+         $saldo_actual = (float)$this->input->post('amountService') - (float)$this->input->post('advance_payment');
+
         $data['funeral_tipo'] = $this->input->post('forma_pago'); //1 contado - 2 credito
-        $data['monto_total'] = $this->input->post('amount');
-        $data['saldo_total'] = $this->input->post('saldo');
+        $data['monto_total'] = $this->input->post('amountService');
+        $data['saldo_total'] = $saldo_actual;
         $data['prima'] = $this->input->post('advance_payment');
         $data['contrato_1_numero'] = $this->input->post('contrato_1_num');
         $data['contrato_1_valor'] = $this->input->post('contrato_1_val');
@@ -473,7 +475,7 @@ class Servicio_model extends CI_Model
         if($type == 'funecredito'){
             // $data['contrato_3_valor'] = $this->input->post('contrato_3_val');
              // = $this->input->post('contrato_3_val');
-            $saldo_actual = $this->input->post('amountService') - $this->input->post('advance_payment');
+           
 
             $accID = $this->openFunecreditoAccount( $_SESSION['user_id'],
                                                     $this->input->post('contact_id'), 
@@ -488,7 +490,7 @@ class Servicio_model extends CI_Model
                                                     $this->input->post('couta'),
                                                     $this->now(), 
                                                     $this->getCurrentMonth(),
-                                                    $this->input->post('amount'));
+                                                    $this->input->post('amountService'));
             if($accID > 0){
                 // newTransaction($userID, $contractID, $tipo_servicio, $monto, $metodo_pago, $descripcion, $detalles, $saldo_anterior, $status = 'A' ){
                 $transactionID = $this->newTransaction(
@@ -639,8 +641,8 @@ class Servicio_model extends CI_Model
         $data['info_observaciones'] = $this->input->post('info_service_observations');
 
         $data['funeral_tipo'] = $this->input->post('funeral_tipo'); //1 contado - 2 credito
-        $data['monto_total'] = $this->input->post('amount');
-        $data['saldo_total'] = $this->input->post('saldo');
+        $data['monto_total'] = $this->input->post('amountService');
+        $data['saldo_total'] = $this->input->post('amountService') - $this->input->post('prima');
         $data['prima'] = $this->input->post('prima');
         $data['contrato_1_numero'] = $this->input->post('contrato_1_num');
         $data['contrato_1_valor'] = $this->input->post('contrato_1_val');
@@ -725,7 +727,7 @@ class Servicio_model extends CI_Model
         $data['loc_2'] = $this->input->post('local_2');
         $data['loc_3'] = $this->input->post('local_3');
         $data['no_recibo'] = $this->input->post('no_recibo');
-        $data['funeraria_id'] = $this->input->post('funeraria'); 
+        // $data['funeraria_id'] = $this->input->post('funeraria'); 
          
         $data['mes_cobro'] = $this->input->post('mes_cobro');
         $data['saldo_anterior'] = $this->input->post('saldo_anterior');

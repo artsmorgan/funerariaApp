@@ -32,7 +32,7 @@
                     <label for="field-1" class="col-sm-3 control-label">Segundo Apellido</label>
 
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="second_last_name" required />
+                        <input type="text" class="form-control" name="second_last_name" />
                     </div>
                 </div>
 

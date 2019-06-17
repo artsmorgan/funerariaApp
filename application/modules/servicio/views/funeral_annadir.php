@@ -1200,7 +1200,7 @@
                                     <label class="control-label col-md-6">Saldo a financiar Funecrédito</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control format-currency lock" disabled  id="debt_format"/>
-                                        <input type="hidden"  id="debt"  name="debt"   />
+                                        <input type="hidden"  id="debt"  name="debt" value="0"  />
                                     </div>
                                 </div>
                             </div>
@@ -1213,7 +1213,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-12">Plazo meses</label>
                                     <div class="col-md-12">
-                                        <input type="number" class="form-control"  id="plazo"  name="plazo" min="1" />
+                                        <input type="number" class="form-control" value="0"  id="plazo"  name="plazo" min="1" />
                                     </div>
                                 </div>
                             </div>
@@ -1222,7 +1222,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-12">Interés Mensual</label>
                                     <div class="col-md-12">
-                                        <input type="number" class="form-control"  id="interesMensual" name="interes_mensual"  />
+                                        <input type="number" class="form-control"  id="interesMensual" value="0" name="interes_mensual"  />
                                     </div>
                                 </div>
                             </div>
@@ -1255,7 +1255,7 @@
                                     Calcular Cuota
                                 </a>
                                 <?php } ?>
-                                <button type="submit" class="btn btn-info" id="submit-button">
+                                <button type="submit" class="btn btn-info" id="submit-button" style="display: none">
                                     Crear Servicio
                                 </button>
                             </div>
@@ -1275,7 +1275,6 @@
 <script>
 
     $(document).ready(function(){
-        console.log('loaded');
         $('#calcCuotaBTN').on('click', calPagoFN);
 
     })
@@ -1298,37 +1297,18 @@
             montoContrato2 = $('#amountContract2').asNumber() || 0,
             montoContrato3 = $('#amountContract3').asNumber() || 0;
 
-            console.log('montoServicio',montoServicio);
-            console.log('primaFunecredito',primaFunecredito);
-            console.log('saldoFunecredito',saldoFunecredito);
-            console.log('amountContract1',montoContrato1);
-            console.log('amountContract2',montoContrato2);
-            console.log('amountContract3',montoContrato3);
+            // console.log('montoServicio',montoServicio);
+            // console.log('primaFunecredito',primaFunecredito);
+            // console.log('saldoFunecredito',saldoFunecredito);
+            // console.log('amountContract1',montoContrato1);
+            // console.log('amountContract2',montoContrato2);
+            // console.log('amountContract3',montoContrato3);
 
         var montoContratos =  montoContrato1 + montoContrato2 + montoContrato3;
 
             saldo = montoServicio - primaFunecredito -montoContratos;
 
-            console.log('saldo', saldo);
-            // $('#calcAmount [type=checkbox]').each(function(){
-            //     if( $(this).is(':checked') ){
-            //         montoContratos += Number( $(this).data('monto_abonado') || 0 );
-            //         totalContratos += Number( $(this).data('monto_total') || 0 );
-            //         cuotaContrato += Number( $(this).data('monto_cuota') || 0 );
-            //     }
-            // });
-
-            // saldo = montoServicio - abono;
-
-            // if( saldo >= totalContratos ){
-            //     saldo -= totalContratos;
-            //     saldoContrato = totalContratos - montoContratos;
-            // }
-            // else{
-            //     saldo = 0;
-            // }
-
-            // saldo = saldo - primaFunecredito - saldoFunecredito;
+            // console.log('saldo', saldo);            
 
             $('#debt').val(saldo);
             $('#debt_format').val(saldo).formatCurrency({
@@ -1336,34 +1316,40 @@
             });
 
             //calcular cuota mensual.
-            console.log('saldo',saldo);
-            console.log('plazo',plazo);
-            console.log('cuotaSinInteres',cuotaSinInteres);
-        var cuotaSinInteres = saldo / plazo;    
-        var coutaConInteres = cuotaSinInteres ;
+            // console.log('saldo',saldo);
+            // console.log('plazo',plazo);
+            // console.log('cuotaSinInteres',cuotaSinInteres);
+            var cuotaSinInteres = saldo / plazo;    
+            var coutaConInteres = cuotaSinInteres ;
         
         if(interesMensual > 0){
-                console.log('interesMensual',interesMensual);
+            console.log('interesMensual',interesMensual);
 
-                interesMensual = interesMensual / 100;
-                console.log('interesMensual porcentual',interesMensual);
+            interesMensual = interesMensual / 100;
+            console.log('interesMensual porcentual',interesMensual);
 
             var interesCalculado = cuotaSinInteres * interesMensual;
-                console.log('cuotaSinInteres',cuotaSinInteres);
-                console.log('X')
-                console.log('interesCalculado',interesCalculado);
-                
-                coutaConInteres = coutaConInteres + interesCalculado;
-                console.log('coutaConInteres',coutaConInteres);
+            console.log('cuotaSinInteres',cuotaSinInteres);
+            console.log('X')
+            console.log('interesCalculado',interesCalculado);
+
+            coutaConInteres = coutaConInteres + interesCalculado;
+            console.log('coutaConInteres',coutaConInteres);
 
         }
 
-            $('#couta').val(coutaConInteres);
-            $('#cuota_format').val(coutaConInteres).formatCurrency({
-                symbol: '₡ '
-            });
+        if(isNaN(coutaConInteres)){
+            coutaConInteres = 0;
+        }
+
+
+        $('#couta').val(coutaConInteres);
+        $('#cuota_format').val(coutaConInteres).formatCurrency({
+            symbol: '₡ '
+        });
 
         
+        $('#submit-button').show();
 
 
             // $('#pay1month').val(saldo).trigger('input');

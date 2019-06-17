@@ -42,7 +42,7 @@ $row = $this->db->query( $sql, array( $uid ) )->row_array();
                     <label for="field-1" class="col-sm-3 control-label">Segundo Apellido</label>
 
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="second_last_name" required value="<?php echo $row['apellido2'] ?>" />
+                        <input type="text" class="form-control" name="second_last_name" value="<?php echo $row['apellido2'] ?>" />
                     </div>
                 </div>
 

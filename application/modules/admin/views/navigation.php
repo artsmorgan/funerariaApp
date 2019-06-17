@@ -104,12 +104,12 @@
                         <span>Apartado</span>
                     </a>
                 </li>
-                <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
+                <!-- <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
                     <a href="<?php echo site_url('/servicio/servicios/funeral'); ?>">
                         <i class="entypo-dot"></i>
                         <span>Funeral</span>
                     </a>
-                </li>
+                </li> -->
                
 
             </ul>
@@ -191,7 +191,7 @@
 
             </ul>
         </li>
-        <li class="<?php
+        <!-- <li class="<?php
                     if($page_name == 'account' || $page_name == 'account_add' ||
                         $page_name == 'bill_account' ||
                         $page_name == 'account_payments' ||
@@ -202,7 +202,7 @@
                 <i class="fa fa-print"></i>
                 <span>Impresiones</span>
             </a>
-            <!-- <ul>
+            <ul>
                 <li class="<?php if($page_name == 'account_pays') echo 'active'; ?>">
                     <a href="#>">
                         <i class="entypo-tag"></i>
@@ -222,8 +222,8 @@
                     </a>
                 </li>
 
-            </ul> -->
-        </li>
+            </ul>
+        </li> -->
        <?php if( $this->session->userdata('role') == 'admin'){ ?>
         <!-- <li class="<?php if($page_name == 'product' || $page_name == 'product_category')
             echo 'opened active'; ?>">
@@ -369,7 +369,7 @@
         
         <li class="<?php if($page_name == 'reports') echo 'active'; ?>">
             <a href="#">
-                 <i class="fa fa-truck"></i>
+                 <i class="fa fa-check"></i>
                 <span>Reportes</span>
             </a>
             <ul>
